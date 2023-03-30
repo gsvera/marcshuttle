@@ -1,0 +1,126 @@
+:root{
+    --c-blue: #1346A8;
+    --c-orange:#FE7A30;
+    --c-gray: #FFFFFF33;
+    --c-cian:#3DD0FF;
+}
+*, ::after, ::before{
+    box-sizing: border-box;
+}
+.font-weight-bold{
+    font-weight: bold;
+}
+.text-cian{
+    color: var(--c-cian);
+}
+.fsize-xl{
+    font-size: 4em;
+}
+.btn-white-contac{
+    background-color: white;
+    border-radius: 5px;
+}
+.btn-white-contac:hover{
+    background-color: white;
+    animation: btnFlotante 3s infinite;
+    position: relative;
+}
+
+.azul-nav{
+    background-color: var(--c-blue);
+    color:white;
+    padding: 3px 80px;
+}
+.text-white-menu, .text-white-menu:hover{
+    color: white;
+    font-size: 14px;
+}
+.text-white-menu-lg{
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+}
+.text-white-menu-lg:hover{
+    color: var(--c-cian);
+}
+
+.transparent-nav{
+    background-color: transparent;
+    padding: 20px 80px;
+    border-bottom: solid 1px var(--c-gray);
+}
+.back-orange{
+    background-color: var(--c-orange);
+    border-radius: 50%;
+    padding: 4px 7px;
+    font-size: 15px;
+}
+.btn-outline-white{
+    background-color: transparent;
+    border-radius: 5px;
+    border-color: white;
+    color: white;
+    font-size: 16px;
+    padding: 10px 20px;
+    
+}
+.btn-outline-white:hover{
+    background-color: transparent;
+    color: white;
+    border-radius: 5px;
+    border-color: white;
+    position: relative;
+    animation: btnFlotante 3s infinite;
+}
+
+@keyframes btnFlotante{
+    0% { top: -5px;}
+    50%{ top: -15px;}     
+    100%{top: -5px;}
+}
+
+/*      CSS PARA BUSCADOR        */
+
+.box-buscador{
+    background-color: white;
+    padding: 30px;
+    border-radius: 5px;
+    border-width: 1px 1px 1px 1px;
+    background-color: rgba(109, 124, 144, 0.7);
+}
+
+.box-selector{
+    background-color: white;
+    padding: 5px;
+    border-width: 1px 1px 1px 1px;
+    border-radius: 5px;
+}
+
+.btn-naranja{
+    background-color: var(--c-orange);
+    color: white;
+    font-weight: bold;
+}
+
+/*      CSS PARA PAGINA DE INICIO        */
+
+.layer-home{
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    position: absolute;
+}
+.back-slider-home{
+    background-image: url(/img/banners/hero-home.jpg);
+    z-index: -10;
+}
+.back-slider-home:before{
+    content:'';
+	position: absolute;
+        top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	background-color: rgba(0,0,0,0.3);
+}
