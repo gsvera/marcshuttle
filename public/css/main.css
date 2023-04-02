@@ -7,14 +7,54 @@
 *, ::after, ::before{
     box-sizing: border-box;
 }
+
+/*       key frames     */
+
+@keyframes btnFlotante{
+    0% { top: -5px;}
+    50%{ top: -15px;}     
+    100%{top: -5px;}
+}
+@keyframes elementUp{
+    0%   {top:400px;}  
+    100% {top:0px;}
+}
+.elementup{
+    animation-name: elementUp;
+    animation-duration: 1s;
+    position: relative;
+}
+/*       end key frames     */
+
 .font-weight-bold{
     font-weight: bold;
 }
 .text-cian{
     color: var(--c-cian);
 }
+.text-blue{
+    color: var(--c-blue);
+}
+.text-gray{
+    color:gray;
+}
 .fsize-xl{
     font-size: 4em;
+}
+.fsize-md{
+    font-size: 3em;
+}
+.fsize-mds{
+    font-size: 2em;
+}
+.fsize-sm{
+    font-size: 1.2em;
+}
+.ls2{
+    letter-spacing:2px;
+}
+.section{
+    margin: 100px 0;
 }
 .btn-white-contac{
     background-color: white;
@@ -73,12 +113,71 @@
     animation: btnFlotante 3s infinite;
 }
 
-@keyframes btnFlotante{
-    0% { top: -5px;}
-    50%{ top: -15px;}     
-    100%{top: -5px;}
-}
 
+
+/*      CSS PARA ICONS        */
+
+.icon-cian{
+    background-color: var(--c-cian);
+    border-radius: 100% 100% 100% 100%;
+    padding: 14px 16px 14px 16px;
+}
+.icon-orange{
+    background-color: var(--c-orange);
+    border-radius: 100% 100% 100% 100%;
+    padding: 14px 16px 14px 16px;
+    width: 68px;
+    height: 60px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    margin-bottom: -25px;
+}
+.line-sm-blue{
+    width: 60px;
+    height: 3px;
+    background-color: var(--c-blue);
+}
+.line-sm-white{
+    width: 60px;
+    height: 3px;
+    background-color: white;
+}
+.card-white{
+    border-radius: 5px;
+    background-color: white;
+    text-align: center;
+    align-items: center;
+    padding: 20px;
+    margin: 0 10px;
+}
+.card-img{
+    border-radius: 5px;
+    background-image: url(/img/assets/bg-card.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin: 0 10px;
+    height: 100%;
+}
+.card-img-blue{
+    background-color: rgba(19,70,168,0.6);
+    border-radius: 5px;
+    width: 100%;
+    height: 100%;    
+    padding: 10px;
+    align-items: center;
+    align-content: center;
+    text-align: center;
+    margin: 0;
+}
+.services-back{
+    background-image: url(/img/assets/service1.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100%;
+    height: 410px;
+    border-radius: 5px;
+}
 /*      CSS PARA BUSCADOR        */
 
 .box-buscador{
@@ -101,11 +200,18 @@
     color: white;
     font-weight: bold;
 }
+.btn-naranja:hover{
+    background-color: var(--c-orange);
+    color: white;
+    font-weight: bold;
+    position: relative;
+    animation: btnFlotante 3s infinite;
+}
 
 /*      CSS PARA PAGINA DE INICIO        */
 
 .layer-home{
-    height: 100%;
+    height: 850px;
     width: 100%;
     top: 0;
     left: 0;
@@ -118,9 +224,50 @@
 .back-slider-home:before{
     content:'';
 	position: absolute;
-        top: 0;
+    top: 0;
 	bottom: 0;
 	left: 0;
 	right: 0;
 	background-color: rgba(0,0,0,0.3);
+}
+.degradate-black{
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(transparent, rgba(19,70,168,0.4));    
+}
+.banner-bus{
+    background-image: url(/img/banners/why-bg.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.banner-driver{
+    background-image: url(/img/banners/driver.jpg);
+    background-repeat: no-repeat;
+    background-size: auto;
+    background-position-x: right;
+}
+.banner-lineal{
+    background-image: url(/img/banners/bg-ourbus.png);
+    background-repeat: no-repeat;
+    background-size: auto;
+    z-index: -100;
+    height: 100%;
+}
+.banner-lineal:before{
+    content: "";
+    left: 0;
+    right: 0;
+    height: 100%;    
+    width: 100%;
+    position: absolute;
+    background-color: rgba(19,70,168,0.9);
+    z-index: -10;
+}
+.bg-blue{    
+    left: 0;
+    right: 0;
+    height: 100%;    
+    width: 100%;
+    position: absolute;
+    background-color: rgba(19,70,168,0.6);
 }

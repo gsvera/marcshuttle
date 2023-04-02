@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <link rel="stylesheet" href="{{ asset('css/main.css') }}">
     <script src="https://use.fontawesome.com/97a88bff0a.js"></script>
+    <!-- <link href="https://kit-pro.fontawesome.com/releases/v5.15.3/css/pro.min.css" type="text/css" rel="stylesheet"> -->
     <title>Marc Shuttle</title>
     <!-- <script type="text/javascript">
         window.CSRF_TOKEN = '{{ csrf_token() }}';
