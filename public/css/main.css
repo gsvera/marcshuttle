@@ -1,5 +1,6 @@
 :root{
     --c-blue: #1346A8;
+    --blue-strong:#17223A;
     --c-orange:#FE7A30;
     --c-gray: #FFFFFF33;
     --c-cian:#3DD0FF;
@@ -112,7 +113,33 @@
     position: relative;
     animation: btnFlotante 3s infinite;
 }
-
+.back-footer{
+    background-color: var(--blue-strong);
+}
+.none-list{
+    list-style: none;
+    padding: 0;
+}
+.div-angule{
+    transform: rotate(180deg);
+    top: -1px;
+    overflow: hidden;
+    position: relative;
+    left: 0;
+    width: 100%;
+    line-height: 0;
+    direction: ltr;
+}
+.angule-blue{
+    height: 50px;
+    z-index: -1;
+    display: block;
+    width: calc(100% + 1.3px);
+    position: relative;
+    left: 50%;
+    transform:translateX(-50%);
+    
+}
 
 
 /*      CSS PARA ICONS        */

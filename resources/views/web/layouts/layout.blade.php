@@ -90,6 +90,47 @@
     <div>
         @yield('content')        
     </div>
+    <!-- <div class="div-angule">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 100" preserveAspectRatio="none" class="angule-blue">
+            <path class="elementor-shape-fill" d="M500.2,94.7L0,0v100h1000V0L500.2,94.7z" style="transform-origin: center;transform: rotateY(0deg)"></path>
+        </svg>
+    </div> -->
+    <div class="back-footer">
+        <div class="row px-5 justify-content-center">
+            <div class="col-md-3">
+                <h4 class="text-white font-weight-bold">{{__('Home.contactanos')}}</h4>
+                <ul class="none-list">
+                    <li class="text-gray fsize-sm">768 Market Street San Francisco, CA 64015, United States</li>
+                    <li class="text-gray fsize-sm">customer@transpo.com</li>
+                    <li class="text-gray fsize-sm">(+021) 345 678 910</li>
+                </ul>
+            </div>
+            <div class="col-md-3">
+                <h4 class="text-white font-weight-bold">{{__('Home.informacion')}}</h4>
+                <ul class="none-list">
+                    <li class="text-gray fsize-sm">{{__('Home.acerca-nosotros')}}</li>
+                    <li class="text-gray fsize-sm">{{__('Home.servicio-cliente')}}</li>
+                    <li class="text-gray fsize-sm">Bus Type</li>
+                    <li class="text-gray fsize-sm">{{__('Home.privacidad-politica')}}</li>
+                    <li class="text-gray fsize-sm">{{__('Home.terminos-condiciones')}}</li>
+                </ul>
+            </div>
+            <div class="col-md-3">
+                <h4 class="text-white font-weight-bold">{{__('Home.servicio-cliente')}}</h4>
+                <ul class="none-list">
+                    <li class="text-gray fsize-sm">{{__('Home.acerca-nosotros')}}</li>
+                    <li class="text-gray fsize-sm">{{__('Home.servicio-cliente')}}</li>
+                    <li class="text-gray fsize-sm">Order and returns</li>
+                    <li class="text-gray fsize-sm">{{__('Home.contactanos')}}</li>
+                    <li class="text-gray fsize-sm">Stor locations</li>
+                </ul>
+            </div>
+            <div class="col-md-3">
+                <h4 class="text-white font-weight-bold">{{__('Home.metodo-pago')}}</h4>
+                <i class="fa fa-cc-paypal text-white fa-2x" aria-hidden="true"></i>
+            </div>
+        </div>
+    </div>
     <footer></footer>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="{{ asset('js/main.js')}}"></script>
