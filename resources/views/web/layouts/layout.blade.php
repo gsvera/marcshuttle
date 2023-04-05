@@ -95,17 +95,20 @@
             <path class="elementor-shape-fill" d="M500.2,94.7L0,0v100h1000V0L500.2,94.7z" style="transform-origin: center;transform: rotateY(0deg)"></path>
         </svg>
     </div> -->
-    <div class="back-footer">
-        <div class="row px-5 justify-content-center">
-            <div class="col-md-3">
+    <div class="back-footer" style="bottom:0">
+        <div class="d-flex px-5 justify-content-between" style="padding-top:15px;">
+            <div class="col-md-1"></div>
+            <div class="col-md-2">
                 <h4 class="text-white font-weight-bold">{{__('Home.contactanos')}}</h4>
-                <ul class="none-list">
-                    <li class="text-gray fsize-sm">768 Market Street San Francisco, CA 64015, United States</li>
-                    <li class="text-gray fsize-sm">customer@transpo.com</li>
-                    <li class="text-gray fsize-sm">(+021) 345 678 910</li>
-                </ul>
+                <div class="row justify-content-center">
+                    <ul class="none-list">
+                        <li class="text-gray fsize-sm">768 Market Street San Francisco, <br /> CA 64015, United States</li>
+                        <li class="text-gray fsize-sm">customer@transpo.com</li>
+                        <li class="text-gray fsize-sm">(+021) 345 678 910</li>
+                    </ul>
+                </div>
             </div>
-            <div class="col-md-3">
+            <div class="col-md-2">
                 <h4 class="text-white font-weight-bold">{{__('Home.informacion')}}</h4>
                 <ul class="none-list">
                     <li class="text-gray fsize-sm">{{__('Home.acerca-nosotros')}}</li>
@@ -115,7 +118,7 @@
                     <li class="text-gray fsize-sm">{{__('Home.terminos-condiciones')}}</li>
                 </ul>
             </div>
-            <div class="col-md-3">
+            <div class="col-md-2">
                 <h4 class="text-white font-weight-bold">{{__('Home.servicio-cliente')}}</h4>
                 <ul class="none-list">
                     <li class="text-gray fsize-sm">{{__('Home.acerca-nosotros')}}</li>
@@ -125,9 +128,21 @@
                     <li class="text-gray fsize-sm">Stor locations</li>
                 </ul>
             </div>
-            <div class="col-md-3">
+            <div class="col-md-2">
                 <h4 class="text-white font-weight-bold">{{__('Home.metodo-pago')}}</h4>
                 <i class="fa fa-cc-paypal text-white fa-2x" aria-hidden="true"></i>
+            </div>
+            <div class="col-md-1"></div>
+        </div>
+        <div class="divider"></div>
+        <div class="d-flex py-4 px-5">
+            <div class="col-md-6 text-silver px-5 fsize-sm font-weight-bold">
+                © 2022 Transpo. Powered by ThemeWarrior
+            </div>
+            <div class="col-md-6 d-flex justify-content-end px-5">
+                <div class="d-flex" style="align-items:center;">
+                    <img width="160" height="33" src="https://templatekits.themewarrior.com/transpo/wp-content/uploads/sites/64/2022/08/logo-light-transpo-1.png" alt="Logo">
+                </div>
             </div>
         </div>
     </div>

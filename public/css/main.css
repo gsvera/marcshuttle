@@ -3,12 +3,30 @@
     --blue-strong:#17223A;
     --c-orange:#FE7A30;
     --c-gray: #FFFFFF33;
+    --c-silver: #788399;
     --c-cian:#3DD0FF;
 }
 *, ::after, ::before{
     box-sizing: border-box;
 }
-
+.pl-5{
+    padding-left: 3rem !important;
+}
+.pr-5{
+    padding-right: 3rem !important;
+}
+.pl-4{
+    padding-left: 1.5rem !important;
+}
+.pr-4{
+    padding-right: 1.5rem !important;
+}
+.pl-3{
+    padding-left: 1rem !important;
+}
+.pr-3{
+    padding-right: 1rem !important;
+}
 /*       key frames     */
 
 @keyframes btnFlotante{
@@ -38,6 +56,9 @@
 }
 .text-gray{
     color:gray;
+}
+.text-silver{
+    color: var(--c-silver);
 }
 .fsize-xl{
     font-size: 4em;
@@ -284,7 +305,7 @@
     content: "";
     left: 0;
     right: 0;
-    height: 100%;    
+    height: 80%;    
     width: 100%;
     position: absolute;
     background-color: rgba(19,70,168,0.9);
@@ -297,4 +318,9 @@
     width: 100%;
     position: absolute;
     background-color: rgba(19,70,168,0.6);
+}
+.divider{
+    border-top: 1px solid var(--c-gray);
+    width: 100%;
+    margin: 25px 0 10px;
 }
