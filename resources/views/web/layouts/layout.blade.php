@@ -45,7 +45,7 @@
             </li>
         </ul>
     </div>
-    <nav class="transparent-nav d-flex">
+    <nav class="transparent-nav d-flex" id="header">
         <div class="col-md-2 d-flex" style="align-items:center;">
             <img width="160" height="33" src="https://templatekits.themewarrior.com/transpo/wp-content/uploads/sites/64/2022/08/logo-light-transpo-1.png" alt="Logo">
         </div>
@@ -86,7 +86,40 @@
             </button>
         </div>
     </nav>
+    <!-- MENU PARA MOBILE -->
+    <nav class="nav-mobile">
+        <div class="br-bt-gray col-12 d-flex pb-3">
+            <div class="col-2 justify-content-center align-center d-flex">
+                <div>
+                    <button class="btn btn-orange"><i class="fa fa-bars" aria-hidden="true"></i></button>
+                </div>
+            </div>
+            <div class="col-5 d-flex align-center" style="align-items:center;">
+                <img width="160" height="33" src="https://templatekits.themewarrior.com/transpo/wp-content/uploads/sites/64/2022/08/logo-light-transpo-1.png" alt="Logo">
+            </div>
+            <div class="col-5 justify-content-center align-center d-flex">
+                <button class="btn btn-outline-white">Request cuote</button>
+            </div>
+        </div>
+        <div class="sub-menu-hide">
+            <ul class="none-list nav-mobile-hide">
+                <li class="nav-item">
+                    <a class="text-orange-menu" href="#">{{__('Home.home')}}</a>
+                </li>
+                <li class="nav-item">
+                    <a class="text-orange-menu" href="#">{{__('Home.nuestros-camiones')}}</a>
+                </li>
+                <li class="nav-item">
+                    <a class="text-orange-menu" href="#">{{__('Home.paginas')}}</a>
+                </li>
+                <li class="nav-item">
+                    <a class="text-orange-menu">{{__('Home.acerca-nosotros')}}</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
 
+    <!-- END MENU PARA MOBILE -->
     <div>
         @yield('content')        
     </div>
@@ -95,7 +128,7 @@
             <path class="elementor-shape-fill" d="M500.2,94.7L0,0v100h1000V0L500.2,94.7z" style="transform-origin: center;transform: rotateY(0deg)"></path>
         </svg>
     </div> -->
-    <div class="back-footer" style="bottom:0">
+    <div class="back-footer pt-5" style="bottom:0">
         <div class="d-flex px-5 justify-content-between" style="padding-top:15px;">
             <div class="col-md-1"></div>
             <div class="col-md-2">
@@ -149,6 +182,22 @@
     <footer></footer>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="{{ asset('js/main.js')}}"></script>
+    <script type="text/javascript">
+        $(function(){
+            if(screen.width > 640){
+                $(window).scroll(function(){
+                    if($(window).scrollTop() > 20){
+                        $('#header').removeClass('transparent-nav')
+                        $('#header').addClass('transparent-nav-blue')
+                    }
+                    else if($(window).scrollTop() < 20){
+                        $('#header').addClass('transparent-nav')
+                        $('#header').removeClass('transparent-nav-blue')
+                    }
+                })
+            }
+        })
+    </script>
     @stack('scripts')
 </body>
 </html>
