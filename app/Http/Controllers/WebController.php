@@ -30,4 +30,8 @@ class WebController extends Controller
     {
         return view('web.componentes.motorBusqueda');
     }
+    public function about()
+    {
+        return view('web.about');
+    }
 }

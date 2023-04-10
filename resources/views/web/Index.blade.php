@@ -1,8 +1,8 @@
 @extends('web.layouts.layout')
 @section('content')
     <div class="layer-home back-slider-home"></div>
-    <div class="d-flex mt-4 elementup">
-        <div class="col-md-6 mt-5 row" style="align-items:center;padding-left:80px;">
+    <div class="row mt-4 elementup m-0">
+        <div class="col-12 col-md-6 row div-principal" >
             <div>
                 <p class="text-cian ls2">TRANSPO</p>
                 <h1 class="font-weight-bold text-white fsize-xl">{{__('Home.titulo-inicio')}}</h1>
@@ -10,12 +10,12 @@
                 <button class="btn btn-white-contac btn-lg font-weight-bold">{{__('Home.contactanos')}}</button>
             </div>
         </div>
-        <div class="col-md-6">
+        <div class="col-12 col-md-6">
             <div id="motorbusqueda"></div>
         </div>        
     </div>
-    <div class="d-flex col-md-11 mx-auto mt-5 elementup">
-        <div class="col-md-3">
+    <div class="row col-md-11 mx-auto mt-5 elementup back-home-mobile">
+        <div class="col-12 col-md-3 my-2">
             <div class="card-white row">
                 <div class="my-3">
                     <span class="icon-cian"><img src="/img/icons/book-confirm.png" alt="book confirm"></span>
@@ -25,7 +25,7 @@
                 <span class="text-blue font-weight-bold">Cheap Coach Tickets <i class="fa fa-angle-right" aria-hidden="true"></i></span>
             </div>
         </div>
-        <div class="col-md-3">
+        <div class="col-12 col-md-3 my-2">
             <div class="card-white row">
                 <div class="my-3">
                     <span class="icon-cian"><img src="/img/icons/verified_user.png" alt="virified user"></span>
@@ -35,7 +35,7 @@
                 <span class="text-blue font-weight-bold">Explore now <i class="fa fa-angle-right" aria-hidden="true"></i></span>
             </div>
         </div>
-        <div class="col-md-3">
+        <div class="col-12 col-md-3 my-2">
             <div class="card-white">
                 <div class="my-3">
                     <span class="icon-cian"><img src="/img/icons/currency_exchange.png" alt="currency exchange"></span>
@@ -45,7 +45,7 @@
                 <span class="text-blue font-weight-bold">Sing up or Login <i class="fa fa-angle-right" aria-hidden="true"></i></span>
             </div>
         </div>
-        <div class="col-md-3">
+        <div class="col-12 col-md-3 my-2">
             <div class="card-img">
                 <div class="card-img-blue row">
                     <div>
@@ -58,7 +58,7 @@
     </div>
     <div class="section">
         <div class="d-flex justify-content-center">
-            <div class="col-md-7 text-center">
+            <div class="col-11 col-md-7 text-center mx-auto">
                 <div class="text-center text-blue font-weight-bold ls2">{{strtoupper(__('MotorBusqueda.servicios'))}}</div>
                 <h2 class="fsize-md font-weight-bold">Bus Rental & Shuttle <br /> Services</h2>
                 <div class="line-sm-blue mx-auto my-3"></div>
@@ -66,10 +66,10 @@
             </div>
         </div>
     </div>
-    <div class="section">
-        <div class="row col-md-10 mx-auto">
+    <div class="section elementUp">
+        <div class="row col-12 col-md-10 mx-auto">
             <div class="col-md-4">
-                <div class="services-back">
+                <div class="services-back my-4">
                     <div class="degradate-black row align-items-end" style="padding:0;margin:0;">
                         <div class="col text-center">
                             <p class="font-weight-bold text-white fsize-mds">School Bus Rental</p>
@@ -83,7 +83,7 @@
                 </div>
             </div>
             <div class="col-md-4">
-                <div class="services-back">
+                <div class="services-back my-4">
                     <div class="degradate-black row align-items-end" style="padding:0;margin:0;">
                         <div class="col text-center">
                             <p class="font-weight-bold text-white fsize-mds">Wendding & Engagements</p>
@@ -97,7 +97,7 @@
                 </div>
             </div>
             <div class="col-md-4">
-                <div class="services-back">
+                <div class="services-back my-4">
                     <div class="degradate-black row align-items-end" style="padding:0;margin:0;">
                         <div class="col text-center">
                             <p class="font-weight-bold text-white fsize-mds">Corporate Travel</p>
@@ -111,9 +111,9 @@
                 </div>
             </div>
         </div>
-        <div class="row col-md-10 mx-auto mt-5">
+        <div class="row col-md-10 mx-auto">
             <div class="col-md-4">
-                <div class="services-back">
+                <div class="services-back my-4">
                     <div class="degradate-black row align-items-end" style="padding:0;margin:0;">
                         <div class="col text-center">
                             <p class="font-weight-bold text-white fsize-mds">School Bus Rental</p>
@@ -127,7 +127,7 @@
                 </div>
             </div>
             <div class="col-md-4">
-                <div class="services-back">
+                <div class="services-back my-4">
                     <div class="degradate-black row align-items-end" style="padding:0;margin:0;">
                         <div class="col text-center">
                             <p class="font-weight-bold text-white fsize-mds">Wendding & Engagements</p>
@@ -141,7 +141,7 @@
                 </div>
             </div>
             <div class="col-md-4">
-                <div class="services-back">
+                <div class="services-back my-4">
                     <div class="degradate-black row align-items-end" style="padding:0;margin:0;">
                         <div class="col text-center">
                             <p class="font-weight-bold text-white fsize-mds">Corporate Travel</p>
@@ -158,8 +158,8 @@
     </div>
     <div class="section">
         <div class="banner-bus">
-            <div class="d-flex">
-                <div class="col-md-6 row" style="padding:5% 0 5% 3%;">
+            <div class="row col-12 col-md-12 m-0">
+                <div class="col-12 col-md-6 row p-why">
                     <div class="text-white ls2">WHY</div>
                     <h2 class="text-white font-weight-bold fsize-md">Why Transpo Charters?</h2>
                     <div class="line-sm-white my-3" style="margin-left: calc(var(--bs-gutter-x) * 0.5);"></div>
@@ -170,9 +170,9 @@
                         <li class="text-white fsize-mds font-weight-bold">3. Traveling from coast to coast? <span class="text-cian">No worries.</span></li>
                     </ul>                    
                 </div>
-                <div class="col-md-6 row justify-content-center" style="padding:5% 0 5% 5%;">
-                    <div class="row mb-4">
-                        <div class="col-md-6">
+                <div class="col-12 col-md-6 row justify-content-center" style="padding:5% 0 5% 5%;">
+                    <div class="row">
+                        <div class="col-12 col-md-6 m-mobile-4">
                             <div class="card-white row">
                                 <div class="my-3">
                                     <span class="icon-cian"><img src="/img/icons/directions_bus.png" alt="virified user"></span>
@@ -181,7 +181,7 @@
                                 <p class="text-gray fsize-sm">Transportation</p>                                
                             </div>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-12 col-md-6 m-mobile-4">
                             <div class="card-white row">
                                 <div class="my-3">
                                     <span class="icon-cian"><img src="/img/icons/groups.png" alt="virified user"></span>
@@ -192,7 +192,7 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-6">
+                        <div class="col-12 col-md-6 m-mobile-4">
                             <div class="card-white row">
                                 <div class="my-3">
                                     <span class="icon-cian"><img src="/img/icons/map.png" alt="virified user"></span>
@@ -201,7 +201,7 @@
                                 <p class="text-gray fsize-sm">Charter bus trips</p>
                             </div>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-12 col-md-6 m-mobile-4">
                             <div class="card-white row">
                                 <div class="my-3">
                                     <span class="icon-cian"><img src="/img/icons/favorite.png" alt="virified user"></span>
@@ -217,7 +217,7 @@
         </div>
         <div class="banner-driver">
             <div class="">
-                <div class="col-md-6 row"  style="padding:5% 0 5% 5%;">
+                <div class="col-12 col-md-6 row"  style="padding:5% 0 5% 5%;">
                     <div class="text-blue ls2 font-weight-bold">{{strtoupper(__('MotorBusqueda.acerca-de-nosotros'))}}</div>
                     <h2 class="font-weight-bold fsize-md">About Transpo Charter Bus Company</h2>
                     <div class="line-sm-blue my-2" style="margin-left: calc(var(--bs-gutter-x) * 0.5);"></div>                    
@@ -228,6 +228,9 @@
                     </div>
                 </div>
             </div>
+            <div>
+                <img class="img-driver-mobile" src="/img/banners/driver.jpg" alt="Driver">
+            </div>
         </div>
     </div>
     <div class="section">
@@ -237,23 +240,23 @@
             <div class="line-sm-blue my-3 mx-auto"></div>
             <p class="text-gray fsize-sm">Purus porta feugiat egestas a diam sed ipsum, enim orci. In lectus bibendum <br /> gravida aliquet faucibus id. Id gravida consectetur lectus imperdiet.</p>
         </div>
-        <div class="col-md-10 d-flex justify-content-between mx-auto mt-5">
-            <div>
+        <div class="col-12 col-md-10 row justify-content-between mx-auto mt-5">
+            <div class="col-6 col-md-2 text-center my-3">
                 <img src="/img/logos/logoipsum1.png" alt="logo">
             </div>
-            <div>
+            <div class="col-6 col-md-2 text-center my-3">
                 <img src="/img/logos/logoipsum1.png" alt="logo">
             </div>
-            <div>
+            <div class="col-6 col-md-2 text-center my-3">
                 <img src="/img/logos/logoipsum1.png" alt="logo">
             </div>
-            <div>
+            <div class="col-6 col-md-2 text-center my-3">
                 <img src="/img/logos/logoipsum1.png" alt="logo">
             </div>
-            <div>
+            <div class="col-6 col-md-2 text-center my-3">
                 <img src="/img/logos/logoipsum1.png" alt="logo">
             </div>
-            <div>
+            <div class="col-6 col-md-2 text-center my-3">
                 <img src="/img/logos/logoipsum1.png" alt="logo">
             </div>
         </div>
@@ -265,55 +268,63 @@
                 <h2 class="text-white font-weight-bold fsize-md">Our Best Buses</h2>
                 <div class="line-sm-white my-3 mx-auto"></div>
                 <p class="text-white fsize-sm">Purus porta feugiat egestas a diam sed ipsum, enim orci. In lectus bibendum <br /> gravida aliquet faucibus id. Id gravida consectetur lectus imperdiet.</p>
-                <div class="d-flex mb-5">
-                    <div class="d-flex col-md-11 mt-5">
-                        <div class="card-bus text-center col-md-3 mx-3 pt-3">
-                            <h5 class="font-weight-bold">Setra Bus</h5>
-                            <div class="text-gray mb-1">39 - 57 Passengers</div>
-                            <div class="d-flex justify-content-center">
-                                <i class="fa fa-star text-yellow fsize-15" aria-hidden="true"></i>
-                                <i class="fa fa-star text-yellow fsize-15" aria-hidden="true"></i>
-                                <i class="fa fa-star text-yellow fsize-15" aria-hidden="true"></i>
-                                <i class="fa fa-star text-yellow fsize-15" aria-hidden="true"></i>
-                                <i class="fa fa-star text-yellow fsize-15" aria-hidden="true"></i>
+                <div class="mb-5">
+                    <div class="row col-12 col-md-12 mt-5 mx-0">
+                        <div class="col-12 col-md-3 p-2">
+                            <div class="card-bus text-center pt-3">
+                                <h5 class="font-weight-bold">Setra Bus</h5>
+                                <div class="text-gray mb-1">39 - 57 Passengers</div>
+                                <div class="d-flex justify-content-center">
+                                    <i class="fa fa-star text-yellow fsize-15" aria-hidden="true"></i>
+                                    <i class="fa fa-star text-yellow fsize-15" aria-hidden="true"></i>
+                                    <i class="fa fa-star text-yellow fsize-15" aria-hidden="true"></i>
+                                    <i class="fa fa-star text-yellow fsize-15" aria-hidden="true"></i>
+                                    <i class="fa fa-star text-yellow fsize-15" aria-hidden="true"></i>
+                                </div>
+                                <img src="/img/assets/bus-card.png" alt="{{__('Home.autobus')}}" class="mx-auto my-5" style="width:80%;">
                             </div>
-                            <img src="/img/assets/bus-card.png" alt="{{__('Home.autobus')}}" class="mx-auto my-5" style="width:80%;">
                         </div>
-                        <div class="card-bus text-center col-md-3 mr-3 pt-3">
-                            <h5 class="font-weight-bold">Setra Bus</h5>
-                            <div class="text-gray mb-1">39 - 57 Passengers</div>
-                            <div class="d-flex justify-content-center">
-                                <i class="fa fa-star text-yellow fsize-15" aria-hidden="true"></i>
-                                <i class="fa fa-star text-yellow fsize-15" aria-hidden="true"></i>
-                                <i class="fa fa-star text-yellow fsize-15" aria-hidden="true"></i>
-                                <i class="fa fa-star text-yellow fsize-15" aria-hidden="true"></i>
-                                <i class="fa fa-star text-yellow fsize-15" aria-hidden="true"></i>
+                        <div class="col-12 col-md-3 p-2">
+                            <div class="card-bus text-center pt-3">
+                                <h5 class="font-weight-bold">Setra Bus</h5>
+                                <div class="text-gray mb-1">39 - 57 Passengers</div>
+                                <div class="d-flex justify-content-center">
+                                    <i class="fa fa-star text-yellow fsize-15" aria-hidden="true"></i>
+                                    <i class="fa fa-star text-yellow fsize-15" aria-hidden="true"></i>
+                                    <i class="fa fa-star text-yellow fsize-15" aria-hidden="true"></i>
+                                    <i class="fa fa-star text-yellow fsize-15" aria-hidden="true"></i>
+                                    <i class="fa fa-star text-yellow fsize-15" aria-hidden="true"></i>
+                                </div>
+                                <img src="/img/assets/bus-card.png" alt="{{__('Home.autobus')}}" class="mx-auto my-5" style="width:80%;">
                             </div>
-                            <img src="/img/assets/bus-card.png" alt="{{__('Home.autobus')}}" class="mx-auto my-5" style="width:80%;">
                         </div>
-                        <div class="card-bus text-center col-md-3 mr-3 pt-3">
-                            <h5 class="font-weight-bold">Setra Bus</h5>
-                            <div class="text-gray mb-1">39 - 57 Passengers</div>
-                            <div class="d-flex justify-content-center">
-                                <i class="fa fa-star text-yellow fsize-15" aria-hidden="true"></i>
-                                <i class="fa fa-star text-yellow fsize-15" aria-hidden="true"></i>
-                                <i class="fa fa-star text-yellow fsize-15" aria-hidden="true"></i>
-                                <i class="fa fa-star text-yellow fsize-15" aria-hidden="true"></i>
-                                <i class="fa fa-star text-yellow fsize-15" aria-hidden="true"></i>
+                        <div class="col-12 col-md-3 p-2">
+                            <div class="card-bus text-center pt-3">
+                                <h5 class="font-weight-bold">Setra Bus</h5>
+                                <div class="text-gray mb-1">39 - 57 Passengers</div>
+                                <div class="d-flex justify-content-center">
+                                    <i class="fa fa-star text-yellow fsize-15" aria-hidden="true"></i>
+                                    <i class="fa fa-star text-yellow fsize-15" aria-hidden="true"></i>
+                                    <i class="fa fa-star text-yellow fsize-15" aria-hidden="true"></i>
+                                    <i class="fa fa-star text-yellow fsize-15" aria-hidden="true"></i>
+                                    <i class="fa fa-star text-yellow fsize-15" aria-hidden="true"></i>
+                                </div>
+                                <img src="/img/assets/bus-card.png" alt="{{__('Home.autobus')}}" class="mx-auto my-5" style="width:80%;">
                             </div>
-                            <img src="/img/assets/bus-card.png" alt="{{__('Home.autobus')}}" class="mx-auto my-5" style="width:80%;">
                         </div>
-                        <div class="card-bus text-center col-md-3 pt-3">
-                            <h5 class="font-weight-bold">Setra Bus</h5>
-                            <div class="text-gray mb-1">39 - 57 Passengers</div>
-                            <div class="d-flex justify-content-center">
-                                <i class="fa fa-star text-yellow fsize-15" aria-hidden="true"></i>
-                                <i class="fa fa-star text-yellow fsize-15" aria-hidden="true"></i>
-                                <i class="fa fa-star text-yellow fsize-15" aria-hidden="true"></i>
-                                <i class="fa fa-star text-yellow fsize-15" aria-hidden="true"></i>
-                                <i class="fa fa-star text-yellow fsize-15" aria-hidden="true"></i>
+                        <div class="col-12 col-md-3 p-2">
+                            <div class="card-bus text-center pt-3">
+                                <h5 class="font-weight-bold">Setra Bus</h5>
+                                <div class="text-gray mb-1">39 - 57 Passengers</div>
+                                <div class="d-flex justify-content-center">
+                                    <i class="fa fa-star text-yellow fsize-15" aria-hidden="true"></i>
+                                    <i class="fa fa-star text-yellow fsize-15" aria-hidden="true"></i>
+                                    <i class="fa fa-star text-yellow fsize-15" aria-hidden="true"></i>
+                                    <i class="fa fa-star text-yellow fsize-15" aria-hidden="true"></i>
+                                    <i class="fa fa-star text-yellow fsize-15" aria-hidden="true"></i>
+                                </div>
+                                <img src="/img/assets/bus-card.png" alt="{{__('Home.autobus')}}" class="mx-auto my-5" style="width:80%;">
                             </div>
-                            <img src="/img/assets/bus-card.png" alt="{{__('Home.autobus')}}" class="mx-auto my-5" style="width:80%;">
                         </div>
                     </div>
                 </div>
@@ -322,11 +333,11 @@
         
     </div>
     <div class="mtn-2">
-        <div class="col-md-10 back-footer d-flex bor-y-r-5">
-            <div class="col-md-6">
+        <div class="col-12 col-md-10 back-footer row bor-y-r-5 m-0">
+            <div class="col-12 col-md-6 p-0">
                 <img src="/img/assets/bus-banner.png" alt="{{__('Home.autobus')}}" class="bus-banner">
             </div>
-            <div class="col-md-6 py-5 px-4">
+            <div class="col-12 col-md-6 py-5 px-4">
                 <div class="ls2 text-orange font-weight-bold">PREMIUM</div>
                 <h2 class="text-white font-weight-bold fsize-md">PREMIUM AMENITIES ON BOARD</h2>
                 <div class="line-sm-orange my-3"></div>
@@ -334,7 +345,7 @@
                 <div class="col-md-8">
                     <div class="d-flex my-5">
                         <div class="col-md-4 text-white font-weight-bold fsize-sm">
-                            Premium <br /> Class
+                            Premium <br class="none-mobile"/> Class
                         </div>
                         <div class="col-md-5 d-flex align-center">
                             <i class="fa fa-star text-yellow fsize-15" aria-hidden="true"></i>
@@ -360,43 +371,43 @@
             <p class="text-gray fsize-sm">Purus porta feugiat egestas a diam sed ipsum, enim orci. In lectus bibendum gravida aliquet faucibus id. Id gravida consectetur lectus imperdiet.</p>
         </div>
         <div class="bg-destination">
-            <div class="d-flex col-md-11 mx-auto mt-5" style="padding-bottom: 100px;">
-                <div class="col-md-3">
+            <div class="row col-md-11 mx-auto mt-5" style="padding-bottom: 100px;">
+                <div class="col-12 col-md-3">
                     <div class="card-destination">
                         <img src="/img/assets/destination.jpg" alt="Destination" class="img-destination">
                         <div class="p-3">
                             <h4 class="font-weight-bold fsize-sm">San Francisco</h4>
-                            <p class="text-gray fsize-sm">Purus porta feugiat ege diam sed ipsum enim orci lectus.</p>
+                            <p class="text-gray fsize-sm font-weight-bold">Purus porta feugiat ege diam sed ipsum enim orci lectus.</p>
                             <span class="text-orange font-weight-bold fsize-xs">Book Destination now <i class="fa fa-angle-right" aria-hidden="true"></i></span>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-3">
+                <div class="col-12 col-md-3">
                     <div class="card-destination">
                         <img src="/img/assets/destination.jpg" alt="Destination" class="img-destination">
                         <div class="p-3">
                             <h4 class="font-weight-bold fsize-sm">San Francisco</h4>
-                            <p class="text-gray fsize-sm">Purus porta feugiat ege diam sed ipsum enim orci lectus.</p>
+                            <p class="text-gray fsize-sm font-weight-bold">Purus porta feugiat ege diam sed ipsum enim orci lectus.</p>
                             <span class="text-orange font-weight-bold fsize-xs">Book Destination now <i class="fa fa-angle-right" aria-hidden="true"></i></span>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-3">
+                <div class="col-12 col-md-3">
                     <div class="card-destination">
                         <img src="/img/assets/destination.jpg" alt="Destination" class="img-destination">
                         <div class="p-3">
                             <h4 class="font-weight-bold fsize-sm">San Francisco</h4>
-                            <p class="text-gray fsize-sm">Purus porta feugiat ege diam sed ipsum enim orci lectus.</p>
+                            <p class="text-gray fsize-sm font-weight-bold">Purus porta feugiat ege diam sed ipsum enim orci lectus.</p>
                             <span class="text-orange font-weight-bold fsize-xs">Book Destination now <i class="fa fa-angle-right" aria-hidden="true"></i></span>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-3">
+                <div class="col-12 col-md-3">
                     <div class="card-destination">
                         <img src="/img/assets/destination.jpg" alt="Destination" class="img-destination">
                         <div class="p-3">
                             <h4 class="font-weight-bold fsize-sm">San Francisco</h4>
-                            <p class="text-gray fsize-sm">Purus porta feugiat ege diam sed ipsum enim orci lectus.</p>
+                            <p class="text-gray fsize-sm font-weight-bold">Purus porta feugiat ege diam sed ipsum enim orci lectus.</p>
                             <span class="text-orange font-weight-bold fsize-xs">Book Destination now <i class="fa fa-angle-right" aria-hidden="true"></i></span>
                         </div>
                     </div>
@@ -405,8 +416,8 @@
         </div>
         <div class="bg-testimonials">
             <div class="bg-blue py-5">
-                <div class="d-flex p-5">
-                    <div class="col-md-4">
+                <div class="row px-5 m-0">
+                    <div class="col-12 col-md-4 mt-3">
                         <div class="ls2 text-orange font-weight-bold">TESTIMONIALS</div>
                         <h2 class="text-white font-weight-bold fsize-md">What our customers are saying</h2>
                         <div class="line-sm-orange my-3"></div>
@@ -415,7 +426,7 @@
                             View All
                         </button>
                     </div>
-                    <div class="col-md-4 text-center">
+                    <div class="col-12 col-md-4 text-center mt-3">
                         <div class="card-white">
                             <img src="" alt="">
                             <div class="d-flex justify-content-center my-4">
@@ -430,7 +441,7 @@
                             <span class="text-blue">Manager</span>
                         </div>
                     </div>
-                    <div class="col-md-4 text-center">
+                    <div class="col-12 col-md-4 text-center mt-3">
                         <div class="card-white">
                             <img src="" alt="">
                             <div class="d-flex justify-content-center my-4">
