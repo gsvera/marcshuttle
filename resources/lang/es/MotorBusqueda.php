@@ -34,7 +34,13 @@ return [
     "telefono" => "Teléfono",
     "datos-personales" => "Datos personales",
     "llegada" => "Llegada",
+    "salida" => "Salida",
     "info-vuelo" => "información de vuelo",
     "metodo-pago" => "Método de pago",
-    "boton-confirmar" => "Confirmar reserva"
+    "boton-confirmar" => "Confirmar reserva",
+    "uno-siete" => "1 a 7 pasajeros",
+    "ocho-diez" => "8 a 10 pasajeros",
+    "de" => "De",
+    "a" => "A",
+    "aeropuerto" => "Airport"
 ];

@@ -34,7 +34,13 @@ return [
     "telefono" => "Phone",
     "datos-personales" => "Personal information",
     "llegada" => "Arrival",
+    "salida" => "Departure",
     "info-vuelo" => "Info flight",
     "metodo-pago" => "Payment methods",
-    "boton-confirmar" => "Booking confirm"
+    "boton-confirmar" => "Booking confirm",
+    "uno-siete" => "1 to 7 pax",
+    "ocho-diez" => "8 to 10 pax",
+    "de" => "From",
+    "a" => "To",
+    "aeropuerto" => "Aeropuerto"
 ];

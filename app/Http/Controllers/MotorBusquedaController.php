@@ -18,12 +18,20 @@ class MotorBusquedaController extends Controller
         $dateArrival=request('datearrival');
         $dateDeparture=request('datedeparture');
 
-        try{            
+        try{    
+            $objDestination = $objDestination->GetDestination(request('zone'));
+
             if($typetransfer == 1)
-            {
-                $objDestination = $objDestination->GetDestination(request('zone'));
-                
+            {   
                 return view('web.detailTrip', ["objDestination"=>$objDestination, "destination"=>$destination, "dateArrival"=>$dateArrival, "typetransfer"=>$typetransfer, "pax"=>$pax ]);
+            }
+            if($typetransfer == 2)
+            {
+                return view('web.detailTrip', ["objDestination"=>$objDestination, "origin"=>$origin, "dateDeparture"=>$dateDeparture,"typetransfer"=>$typetransfer, "pax"=>$pax]);
+            }
+            if($typetransfer == 3)
+            {
+                return view('web.detailTrip', ["objDestination"=>$objDestination, "destination"=>$destination, "dateArrival"=>$dateArrival, "dateDeparture"=>$dateDeparture, "typetransfer"=>$typetransfer, "pax"=>$pax]);
             }
         }
         catch(Exception $e)

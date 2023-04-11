@@ -1,3 +1,30 @@
+<?php 
+function asDollars($value) {
+    if ($value<0) return "-".asDollars(-$value);
+    return '$' . number_format($value, 2);
+}
+$total = "";
+$labelTypeTransfer = __('MotorBusqueda.aeropuerto-hotel');
+if($typetransfer == 2)
+{
+    $labelTypeTransfer = __('MotorBusqueda.hotel-aeropuerto');
+}
+else if($typetransfer == 3)
+{
+    $labelTypeTransfer = __('MotorBusqueda.redondo-aeropuerto');
+}
+if($pax < 8)
+{
+    $total = asDollars($objDestination->uno_siete);
+}
+else if($pax > 7)
+{
+    $total = asDollars($objDestination->ocho_diez);
+}
+
+
+?>
+
 @extends('web.layouts.layout')
 @section('content')
 <div class="layer-about back-slider-detail-trip"></div>
@@ -7,7 +34,7 @@
 <div>
 <div class="section">
     <div class="row m-0 px-4">
-        <div class="col-12 col-md-6">
+        <div class="col-12 col-md-7">
             <div class="container">
                 <p class="font-weight-bold">Enter your data in the following fields. Please verify the entered information is correct. This information will helps us give you the best service in your arrival or in case there is a change and we need to notify. Thanks for choosing us!</p>
                 <div class="my-3 box-shadow-info">
@@ -25,7 +52,7 @@
                         <input type="text" class="form-control" id="phone" name="phone" />
                     </div>
                 </div>
-                @if($typetransfer == 1)                    
+                @if($typetransfer == 1 || $typetransfer == 3)                    
                     <div class="my-3 box-shadow-info">
                         <h3 class="font-weight-bold fsize-mds text-blue">{{__('MotorBusqueda.llegada')}}</h3>
                         <div class="form-group mb-3">
@@ -41,11 +68,28 @@
                             <input type="text" class="form-control" id="infoFlight" name="infoFlight" />
                         </div>
                     </div>
-                    <div class="my-3 box-shadow-info">
+                    <!-- <div class="my-3 box-shadow-info">
                         <h3 class="font-weight-bold fsize-mds text-blue">{{__('MotorBusqueda.destino-label')}}</h3>
                         <p><span class="font-weight-bold text-gray">{{__('MotorBusqueda.zona')}}:</span> <span class="font-weight-bold">{{$objDestination->name}}</span></p>
                         <P><span class="font-weight-bold text-gray">{{__('MotorBusqueda.destino')}}:</span> <span class="font-weight-bold">{{$destination}}</span></P>
                         <P><span class="font-weight-bold text-gray">{{__('MotorBusqueda.pasajeros')}}:</span> <span class="font-weight-bold">{{$pax}}</span></P>
+                    </div> -->
+                @endif
+                @if($typetransfer == 2 || $typetransfer == 3)
+                    <div class="my-3 box-shadow-info">
+                        <h3 class="font-weight-bold fsize-mds text-blue">{{__('MotorBusqueda.salida')}}</h3>
+                        <div class="form-group mb-3">
+                            <label for="dateDeparture" class="font-weight-bold fsize-sm text-gray">{{__('MotorBusqueda.fecha-salida')}} <span class="text-danger font-weight-bold">*</span></label>
+                            <input type="date" class="form-control" id="dateDeparture" name="dateDeparture" value="{{$dateDeparture}}" />
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="hourDeparture" class="font-weight-bold fsize-sm text-gray">{{__('MotorBusqueda.hora')}}</label>
+                            <input type="time" class="form-control" id="hourDeparture" name="hourDeparture" />
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="infoFlight" class="font-weight-bold fsize-sm text-gray">{{__('MotorBusqueda.info-vuelo')}}</label>
+                            <input type="text" class="form-control" id="infoFlight" name="infoFlight" />
+                        </div>
                     </div>
                 @endif
                 <div class="my-3 box-shadow-info">
@@ -65,6 +109,36 @@
                     </div>
                 </div>
             </div>
+        </div>
+        <div class="col-12 col-md-5">
+            <div class="box-shadow-info">
+                <div class="d-flex mb-4">
+                    <img src="/img/assets/bus-card.png" alt="Bus" width="80%" class="mx-auto">
+                </div>
+                <div class="text-center">
+                    <h3 class="font-weight-bold fsize-mds text-blue">{{__('MotorBusqueda.detalle-viaje')}}</h3>
+                    @if($pax < 8)
+                        <h4 class="font-weight-bold">{{__('MotorBusqueda.uno-siete')}}</h4>
+                    @elseif($pax > 7)
+                        <h4 class="font-weight-bold">{{__('MotorBusqueda.ocho-diez')}}</h4>
+                    @endif
+                </div>
+                
+                <p>
+                <span class="font-weight-bold text-gray">{{__('MotorBusqueda.type-transfer')}}:</span> <span class="font-weight-bold">{{$labelTypeTransfer}}</span></p>
+                @if($typetransfer == 1 || $typetransfer == 3)        
+                    <p><span class="font-weight-bold text-gray">{{__('MotorBusqueda.de')}}:</span> <span class="font-weight-bold">{{__('MotorBusqueda.aeropuerto')}}</span></p>
+                    <p><span class="font-weight-bold text-gray">{{__('MotorBusqueda.zona')}}:</span> <span class="font-weight-bold">{{$objDestination->name}}</span></p>
+                    <P><span class="font-weight-bold text-gray">{{__('MotorBusqueda.destino')}}:</span> <span class="font-weight-bold">{{$destination}}</span></P>
+                    <P><span class="font-weight-bold text-gray">{{__('MotorBusqueda.pasajeros')}}:</span> <span class="font-weight-bold">{{$pax}}</span></P>
+                @elseif($typetransfer == 2)
+                    <p><span class="font-weight-bold text-gray">{{__('MotorBusqueda.origen')}}:</span> <span class="font-weight-bold">{{$origin}}</span></p>
+                    <p><span class="font-weight-bold text-gray">{{__('MotorBusqueda.zona')}}:</span> <span class="font-weight-bold">{{$objDestination->name}}</span></p>
+                    <P><span class="font-weight-bold text-gray">{{__('MotorBusqueda.a')}}:</span> <span class="font-weight-bold">{{__('MotorBusqueda.aeropuerto')}}</span></P>
+                    <P><span class="font-weight-bold text-gray">{{__('MotorBusqueda.pasajeros')}}:</span> <span class="font-weight-bold">{{$pax}}</span></P>
+                @endif
+                <p><span class="font-weight-bold text-blue fsize-mds">Total:</span> <span class="font-weight-bold text-orange fsize-mds">{{$total}} MXN</span> </p>
+            </div>    
         </div>
     </div>
 </div>
