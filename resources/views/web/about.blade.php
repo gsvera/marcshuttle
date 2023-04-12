@@ -1,10 +1,11 @@
 @extends('web.layouts.layout')
 @section('content')
-<div class="layer-about back-slider-about"></div>
+<div class="layer-about back-slider-about">    
+</div>
 <div class="row elementup m-0 col-12 col-md-12 text-center align-center" style="height:370px;">
     <h1 class="font-weight-bold text-white fsize-xl">{{__('Home.acerca-nosotros')}}</h1>    
 </div>
-<div>
+
 <div class="section">
     <div class="banner-driver">
         <div class="col-12 col-md-6 row"  style="padding:5% 0 5% 5%;">

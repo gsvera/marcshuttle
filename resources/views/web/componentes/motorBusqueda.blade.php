@@ -18,9 +18,10 @@
                         <option value="1">{{__('MotorBusqueda.aeropuerto-hotel')}}</option>
                         <option value="2">{{__('MotorBusqueda.hotel-aeropuerto')}}</option>
                         <option value="3">{{__('MotorBusqueda.redondo-aeropuerto')}}</option>
+                        <option value="4">{{__('MotorBusqueda.viaje-personalizado')}}</option>
                 </select> 
             </div>
-            <div class="form-group mb-3">
+            <div class="form-group mb-3" id="divzone">
                 <label for="zone" class="font-weight-bold">{{__('MotorBusqueda.zona')}}</label>
                 <select name="zone" id="zone" class="form-control p-3">
                     <option value="">{{__('MotorBusqueda.seleccione-zona')}}</option>
@@ -66,6 +67,7 @@
             $('#divorigin').addClass("d-none")
             $('#divarrival').removeClass("d-none")
             $('#divdeparture').addClass("d-none")
+            $("#divzone").removeClass("d-none")
         }
         else if(typetransfer == 2)
         {
@@ -73,6 +75,7 @@
             $('#divorigin').removeClass("d-none")
             $('#divarrival').addClass("d-none")
             $('#divdeparture').removeClass("d-none")
+            $("#divzone").removeClass("d-none")
         }
         else if(typetransfer == 3)
         {
@@ -80,7 +83,16 @@
             $('#divorigin').addClass("d-none")
             $('#divarrival').removeClass("d-none")
             $('#divdeparture').removeClass("d-none")
+            $("#divzone").removeClass("d-none")
         }    
+        else if(typetransfer == 4)
+        {
+            $('#divdestination').removeClass("d-none")
+            $('#divorigin').removeClass("d-none")
+            $('#divdeparture').removeClass("d-none")
+            $('#divarrival').addClass("d-none")
+            $("#divzone").addClass("d-none")
+        }
     }
     function SearchTrip()
     {
@@ -92,17 +104,20 @@
         var dateDeparture = $('#dateDeparture').val()
         var pax = $('#pax').val()
         
-        if(zone == "")
+        if(typetransfer != 4)
         {
-            notification('error', '{{__('MotorBusqueda.input-requerido-zona')}}')
-            return false
+            if(zone == "")
+            {
+                notification('error', '{{__('MotorBusqueda.input-requerido-zona')}}')
+                return false
+            }
         }
         if(typetransfer == 1 && dateArrival == '')
         {
             notification('error', '{{__('MotorBusqueda.input-requerido-date-arrival')}}')
             return false            
         }
-        else if(typetransfer == 2 && dateDeparture == '')
+        else if([2,4].indexOf(parseInt(typetransfer)) > -1 && dateDeparture == '')
         {
             notification('error', '{{__('MotorBusqueda.input-requerido-date-departure')}}')
             return false
@@ -120,6 +135,11 @@
         else if([2].indexOf(parseInt(typetransfer)) > -1 && origin == "")
         {
             notification('error', '{{__('MotorBusqueda.input-requerido-origen')}}')
+            return false
+        }
+        else if(typetransfer == 4 && (origin == "" || destination == ""))
+        {
+            notification('error', '{{__('MotorBusqueda.input-requerido-origen-destino')}}')
             return false
         }
 

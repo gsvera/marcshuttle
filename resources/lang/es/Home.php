@@ -16,5 +16,6 @@
         "texto-principal" => "Purus porta feugiat egestas a diam sed ipsum, enim orci. bibendum gravida aliquet faucibus id. Id gravida consectetur lectus imper dietvul scelerisque. Tempor in aenean neque posuere. Vitae eleifend id tellus",
         "autobus" => "Autobus",
         "destinos" => "Destinos",
-        "destinos-favoritos" => "Destinos Favoritos"
+        "destinos-favoritos" => "Destinos Favoritos",
+        "gracias" => "Gracias"
     ];

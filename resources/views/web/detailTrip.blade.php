@@ -13,13 +13,26 @@ else if($typetransfer == 3)
 {
     $labelTypeTransfer = __('MotorBusqueda.redondo-aeropuerto');
 }
+
 if($pax < 8)
 {
-    $total = asDollars($objDestination->uno_siete);
+    if($typetransfer == 3)
+    {
+        $total = asDollars($objDestination->uno_siete * 2);
+    }
+    else{
+        $total = asDollars($objDestination->uno_siete);
+    }
 }
 else if($pax > 7)
 {
-    $total = asDollars($objDestination->ocho_diez);
+    if($typetransfer == 3)
+    {
+        $total = asDollars($objDestination->ocho_diez * 2);
+    }
+    else{
+        $total = asDollars($objDestination->ocho_diez);
+    }
 }
 
 
@@ -125,7 +138,8 @@ else if($pax > 7)
                 </div>
                 
                 <p>
-                <span class="font-weight-bold text-gray">{{__('MotorBusqueda.type-transfer')}}:</span> <span class="font-weight-bold">{{$labelTypeTransfer}}</span></p>
+                    <span class="font-weight-bold text-gray">{{__('MotorBusqueda.type-transfer')}}:</span> <span class="font-weight-bold">{{$labelTypeTransfer}}</span>
+                </p>
                 @if($typetransfer == 1 || $typetransfer == 3)        
                     <p><span class="font-weight-bold text-gray">{{__('MotorBusqueda.de')}}:</span> <span class="font-weight-bold">{{__('MotorBusqueda.aeropuerto')}}</span></p>
                     <p><span class="font-weight-bold text-gray">{{__('MotorBusqueda.zona')}}:</span> <span class="font-weight-bold">{{$objDestination->name}}</span></p>

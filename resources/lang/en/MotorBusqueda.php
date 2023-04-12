@@ -27,8 +27,10 @@ return [
     "input-requerido-date-arrival" => "You must select an arrival date",
     "input-requerido-date-departure" => "You must select a departure date",
     "input-requerido-date-arrival-departure" => "You must select both arrival and departure dates",
+    "input-requerido-origen-destino" => "You must add both origin and destination",
     "url-detail" => 'en/trip-detail',
     "detalle-viaje" => "Trip detail",
+    "detalle-viaje-personalizado" => "Custom trip detail",
     "nombre-completo" => "Full Name",
     "email" => "Email",
     "telefono" => "Phone",
@@ -42,5 +44,6 @@ return [
     "ocho-diez" => "8 to 10 pax",
     "de" => "From",
     "a" => "To",
-    "aeropuerto" => "Aeropuerto"
+    "aeropuerto" => "Aeropuerto",
+    "viaje-personalizado" => "Custom trip"
 ];
