@@ -9,8 +9,8 @@
 
 <div class="d-flex justify-content-center">
     <div class="box-buscador col-md-9">
-        <h3 class="text-white font-weight-bold">{{__('MotorBusqueda.slogan')}}</h3>
-        <p class="text-white">{{__('MotorBusqueda.texto-1')}}</p>
+        <h3 class="text-white font-weight-bold">{{__('MotorBusqueda.inicia-reserva')}}</h3>
+        <!-- <p class="text-white">{{__('MotorBusqueda.texto-1')}}</p> -->
         <div class="mt-4">
             <div class="form-group mb-3">
                 <label for="typetransfer" class="font-weight-bold">{{__('MotorBusqueda.type-transfer')}}</label>
@@ -51,7 +51,7 @@
                 <input class="form-control p-3" type="date" name="dateDeparture" id="dateDeparture">
             </div>            
             <div class="d-grid">
-                <button class="btn btn-naranja btn-lg" type="button" onclick="SearchTrip()">{{__('MotorBusqueda.boton-buscar')}}</button>
+                <button class="btn btn-naranja btn-lg" type="button" onclick="SearchTrip()">{{__('Home.reserva')}}</button>
             </div>
         </div>
     </div>

@@ -45,5 +45,6 @@ return [
     "de" => "De",
     "a" => "A",
     "aeropuerto" => "Airport",
-    "viaje-personalizado" => "Viaje personalizado"
+    "viaje-personalizado" => "Viaje personalizado",
+    "inicia-reserva" => "Inicia tu reserva"
 ];

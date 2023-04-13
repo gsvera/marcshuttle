@@ -616,3 +616,9 @@ body{
     padding: 20px;
 
 }
+.logo-home-circle{
+    max-width:100px;
+}
+.logo-home{
+    max-width: 250px;
+}

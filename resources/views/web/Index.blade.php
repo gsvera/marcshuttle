@@ -4,7 +4,7 @@
     <div class="row mt-4 elementup m-0">
         <div class="col-12 col-md-6 row div-principal" >
             <div>
-                <p class="text-cian ls2">TRANSPO</p>
+                <p class="text-cian ls2">{{__('Home.transportacion-slogan')}}</p>
                 <h1 class="font-weight-bold text-white fsize-xl">{{__('Home.titulo-inicio')}}</h1>
                 <p class="font-weight-bold text-white">{{__('Home.texto-principal')}}</p>
                 <button class="btn btn-white-contac btn-lg font-weight-bold">{{__('Home.contactanos')}}</button>
@@ -20,9 +20,9 @@
                 <div class="my-3">
                     <span class="icon-cian"><img src="/img/icons/book-confirm.png" alt="book confirm"></span>
                 </div>
-                <h5 class="font-weight-bold">Book Direct</h5>
-                <p class="text-gray">Purus porta feugiat ege lectus diam sed ipsum.</p>
-                <span class="text-blue font-weight-bold">Cheap Coach Tickets <i class="fa fa-angle-right" aria-hidden="true"></i></span>
+                <h5 class="font-weight-bold">{{__('Home.reserva-rapida')}}</h5>
+                <p class="text-gray">{{__('Home.reserva-rapida-text')}}</p>
+                <!-- <span class="text-blue font-weight-bold">Cheap Coach Tickets <i class="fa fa-angle-right" aria-hidden="true"></i></span> -->
             </div>
         </div>
         <div class="col-12 col-md-3 my-2">
@@ -30,9 +30,19 @@
                 <div class="my-3">
                     <span class="icon-cian"><img src="/img/icons/verified_user.png" alt="virified user"></span>
                 </div>
-                <h5 class="font-weight-bold">Keeping You Safe</h5>
-                <p class="text-gray">Purus porta feugiat ege lectus diam sed ipsum.</p>
-                <span class="text-blue font-weight-bold">Explore now <i class="fa fa-angle-right" aria-hidden="true"></i></span>
+                <h5 class="font-weight-bold">{{__('Home.transporte-privado')}}</h5>
+                <p class="text-gray">{{__('Home.transporte-privato-text')}}</p>
+                <!-- <span class="text-blue font-weight-bold">Explore now <i class="fa fa-angle-right" aria-hidden="true"></i></span> -->
+            </div>
+        </div>
+        <div class="col-12 col-md-3 my-2">
+            <div class="card-white">
+                <div class="my-3">
+                    <span class="icon-cian"><img src="/img/icons/book-confirm.png" alt="currency exchange"></span>
+                </div>
+                <h5 class="font-weight-bold">{{__('Home.rastreo-vuelo')}}</h5>
+                <p class="text-gray">{{__('Home.rastreo-vuelo-text')}}</p>
+                <!-- <span class="text-blue font-weight-bold">Sing up or Login <i class="fa fa-angle-right" aria-hidden="true"></i></span> -->
             </div>
         </div>
         <div class="col-12 col-md-3 my-2">
@@ -40,12 +50,12 @@
                 <div class="my-3">
                     <span class="icon-cian"><img src="/img/icons/currency_exchange.png" alt="currency exchange"></span>
                 </div>
-                <h5 class="font-weight-bold">No Booking Fees</h5>
-                <p class="text-gray">Purus porta feugiat ege lectus diam sed ipsum.</p>
-                <span class="text-blue font-weight-bold">Sing up or Login <i class="fa fa-angle-right" aria-hidden="true"></i></span>
+                <h5 class="font-weight-bold">{{__('Home.mejor-precio')}}</h5>
+                <p class="text-gray">{{__('Home.mejor-precio-text')}}</p>
+                <!-- <span class="text-blue font-weight-bold">Sing up or Login <i class="fa fa-angle-right" aria-hidden="true"></i></span> -->
             </div>
         </div>
-        <div class="col-12 col-md-3 my-2">
+        <!-- <div class="col-12 col-md-3 my-2">
             <div class="card-img">
                 <div class="card-img-blue row">
                     <div>
@@ -54,9 +64,9 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
     </div>
-    <div class="section">
+    <!-- <div class="section">
         <div class="d-flex justify-content-center">
             <div class="col-11 col-md-7 text-center mx-auto">
                 <div class="text-center text-blue font-weight-bold ls2">{{strtoupper(__('MotorBusqueda.servicios'))}}</div>
@@ -65,8 +75,8 @@
                 <p class="text-gray fsize-sm">Purus porta feugiat egestas a diam sed ipsum, enim orci. In lectus bibendum gravida aliquet faucibus id. Id gravida consectetur lectus imperdiet.</p>
             </div>
         </div>
-    </div>
-    <div class="section elementUp">
+    </div> -->
+    <!-- <div class="section elementUp">
         <div class="row col-12 col-md-10 mx-auto">
             <div class="col-md-4">
                 <div class="services-back my-4">
@@ -155,9 +165,9 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
     <div class="section">
-        <div class="banner-bus">
+        <!-- <div class="banner-bus">
             <div class="row col-12 col-md-12 m-0">
                 <div class="col-12 col-md-6 row p-why">
                     <div class="text-white ls2">WHY</div>
@@ -214,15 +224,15 @@
                     
                 </div>    
             </div>            
-        </div>
+        </div> -->
         <div class="banner-driver">
             <div class="">
                 <div class="col-12 col-md-6 row"  style="padding:5% 0 5% 5%;">
-                    <div class="text-blue ls2 font-weight-bold">{{strtoupper(__('MotorBusqueda.acerca-de-nosotros'))}}</div>
-                    <h2 class="font-weight-bold fsize-md">About Transpo Charter Bus Company</h2>
+                    <div class="text-blue ls2 font-weight-bold">{{__('Home.titulo-servicio-usted')}}</div>
+                    <h2 class="font-weight-bold fsize-md">{{__('Home.titulo-marc-translados')}}</h2>
                     <div class="line-sm-blue my-2" style="margin-left: calc(var(--bs-gutter-x) * 0.5);"></div>                    
-                    <p class="text-gray fsize-sm mb-3">Purus porta feugiat egestas a diam sed ipsum, enim. In lectus bibendum gravida aliquet faucibus id gravida consectetur lectus imperdiet vulputate scelerisque. Tempor in aenean neque posuere. Vitae eleifend id tellus</p>
-                    <p class="text-gray fsize-sm">Purus porta feugiat egestas a diam sed ipsum, enim. In lectus bibendum gravida aliquet faucibus id gravida consectetur lectus imperdiet vulputate scelerisque. Tempor in aenean neque posuere. Vitae eleifend id tellus</p>                
+                    <p class="text-gray fsize-sm mb-3">{{__('Home.texto-marc-uno')}}</p>
+                    <p class="text-gray fsize-sm">{{__('Home.texto-marc-dos')}}</p>                
                     <div>
                         <button type="button" class="btn btn-naranja btn-lg px-4 py2">{{__('MotorBusqueda.aprende-mas')}}</button>
                     </div>
@@ -233,46 +243,20 @@
             </div>
         </div>
     </div>
-    <div class="section">
-        <div class="col-md-10 text-center mx-auto">
-            <div class="text-blue ls2 font-weight-bold">PARTNERS</div>
-            <h2 class="font-weight-bold fsize-md">Our Partners</h2>
-            <div class="line-sm-blue my-3 mx-auto"></div>
-            <p class="text-gray fsize-sm">Purus porta feugiat egestas a diam sed ipsum, enim orci. In lectus bibendum <br /> gravida aliquet faucibus id. Id gravida consectetur lectus imperdiet.</p>
-        </div>
-        <div class="col-12 col-md-10 row justify-content-between mx-auto mt-5">
-            <div class="col-6 col-md-2 text-center my-3">
-                <img src="/img/logos/logoipsum1.png" alt="logo">
-            </div>
-            <div class="col-6 col-md-2 text-center my-3">
-                <img src="/img/logos/logoipsum1.png" alt="logo">
-            </div>
-            <div class="col-6 col-md-2 text-center my-3">
-                <img src="/img/logos/logoipsum1.png" alt="logo">
-            </div>
-            <div class="col-6 col-md-2 text-center my-3">
-                <img src="/img/logos/logoipsum1.png" alt="logo">
-            </div>
-            <div class="col-6 col-md-2 text-center my-3">
-                <img src="/img/logos/logoipsum1.png" alt="logo">
-            </div>
-            <div class="col-6 col-md-2 text-center my-3">
-                <img src="/img/logos/logoipsum1.png" alt="logo">
-            </div>
-        </div>
-    </div>    
     <div class="banner-lineal">
         <div class="bg-blue">
             <div class="text-center" style="padding:100px 50px">
-                <div class="text-white ls2 font-weight-bold">BUSSES</div>
-                <h2 class="text-white font-weight-bold fsize-md">Our Best Buses</h2>
+                <div class="text-white ls2 font-weight-bold">{{__('Home.autobus-slogan')}}</div>
+                <h2 class="text-white font-weight-bold fsize-md">{{__('Home.autobus-titulo')}}</h2>
                 <div class="line-sm-white my-3 mx-auto"></div>
-                <p class="text-white fsize-sm">Purus porta feugiat egestas a diam sed ipsum, enim orci. In lectus bibendum <br /> gravida aliquet faucibus id. Id gravida consectetur lectus imperdiet.</p>
+                <div class="col-12 col-md-7 mx-auto">
+                    <p class="text-white fsize-sm">{{__('Home.autobus-texto-uno')}}</p>
+                </div>
                 <div class="mb-5">
-                    <div class="row col-12 col-md-12 mt-5 mx-0">
+                    <div class="row col-12 col-md-12 mt-5 mx-0 justify-content-center">
                         <div class="col-12 col-md-3 p-2">
                             <div class="card-bus text-center pt-3">
-                                <h5 class="font-weight-bold">Setra Bus</h5>
+                                <h5 class="font-weight-bold">MCI Bus</h5>
                                 <div class="text-gray mb-1">39 - 57 Passengers</div>
                                 <div class="d-flex justify-content-center">
                                     <i class="fa fa-star text-yellow fsize-15" aria-hidden="true"></i>
@@ -286,7 +270,7 @@
                         </div>
                         <div class="col-12 col-md-3 p-2">
                             <div class="card-bus text-center pt-3">
-                                <h5 class="font-weight-bold">Setra Bus</h5>
+                                <h5 class="font-weight-bold">MCI Bus</h5>
                                 <div class="text-gray mb-1">39 - 57 Passengers</div>
                                 <div class="d-flex justify-content-center">
                                     <i class="fa fa-star text-yellow fsize-15" aria-hidden="true"></i>
@@ -300,7 +284,7 @@
                         </div>
                         <div class="col-12 col-md-3 p-2">
                             <div class="card-bus text-center pt-3">
-                                <h5 class="font-weight-bold">Setra Bus</h5>
+                                <h5 class="font-weight-bold">MCI Bus</h5>
                                 <div class="text-gray mb-1">39 - 57 Passengers</div>
                                 <div class="d-flex justify-content-center">
                                     <i class="fa fa-star text-yellow fsize-15" aria-hidden="true"></i>
@@ -312,7 +296,7 @@
                                 <img src="/img/assets/bus-card.png" alt="{{__('Home.autobus')}}" class="mx-auto my-5" style="width:80%;">
                             </div>
                         </div>
-                        <div class="col-12 col-md-3 p-2">
+                        <!-- <div class="col-12 col-md-3 p-2">
                             <div class="card-bus text-center pt-3">
                                 <h5 class="font-weight-bold">Setra Bus</h5>
                                 <div class="text-gray mb-1">39 - 57 Passengers</div>
@@ -325,14 +309,41 @@
                                 </div>
                                 <img src="/img/assets/bus-card.png" alt="{{__('Home.autobus')}}" class="mx-auto my-5" style="width:80%;">
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
             </div>
         </div>
-        
     </div>
-    <div class="mtn-2">
+    <div class="section">
+        <div class="col-12 col-md-8 text-center mx-auto">
+            <div class="text-blue ls2 font-weight-bold">{{__('Home.translados-slogan')}}</div>
+            <h2 class="font-weight-bold fsize-md">{{__('Home.mejor-opcion-titulo')}}</h2>
+            <div class="line-sm-blue my-3 mx-auto"></div>
+            <p class="text-gray fsize-sm">{{__('Home.mejor-opcion-texto-uno')}}</p>
+        </div>
+        <div class="col-12 col-md-10 row justify-content-center mx-auto mt-5">
+            <div class="col-6 col-md-3 text-center my-3">
+                <img src="/img/logos/logo-visita-mexico.webp" class="logo-home" alt="logo">
+            </div>
+            <div class="col-6 col-md-3 text-center my-3">
+                <img src="/img/logos/logo-verified-paypal.webp" class="logo-home-circle" alt="logo">
+            </div>
+            <div class="col-6 col-md-3 text-center my-3">
+                <img src="/img/logos/empresa-traslados-cancun-registro.webp" class="logo-home" alt="logo">
+            </div>
+            <div class="col-6 col-md-3 text-center my-3">
+                <img src="/img/logos/logo-ssl-secure-website.webp" class="logo-home-circle" alt="logo">
+            </div>
+            <!-- <div class="col-6 col-md-2 text-center my-3">
+                <img src="/img/logos/logoipsum1.png" alt="logo">
+            </div>
+            <div class="col-6 col-md-2 text-center my-3">
+                <img src="/img/logos/logoipsum1.png" alt="logo">
+            </div> -->
+        </div>
+    </div>    
+    <!-- <div class="mtn-2">
         <div class="col-12 col-md-10 back-footer row bor-y-r-5 m-0">
             <div class="col-12 col-md-6 p-0">
                 <img src="/img/assets/bus-banner.png" alt="{{__('Home.autobus')}}" class="bus-banner">
@@ -361,14 +372,14 @@
                     <i class="fa fa-phone" aria-hidden="true"></i> 001-234-5678
                 </button>
             </div>
-        </div>
+        </div> -->
     </div>
     <div class="section">
         <div class="col-md-7 mx-auto text-center">
-            <div class="text-blue font-weight-bold ls2">{{strtoupper(__('Home.destinos'))}}</div>
+            <div class="text-blue font-weight-bold ls2">{{__('Home.destinos-slogan')}}</div>
             <h2 class="font-weight-bold fsize-md">{{__('Home.destinos-favoritos')}}</h2>
             <div class="line-sm-blue my-3 mx-auto"></div>
-            <p class="text-gray fsize-sm">Purus porta feugiat egestas a diam sed ipsum, enim orci. In lectus bibendum gravida aliquet faucibus id. Id gravida consectetur lectus imperdiet.</p>
+            <p class="text-gray fsize-sm">{{__('Home.destinos-texto-uno')}}</p>
         </div>
         <div class="bg-destination">
             <div class="row col-md-11 mx-auto mt-5" style="padding-bottom: 100px;">

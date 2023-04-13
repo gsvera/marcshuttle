@@ -32,10 +32,10 @@
         <ul class="nav col">
             <li class="nav-item mr-3">
                 <a href="#" class="text-white-menu nav-link">
-                    <i class="fa fa-envelope" aria-hidden="true"></i> info@correo.com
+                    <i class="fa fa-envelope" aria-hidden="true"></i> info@transpo.com
                 </a>
             </li>
-            <li class="nav-item d-flex">
+            <!-- <li class="nav-item d-flex">
                 <span class="text-white-menu nav-link">
                     {{__('Home.siguenos')}}
                 </span>
@@ -48,12 +48,12 @@
                 <a href="#" class="text-white-menu nav-link px-1">
                     <i class="fa fa-instagram" aria-hidden="true"></i>
                 </a>
-            </li>
+            </li> -->
         </ul>
         <ul class="nav col row">
             <li class="nav-item" style="text-align:right;">
                 <a class="nav-link text-white-menu" href="#">
-                    <i class="fa fa-map-marker" aria-hidden="true"></i> 768 Market Street San Francisco, CA 64015, United States
+                    <i class="fa fa-map-marker" aria-hidden="true"></i> {{__('Home.ubicacion-nav')}}
                 </a>
             </li>
         </ul>
@@ -67,14 +67,14 @@
                 <a href="{{url($prefijo)}}" class="nav-link text-white-menu-lg" href="#">{{__('Home.home')}}</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link text-white-menu-lg" href="#">{{__('Home.nuestros-camiones')}}</a>
+                <a class="nav-link text-white-menu-lg" href="#">{{__('Home.destinos')}}</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link text-white-menu-lg" href="#">{{__('Home.paginas')}}</a>
+                <a class="nav-link text-white-menu-lg" href="#">Tours</a>
             </li>
-            <li class="nav-item">
+            <!-- <li class="nav-item">
                 <a href="{{url($prefijo.__('Link.about'))}}" class="nav-link text-white-menu-lg">{{__('Home.acerca-nosotros')}}</a>
-            </li>
+            </li> -->
             <li class="mx-3">
                 <a href="#" class="nav-link text-white-menu-lg">
                     <span class="back-orange"><i class="fa fa-phone" aria-hidden="true"></i></span> 001-234-5678
@@ -129,14 +129,14 @@
                     <a class="text-orange-menu" href="#">{{__('Home.home')}}</a>
                 </li>
                 <li class="nav-item">
-                    <a class="text-orange-menu" href="#">{{__('Home.nuestros-camiones')}}</a>
+                    <a class="text-orange-menu" href="#">{{__('Home.destinos')}}</a>
                 </li>
                 <li class="nav-item">
-                    <a class="text-orange-menu" href="#">{{__('Home.paginas')}}</a>
+                    <a class="text-orange-menu" href="#">Tours</a>
                 </li>
-                <li class="nav-item">
+                <!-- <li class="nav-item">
                     <a class="text-orange-menu">{{__('Home.acerca-nosotros')}}</a>
-                </li>
+                </li> -->
             </ul>
         </div>
     </nav>
