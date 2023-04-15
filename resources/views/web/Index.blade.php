@@ -375,8 +375,33 @@
         </div> -->
     </div>
     <div class="section">
+        <div class="row m-0">
+            <div class="bg-zona-hotelera col-12 col-sm-7 col-md-9 p-0">
+                <div class="bg-zona-hotelera-shadow">
+                    <div class="col-11 col-md-8 mx-auto align-center justify-content-center d-flex" style="height:100%;">
+                        <div>
+                            <div class="text-white font-weight-bold ls2">{{__('Home.viajero-slogan')}}</div>
+                            <h2 class="text-white fsize-md font-weight-bold">{{__('Home.titulo-viajero')}}</h2>
+                            <div class="line-sm-white my-3"></div>
+                            <p class="text-white">{{__('Home.viajeto-texto-uno')}}</p>
+                            <ul class="none-list">
+                                <li class="text-white font-weight-bold">1. {{__('Home.viajero-list-uno')}}</li>
+                                <li class="text-white font-weight-bold">2. {{__('Home.viajero-list-dos')}}</li>
+                                <li class="text-white font-weight-bold">3. {{__('Home.viajero-list-tres')}}</li>
+                            </ul>
+                            <p class="text-white">{{__('Home.viajero-texto-dos')}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-sm-5 col-md-3 text-center align-center flex-desk">
+                <img class="img-person" src="/img/assets/empresa-traslados-cancun.webp" alt="Persona">
+            </div>
+        </div>
+    </div>
+    <div class="section">
         <div class="col-md-7 mx-auto text-center">
-            <div class="text-blue font-weight-bold ls2">{{__('Home.destinos-slogan')}}</div>
+            <div class="text-blue font-weight-bold ls2">{{__('Home.destino-slogan')}}</div>
             <h2 class="font-weight-bold fsize-md">{{__('Home.destinos-favoritos')}}</h2>
             <div class="line-sm-blue my-3 mx-auto"></div>
             <p class="text-gray fsize-sm">{{__('Home.destinos-texto-uno')}}</p>
@@ -385,41 +410,49 @@
             <div class="row col-md-11 mx-auto mt-5" style="padding-bottom: 100px;">
                 <div class="col-12 col-md-3">
                     <div class="card-destination">
-                        <img src="/img/assets/destination.jpg" alt="Destination" class="img-destination">
+                        <div class="over-hiden d-flex justify-content-center">
+                            <img src="/img/banners/traslados-cancun.webp" alt="translados cancun" class="img-destination">
+                        </div>
                         <div class="p-3">
-                            <h4 class="font-weight-bold fsize-sm">San Francisco</h4>
-                            <p class="text-gray fsize-sm font-weight-bold">Purus porta feugiat ege diam sed ipsum enim orci lectus.</p>
-                            <span class="text-orange font-weight-bold fsize-xs">Book Destination now <i class="fa fa-angle-right" aria-hidden="true"></i></span>
+                            <h4 class="font-weight-bold fsize-sm">Zona Hotelera</h4>
+                            <p class="text-gray font-weight-bold">{{__('Home.destination-text-uno')}}</p>
+                            <span class="text-orange font-weight-bold fsize-xs">{{__('Home.ver-mas')}} <i class="fa fa-angle-right" aria-hidden="true"></i></span>
                         </div>
                     </div>
                 </div>
                 <div class="col-12 col-md-3">
                     <div class="card-destination">
-                        <img src="/img/assets/destination.jpg" alt="Destination" class="img-destination">
+                        <div class="over-hiden d-flex justify-content-center">
+                            <img src="/img/assets/transporte-traslado-playa-del-carmen.webp" alt="transporte traslado playa del carmen" class="img-destination">
+                        </div>
                         <div class="p-3">
-                            <h4 class="font-weight-bold fsize-sm">San Francisco</h4>
-                            <p class="text-gray fsize-sm font-weight-bold">Purus porta feugiat ege diam sed ipsum enim orci lectus.</p>
-                            <span class="text-orange font-weight-bold fsize-xs">Book Destination now <i class="fa fa-angle-right" aria-hidden="true"></i></span>
+                            <h4 class="font-weight-bold fsize-sm">Playa del carme</h4>
+                            <p class="text-gray font-weight-bold">{{__('Home.destination-text-dos')}}</p>
+                            <span class="text-orange font-weight-bold fsize-xs">{{__('Home.ver-mas')}} <i class="fa fa-angle-right" aria-hidden="true"></i></span>
                         </div>
                     </div>
                 </div>
                 <div class="col-12 col-md-3">
                     <div class="card-destination">
-                        <img src="/img/assets/destination.jpg" alt="Destination" class="img-destination">
+                        <div class="over-hiden d-flex justify-content-center">
+                            <img src="/img/assets/transporte-tulum.webp" alt="transporte-tulum" class="img-destination">
+                        </div>
                         <div class="p-3">
-                            <h4 class="font-weight-bold fsize-sm">San Francisco</h4>
-                            <p class="text-gray fsize-sm font-weight-bold">Purus porta feugiat ege diam sed ipsum enim orci lectus.</p>
-                            <span class="text-orange font-weight-bold fsize-xs">Book Destination now <i class="fa fa-angle-right" aria-hidden="true"></i></span>
+                            <h4 class="font-weight-bold fsize-sm">Tulum</h4>
+                            <p class="text-gray font-weight-bold">{{__('Home.destination-text-tres')}}</p>
+                            <span class="text-orange font-weight-bold fsize-xs">{{__('Home.ver-mas')}} <i class="fa fa-angle-right" aria-hidden="true"></i></span>
                         </div>
                     </div>
                 </div>
                 <div class="col-12 col-md-3">
                     <div class="card-destination">
-                        <img src="/img/assets/destination.jpg" alt="Destination" class="img-destination">
+                        <div class="over-hiden d-flex justify-content-center">
+                            <img src="/img/assets/transporte-traslado.webp" alt="transporte traslado" class="img-destination">
+                        </div>
                         <div class="p-3">
-                            <h4 class="font-weight-bold fsize-sm">San Francisco</h4>
-                            <p class="text-gray fsize-sm font-weight-bold">Purus porta feugiat ege diam sed ipsum enim orci lectus.</p>
-                            <span class="text-orange font-weight-bold fsize-xs">Book Destination now <i class="fa fa-angle-right" aria-hidden="true"></i></span>
+                            <h4 class="font-weight-bold fsize-sm">Bacalar</h4>
+                            <p class="text-gray font-weight-bold">{{__('Home.destination-test-cuatro')}}</p>
+                            <span class="text-orange font-weight-bold fsize-xs">{{__('Home.ver-mas')}} <i class="fa fa-angle-right" aria-hidden="true"></i></span>
                         </div>
                     </div>
                 </div>
@@ -429,13 +462,17 @@
             <div class="bg-blue py-5">
                 <div class="row px-5 m-0">
                     <div class="col-12 col-md-4 mt-3">
-                        <div class="ls2 text-orange font-weight-bold">TESTIMONIALS</div>
-                        <h2 class="text-white font-weight-bold fsize-md">What our customers are saying</h2>
-                        <div class="line-sm-orange my-3"></div>
-                        <p class="text-white fsize-sm">Purus porta feugiat egestas a diam sed ipsum, enim orci. In lectus bibendum gravida aliquet faucibus id. Id gravida consectetur lectus imperdiet.</p>
+                        <div class="d-flex align-center" style="height:100%;">
+                            <div>
+                                <div class="ls2 text-orange font-weight-bold">{{__('Home.testimonial-slogan')}}</div>
+                                <h2 class="text-white font-weight-bold fsize-md">{{__('Home.testimonial-title')}}</h2>
+                                <div class="line-sm-orange my-3"></div>
+                            </div>
+                        </div>
+                        <!-- <p class="text-white fsize-sm">Purus porta feugiat egestas a diam sed ipsum, enim orci. In lectus bibendum gravida aliquet faucibus id. Id gravida consectetur lectus imperdiet.</p>
                         <button class="btn btn-outline-white mt-4 font-weight-bold">
                             View All
-                        </button>
+                        </button> -->
                     </div>
                     <div class="col-12 col-md-4 text-center mt-3">
                         <div class="card-white">
@@ -463,9 +500,53 @@
                                 <i class="fa fa-star text-yellow fsize-15" aria-hidden="true"></i>
                             </div>
                             <p class="text-gray fsize-sm mb-4">“Purus porta feugiat egestas a diam sed ipsum enim orciIn lectus biben gravida aliquet faucibus consec tetur lectus imperdiet empor”</p>
-                            <p class="font-weight-bold fsize-sm">Leonardo Goodman</p>
-                            <span class="text-blue">Manager</span>
+                            <p class="font-weight-bold fsize-sm">Emilia Porter</p>
+                            <span class="text-blue">Digital Marketer</span>
                         </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="section">
+        <div class="text-center">
+            <h2 class="fontw-weight-bold fsize-md">{{__('Home.preguntas-frecuentes')}}</h2>
+            <div class="line-md-orange mb-3 mx-auto"></div>
+        </div>
+        <div class="container row mx-auto mt-5">
+            <div class="col-12 col-md-6">
+                <div>
+                    <button class="btn-faqs accordion-button" data-value="0" onclick="showFaq(this)" type="button">
+                        <i class="fa fa-minus text-orange fa-2x icon-faq" aria-hidden="true"></i> <span class="fsize-mds font-weight-bold">{{__('Home.faq-uno')}}</span>
+                    </button>
+                    <div class="acord-faq" data-display="1">
+                        <p class="text-justify text-gray">{{__('Home.faq-resp-uno')}}</p>
+                    </div>
+                </div>
+                <div>
+                    <button class="btn-faqs accordion-button" data-value="1" onclick="showFaq(this)" type="button">
+                        <i class="fa fa-plus text-orange fa-2x icon-faq" aria-hidden="true"></i> <span class="fsize-mds font-weight-bold">{{__('Home.faq-dos')}}</span>
+                    </button>
+                    <div class="acord-faq d-none" data-display="0">
+                        <p class="text-justify text-gray">{{__('Home.faq-resp-dos')}}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-6">
+                <div>
+                    <button class="btn-faqs accordion-button" data-value="2" onclick="showFaq(this)" type="button">
+                        <i class="fa fa-plus text-orange fa-2x icon-faq" aria-hidden="true"></i> <span class="fsize-mds font-weight-bold">{{__('Home.faq-tres')}}</span>
+                    </button>
+                    <div class="acord-faq d-none" data-display="0">
+                        <p class="text-justify text-gray">{{__('Home.faq-resp-tres')}}</p>
+                    </div>
+                </div>
+                <div>
+                    <button class="btn-faqs accordion-button" data-value="3" onclick="showFaq(this)" type="button">
+                        <i class="fa fa-plus text-orange fa-2x icon-faq" aria-hidden="true"></i> <span class="fsize-mds font-weight-bold">{{__('Home.faq-cuatro')}}</span>
+                    </button>
+                    <div class="acord-faq d-none" data-display="0">
+                        <p class="text-justify text-gray">{{__('Home.faq-resp-cuatro')}}</p>
                     </div>
                 </div>
             </div>
@@ -476,5 +557,35 @@
 @push('scripts')
     <script type="text/javascript">        
         $('#motorbusqueda').load('/motorbusqueda');
+
+        // let btnFaqs = document.querySelectorAll('.btn-faqs'),
+        let acordFaq = document.querySelectorAll('.acord-faq'),
+        iconFaq = document.querySelectorAll('.icon-faq')
+
+        // for(var i = 0; i < btnFaqs.length; i++)
+        // {
+        //     btnFaqs[i].addEventListener('click', e => {
+        //         e.preventDefault()
+        //         impri(btnFaqs[i].dataset.value)
+        //     })
+        // }
+        function showFaq(event)
+        {    
+            var id = event.dataset.value        
+            if(acordFaq[id].dataset.display == 0)
+            {
+                acordFaq[id].classList.remove('d-none')
+                acordFaq[id].dataset.display = 1
+                iconFaq[id].classList.remove('fa-plus')
+                iconFaq[id].classList.add('fa-minus')
+            }
+            else
+            {
+                acordFaq[id].classList.add('d-none')
+                acordFaq[id].dataset.display = 0
+                iconFaq[id].classList.add('fa-plus')
+                iconFaq[id].classList.remove('fa-minus')
+            }
+        }
     </script>
 @endpush

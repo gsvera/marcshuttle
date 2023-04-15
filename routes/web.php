@@ -34,3 +34,9 @@ Route::get('/gracias',function(){
 });
 Route::get('/motorbusqueda', [WebController::class, 'motorbusqueda']);
 Route::post('/changelenguage', [WebController::class, 'ChangeLenguage']);
+
+
+
+Route::get('/email', function(){
+    return view('emails.detailTrip');
+} );

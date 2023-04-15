@@ -151,19 +151,20 @@
         </svg>
     </div> -->
     <div class="back-footer pt-5" style="bottom:0">
-        <div class="row px-5 justify-content-between mx-0">
-            <div class="col-md-1"></div>
-            <div class="col-12 col-md-2">
+        <div class="row px-5 justify-content-center mx-0 col-12 col-md-12 mx-auto">
+            <!-- <div class="col-md-1"></div> -->
+            <div class="col-12 col-md-3">
+                <h4 class="text-white font-weight-bold">{{__('Home.translados-footer')}}</h4>
+                <p class="text-gray fsize-sm text-justify">{{__('Home.text-footer')}}</p>                
+            </div>
+            <div class="col-12 col-md-3">
                 <h4 class="text-white font-weight-bold">{{__('Home.contactanos')}}</h4>
                 <ul class="none-list">
                     <li class="text-gray fsize-sm">768 Market Street San Francisco, <br /> CA 64015, United States</li>
                     <li class="text-gray fsize-sm">customer@transpo.com</li>
                     <li class="text-gray fsize-sm">(+021) 345 678 910</li>
                 </ul>
-            </div>
-            <div class="col-12 col-md-2">
-                <h4 class="text-white font-weight-bold">{{__('Home.informacion')}}</h4>
-                <ul class="none-list">
+                <!-- <ul class="none-list">
                     <li class="text-gray fsize-sm">
                         
                         {{__('Home.acerca-nosotros')}}
@@ -172,23 +173,25 @@
                     <li class="text-gray fsize-sm">Bus Type</li>
                     <li class="text-gray fsize-sm">{{__('Home.privacidad-politica')}}</li>
                     <li class="text-gray fsize-sm">{{__('Home.terminos-condiciones')}}</li>
-                </ul>
+                </ul> -->
             </div>
-            <div class="col-12 col-md-2">
-                <h4 class="text-white font-weight-bold">{{__('Home.servicio-cliente')}}</h4>
+            <div class="col-12 col-md-3">
+                <h4 class="text-white font-weight-bold">{{__('Home.enlaces')}}</h4>
                 <ul class="none-list">
-                    <li class="text-gray fsize-sm">{{__('Home.acerca-nosotros')}}</li>
-                    <li class="text-gray fsize-sm">{{__('Home.servicio-cliente')}}</li>
-                    <li class="text-gray fsize-sm">Order and returns</li>
-                    <li class="text-gray fsize-sm">{{__('Home.contactanos')}}</li>
-                    <li class="text-gray fsize-sm">Stor locations</li>
+                    <li class="text-gray fsize-sm">{{__('Home.translado-zona-hotelera')}}</li>
+                    <li class="text-gray fsize-sm">{{__('Home.translado-playa')}}</li>
+                    <li class="text-gray fsize-sm">{{__('Home.traslado-tulum')}}</li>
+                    <li class="text-gray fsize-sm">{{__('Home.traslado-bacalar')}}</li>
+                    <li class="text-gray fsize-sm">{{__('Home.traslado-holbox')}}</li>
+                    <li class="text-gray fsize-sm">{{__('Home.politicas-privacidad')}}</li>
                 </ul>
             </div>
             <div class="col-12 col-md-2">
                 <h4 class="text-white font-weight-bold">{{__('Home.metodo-pago')}}</h4>
-                <i class="fa fa-cc-paypal text-white fa-2x" aria-hidden="true"></i>
+                <i class="fa fa-cc-paypal text-white fa-2x mx-1" aria-hidden="true"></i>
+                <i class="fa fa-money text-white fa-2x mx-1" aria-hidden="true"></i>
             </div>
-            <div class="col-md-1"></div>
+            <!-- <div class="col-md-1"></div> -->
         </div>
         <div class="divider"></div>
         <div class="footer-extend py-4 px-5">
