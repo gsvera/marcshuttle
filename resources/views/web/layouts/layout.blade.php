@@ -17,8 +17,11 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ asset('css/bootstrap-datepicker.standalone.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/bootstrap-select.css') }}">
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <link rel="stylesheet" href="{{ asset('css/main.css') }}">
+    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css"> -->
     <script src="https://use.fontawesome.com/97a88bff0a.js"></script>
     <!-- <link href="https://kit-pro.fontawesome.com/releases/v5.15.3/css/pro.min.css" type="text/css" rel="stylesheet"> -->
     <title>Marc Shuttle</title>
@@ -60,7 +63,7 @@
     </div>
     <nav class="transparent-nav d-flex" id="header">
         <div class="col-md-2 d-flex" style="align-items:center;">
-            <img width="160" height="33" src="https://templatekits.themewarrior.com/transpo/wp-content/uploads/sites/64/2022/08/logo-light-transpo-1.png" alt="Logo">
+            <img width="50%" src="/img/logos/Logo-Marcshuttle.webp" alt="Logo">
         </div>
         <ul class="nav justify-content-end col-md-9" style="align-items:center;">
             <li class="nav-item">
@@ -108,7 +111,7 @@
                 </div>
             </div>
             <div class="col-4 d-flex align-center" style="align-items:center;">
-                <img width="90%" height="70%" src="https://templatekits.themewarrior.com/transpo/wp-content/uploads/sites/64/2022/08/logo-light-transpo-1.png" alt="Logo">
+                <img width="90%" src="/img/logos/Logo-Marcshuttle.webp" alt="Logo">
             </div>
             <div class="col-4 justify-content-center align-center d-flex">
                 <button class="btn btn-outline-white">Request cuote</button>
@@ -199,8 +202,8 @@
                 © 2023 Marc Shuttle. Powered by Huella digital
             </div>
             <div class="col-12 col-md-6 d-flex justify-content-end px-5">
-                <div class="d-flex" style="align-items:center;">
-                    <img width="160" height="33" src="https://templatekits.themewarrior.com/transpo/wp-content/uploads/sites/64/2022/08/logo-light-transpo-1.png" alt="Logo">
+                <div class="text-center">
+                    <img width="15%" src="/img/logos/Logo-Marcshuttle.webp" alt="Logo">
                 </div>
             </div>
         </div>
@@ -209,13 +212,17 @@
                 © 2023 Marc Shuttle. Powered by Huella digital
             </div>
             <div class="col text-center py-3" style="align-items:center;">
-                <img width="50%" src="https://templatekits.themewarrior.com/transpo/wp-content/uploads/sites/64/2022/08/logo-light-transpo-1.png" alt="Logo">
+                <img width="50%" src="/img/logos/Logo-Marcshuttle.webp" alt="Logo">
             </div>
         </div>
     </div>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script> -->
+    <script src="{{ asset('js/jquery-3.3.1.js')}}"></script>
+    <!-- <script src="{{ asset('js/bootstrap-datepicker.js')}}"></script> -->
+    <script src="{{ asset('js/bootstrap-select.js')}}"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="{{ asset('js/main.js')}}"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script> -->
     <script src="{{ asset('js/alerts.js')}}"></script>
     <script type="text/javascript">
         let countMenu = 1;

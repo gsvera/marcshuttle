@@ -28,12 +28,12 @@ Route::group(['prefix' => 'en'], function(){
     });
     Route::get('/about-us',[WebController::class, 'about']);
     Route::get('/trip-detail', [MotorBusquedaController::class, 'detailTrip']);
+    Route::post('/thanks', [MotorBusquedaController::class, "SendCustomTrip"]);
 });
-Route::get('/gracias',function(){
-    return view('web.thanks');
-});
+
 Route::get('/motorbusqueda', [WebController::class, 'motorbusqueda']);
 Route::post('/changelenguage', [WebController::class, 'ChangeLenguage']);
+Route::post('/sendcustomtrip', [MotorBusquedaController::class, 'SendCustomTrip']);
 
 
 

@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+                <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -26,7 +26,7 @@
             height:450px;
             border:0;
             align:center;
-            background-image:url(/img/banners/traslados-cancun.webp);
+            background-image:url(https://{{$item['host']}}/img/banners/traslados-cancun.webp);
             background-repeat:no-repeat;
             background-size:cover;
         }
@@ -52,7 +52,7 @@
             border-radius:5px;
             background-color: white;
             width: 70%;
-            margin: -220px auto 0;
+            margin: 0 auto 0;
             padding: 15px 10px;            
         }
         .card-gray{
@@ -74,12 +74,6 @@
             flex-wrap:wrap;
             justify-content:space-between;
         }
-        .arrivaldate{
-
-        }
-        .departuredate{
-            
-        }
 </style>
 </head>
 <body>
@@ -90,68 +84,70 @@
             </div>
         </div>
     </div>
-    <div class="card">
-        <div><h1 style="text-align:center;">Reservation especial</h1></div>
-        <div class="flex">
-            <div class="card-gray">
-                <ul style="list-style:none;padding:0;">
-                    <li>
-                        <strong class="text-orange"><i class="fa fa-check text-blue" aria-hidden="true"></i> Nombre completo:</strong> 
+    <div style="display:flex; justify-content:center;margin-top:-13%">
+        <div class="card">
+            <div><h1 style="text-align:center;">{{__('Email.titulo-especial')}}</h1></div>
+            <div class="flex">
+                <div class="card-gray">
+                    <ul style="list-style:none;padding:0;">
+                        <li>
+                            <strong class="text-orange"><i class="fa fa-check text-blue" aria-hidden="true"></i> {{__('Email.nombre')}}:</strong> 
+                            <br>
+                            <div class="text-gray strong" style="margin-left:10px;margin-top:5px;font-size:1.1em;">{{$item['fullName']}}</div>
+                        </li>
                         <br>
-                        <div class="text-gray strong" style="margin-left:10px;margin-top:5px;font-size:1.1em;">Nombre que va aqui</div>
-                    </li>
-                    <br>
-                    <li>
-                        <strong class="text-orange"><i class="fa fa-check text-blue" aria-hidden="true"></i> Email:</strong> 
+                        <li>
+                            <strong class="text-orange"><i class="fa fa-check text-blue" aria-hidden="true"></i> Email:</strong> 
+                            <br>
+                            <div class="text-gray strong" style="margin-left:10px;margin-top:5px;font-size:1.1em;">{{$item['email']}}</div>
+                        </li>
                         <br>
-                        <div class="text-gray strong" style="margin-left:10px;margin-top:5px;font-size:1.1em;">email@email.com</div>
-                    </li>
-                    <br>
-                    <li>
-                        <strong class="text-orange"><i class="fa fa-check text-blue" aria-hidden="true"></i> Telefono:</strong> 
+                        <li>
+                            <strong class="text-orange"><i class="fa fa-check text-blue" aria-hidden="true"></i> {{__('Email.telefono')}}:</strong> 
+                            <br>
+                            <div class="text-gray strong" style="margin-left:10px;margin-top:5px;font-size:1.1em;">{{$item['phone']}}</div>
+                        </li>
+                        <br>                    
+                        <li>
+                            <strong class="text-orange"><i class="fa fa-check text-blue" aria-hidden="true"></i> {{__('Email.salida')}}:</strong> 
+                            <br>
+                            <div class="text-gray strong" style="margin-left:10px;margin-top:5px;font-size:1.1em;">{{$item['dateDeparture']}}</div>
+                        </li>
                         <br>
-                        <div class="text-gray strong" style="margin-left:10px;margin-top:5px;font-size:1.1em;">11123456789</div>
-                    </li>
-                    <br>                    
-                    <li>
-                        <strong class="text-orange"><i class="fa fa-check text-blue" aria-hidden="true"></i> departure:</strong> 
+                        <li>
+                            <strong class="text-orange"><i class="fa fa-check text-blue" aria-hidden="true"></i> {{__('Email.hora')}}:</strong> 
+                            <br>
+                            <div class="text-gray strong" style="margin-left:10px;margin-top:5px;font-size:1.1em;">{{$item['hourDeparture']}}</div>
+                        </li>                    
+                    </ul>
+                </div>
+                <div class="card-blue">
+                    <ul style="list-style:none;padding:0;">                                        
+                        <li>
+                            <strong class="text-orange"><i class="fa fa-check text-orange" aria-hidden="true"></i> {{__('MotorBusqueda.origen')}}</strong>
+                            <br>
+                            <div class="text-white strong" style="margin-left:10px;margin-top:5px;font-size:1.1em;">{{$item['origin']}}</div>
+                        </li>
                         <br>
-                        <div class="text-gray strong" style="margin-left:10px;margin-top:5px;font-size:1.1em;">{14/04/2023}</div>
-                    </li>
-                    <br>
-                    <li>
-                        <strong class="text-orange"><i class="fa fa-check text-blue" aria-hidden="true"></i> Hora:</strong> 
+                        <li>
+                            <strong class="text-orange"><i class="fa fa-check text-orange" aria-hidden="true"></i> {{__('MotorBusqueda.destino')}}</strong>
+                            <br>
+                            <div class="text-white strong" style="margin-left:10px;margin-top:5px;font-size:1.1em;">{{$item['destination']}}</div>
+                        </li>
                         <br>
-                        <div class="text-gray strong" style="margin-left:10px;margin-top:5px;font-size:1.1em;">5:14 pm</div>
-                    </li>                    
-                </ul>
+                        <li>
+                            <strong class="text-orange"><i class="fa fa-check text-orange" aria-hidden="true"></i> {{__('MotorBusqueda.pasajeros')}}</strong>
+                            <br>
+                            <div class="text-white strong" style="margin-left:10px;margin-top:5px;font-size:1.1em;">{{$item['pax']}}</div>
+                        </li>
+                    </ul>
+                </div>
             </div>
-            <div class="card-blue">
-                <ul style="list-style:none;padding:0;">                                        
-                    <li>
-                        <strong class="text-orange"><i class="fa fa-check text-orange" aria-hidden="true"></i> {Hotel / Airbnb / Location (origen)}</strong>
-                        <br>
-                        <div class="text-white strong" style="margin-left:10px;margin-top:5px;font-size:1.1em;">{Hotel Ryu}</div>
-                    </li>
-                    <br>
-                    <li>
-                        <strong class="text-orange"><i class="fa fa-check text-orange" aria-hidden="true"></i> {Hotel / Airbnb / Location (destino)}</strong>
-                        <br>
-                        <div class="text-white strong" style="margin-left:10px;margin-top:5px;font-size:1.1em;">{Hotel palace}</div>
-                    </li>
-                    <br>
-                    <li>
-                        <strong class="text-orange"><i class="fa fa-check text-orange" aria-hidden="true"></i> Pax</strong>
-                        <br>
-                        <div class="text-white strong" style="margin-left:10px;margin-top:5px;font-size:1.1em;">10</div>
-                    </li>
-                </ul>
+            <div style="width:80%; margin: 10px auto;">
+                <div class="text-blue strong" style="font-size:1.3em;">{{__('MotorBusqueda.comentarios')}}</div>
+                <div class="text-gray strong" style="text-align: justify;">{{$item['comments']}}</div>
             </div>
-        </div>
-        <div style="width:80%; margin: 10px auto;">
-            <div class="text-blue strong" style="font-size:1.3em;">Comentarios</div>
-            <div class="text-gray strong" style="text-align: justify;">Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae sit cumque ipsam temporibus optio quaerat dolorum impedit ex natus placeat fuga aspernatur molestiae rem nemo consectetur, repellat velit, rerum voluptatem.</div>
-        </div>
-    </div>    
+        </div>    
+    </div>
 </body>
 </html>

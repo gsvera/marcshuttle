@@ -23,7 +23,7 @@
             </div>
             <div class="form-group mb-3" id="divzone">
                 <label for="zone" class="font-weight-bold">{{__('MotorBusqueda.zona')}}</label>
-                <select name="zone" id="zone" class="form-control p-3">
+                <select name="zone" id="zone" class="form-control p-3 busquedalive">
                     <option value="">{{__('MotorBusqueda.seleccione-zona')}}</option>
                     @foreach($listDestination as $item)
                         <option value="{{$item->id}}">{{$item->name}}</option>
@@ -57,6 +57,9 @@
     </div>
 </div>
 <script type="text/javascript">
+    $('.busquedalive').selectpicker()
+    $(document).ready(function(){
+    })
     function HidenShowInputs()
     {
         var typetransfer = $('#typetransfer').val()

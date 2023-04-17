@@ -18,6 +18,7 @@
         "destinos" => "Destinations",
         "destinos-favoritos" => "Translados a destinos favoritos",
         "gracias"=>"Thank you",
+        "gracias-url" => "thanks",
         "ubicacion-nav"=>"Cancún, Quintana Roo Airport | 24 hour service",
         "transportacion-slogan" => "Transportación comoda y segura",
         "reserva" => "Reserve now",
@@ -72,5 +73,11 @@
         "traslado-tulum" => "Traslado Tulum",
         "traslado-bacalar" => "Traslado Bacalar",
         "traslado-holbox" => "Traslado Holbox",
-        "politicas-privacidad" => "Políticas de privacidad"
+        "politicas-privacidad" => "Políticas de privacidad",
+        "slogan-mejor-manera" => "La mejor manera de descubrir Quintana Roo",
+        "titulo-servicio-extra" => "Servicio de traslados extras",
+        "texto-servicio-extra" => "Nuestro servicio se adapta a todo tipo de turistas, desde aquellos que desean explorar las zonas más remotas del destino, hasta aquellos que buscan alojarse en un resort todo incluido, es por ello que a su disposición tiene las siguientes alternativas:",
+        "extra-cuadro-uno" => "Viajes por la ciudad",
+        "extra-cuadro-dos" => "Rutas y tours turísticos",
+        "extra-cuadro-tres" => "Servicio a grupos"
     ];

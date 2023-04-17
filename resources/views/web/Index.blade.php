@@ -255,45 +255,63 @@
                 <div class="mb-5">
                     <div class="row col-12 col-md-12 mt-5 mx-0 justify-content-center">
                         <div class="col-12 col-md-3 p-2">
-                            <div class="card-bus text-center pt-3">
-                                <h5 class="font-weight-bold">MCI Bus</h5>
-                                <div class="text-gray mb-1">39 - 57 Passengers</div>
-                                <div class="d-flex justify-content-center">
-                                    <i class="fa fa-star text-yellow fsize-15" aria-hidden="true"></i>
-                                    <i class="fa fa-star text-yellow fsize-15" aria-hidden="true"></i>
-                                    <i class="fa fa-star text-yellow fsize-15" aria-hidden="true"></i>
-                                    <i class="fa fa-star text-yellow fsize-15" aria-hidden="true"></i>
-                                    <i class="fa fa-star text-yellow fsize-15" aria-hidden="true"></i>
-                                </div>
-                                <img src="/img/assets/bus-card.png" alt="{{__('Home.autobus')}}" class="mx-auto my-5" style="width:80%;">
+                            <div class="card-bus pt-3">
+                                <h5 class="font-weight-bold text-center">MCI Bus</h5>                                
+                                <ul class="without-list text-left">
+                                    <li>
+                                        <i class="fa fa-star text-yellow fsize-15" aria-hidden="true"></i> 1 - 10 {{__('MotorBusqueda.pasajeros')}}   
+                                    </li>
+                                    <li>
+                                        <i class="fa fa-star text-yellow fsize-15" aria-hidden="true"></i> {{__('MotorBusqueda.aa')}}
+                                    </li>
+                                    <li>
+                                        <i class="fa fa-star text-yellow fsize-15" aria-hidden="true"></i> {{__('MotorBusqueda.agua-pasajero')}}
+                                    </li>
+                                    <li>
+                                        <i class="fa fa-star text-yellow fsize-15" aria-hidden="true"></i> {{__('MotorBusqueda.cargadores-usb')}}
+                                    </li>
+                                </ul>
+                                <img src="/img/assets/traslados-en-cancun.webp" alt="{{__('Home.autobus')}}" class="mx-auto" style="width:100%;">
                             </div>
                         </div>
                         <div class="col-12 col-md-3 p-2">
                             <div class="card-bus text-center pt-3">
                                 <h5 class="font-weight-bold">MCI Bus</h5>
-                                <div class="text-gray mb-1">39 - 57 Passengers</div>
-                                <div class="d-flex justify-content-center">
-                                    <i class="fa fa-star text-yellow fsize-15" aria-hidden="true"></i>
-                                    <i class="fa fa-star text-yellow fsize-15" aria-hidden="true"></i>
-                                    <i class="fa fa-star text-yellow fsize-15" aria-hidden="true"></i>
-                                    <i class="fa fa-star text-yellow fsize-15" aria-hidden="true"></i>
-                                    <i class="fa fa-star text-yellow fsize-15" aria-hidden="true"></i>
-                                </div>
-                                <img src="/img/assets/bus-card.png" alt="{{__('Home.autobus')}}" class="mx-auto my-5" style="width:80%;">
+                                <ul class="without-list text-left">
+                                    <li>
+                                        <i class="fa fa-star text-yellow fsize-15" aria-hidden="true"></i> 1 - 10 {{__('MotorBusqueda.pasajeros')}}   
+                                    </li>
+                                    <li>
+                                        <i class="fa fa-star text-yellow fsize-15" aria-hidden="true"></i> {{__('MotorBusqueda.aa')}}
+                                    </li>
+                                    <li>
+                                        <i class="fa fa-star text-yellow fsize-15" aria-hidden="true"></i> {{__('MotorBusqueda.agua-pasajero')}}
+                                    </li>
+                                    <li>
+                                        <i class="fa fa-star text-yellow fsize-15" aria-hidden="true"></i> {{__('MotorBusqueda.cargadores-usb')}}
+                                    </li>
+                                </ul>
+                                <img src="/img/assets/traslados-en-cancun.webp" alt="{{__('Home.autobus')}}" class="mx-auto" style="width:100%;">
                             </div>
                         </div>
                         <div class="col-12 col-md-3 p-2">
                             <div class="card-bus text-center pt-3">
                                 <h5 class="font-weight-bold">MCI Bus</h5>
-                                <div class="text-gray mb-1">39 - 57 Passengers</div>
-                                <div class="d-flex justify-content-center">
-                                    <i class="fa fa-star text-yellow fsize-15" aria-hidden="true"></i>
-                                    <i class="fa fa-star text-yellow fsize-15" aria-hidden="true"></i>
-                                    <i class="fa fa-star text-yellow fsize-15" aria-hidden="true"></i>
-                                    <i class="fa fa-star text-yellow fsize-15" aria-hidden="true"></i>
-                                    <i class="fa fa-star text-yellow fsize-15" aria-hidden="true"></i>
-                                </div>
-                                <img src="/img/assets/bus-card.png" alt="{{__('Home.autobus')}}" class="mx-auto my-5" style="width:80%;">
+                                <ul class="without-list text-left">
+                                    <li>
+                                        <i class="fa fa-star text-yellow fsize-15" aria-hidden="true"></i> 1 - 10 {{__('MotorBusqueda.pasajeros')}}   
+                                    </li>
+                                    <li>
+                                        <i class="fa fa-star text-yellow fsize-15" aria-hidden="true"></i> {{__('MotorBusqueda.aa')}}
+                                    </li>
+                                    <li>
+                                        <i class="fa fa-star text-yellow fsize-15" aria-hidden="true"></i> {{__('MotorBusqueda.agua-pasajero')}}
+                                    </li>
+                                    <li>
+                                        <i class="fa fa-star text-yellow fsize-15" aria-hidden="true"></i> {{__('MotorBusqueda.cargadores-usb')}}
+                                    </li>
+                                </ul>
+                                <img src="/img/assets/traslados-en-cancun.webp" alt="{{__('Home.autobus')}}" class="mx-auto" style="width:100%;">
                             </div>
                         </div>
                         <!-- <div class="col-12 col-md-3 p-2">
@@ -411,7 +429,7 @@
                 <div class="col-12 col-md-3">
                     <div class="card-destination">
                         <div class="over-hiden d-flex justify-content-center">
-                            <img src="/img/banners/traslados-cancun.webp" alt="translados cancun" class="img-destination">
+                            <img loading="lazy" src="/img/banners/traslados-cancun.webp" alt="translados cancun" class="img-destination">
                         </div>
                         <div class="p-3">
                             <h4 class="font-weight-bold fsize-sm">Zona Hotelera</h4>
@@ -423,7 +441,7 @@
                 <div class="col-12 col-md-3">
                     <div class="card-destination">
                         <div class="over-hiden d-flex justify-content-center">
-                            <img src="/img/assets/transporte-traslado-playa-del-carmen.webp" alt="transporte traslado playa del carmen" class="img-destination">
+                            <img loading="lazy" src="/img/assets/transporte-traslado-playa-del-carmen.webp" alt="transporte traslado playa del carmen" class="img-destination">
                         </div>
                         <div class="p-3">
                             <h4 class="font-weight-bold fsize-sm">Playa del carme</h4>
@@ -435,7 +453,7 @@
                 <div class="col-12 col-md-3">
                     <div class="card-destination">
                         <div class="over-hiden d-flex justify-content-center">
-                            <img src="/img/assets/transporte-tulum.webp" alt="transporte-tulum" class="img-destination">
+                            <img loading="lazy" src="/img/assets/transporte-tulum.webp" alt="transporte-tulum" class="img-destination">
                         </div>
                         <div class="p-3">
                             <h4 class="font-weight-bold fsize-sm">Tulum</h4>
@@ -447,7 +465,7 @@
                 <div class="col-12 col-md-3">
                     <div class="card-destination">
                         <div class="over-hiden d-flex justify-content-center">
-                            <img src="/img/assets/transporte-traslado.webp" alt="transporte traslado" class="img-destination">
+                            <img loading="lazy" src="/img/assets/transporte-traslado.webp" alt="transporte traslado" class="img-destination">
                         </div>
                         <div class="p-3">
                             <h4 class="font-weight-bold fsize-sm">Bacalar</h4>
@@ -456,6 +474,49 @@
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+        <div class="section">
+            <div class="col-md-7 mx-auto text-center">
+                <div class="text-blue font-weight-bold ls2">{{__('Home.slogan-mejor-manera')}}</div>
+                <h2 class="font-weight-bold fsize-md">{{__('Home.titulo-servicio-extra')}}</h2>
+                <div class="line-sm-blue my-3 mx-auto"></div>
+                <p class="text-gray fsize-sm">{{__('Home.texto-servicio-extra')}}</p>
+            </div>
+            <div class="col-12 col-md-10 row mx-auto">
+                <div class="col-12 col-md-4">
+                    <div class="card-black mx-auto">
+                    </div>
+                    <div class="mx-auto text-center justify-content-center row" style="margin-top: -50px;">
+                        <span class="text-white font-weight-bold">{{__('Home.extra-cuadro-uno')}}</span>
+                        <br>
+                        <div class="icon-orange">
+                            <img src="/img/assets/vans-cancun.webp" class="invert-white" alt="icono van">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-4">
+                    <div class="card-black mx-auto">
+                    </div>
+                    <div class="mx-auto text-center justify-content-center row" style="margin-top: -50px;">
+                        <span class="text-white font-weight-bold">{{__('Home.extra-cuadro-dos')}}</span>
+                        <br>
+                        <div class="icon-orange">
+                            <img src="/img/assets/vans-cancun.webp" class="invert-white" alt="icono van">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-4">
+                    <div class="card-black mx-auto">
+                    </div>
+                    <div class="mx-auto text-center justify-content-center row" style="margin-top: -50px;">
+                        <span class="text-white font-weight-bold">{{__('Home.extra-cuadro-tres')}}</span>
+                        <br>
+                        <div class="icon-orange">
+                            <img src="/img/assets/vans-cancun.webp" class="invert-white" alt="icono van">
+                        </div>
+                    </div>
+                </div>                
             </div>
         </div>
         <div class="bg-testimonials">

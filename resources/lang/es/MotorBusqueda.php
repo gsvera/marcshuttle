@@ -46,5 +46,14 @@ return [
     "a" => "A",
     "aeropuerto" => "Airport",
     "viaje-personalizado" => "Viaje personalizado",
-    "inicia-reserva" => "Inicia tu reserva"
+    "inicia-reserva" => "Inicia tu reserva",
+    "comentarios" => "Comentarios",
+    "email-error" => "¡Email con formato incorrecto!",
+    "nombre-error" => "Su nombre es requerido!",
+    "campos-obligatorios" => "Llene los campos obligatorios",
+    "recaptcha-requerido" => "El recaptcha es requerido",
+    "aa" => "Aire acondicionado",
+    "agua-pasajero" => "Un agua por pasajero" ,
+    "cargadores-usb" => "Cargadores con puerto USB",
+    "subject-custom" => "Viaje personalizado"
 ];

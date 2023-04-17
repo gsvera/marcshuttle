@@ -10,10 +10,31 @@ const Toast = Swal.mixin({
     }
   })
   
+function closeAlert(){
+  Swal.close()
+}
+  
+function activeLoader(title,html){
+  Swal.fire({
+    title: title,
+    html: html,
+    timerProgressBar: true,
+    didOpen: () => {
+        Swal.showLoading()
+        const b = Swal.getHtmlContainer().querySelector('b')
+        timerInterval = setInterval(() => {
+        }, 100)
+    },
+    willClose: () => {
+        clearInterval(timerInterval)
+    }
+  })
+}
+
+
 
 function notification(icon, message)
 {
-    console.log(message)
     Toast.fire({
         icon: icon,
         title: message

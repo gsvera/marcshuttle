@@ -52,7 +52,7 @@
             border-radius:5px;
             background-color: white;
             width: 70%;
-            margin: -220px auto 0;
+            margin: 0 auto 0;
             padding: 15px 10px;            
         }
         .card-gray{
@@ -90,109 +90,111 @@
             </div>
         </div>
     </div>
-    <div class="card">
-        <div><h1 style="text-align:center;">Reservation {One Way Hotel || One way airport || Round Trip}</h1></div>
-        <div class="flex">
-            <div class="card-gray">
-                <ul style="list-style:none;padding:0;">
-                    <li>
-                        <strong class="text-orange"><i class="fa fa-check text-blue" aria-hidden="true"></i> Nombre completo:</strong> 
+    <div style="display:flex; justify-content:center;margin-top:-13%">
+        <div class="card">
+            <div><h1 style="text-align:center;">Reservation {One Way Hotel || One way airport || Round Trip}</h1></div>
+            <div class="flex">
+                <div class="card-gray">
+                    <ul style="list-style:none;padding:0;">
+                        <li>
+                            <strong class="text-orange"><i class="fa fa-check text-blue" aria-hidden="true"></i> Nombre completo:</strong> 
+                            <br>
+                            <div class="text-gray strong" style="margin-left:10px;margin-top:5px;font-size:1.1em;">Nombre que va aqui</div>
+                        </li>
                         <br>
-                        <div class="text-gray strong" style="margin-left:10px;margin-top:5px;font-size:1.1em;">Nombre que va aqui</div>
-                    </li>
-                    <br>
-                    <li>
-                        <strong class="text-orange"><i class="fa fa-check text-blue" aria-hidden="true"></i> Email:</strong> 
+                        <li>
+                            <strong class="text-orange"><i class="fa fa-check text-blue" aria-hidden="true"></i> Email:</strong> 
+                            <br>
+                            <div class="text-gray strong" style="margin-left:10px;margin-top:5px;font-size:1.1em;">email@email.com</div>
+                        </li>
                         <br>
-                        <div class="text-gray strong" style="margin-left:10px;margin-top:5px;font-size:1.1em;">email@email.com</div>
-                    </li>
-                    <br>
-                    <li>
-                        <strong class="text-orange"><i class="fa fa-check text-blue" aria-hidden="true"></i> Telefono:</strong> 
+                        <li>
+                            <strong class="text-orange"><i class="fa fa-check text-blue" aria-hidden="true"></i> Telefono:</strong> 
+                            <br>
+                            <div class="text-gray strong" style="margin-left:10px;margin-top:5px;font-size:1.1em;">11123456789</div>
+                        </li>
                         <br>
-                        <div class="text-gray strong" style="margin-left:10px;margin-top:5px;font-size:1.1em;">11123456789</div>
-                    </li>
-                    <br>
-                    <li class="arrivaldate">
-                        <strong class="text-orange"><i class="fa fa-check text-blue" aria-hidden="true"></i> {Arrival}:</strong> 
+                        <li class="arrivaldate">
+                            <strong class="text-orange"><i class="fa fa-check text-blue" aria-hidden="true"></i> {Arrival}:</strong> 
+                            <br>
+                            <div class="text-gray strong" style="margin-left:10px;margin-top:5px;font-size:1.1em;">{04/04/2023}</div>
+                        </li>
+                        <br class="arrivaldate">
+                        <li class="arrivaldate">
+                            <strong class="text-orange"><i class="fa fa-check text-blue" aria-hidden="true"></i> Hora:</strong> 
+                            <br>
+                            <div class="text-gray strong" style="margin-left:10px;margin-top:5px;font-size:1.1em;">5:14 pm</div>
+                        </li>
+                        <br class="arrivaldate">
+                        <li class="arrivaldate">
+                            <strong class="text-orange"><i class="fa fa-check text-blue" aria-hidden="true"></i> Info vuelo:</strong>
+                            <br>
+                            <div class="text-gray strong" style="margin-left:10px;margin-top:5px;font-size:1.1em;">0404 AB</div>
+                        </li>
+                        <li class="departuredate">
+                            <strong class="text-orange"><i class="fa fa-check text-blue" aria-hidden="true"></i> {departure}:</strong> 
+                            <br>
+                            <div class="text-gray strong" style="margin-left:10px;margin-top:5px;font-size:1.1em;">{14/04/2023}</div>
+                        </li>
+                        <br class="departuredate">
+                        <li class="departuredate">
+                            <strong class="text-orange"><i class="fa fa-check text-blue" aria-hidden="true"></i> Hora:</strong> 
+                            <br>
+                            <div class="text-gray strong" style="margin-left:10px;margin-top:5px;font-size:1.1em;">5:14 pm</div>
+                        </li>
+                        <br class="departuredate">
+                        <li class="departuredate">
+                            <strong class="text-orange"><i class="fa fa-check text-blue" aria-hidden="true"></i> Info vuelo:</strong>
+                            <br>
+                            <div class="text-gray strong" style="margin-left:10px;margin-top:5px;font-size:1.1em;">0404 AB</div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="card-blue">
+                    <ul style="list-style:none;padding:0;">
+                        <li>
+                            <strong class="text-orange"><i class="fa fa-check text-orange" aria-hidden="true"></i> From</strong>
+                            <br>
+                            <div class="text-white strong" style="margin-left:10px;margin-top:5px;font-size:1.1em;">{Aeropuerto o ubicacion}</div>
+                        </li>
                         <br>
-                        <div class="text-gray strong" style="margin-left:10px;margin-top:5px;font-size:1.1em;">{04/04/2023}</div>
-                    </li>
-                    <br class="arrivaldate">
-                    <li class="arrivaldate">
-                        <strong class="text-orange"><i class="fa fa-check text-blue" aria-hidden="true"></i> Hora:</strong> 
+                        <li>
+                            <strong class="text-orange"><i class="fa fa-check text-orange" aria-hidden="true"></i> Area</strong>
+                            <br>
+                            <div class="text-white strong" style="margin-left:10px;margin-top:5px;font-size:1.1em;">Cancun</div>
+                        </li>
                         <br>
-                        <div class="text-gray strong" style="margin-left:10px;margin-top:5px;font-size:1.1em;">5:14 pm</div>
-                    </li>
-                    <br class="arrivaldate">
-                    <li class="arrivaldate">
-                        <strong class="text-orange"><i class="fa fa-check text-blue" aria-hidden="true"></i> Info vuelo:</strong>
+                        <li>
+                            <strong class="text-orange"><i class="fa fa-check text-orange" aria-hidden="true"></i> {Hotel / Airbnb / Location || to}</strong>
+                            <br>
+                            <div class="text-white strong" style="margin-left:10px;margin-top:5px;font-size:1.1em;">{Hotel Ryu | aeropuerto}</div>
+                        </li>
                         <br>
-                        <div class="text-gray strong" style="margin-left:10px;margin-top:5px;font-size:1.1em;">0404 AB</div>
-                    </li>
-                    <li class="departuredate">
-                        <strong class="text-orange"><i class="fa fa-check text-blue" aria-hidden="true"></i> {departure}:</strong> 
+                        <li>
+                            <strong class="text-orange"><i class="fa fa-check text-orange" aria-hidden="true"></i> Pax</strong>
+                            <br>
+                            <div class="text-white strong" style="margin-left:10px;margin-top:5px;font-size:1.1em;">10</div>
+                        </li>
                         <br>
-                        <div class="text-gray strong" style="margin-left:10px;margin-top:5px;font-size:1.1em;">{14/04/2023}</div>
-                    </li>
-                    <br class="departuredate">
-                    <li class="departuredate">
-                        <strong class="text-orange"><i class="fa fa-check text-blue" aria-hidden="true"></i> Hora:</strong> 
+                        <li>
+                            <strong class="text-orange"><i class="fa fa-check text-orange" aria-hidden="true"></i> Metodo pago</strong>
+                            <br>
+                            <div class="text-white strong" style="margin-left:10px;margin-top:5px;font-size:1.1em;">Efectivo</div>
+                        </li>
                         <br>
-                        <div class="text-gray strong" style="margin-left:10px;margin-top:5px;font-size:1.1em;">5:14 pm</div>
-                    </li>
-                    <br class="departuredate">
-                    <li class="departuredate">
-                        <strong class="text-orange"><i class="fa fa-check text-blue" aria-hidden="true"></i> Info vuelo:</strong>
-                        <br>
-                        <div class="text-gray strong" style="margin-left:10px;margin-top:5px;font-size:1.1em;">0404 AB</div>
-                    </li>
-                </ul>
+                        <li>
+                            <strong class="text-orange"><i class="fa fa-check text-orange" aria-hidden="true"></i> Monto pagado (0 pagar)</strong>
+                            <br>
+                            <div class="text-white strong" style="margin-left:10px;margin-top:5px;font-size:1.1em;">$750.00 MXN</div>
+                        </li>
+                    </ul>
+                </div>
             </div>
-            <div class="card-blue">
-                <ul style="list-style:none;padding:0;">
-                    <li>
-                        <strong class="text-orange"><i class="fa fa-check text-orange" aria-hidden="true"></i> From</strong>
-                        <br>
-                        <div class="text-white strong" style="margin-left:10px;margin-top:5px;font-size:1.1em;">{Aeropuerto o ubicacion}</div>
-                    </li>
-                    <br>
-                    <li>
-                        <strong class="text-orange"><i class="fa fa-check text-orange" aria-hidden="true"></i> Area</strong>
-                        <br>
-                        <div class="text-white strong" style="margin-left:10px;margin-top:5px;font-size:1.1em;">Cancun</div>
-                    </li>
-                    <br>
-                    <li>
-                        <strong class="text-orange"><i class="fa fa-check text-orange" aria-hidden="true"></i> {Hotel / Airbnb / Location || to}</strong>
-                        <br>
-                        <div class="text-white strong" style="margin-left:10px;margin-top:5px;font-size:1.1em;">{Hotel Ryu | aeropuerto}</div>
-                    </li>
-                    <br>
-                    <li>
-                        <strong class="text-orange"><i class="fa fa-check text-orange" aria-hidden="true"></i> Pax</strong>
-                        <br>
-                        <div class="text-white strong" style="margin-left:10px;margin-top:5px;font-size:1.1em;">10</div>
-                    </li>
-                    <br>
-                    <li>
-                        <strong class="text-orange"><i class="fa fa-check text-orange" aria-hidden="true"></i> Metodo pago</strong>
-                        <br>
-                        <div class="text-white strong" style="margin-left:10px;margin-top:5px;font-size:1.1em;">Efectivo</div>
-                    </li>
-                    <br>
-                    <li>
-                        <strong class="text-orange"><i class="fa fa-check text-orange" aria-hidden="true"></i> Monto pagado (0 pagar)</strong>
-                        <br>
-                        <div class="text-white strong" style="margin-left:10px;margin-top:5px;font-size:1.1em;">$750.00 MXN</div>
-                    </li>
-                </ul>
+            <div style="width:80%; margin: 10px auto;">
+                <div class="text-blue strong" style="font-size:1.3em;">Comentarios</div>
+                <div class="text-gray strong" style="text-align: justify;">Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae sit cumque ipsam temporibus optio quaerat dolorum impedit ex natus placeat fuga aspernatur molestiae rem nemo consectetur, repellat velit, rerum voluptatem.</div>
             </div>
-        </div>
-        <div style="width:80%; margin: 10px auto;">
-            <div class="text-blue strong" style="font-size:1.3em;">Comentarios</div>
-            <div class="text-gray strong" style="text-align: justify;">Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae sit cumque ipsam temporibus optio quaerat dolorum impedit ex natus placeat fuga aspernatur molestiae rem nemo consectetur, repellat velit, rerum voluptatem.</div>
-        </div>
-    </div>    
+        </div>    
+    </div>
 </body>
 </html>

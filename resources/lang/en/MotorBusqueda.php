@@ -46,5 +46,14 @@ return [
     "a" => "To",
     "aeropuerto" => "Aeropuerto",
     "viaje-personalizado" => "Custom trip",
-    "inicia-reserva" => "Start your booking"
+    "inicia-reserva" => "Start your booking",
+    "comentarios" => "Comments",
+    "email-error" => "Malformed email!",
+    "nombre-error" => "Your name is required!",
+    "campos-obligatorios" => "Fill in the required fields",
+    "recaptcha-requerido" => "The recaptcha is required",
+    "aa" => "A/A",
+    "agua-pasajero" => "One water per passenger",
+    "cargadores-usb" => "Charger with USB port",
+    "subject-custom" => "Custom trip"
 ];

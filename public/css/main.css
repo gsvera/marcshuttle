@@ -122,7 +122,12 @@ body{
     }
 }
 
-
+.without-list{
+    list-style: none;
+}
+.text-left{
+    text-align: left;
+}
 .fsize-mds{
     font-size: 2em;
 }
@@ -672,4 +677,19 @@ body{
 
 .over-hiden{
     overflow: hidden;
+}
+.card-black{
+    background-color: black;
+    border-radius: 5px;
+    width: 300px;
+    height: 300px;
+}
+.icon-orange{
+    background-color: var(--c-orange);
+    border-radius: 50%;
+    width: 60px;
+}
+.invert-white{
+    width: 100%;
+    filter: invert(1);
 }
