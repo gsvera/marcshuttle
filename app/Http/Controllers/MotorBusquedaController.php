@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use App\Models\Respuesta;
 use App\Models\Utils;
 use App\Models\Destination;
+use App\Models\Ubicaciones;
 
 class MotorBusquedaController extends Controller
 {
@@ -101,6 +102,21 @@ class MotorBusquedaController extends Controller
                 
                 return view('web.thanks');
             }
+        }
+        catch(Exception $e)
+        {
+            $resp->Error = true;
+            $resp->Message = $e->getMessage();
+        }
+        return response()->json($resp->getResult());
+    }
+
+    public function GetLocation(){
+        $resp = new Respuesta;
+        $ubicaciones = new Ubicaciones;
+
+        try{
+            $resp->data = $ubicaciones->_GetLocations();            
         }
         catch(Exception $e)
         {

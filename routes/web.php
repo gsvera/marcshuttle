@@ -33,6 +33,9 @@ Route::group(['prefix' => 'en'], function(){
 
 Route::get('/motorbusqueda', [WebController::class, 'motorbusqueda']);
 Route::post('/changelenguage', [WebController::class, 'ChangeLenguage']);
+Route::get('/back/locations', [MotorBusquedaController::class, 'GetLocation']);
+
+
 Route::post('/sendcustomtrip', [MotorBusquedaController::class, 'SendCustomTrip']);
 
 

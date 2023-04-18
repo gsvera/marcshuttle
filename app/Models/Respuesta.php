@@ -8,9 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Respuesta extends Model
 {
     use HasFactory;
-    private $Error;
-    private $Message;
-    private $data;
+    public $Error;
+    public $Message;
+    public $data;
 
     public function setResult($error, $message, $data)
     {
@@ -21,5 +21,5 @@ class Respuesta extends Model
     public function getResult()
     {
         return ["error" => $this->Error, "Message" => $this->Messsage, "data" => $this->data];
-    }
+    }    
 }

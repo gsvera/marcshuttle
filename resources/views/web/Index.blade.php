@@ -485,7 +485,7 @@
             </div>
             <div class="col-12 col-md-10 row mx-auto">
                 <div class="col-12 col-md-4">
-                    <div class="card-black mx-auto">
+                    <div class="card-black mx-auto mt-5">
                     </div>
                     <div class="mx-auto text-center justify-content-center row" style="margin-top: -50px;">
                         <span class="text-white font-weight-bold">{{__('Home.extra-cuadro-uno')}}</span>
@@ -496,7 +496,7 @@
                     </div>
                 </div>
                 <div class="col-12 col-md-4">
-                    <div class="card-black mx-auto">
+                    <div class="card-black mx-auto mt-5">
                     </div>
                     <div class="mx-auto text-center justify-content-center row" style="margin-top: -50px;">
                         <span class="text-white font-weight-bold">{{__('Home.extra-cuadro-dos')}}</span>
@@ -507,7 +507,7 @@
                     </div>
                 </div>
                 <div class="col-12 col-md-4">
-                    <div class="card-black mx-auto">
+                    <div class="card-black mx-auto mt-5">
                     </div>
                     <div class="mx-auto text-center justify-content-center row" style="margin-top: -50px;">
                         <span class="text-white font-weight-bold">{{__('Home.extra-cuadro-tres')}}</span>

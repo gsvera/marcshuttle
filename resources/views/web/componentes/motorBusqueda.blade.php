@@ -32,11 +32,13 @@
             </div>
             <div class="from-group mb-3 d-none" id="divorigin">
                 <label for="origin" class="font-weight-bold">{{__('MotorBusqueda.origen')}}</label>
-                <input type="text" class="form-control p-3" name="origin" id="origin" placeholder="origen"/>
+                <input type="text" class="form-control p-3" name="origin" id="origin" placeholder="origen"/>                
+                <ul id="optionOrigin" class="listOptionsLocations"></ul>
             </div>
             <div class="from-group mb-3" id="divdestination">
                 <label for="destination" class="font-weight-bold">{{__('MotorBusqueda.destino')}}</label>
                 <input type="text" class="form-control p-3" name="destination" id="destination" placeholder="destino"/>
+                <ul id="optionDestination" class="listOptionsLocations"></ul>
             </div>
             <div class="form-group mb-3">
                 <label for="pax" class="font-weight-bold">{{__('MotorBusqueda.pasajeros')}}</label>
@@ -57,9 +59,85 @@
     </div>
 </div>
 <script type="text/javascript">
-    $('.busquedalive').selectpicker()
-    $(document).ready(function(){
+    
+    var locations = ""
+    var listLocations = ""
+    var destination = document.getElementById('destination')
+    var origin = document.getElementById('origin')
+    var listOptionsDestination = document.getElementById('optionDestination')
+    var listOptionsOrigin = document.getElementById('optionOrigin')
+    
+    getLocations();
+    
+    function getLocations(){
+        $.ajax({
+            url: '/back/locations',
+            type: 'GET',
+            success: function(data)
+            {
+                locations = data.data
+            }
+        })
+    }
+    
+    function autoCompleteLocations(valor){
+        
+        return locations.filter(item => {
+            var nombreLower = item.nombre.toLowerCase()
+            var valorLower = valor.toLowerCase()
+            return nombreLower.includes(valorLower)
+        })
+    }
+
+    function setDestination(event){
+        destination.value = event.dataset.option
+        listOptionsDestination.innerHTML = ""        
+    }   
+    function setOrigin(event){
+        origin.value = event.dataset.option
+        listOptionsOrigin.innerHTML = ""        
+    }   
+
+    document.body.addEventListener("keydown", function(event) {
+        console.log(event.code, event.keyCode);
+        if (event.code === 'Escape' || event.keyCode === 27 || event.code === 'Tap' || event.keyCode === 9) {
+            listOptionsDestination.innerHTML = ""
+            listOptionsOrigin.innerHTML = ""
+            document.getElementById('pax').focus()
+        }
+    });
+
+
+    destination.addEventListener('keyup', e => {
+        e.preventDefault()                                                                                
+        var locationFilter = autoCompleteLocations(destination.value)        
+        listOptionsDestination.innerHTML = ""
+        
+        locationFilter.map((item) => {
+            listOptionsDestination.insertAdjacentHTML('beforeend', `<li onclick="setDestination(this)" data-option="${item.nombre}">${item.nombre}</li>`)            
+        })
     })
+
+    origin.addEventListener('keyup', e => {
+        e.preventDefault()                                                                                
+        var locationFilter = autoCompleteLocations(origin.value)        
+        listOptionsOrigin.innerHTML = ""
+        
+        locationFilter.map((item) => {
+            listOptionsOrigin.insertAdjacentHTML('beforeend', `<li onclick="setOrigin(this)" data-option="${item.nombre}">${item.nombre}</li>`)            
+        })
+    })
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     function HidenShowInputs()
     {
         var typetransfer = $('#typetransfer').val()

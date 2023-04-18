@@ -153,6 +153,7 @@
             <path class="elementor-shape-fill" d="M500.2,94.7L0,0v100h1000V0L500.2,94.7z" style="transform-origin: center;transform: rotateY(0deg)"></path>
         </svg>
     </div> -->
+    <div class="triangule-blue"></div>
     <div class="back-footer pt-5" style="bottom:0">
         <div class="row px-5 justify-content-center mx-0 col-12 col-md-12 mx-auto">
             <!-- <div class="col-md-1"></div> -->
@@ -216,8 +217,8 @@
             </div>
         </div>
     </div>
-    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script> -->
-    <script src="{{ asset('js/jquery-3.3.1.js')}}"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <!-- <script src="{{ asset('js/jquery-3.3.1.js')}}"></script> -->
     <!-- <script src="{{ asset('js/bootstrap-datepicker.js')}}"></script> -->
     <script src="{{ asset('js/bootstrap-select.js')}}"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>

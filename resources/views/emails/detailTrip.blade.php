@@ -80,6 +80,7 @@
         .departuredate{
             
         }
+        
 </style>
 </head>
 <body>
@@ -196,5 +197,26 @@
             </div>
         </div>    
     </div>
+        
+    <script type="text/javascript">
+        // const canvas = document.getElementById("canvas");
+        // const ctx = canvas.getContext("2d");
+
+        // // ctx.fillStyle = "blue";
+        // // ctx.fillRect(90, 70, 300, 50);
+        // ctx.fillStyle='black';
+        // ctx.beginPath();
+        // ctx.moveTo(150, 80);
+        // ctx.lineTo(0, 400);
+        // ctx.lineTo(4000, 900);
+        // ctx.fill();
+
+        // ctx.fillStyle='blue';
+        // ctx.beginPath();
+        // ctx.moveTo(100, 175);
+        // ctx.lineTo(100, 350);
+        // ctx.lineTo(275, 350);
+        // ctx.fill();
+    </script>
 </body>
 </html>
