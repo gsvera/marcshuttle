@@ -109,16 +109,17 @@ else if($pax > 7)
                     <h3 class="font-weight-bold fsize-mds text-blue">{{__('MotorBusqueda.metodo-pago')}}</h3>
                     <div class="row">
                         <div class="col-md-6">
-                            <input type="radio" name="payment_type" id="cash" checked>
-                            <label for=""><img src="/img/icons/cash.png" style="width:200px;" alt="Cash"></label>
+                            <input type="radio" name="payment_type" id="methodcash" checked>
+                            <label for="methodcash"><img src="/img/icons/cash.png" style="width:200px;" alt="Cash"></label>
                         </div>
                         <div class="col-md-6">
-                            <input type="radio" name="payment_type" id="paypal">
-                            <label for=""><img src="/img/icons/paypal.png" style="width:200px;" alt="paypal"></label>
+                            <input type="radio" name="payment_type" id="methodpaypal">
+                            <label for="methodpaypal"><img src="/img/icons/paypal.png" style="width:200px;" alt="paypal"></label>
                         </div>
                     </div>
                     <div class="col-12 col-md-12 d-grid mt-5">
-                        <button class="btn btn-naranja btn-lg" type="button">{{__('MotorBusqueda.boton-confirmar')}}</button>
+                        <button id="btnBooking" class="btn btn-naranja btn-lg" type="button">{{__('MotorBusqueda.boton-confirmar')}}</button>
+                        <div id="paypal-button-container" class="d-none"></div>
                     </div>
                 </div>
             </div>
@@ -158,5 +159,36 @@ else if($pax > 7)
 </div>
 @endsection
 @push('scripts')
+    <script src="https://www.paypal.com/sdk/js?client-id=AbicpsIwlwQgFOx_37jqJD6zzreloUvit5ZuSmz_W89iwpctKnLO_P49pbv65vdzMbxDSEt8H4UAybWk&components=buttons" data-namespace="paypal_sdk"></script>
+    
+    <script type="text/javascript">
+        var btnBooking = document.getElementById('btnBooking')
+        var paypalButtonContainer = document.getElementById('paypal-button-container')
+        var methodcash = document.getElementById('methodcash')
+        var methodpaypal = document.getElementById('methodpaypal')
+        
+        methodcash.addEventListener('change', e => {
+            e.preventDefault()
 
+            if(methodcash.checked)
+            {
+                btnBooking.classList.remove('d-none')
+                paypalButtonContainer.classList.add('d-none')
+            }
+        })
+
+        methodpaypal.addEventListener('change', e => {
+            e.preventDefault()
+
+            if(methodpaypal.checked)
+            {
+                btnBooking.classList.add('d-none')
+                paypalButtonContainer.classList.remove('d-none')
+            }
+        })
+
+
+        window.paypal_sdk.Buttons().render('#paypal-button-container');
+        
+    </script>
 @endpush
