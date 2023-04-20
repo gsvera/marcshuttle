@@ -4,6 +4,7 @@ function asDollars($value) {
     return '$' . number_format($value, 2);
 }
 $total = "";
+$amount = 0;
 $labelTypeTransfer = __('MotorBusqueda.aeropuerto-hotel');
 if($typetransfer == 2)
 {
@@ -19,9 +20,11 @@ if($pax < 8)
     if($typetransfer == 3)
     {
         $total = asDollars($objDestination->uno_siete * 2);
+        $amount = $objDestination->uno_siete * 2;
     }
     else{
         $total = asDollars($objDestination->uno_siete);
+        $amount = $objDestination->uno_siete;
     }
 }
 else if($pax > 7)
@@ -53,16 +56,20 @@ else if($pax > 7)
                 <div class="my-3 box-shadow-info">
                     <h3 class="font-weight-bold fsize-mds text-blue">{{__('MotorBusqueda.datos-personales')}}</h3>
                     <div class="form-group mb-3">
-                        <label for="fullName" class="font-weight-bold fsize-sm text-gray">{{__('MotorBusqueda.nombre-completo')}} <span class="text-danger font-weight-bold">*</span></label>
-                        <input type="text" class="form-control" id="fullName" name="fullName" />
+                        <label for="fristName" class="font-weight-bold fsize-sm text-gray">{{__('MotorBusqueda.nombres')}} <span class="text-danger font-weight-bold">*</span></label>
+                        <input type="text" class="form-control" id="firstName" name="firstName" />
+                    </div>
+                    <div class="form-group mb-3">
+                        <label for="lastName" class="font-weight-bold fsize-sm text-gray">{{__('MotorBusqueda.apellidos')}} <span class="text-danger font-weight-bold">*</span></label>
+                        <input type="text" class="form-control" id="lastName" name="lastName" />
                     </div>
                     <div class="form-group mb-3">
                         <label for="email" class="font-weight-bold fsize-sm text-gray">{{__('MotorBusqueda.email')}} <span class="text-danger font-weight-bold">*</span></label>
                         <input type="text" class="form-control" id="email" name="email" />
                     </div>
                     <div class="form-group">
-                        <label for="phone" class="font-weight-bold fsize-sm text-gray">{{__('MotorBusqueda.telefono')}} <span class="text-danger font-weight-bold">*</span></label>
-                        <input type="text" class="form-control" id="phone" name="phone" />
+                        <label for="phoneClient" class="font-weight-bold fsize-sm text-gray">{{__('MotorBusqueda.telefono')}} <span class="text-danger font-weight-bold">*</span></label>
+                        <input type="text" class="form-control" id="phoneClient" name="phoneClient" />
                     </div>
                 </div>
                 @if($typetransfer == 1 || $typetransfer == 3)                    
@@ -159,7 +166,7 @@ else if($pax > 7)
 </div>
 @endsection
 @push('scripts')
-    <script src="https://www.paypal.com/sdk/js?client-id=AbicpsIwlwQgFOx_37jqJD6zzreloUvit5ZuSmz_W89iwpctKnLO_P49pbv65vdzMbxDSEt8H4UAybWk&components=buttons" data-namespace="paypal_sdk"></script>
+    <script src="https://www.paypal.com/sdk/js?client-id={{env('PAYPAL_CLIENT_ID')}}&components=buttons,funding-eligibility&currency=MXN" data-namespace="paypal_sdk"></script>
     
     <script type="text/javascript">
         var btnBooking = document.getElementById('btnBooking')
@@ -187,8 +194,44 @@ else if($pax > 7)
             }
         })
 
+//  FUNCIONES PARA PAYPAL
 
-        window.paypal_sdk.Buttons().render('#paypal-button-container');
+
+        window.paypal_sdk.Buttons({
+            fundingSource: window.paypal_sdk.FUNDING.CARD,
+            createOrder: function(data, actions) {
+                return actions.order.create({
+                    application_context:{
+                        shipping_preference: "NO_SHIPPING"
+                    },
+                    payer:{
+                        email_address: $('#email').val(),
+                        name: {
+                            given_name: $('#firstName').val(),
+                            surname: $('#lastName').val(),
+                            phone: $('#phoneClient').val()
+                        },
+                        address: {
+                            country_code: "MX"
+                        }
+                    },
+                    purchase_units: [{
+                        amount: {
+                            "currency_code": "MXN",
+                            "value": {{$amount}}
+                        }
+                    }],
+                });
+            },
+            onApprove: function(data, actions) {
+                console.log(data)
+                console.log(actions)
+            },
+            onError: function(error){
+                console.log(error)
+            }
+        }).render('#paypal-button-container');
+
         
     </script>
 @endpush

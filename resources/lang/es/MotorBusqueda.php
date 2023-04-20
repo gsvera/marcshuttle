@@ -55,5 +55,7 @@ return [
     "aa" => "Aire acondicionado",
     "agua-pasajero" => "Un agua por pasajero" ,
     "cargadores-usb" => "Cargadores con puerto USB",
-    "subject-custom" => "Viaje personalizado"
+    "subject-custom" => "Viaje personalizado",
+    "nombres" => "Nombres",
+    "apellidos" => "Apellidos"
 ];

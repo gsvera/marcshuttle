@@ -55,5 +55,7 @@ return [
     "aa" => "A/A",
     "agua-pasajero" => "One water per passenger",
     "cargadores-usb" => "Charger with USB port",
-    "subject-custom" => "Custom trip"
+    "subject-custom" => "Custom trip",
+    "nombres" => "First name",
+    "apellidos" => "Last name"
 ];
