@@ -27,17 +27,19 @@ if($pax < 8)
         $amount = $objDestination->uno_siete;
     }
 }
+
 else if($pax > 7)
 {
     if($typetransfer == 3)
     {
         $total = asDollars($objDestination->ocho_diez * 2);
+        $amount = $objDestination->ocho_diez * 2;
     }
     else{
         $total = asDollars($objDestination->ocho_diez);
+        $amount =$objDestination->ocho_diez;
     }
 }
-
 
 ?>
 
@@ -226,6 +228,32 @@ else if($pax > 7)
             onApprove: function(data, actions) {
                 console.log(data)
                 console.log(actions)
+
+                var orderId = data.orderID
+                return $.ajax({
+                    url: '/checkout/api/paypal/order/',
+                    method: 'POST',
+                    data: {
+                        _token: "{{ csrf_token() }}",
+                        orderId: orderId
+                    },
+                    success:function(data){
+                        console.log(data)
+                    }
+                })
+                // return fetch('/checkout/api/paypal/order/'+orderId, {
+                //     method: 'POST'
+                // })
+                // .then(function(res){
+                //     return res.json()
+                // })
+                // .then(function(orderData){
+                //     console.log(orderData)
+                // })
+
+
+                successAlert('{{__('MotorBusqueda.confirmado')}}', '{{__('MotorBusqueda.transaccion-completado')}}')
+
             },
             onError: function(error){
                 console.log(error)

@@ -57,5 +57,7 @@ return [
     "cargadores-usb" => "Cargadores con puerto USB",
     "subject-custom" => "Viaje personalizado",
     "nombres" => "Nombres",
-    "apellidos" => "Apellidos"
+    "apellidos" => "Apellidos",
+    "confirmado" => "Confirmado",
+    "transaccion-completado" => "Transacción completada"
 ];

@@ -57,5 +57,7 @@ return [
     "cargadores-usb" => "Charger with USB port",
     "subject-custom" => "Custom trip",
     "nombres" => "First name",
-    "apellidos" => "Last name"
+    "apellidos" => "Last name",
+    "confirmado" => "Confirmed",
+    "transaccion-completado" => "Transaction completed"
 ];

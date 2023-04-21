@@ -40,3 +40,27 @@ function notification(icon, message)
         title: message
     })
 }
+
+function errorAlert(title, html){
+  Swal.fire({
+      icon: 'error',
+      title: title,
+      text: html
+  })
+}
+
+function warningAlert(title, html){
+  Swal.fire({
+      icon: 'warning',
+      title: title,
+      text: html
+  })
+}
+
+function successAlert(title, html){
+  Swal.fire({
+      icon: 'success',
+      title: title,
+      text: html
+  })
+}

@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\WebController;
 use App\Http\Controllers\MotorBusquedaController;
+use App\Http\Controllers\PaypalController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -34,6 +35,7 @@ Route::group(['prefix' => 'en'], function(){
 Route::get('/motorbusqueda', [WebController::class, 'motorbusqueda']);
 Route::post('/changelenguage', [WebController::class, 'ChangeLenguage']);
 Route::get('/back/locations', [MotorBusquedaController::class, 'GetLocation']);
+Route::post('/checkout/api/paypal/order', [PaypalController::class, 'CheckoutOrder']);
 
 
 Route::post('/sendcustomtrip', [MotorBusquedaController::class, 'SendCustomTrip']);
