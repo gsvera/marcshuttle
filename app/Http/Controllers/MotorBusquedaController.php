@@ -1,21 +1,19 @@
 <?php
 
 namespace App\Http\Controllers;
-
-use Illuminate\Support\Facades\Http;
-use Illuminate\Support\Facades\Mail;
+use App;
 use App\Mail\SendEmail;
 use Illuminate\Http\Request;
 use App\Models\Respuesta;
-use App\Models\Utils;
 use App\Models\Destination;
 use App\Models\Ubicaciones;
+use App\Models\BookingTrip;
 
 class MotorBusquedaController extends Controller
 {
     public function detailTrip(){
         $resp = new Respuesta;
-        $objDestination = new Destination();
+        $objDestination = new Destination();        
         $pax=request('pax');
         $origin=request('origin');
         $destination=request('destination');
@@ -23,8 +21,19 @@ class MotorBusquedaController extends Controller
         $dateArrival=request('datearrival');
         $dateDeparture=request('datedeparture');
 
+        $lang = App::getLocale();
+        $prefijo = "/";
+
+        if($lang == 'en')
+        {
+            $prefijo = 'en/';
+        }
+        if($typetransfer == ''){
+            return redirect($prefijo);
+        }
+
         try{    
-            if(request('zone') != 4)
+            if($typetransfer != 4)
             {
                 $objDestination = $objDestination->GetDestination(request('zone'));
             }
@@ -44,7 +53,7 @@ class MotorBusquedaController extends Controller
             if($typetransfer == 4)
             {
                 return view('web.detailTripCustom', ["destination"=>$destination, "origin"=>$origin, "dateDeparture"=>$dateDeparture,"typetransfer"=>$typetransfer, "pax"=>$pax]);
-            }
+            }            
         }
         catch(Exception $e)
         {
@@ -54,61 +63,49 @@ class MotorBusquedaController extends Controller
         
     }
 
-    public function SendCustomTrip(){
+    public function BookingTransfer(){
         $resp = new Respuesta;
-        $utils = new Utils;
-
+        $booking = new BookingTrip;
+        $folio = "";
         try{         
-                                            
-            if(request('g-recaptcha-response') == "")
+
+            if(request('typetransfer') == 4)
             {
-                $resp->Error = true;
-                $resp->Message = __('MotorBusqueda.recaptcha-requerido');                
+                $resp = $booking->SendCustomTrip(request()->all());
             }
-            else{                                
-                $response = Http::get('https://www.google.com/recaptcha/api/siteverify', [
-                    'secret' => $utils->GetRecaptchaSecret(),
-                    'response' => request('g-recaptcha-response') 
-                ]);
-                $body = json_decode($response->getBody());
-                
-                if (!$body->success){
-                    $resp->Error = true;
-                    $resp->Message = __('MotorBusqueda.recaptcha-requerido');
-                    //return response()->json($resp->getResult());
-                    return back()->with('messageError','El reCAPTCHA es inválido');
-                }
-                
-                $datosMessage = [
-                    "fullName"=> request('fullName'),
-                    "email"=>request('email'),
-                    "phone"=> request('phone'),
-                    "typetransfer" => request('typetransfer'),
-                    "origin" => request('origin'),
-                    "destination" => request('destination'),
-                    "pax" => request('pax'),
-                    "dateDeparture" => request('dateDeparture'),
-                    "hourDeparture" => request('hourDeparture'),
-                    "comments" => request('comments'),
-                    "host" => request('urlWeb')
-                ];
-
-                Mail::send('emails.detailTripCustom',['item'=>$datosMessage],function($mensaje){
-                    $mensaje->to(["gs.vera92@gmail.com", request('email')])->subject(__('MotorBusqueda.subject-custom'));
-                });
-
-                $resp->Error = false;
-                $resp->Message = "ok";
-                
+            else{
+                $resp = $booking->SendOneWay(request()->all());
+            }
+            // switch (request('typetransfer')) {
+            //     case 1:
+                    
+            //         break;
+            //     case 2:
+            //         break;
+            //     case 3: 
+            //         break;
+            //     case 4:
+                    
+            //         break;
+            //     default:
+            //         # code...
+            //         break;
+            // }               
+            
+            if($resp->Error == false)
+            {
                 return view('web.thanks');
             }
+            else{
+                return back()->with('messageError',$resp->Message);
+            }            
         }
         catch(Exception $e)
         {
             $resp->Error = true;
             $resp->Message = $e->getMessage();
+            return back()->with('messageError',$resp->Message);
         }
-        return response()->json($resp->getResult());
     }
 
     public function GetLocation(){

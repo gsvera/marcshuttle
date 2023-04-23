@@ -18,4 +18,4 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::post('/checkout/api/paypal/order', [PaypalController::class, 'CheckoutOrder']);
+//Route::post('/checkout/api/paypal/order', [PaypalController::class, 'CheckoutOrder']);

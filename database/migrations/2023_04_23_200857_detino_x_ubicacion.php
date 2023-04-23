@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class Origin extends Migration
+class DetinoXUbicacion extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,10 @@ class Origin extends Migration
      */
     public function up()
     {
-        Schema::create('origin', function(Blueprint $table){
+        Schema::create('destino_x_ubicacion', function(Blueprint $table){
             $table->id();
-            $table->string('name');
+            $table->integer('id_destination');
+            $table->integer('id_ubicacion');
         });
     }
 

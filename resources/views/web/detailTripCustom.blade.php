@@ -29,8 +29,12 @@
                     <input type="hidden" name="pax" id="pax" value="{{$pax}}">
                     <input type="hidden" name="urlWeb" id="urlWeb">
                     <div class="form-group mb-3">
-                        <label for="fullName" class="font-weight-bold fsize-sm text-gray">{{__('MotorBusqueda.nombre-completo')}} <span class="text-danger font-weight-bold">*</span></label>
-                        <input type="text" class="form-control" id="fullName" name="fullName" />
+                        <label for="fristName" class="font-weight-bold fsize-sm text-gray">{{__('MotorBusqueda.nombres')}} <span class="text-danger font-weight-bold">*</span></label>
+                        <input type="text" class="form-control required" id="firstName" name="firstName"/>
+                    </div>
+                    <div class="form-group mb-3">
+                        <label for="lastName" class="font-weight-bold fsize-sm text-gray">{{__('MotorBusqueda.apellidos')}} <span class="text-danger font-weight-bold">*</span></label>
+                        <input type="text" class="form-control required" id="lastName" name="lastName"/>
                     </div>
                     <div class="form-group mb-3">
                         <label for="email" class="font-weight-bold fsize-sm text-gray">{{__('MotorBusqueda.email')}} <span class="text-danger font-weight-bold">*</span></label>
@@ -63,8 +67,8 @@
         </div>
         <div class="col-12 col-md-5">
             <div class="box-shadow-info">
-                <div class="d-flex mb-4">
-                    <img src="/img/assets/bus-card.png" alt="Bus" width="80%" class="mx-auto">
+                <div class="d-flex">
+                    <img src="/img/assets/traslados-en-cancun.webp" alt="Bus" width="100%" class="mx-auto">
                 </div>
                 <div class="text-center">
                     <h3 class="font-weight-bold fsize-mds text-blue">{{__('MotorBusqueda.detalle-viaje')}}</h3>
@@ -89,8 +93,7 @@
 <script src="https://www.google.com/recaptcha/api.js"></script>
 </script>
     <script type="text/javascript">
-        
-        const regex = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i
+                
         let formcustom = document.getElementById('formcustom'),
         urlWeb = window.location.origin
 
@@ -112,7 +115,8 @@
             e.preventDefault()
 
             var email=$('#email').val()
-            var fullName=$('#fullName').val()
+            var firstName=$('#firstName').val()
+            var lastName=$('#lastName').val()
             var phone=$('#phone').val()
             var recaptcha=$('#g-recaptcha-response').val()
             var dateDeparture=$('#dateDeparture').val()
@@ -123,7 +127,8 @@
                 notification('error','{{__('Motorbusqueda.email-error')}}')
                 return false;
             }
-            if(fullName == '' || phone == "" || dateDeparture == '' || hourDeparture == '')
+            
+            if(firstName == '' || lastName == '' || phone == "" || dateDeparture == '' || hourDeparture == '')
             {
                 notification('error', '{{__('Motorbusqueda.campos-obligatorios')}}')
                 return false;

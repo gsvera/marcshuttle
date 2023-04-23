@@ -21,6 +21,10 @@ Route::get('/', function () {
 });
 Route::get('/acerca-de-nosotros',[WebController::class, 'about']);
 Route::get('/detalle-de-viaje', [MotorBusquedaController::class, 'detailTrip']);
+Route::post('/gracias', [MotorBusquedaController::class, "BookingTransfer"]);
+Route::get('/gracias', function(){
+    return redirect('/');
+});
 
 
 Route::group(['prefix' => 'en'], function(){
@@ -29,7 +33,11 @@ Route::group(['prefix' => 'en'], function(){
     });
     Route::get('/about-us',[WebController::class, 'about']);
     Route::get('/trip-detail', [MotorBusquedaController::class, 'detailTrip']);
-    Route::post('/thanks', [MotorBusquedaController::class, "SendCustomTrip"]);
+    Route::post('/thanks', [MotorBusquedaController::class, "BookingTransfer"]);
+    Route::post('/thanks', [MotorBusquedaController::class, "BookingTransfer"]);
+    Route::get('/thanks', function(){
+        return redirect('/en');
+    });
 });
 
 Route::get('/motorbusqueda', [WebController::class, 'motorbusqueda']);

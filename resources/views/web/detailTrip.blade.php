@@ -1,8 +1,14 @@
 <?php 
-function asDollars($value) {
-    if ($value<0) return "-".asDollars(-$value);
-    return '$' . number_format($value, 2);
+use App\Models\Utils;
+
+$lang = App::getLocale();
+$prefijo = "/";
+
+if($lang == 'en')
+{
+    $prefijo = '/en/';
 }
+
 $total = "";
 $amount = 0;
 $labelTypeTransfer = __('MotorBusqueda.aeropuerto-hotel');
@@ -19,11 +25,11 @@ if($pax < 8)
 {
     if($typetransfer == 3)
     {
-        $total = asDollars($objDestination->uno_siete * 2);
+        $total = Utils::asDollars($objDestination->uno_siete * 2);
         $amount = $objDestination->uno_siete * 2;
     }
     else{
-        $total = asDollars($objDestination->uno_siete);
+        $total = Utils::asDollars($objDestination->uno_siete);
         $amount = $objDestination->uno_siete;
     }
 }
@@ -32,11 +38,11 @@ else if($pax > 7)
 {
     if($typetransfer == 3)
     {
-        $total = asDollars($objDestination->ocho_diez * 2);
+        $total = Utils::asDollars($objDestination->ocho_diez * 2);
         $amount = $objDestination->ocho_diez * 2;
     }
     else{
-        $total = asDollars($objDestination->ocho_diez);
+        $total = Utils::asDollars($objDestination->ocho_diez);
         $amount =$objDestination->ocho_diez;
     }
 }
@@ -53,41 +59,68 @@ else if($pax > 7)
 <div class="section">
     <div class="row m-0 px-4">
         <div class="col-12 col-md-7">
-            <div class="container">
+            <form class="container" id="formBooking" method="POST" action="{{url($prefijo.__('Home.gracias-url'))}}">
+                {{@csrf_field()}}
                 <p class="font-weight-bold">Enter your data in the following fields. Please verify the entered information is correct. This information will helps us give you the best service in your arrival or in case there is a change and we need to notify. Thanks for choosing us!</p>
-                <div class="my-3 box-shadow-info">
+                <input type="hidden" id="typetransfer" name="typetransfer" value="{{$typetransfer}}">
+                <input type="hidden" name="orderId" id="orderId">
+                <input type="hidden" name="pax" id="pax" value={{$pax}}>
+                <input type="hidden" name="nameZone" id="nameZone" value="{{$objDestination->name}}">
+                <input type="hidden" name="idZone" id="idZone" value="{{$objDestination->id}}">
+                <input type="hidden" name="urlWeb" id="urlWeb">
+                <input type="hidden" name="payMethod" id="payMethod" value="efectivo">
+                <input type="hidden" name="amount" id="amount" value="{{$amount}}">
+                @if($typetransfer == 2)
+                    <input type="hidden" name="origin" id="origin" value="{{$origin}}">
+                @else
+                    <input type="hidden" name="destination" id="destination" value="{{$destination}}">
+                @endif
+                <div class="my-3 box-shadow-info step">
                     <h3 class="font-weight-bold fsize-mds text-blue">{{__('MotorBusqueda.datos-personales')}}</h3>
                     <div class="form-group mb-3">
                         <label for="fristName" class="font-weight-bold fsize-sm text-gray">{{__('MotorBusqueda.nombres')}} <span class="text-danger font-weight-bold">*</span></label>
-                        <input type="text" class="form-control" id="firstName" name="firstName" />
+                        <input type="text" class="form-control required" id="firstName" name="firstName"/>
                     </div>
                     <div class="form-group mb-3">
                         <label for="lastName" class="font-weight-bold fsize-sm text-gray">{{__('MotorBusqueda.apellidos')}} <span class="text-danger font-weight-bold">*</span></label>
-                        <input type="text" class="form-control" id="lastName" name="lastName" />
+                        <input type="text" class="form-control required" id="lastName" name="lastName"/>
                     </div>
                     <div class="form-group mb-3">
                         <label for="email" class="font-weight-bold fsize-sm text-gray">{{__('MotorBusqueda.email')}} <span class="text-danger font-weight-bold">*</span></label>
-                        <input type="text" class="form-control" id="email" name="email" />
+                        <input type="text" class="form-control required" id="email" name="email"/>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group mb-3">
                         <label for="phoneClient" class="font-weight-bold fsize-sm text-gray">{{__('MotorBusqueda.telefono')}} <span class="text-danger font-weight-bold">*</span></label>
-                        <input type="text" class="form-control" id="phoneClient" name="phoneClient" />
+                        <input type="text" class="form-control required" id="phoneClient" name="phoneClient"/>
+                    </div>
+                    <div class="form-group mb-3">
+                        <label for="comments" class="font-weight-bold fsize-sm text-gray">{{__('MotorBusqueda.comentarios')}}</label>
+                        <textarea class="form-control" name="comments" id="comments" cols="30" rows="10" style="height:100px;"></textarea>
+                    </div>
+                    <div class="d-flex justify-content-end">
+                        <!-- <div> -->
+                            <button type="button" class="btn btn-orange btn-lg" onclick="NextStep()">{{__('MotorBusqueda.siguiente')}}</button>
+                        <!-- </div> -->
                     </div>
                 </div>
                 @if($typetransfer == 1 || $typetransfer == 3)                    
-                    <div class="my-3 box-shadow-info">
+                    <div class="my-3 box-shadow-info step d-none">
                         <h3 class="font-weight-bold fsize-mds text-blue">{{__('MotorBusqueda.llegada')}}</h3>
                         <div class="form-group mb-3">
                             <label for="dateArrival" class="font-weight-bold fsize-sm text-gray">{{__('MotorBusqueda.fecha-llegada')}} <span class="text-danger font-weight-bold">*</span></label>
-                            <input type="date" class="form-control" id="dateArrival" name="dateArrival" value="{{$dateArrival}}" />
+                            <input type="date" class="form-control required" id="dateArrival" name="dateArrival" value="{{$dateArrival}}" required/>
                         </div>
                         <div class="form-group mb-3">
-                            <label for="hourArrival" class="font-weight-bold fsize-sm text-gray">{{__('MotorBusqueda.hora')}}</label>
-                            <input type="time" class="form-control" id="hourArrival" name="hourArrival" />
+                            <label for="hourArrival" class="font-weight-bold fsize-sm text-gray">{{__('MotorBusqueda.hora')}} <span class="text-danger font-weight-bold">*</span></label>
+                            <input type="time" class="form-control required" id="hourArrival" name="hourArrival" required/>
                         </div>
                         <div class="form-group mb-3">
-                            <label for="infoFlight" class="font-weight-bold fsize-sm text-gray">{{__('MotorBusqueda.info-vuelo')}}</label>
-                            <input type="text" class="form-control" id="infoFlight" name="infoFlight" />
+                            <label for="infoArrival" class="font-weight-bold fsize-sm text-gray">{{__('MotorBusqueda.info-vuelo')}}</label>
+                            <input type="text" class="form-control" id="infoArrival" name="infoArrival" />
+                        </div>
+                        <div class="d-flex justify-content-between">
+                            <button class="btn btn-sky btn-lg" type="button" onclick="PreviewStep()">{{__('MotorBusqueda.anterior')}}</button>
+                            <button type="button" class="btn btn-orange btn-lg" onclick="NextStep()">{{__('MotorBusqueda.siguiente')}}</button>
                         </div>
                     </div>
                     <!-- <div class="my-3 box-shadow-info">
@@ -98,45 +131,53 @@ else if($pax > 7)
                     </div> -->
                 @endif
                 @if($typetransfer == 2 || $typetransfer == 3)
-                    <div class="my-3 box-shadow-info">
+                    <div class="my-3 box-shadow-info step d-none">
                         <h3 class="font-weight-bold fsize-mds text-blue">{{__('MotorBusqueda.salida')}}</h3>
                         <div class="form-group mb-3">
                             <label for="dateDeparture" class="font-weight-bold fsize-sm text-gray">{{__('MotorBusqueda.fecha-salida')}} <span class="text-danger font-weight-bold">*</span></label>
-                            <input type="date" class="form-control" id="dateDeparture" name="dateDeparture" value="{{$dateDeparture}}" />
+                            <input type="date" class="form-control required" id="dateDeparture" name="dateDeparture" value="{{$dateDeparture}}" />
                         </div>
                         <div class="form-group mb-3">
-                            <label for="hourDeparture" class="font-weight-bold fsize-sm text-gray">{{__('MotorBusqueda.hora')}}</label>
-                            <input type="time" class="form-control" id="hourDeparture" name="hourDeparture" />
+                            <label for="hourDeparture" class="font-weight-bold fsize-sm text-gray">{{__('MotorBusqueda.hora')}} <span class="text-danger font-weight-bold">*</span></label>
+                            <input type="time" class="form-control required" id="hourDeparture" name="hourDeparture" />
                         </div>
                         <div class="form-group mb-3">
-                            <label for="infoFlight" class="font-weight-bold fsize-sm text-gray">{{__('MotorBusqueda.info-vuelo')}}</label>
-                            <input type="text" class="form-control" id="infoFlight" name="infoFlight" />
-                        </div>
+                            <label for="infoDeparture" class="font-weight-bold fsize-sm text-gray">{{__('MotorBusqueda.info-vuelo')}}</label>
+                            <input type="text" class="form-control" id="infoDeparture" name="infoDeparture" />
+                        </div>    
+                        <div class="d-flex justify-content-between">
+                            <button class="btn btn-sky btn-lg" type="button" onclick="PreviewStep()">{{__('MotorBusqueda.anterior')}}</button>
+                            <button type="button" class="btn btn-orange btn-lg" onclick="NextStep()">{{__('MotorBusqueda.siguiente')}}</button>
+                        </div>                    
                     </div>
                 @endif
-                <div class="my-3 box-shadow-info">
-                    <h3 class="font-weight-bold fsize-mds text-blue">{{__('MotorBusqueda.metodo-pago')}}</h3>
+                <div class="my-3 box-shadow-info step d-none">
+                    <h3 class="font-weight-bold fsize-mds text-blue">{{__('MotorBusqueda.metodo-pago')}}</h3>                    
                     <div class="row">
                         <div class="col-md-6">
-                            <input type="radio" name="payment_type" id="methodcash" checked>
+                            <input type="radio" name="payment_type" id="methodcash" value="efectivo" checked>
                             <label for="methodcash"><img src="/img/icons/cash.png" style="width:200px;" alt="Cash"></label>
                         </div>
                         <div class="col-md-6">
-                            <input type="radio" name="payment_type" id="methodpaypal">
+                            <input type="radio" name="payment_type" id="methodpaypal" value="paypal">
                             <label for="methodpaypal"><img src="/img/icons/paypal.png" style="width:200px;" alt="paypal"></label>
                         </div>
                     </div>
-                    <div class="col-12 col-md-12 d-grid mt-5">
-                        <button id="btnBooking" class="btn btn-naranja btn-lg" type="button">{{__('MotorBusqueda.boton-confirmar')}}</button>
+                    <div class="col-12 col-md-12 d-grid mt-5 mb-3">
+                        <div class="g-recaptcha mb-3" data-sitekey="6LdCmI0lAAAAAMkIr0M4gm2aOhkngFTQ5CJhTRgI"></div>
+                        <button id="btnBooking" onclick="SendBookingCash()" class="btn btn-naranja btn-lg" type="button">{{__('MotorBusqueda.boton-confirmar')}}</button>
                         <div id="paypal-button-container" class="d-none"></div>
                     </div>
+                    <div class="">
+                        <button class="btn btn-sky btn-lg" type="button" onclick="PreviewStep()">{{__('MotorBusqueda.anterior')}}</button>
+                    </div>
                 </div>
-            </div>
+            </form>
         </div>
         <div class="col-12 col-md-5">
             <div class="box-shadow-info">
-                <div class="d-flex mb-4">
-                    <img src="/img/assets/bus-card.png" alt="Bus" width="80%" class="mx-auto">
+                <div class="d-flex">
+                    <img src="/img/assets/traslados-en-cancun.webp" alt="Bus" width="100%" class="mx-auto">
                 </div>
                 <div class="text-center">
                     <h3 class="font-weight-bold fsize-mds text-blue">{{__('MotorBusqueda.detalle-viaje')}}</h3>
@@ -169,12 +210,20 @@ else if($pax > 7)
 @endsection
 @push('scripts')
     <script src="https://www.paypal.com/sdk/js?client-id={{env('PAYPAL_CLIENT_ID')}}&components=buttons,funding-eligibility&currency=MXN" data-namespace="paypal_sdk"></script>
-    
+    <script src="https://www.google.com/recaptcha/api.js"></script>
     <script type="text/javascript">
         var btnBooking = document.getElementById('btnBooking')
+        var formBooking = document.getElementById('formBooking')
         var paypalButtonContainer = document.getElementById('paypal-button-container')
         var methodcash = document.getElementById('methodcash')
-        var methodpaypal = document.getElementById('methodpaypal')
+        var methodpaypal = document.getElementById('methodpaypal')        
+        var step = document.querySelectorAll('.step')
+        var payMethod = document.getElementById('payMethod')
+        var gRecaptcha = document.querySelector('.g-recaptcha')
+        var countStep = 0
+        var urlWeb = window.location.origin
+
+        $('#urlWeb').val(urlWeb)                
         
         methodcash.addEventListener('change', e => {
             e.preventDefault()
@@ -183,6 +232,8 @@ else if($pax > 7)
             {
                 btnBooking.classList.remove('d-none')
                 paypalButtonContainer.classList.add('d-none')
+                payMethod.value = 'efectivo'
+                gRecaptcha.classList.remove('d-none')
             }
         })
 
@@ -193,11 +244,68 @@ else if($pax > 7)
             {
                 btnBooking.classList.add('d-none')
                 paypalButtonContainer.classList.remove('d-none')
+                payMethod.value = 'paypal'
+                gRecaptcha.classList.add('d-none')
             }
         })
 
-//  FUNCIONES PARA PAYPAL
+        function NextStep()
+        {
+            if(countStep == 0)
+            {
+                if(!regex.test(document.getElementById('email').value))
+                {
+                    notification('error','{{__('Motorbusqueda.email-error')}}')
+                    return false;
+                }
+            }
 
+            if(ValidInput(countStep) == true)
+            {
+                step[countStep].classList.add('d-none')
+                step[countStep + 1].classList.remove('d-none')
+                countStep++
+            }
+            else{
+                notification("warning", '{{__('MotorBusqueda.campos-obligatorios')}}')
+            }
+        }
+        function PreviewStep()
+        {
+            step[countStep].classList.add('d-none')
+            step[countStep - 1].classList.remove('d-none')
+            countStep--
+        }
+
+        function ValidInput(position)
+        {
+            var inputs = step[position].querySelectorAll('.required')
+            
+            for(i = 0; i < inputs.length; i++)
+            {
+                if(inputs[i].value == '')
+                    return false
+            }
+            return true
+        }
+
+        function SendBookingCash()
+        {
+            var recaptcha = $('#g-recaptcha-response').val()
+
+            if(recaptcha == '')
+            {
+                notification('error', '{{__('MotorBusqueda.recaptcha-requerido')}}')
+                return false;
+            }
+
+            btnBooking.setAttribute('disabled', true)
+
+            activeLoader('{{__('MotorBusqueda.registrando')}}...', '{{__('MotorBusqueda.enviando-correo')}}')
+
+            formBooking.submit()
+        }        
+//  FUNCIONES PARA PAYPAL
 
         window.paypal_sdk.Buttons({
             fundingSource: window.paypal_sdk.FUNDING.CARD,
@@ -230,6 +338,8 @@ else if($pax > 7)
                 console.log(actions)
 
                 var orderId = data.orderID
+                $('#orderId').val(orderId)
+
                 return $.ajax({
                     url: '/checkout/api/paypal/order/',
                     method: 'POST',
@@ -239,21 +349,19 @@ else if($pax > 7)
                     },
                     success:function(data){
                         console.log(data)
+                        if(data.error == false)
+                        {
+                            if(data.status == 'APPROVED')
+                            {
+                                formBooking.submit()                                
+                            }
+                            else
+                                errorAlert("Error", '{{__('MotorBusqueda.ocurrio-error')}}')
+                        }
+                        else
+                            errorAlert("Error", '{{__('MotorBusqueda.ocurrio-error')}}')      
                     }
                 })
-                // return fetch('/checkout/api/paypal/order/'+orderId, {
-                //     method: 'POST'
-                // })
-                // .then(function(res){
-                //     return res.json()
-                // })
-                // .then(function(orderData){
-                //     console.log(orderData)
-                // })
-
-
-                successAlert('{{__('MotorBusqueda.confirmado')}}', '{{__('MotorBusqueda.transaccion-completado')}}')
-
             },
             onError: function(error){
                 console.log(error)

@@ -13,7 +13,7 @@ class Tour extends Migration
      */
     public function up()
     {
-        Schema::create('tour', function($table){
+        Schema::create('tour', function(Blueprint $table){
             $table->id();
             $table->string('name');
         });

@@ -26,7 +26,8 @@ class Destination extends Model
     public function GetDestination($idDestination){        
         $destination = null;
         $obj = new Destination;
-        try{
+        
+        try{            
             $destination = $obj->find($idDestination);  
         }
         catch(Exception $e)

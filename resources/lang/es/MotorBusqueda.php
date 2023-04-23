@@ -6,6 +6,9 @@ return [
     "aeropuerto-hotel" => "Al Hotel",
     "hotel-hotel" => "Hotel a Hotel",
     "redondo-aeropuerto" => "Viaje redondo",
+    "reservacion-hotel-aeropuerto" => "Booking one way airport",
+    "reservacion-aeropuerto-hotel" => "Booking one way Hotel",
+    "reservacion-redondo-aeropuerto" => "Booking round trip",
     "fecha-llegada" => "Fecha llegada",
     "fecha-salida" => "Fecha salida",
     "hora" => "Hora",
@@ -44,7 +47,7 @@ return [
     "ocho-diez" => "8 a 10 pasajeros",
     "de" => "De",
     "a" => "A",
-    "aeropuerto" => "Airport",
+    "aeropuerto" => "Aeropuerto",
     "viaje-personalizado" => "Viaje personalizado",
     "inicia-reserva" => "Inicia tu reserva",
     "comentarios" => "Comentarios",
@@ -59,5 +62,10 @@ return [
     "nombres" => "Nombres",
     "apellidos" => "Apellidos",
     "confirmado" => "Confirmado",
-    "transaccion-completado" => "Transacción completada"
+    "transaccion-completado" => "Transacción completada",
+    "ocurrio-error" => "Ocurrio un error, porfavor intentelo mas tarde",
+    "siguiente" => "Siguiente",
+    "anterior" => "Anterior",
+    "registrando" => "Guardando",
+    "enviando-correo" => "Send booking mail"
 ];

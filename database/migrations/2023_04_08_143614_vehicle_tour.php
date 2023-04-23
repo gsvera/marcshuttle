@@ -13,7 +13,7 @@ class VehicleTour extends Migration
      */
     public function up()
     {
-        Schema::create('vehicle_tour', function($table){
+        Schema::create('vehicle_tour', function(Blueprint $table){
             $table->id();
             $table->integer('vehicle_id');
             $table->integer('tour_id');

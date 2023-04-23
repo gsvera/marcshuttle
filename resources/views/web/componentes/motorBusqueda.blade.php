@@ -46,7 +46,7 @@
             </div>
             <div class="form-group mb-3" id="divarrival">
                 <label for="dateArrival" class="font-weight-bold">{{__('MotorBusqueda.fecha-llegada')}}</label>
-                <input class="form-control p-3" type="date" name="dateArrival" id="dateArrival">
+                <input class="form-control p-3" type="date" name="dateArrival" id="dateArrival" >
             </div>
             <div class="form-group d-none mb-3" id="divdeparture">
                 <label for="dateDeparture" class="font-weight-bold">{{__('MotorBusqueda.fecha-salida')}}</label>
@@ -66,9 +66,30 @@
     var origin = document.getElementById('origin')
     var listOptionsDestination = document.getElementById('optionDestination')
     var listOptionsOrigin = document.getElementById('optionOrigin')
+    var dateArrival = document.getElementById('dateArrival')
+    var dateDeparture = document.getElementById('dateDeparture')
     
     getLocations();
     
+    var fulldate = new Date();
+    var day = fulldate.getDate();
+    var month = fulldate.getMonth() + 1
+    var year = fulldate.getFullYear()
+    
+    if(month < 10)
+    {
+        month = '0'+month
+    }
+
+    dateArrival.setAttribute('min', year+'-'+month+'-'+day)
+    dateDeparture.setAttribute('min', year+'-'+month+'-'+day)
+    
+    // $('#dateArrival').datepicker({
+    //     starDate: day + '/' + month + '/' + year
+    // })
+
+    //$('#dateArrival').datepicker()
+
     function getLocations(){
         $.ajax({
             url: '/back/locations',
@@ -99,7 +120,7 @@
     }   
 
     document.body.addEventListener("keydown", function(event) {
-        console.log(event.code, event.keyCode);
+        // console.log(event.code, event.keyCode);
         if (event.code === 'Escape' || event.keyCode === 27 || event.code === 'Tap' || event.keyCode === 9) {
             listOptionsDestination.innerHTML = ""
             listOptionsOrigin.innerHTML = ""
@@ -127,16 +148,6 @@
             listOptionsOrigin.insertAdjacentHTML('beforeend', `<li onclick="setOrigin(this)" data-option="${item.nombre}">${item.nombre}</li>`)            
         })
     })
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
     
     function HidenShowInputs()
     {

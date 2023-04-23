@@ -4,5 +4,15 @@
         "nombre" => "Nombre completo",
         "telefono" => "Teléfono",
         "salida" => "Salida",
-        "hora" => "Hour"
+        "hora" => "Hora",
+        "llegada"  => "Llegada",
+        "info-vuelo" => "Información de vuelo",        
+        "de" => "De",
+        "a" => "A",
+        "zona" => "Zona",
+        "pasajeros" => "Pasajeros",
+        "metodo-pago" => "Metodo de pago",
+        "efectivo" => "Efectivo",
+        "monto" => "Monto",
+        "comentarios" => "Comentarios"
     ];

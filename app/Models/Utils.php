@@ -18,4 +18,10 @@ class Utils extends Model
     public function GetRecaptchaSecret(){
         return $this->recaptchaSecret;
     }
+
+    static function asDollars($valor)
+    {
+        if ($valor<0) return "-".asDollars(-$valor);
+        return '$' . number_format($valor, 2);
+    }
 }

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class Origin extends Migration
+class Folio extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,10 @@ class Origin extends Migration
      */
     public function up()
     {
-        Schema::create('origin', function(Blueprint $table){
+        Schema::create('folio', function(Blueprint $table){
             $table->id();
-            $table->string('name');
+            $table->string('folio', 50);
+            $table->integer('count');
         });
     }
 
@@ -26,6 +27,6 @@ class Origin extends Migration
      */
     public function down()
     {
-        //
+        
     }
 }

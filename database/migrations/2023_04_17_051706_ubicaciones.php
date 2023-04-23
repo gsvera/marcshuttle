@@ -13,7 +13,10 @@ class Ubicaciones extends Migration
      */
     public function up()
     {
-        //
+        Schema::create('ubicaciones', function(Blueprint $table){
+            $table->id();
+            $table->string('nombre');
+        });
     }
 
     /**
@@ -23,10 +26,6 @@ class Ubicaciones extends Migration
      */
     public function down()
     {
-        Schema::create('ubicaciones', function($tabla){
-            $table->id();
-            $table->integer('id_destination');
-            $tabls->string('nombre');
-        });
+        
     }
 }

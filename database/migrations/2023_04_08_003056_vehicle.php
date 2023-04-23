@@ -13,7 +13,7 @@ class Vehicle extends Migration
      */
     public function up()
     {
-        Schema::create('vehicle', function($table){
+        Schema::create('vehicle', function(Blueprint $table){
             $table->id();
             $table->string('name');
             $table->integer('min_pax');

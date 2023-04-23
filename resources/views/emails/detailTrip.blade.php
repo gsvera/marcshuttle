@@ -1,3 +1,22 @@
+<?php
+use App\Models\Utils;
+
+$typetransfer = "";
+$total = Utils::asDollars($item['amount']);
+switch($item['typetransfer'])
+{
+    case 1:
+        $typetransfer = __('MotorBusqueda.reservacion-aeropuerto-hotel');
+        break;
+    case 2:
+        $typetransfer = __('MotorBusqueda.reservacion-hotel-aeropuerto');
+        break;
+    case 3:
+        $typetransfer = __('MotorBusqueda.reservacion-redondo-aeropuerto');
+        break;
+}
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -73,14 +92,12 @@
             display:flex;
             flex-wrap:wrap;
             justify-content:space-between;
-        }
-        .arrivaldate{
-
-        }
-        .departuredate{
-            
-        }
-        
+        }        
+        .content-cards{
+            display:flex; 
+            justify-content:center;
+            margin-top:-13%;
+        }        
 </style>
 </head>
 <body>
@@ -91,132 +108,116 @@
             </div>
         </div>
     </div>
-    <div style="display:flex; justify-content:center;margin-top:-13%">
+    <div class="content-cards">
         <div class="card">
-            <div><h1 style="text-align:center;">Reservation {One Way Hotel || One way airport || Round Trip}</h1></div>
+            <div><h1 style="text-align:center;">{{$typetransfer}}</h1></div>
             <div class="flex">
                 <div class="card-gray">
                     <ul style="list-style:none;padding:0;">
                         <li>
-                            <strong class="text-orange"><i class="fa fa-check text-blue" aria-hidden="true"></i> Nombre completo:</strong> 
+                            <strong class="text-orange"><i class="fa fa-check text-blue" aria-hidden="true"></i> {{__('Email.nombre')}}</strong> 
                             <br>
-                            <div class="text-gray strong" style="margin-left:10px;margin-top:5px;font-size:1.1em;">Nombre que va aqui</div>
+                            <div class="text-gray strong" style="margin-left:10px;margin-top:5px;font-size:1.1em;">{{$item['firstName']. ' '.$item['lastName']}}</div>
                         </li>
                         <br>
                         <li>
                             <strong class="text-orange"><i class="fa fa-check text-blue" aria-hidden="true"></i> Email:</strong> 
                             <br>
-                            <div class="text-gray strong" style="margin-left:10px;margin-top:5px;font-size:1.1em;">email@email.com</div>
+                            <div class="text-gray strong" style="margin-left:10px;margin-top:5px;font-size:1.1em;">{{$item['email']}}</div>
                         </li>
                         <br>
                         <li>
-                            <strong class="text-orange"><i class="fa fa-check text-blue" aria-hidden="true"></i> Telefono:</strong> 
+                            <strong class="text-orange"><i class="fa fa-check text-blue" aria-hidden="true"></i> {{__('Email.telefono')}}:</strong> 
                             <br>
-                            <div class="text-gray strong" style="margin-left:10px;margin-top:5px;font-size:1.1em;">11123456789</div>
+                            <div class="text-gray strong" style="margin-left:10px;margin-top:5px;font-size:1.1em;">{{$item['phone']}}</div>
                         </li>
                         <br>
-                        <li class="arrivaldate">
-                            <strong class="text-orange"><i class="fa fa-check text-blue" aria-hidden="true"></i> {Arrival}:</strong> 
+                        @if($item['typetransfer'] == 1 || $item['typetransfer'] == 3)
+                            <li>
+                                <strong class="text-orange"><i class="fa fa-check text-blue" aria-hidden="true"></i> {{__('Email.llegada')}}:</strong> 
+                                <br>
+                                <div class="text-gray strong" style="margin-left:10px;margin-top:5px;font-size:1.1em;">{{$item['dateArrival']}}</div>
+                            </li>
+                            <br >
+                            <li>
+                                <strong class="text-orange"><i class="fa fa-check text-blue" aria-hidden="true"></i> {{__('Email.hora')}}:</strong> 
+                                <br>
+                                <div class="text-gray strong" style="margin-left:10px;margin-top:5px;font-size:1.1em;">{{$item['hourArrival']}}</div>
+                            </li>
                             <br>
-                            <div class="text-gray strong" style="margin-left:10px;margin-top:5px;font-size:1.1em;">{04/04/2023}</div>
-                        </li>
-                        <br class="arrivaldate">
-                        <li class="arrivaldate">
-                            <strong class="text-orange"><i class="fa fa-check text-blue" aria-hidden="true"></i> Hora:</strong> 
+                            <li>
+                                <strong class="text-orange"><i class="fa fa-check text-blue" aria-hidden="true"></i> {{__('Email.info-vuelo')}}:</strong>
+                                <br>
+                                <div class="text-gray strong" style="margin-left:10px;margin-top:5px;font-size:1.1em;">{{$item['infoArrival']}}</div>
+                            </li>
                             <br>
-                            <div class="text-gray strong" style="margin-left:10px;margin-top:5px;font-size:1.1em;">5:14 pm</div>
-                        </li>
-                        <br class="arrivaldate">
-                        <li class="arrivaldate">
-                            <strong class="text-orange"><i class="fa fa-check text-blue" aria-hidden="true"></i> Info vuelo:</strong>
+                        @endif
+                        @if($item['typetransfer'] == 2 || $item['typetransfer'] == 3)
+                            <li>
+                                <strong class="text-orange"><i class="fa fa-check text-blue" aria-hidden="true"></i> {{__('Email.salida')}}:</strong> 
+                                <br>
+                                <div class="text-gray strong" style="margin-left:10px;margin-top:5px;font-size:1.1em;">{{$item['dateDeparture']}}</div>
+                            </li>
                             <br>
-                            <div class="text-gray strong" style="margin-left:10px;margin-top:5px;font-size:1.1em;">0404 AB</div>
-                        </li>
-                        <li class="departuredate">
-                            <strong class="text-orange"><i class="fa fa-check text-blue" aria-hidden="true"></i> {departure}:</strong> 
+                            <li>
+                                <strong class="text-orange"><i class="fa fa-check text-blue" aria-hidden="true"></i> {{__('Email.hora')}}:</strong> 
+                                <br>
+                                <div class="text-gray strong" style="margin-left:10px;margin-top:5px;font-size:1.1em;">{{$item['hourDeparture']}}</div>
+                            </li>
                             <br>
-                            <div class="text-gray strong" style="margin-left:10px;margin-top:5px;font-size:1.1em;">{14/04/2023}</div>
-                        </li>
-                        <br class="departuredate">
-                        <li class="departuredate">
-                            <strong class="text-orange"><i class="fa fa-check text-blue" aria-hidden="true"></i> Hora:</strong> 
-                            <br>
-                            <div class="text-gray strong" style="margin-left:10px;margin-top:5px;font-size:1.1em;">5:14 pm</div>
-                        </li>
-                        <br class="departuredate">
-                        <li class="departuredate">
-                            <strong class="text-orange"><i class="fa fa-check text-blue" aria-hidden="true"></i> Info vuelo:</strong>
-                            <br>
-                            <div class="text-gray strong" style="margin-left:10px;margin-top:5px;font-size:1.1em;">0404 AB</div>
-                        </li>
+                            <li>
+                                <strong class="text-orange"><i class="fa fa-check text-blue" aria-hidden="true"></i> {{__('Email.info-vuelo')}}:</strong>
+                                <br>
+                                <div class="text-gray strong" style="margin-left:10px;margin-top:5px;font-size:1.1em;">{{$item['infoDeparture']}}</div>
+                            </li>
+                        @endif                        
                     </ul>
                 </div>
                 <div class="card-blue">
                     <ul style="list-style:none;padding:0;">
                         <li>
-                            <strong class="text-orange"><i class="fa fa-check text-orange" aria-hidden="true"></i> From</strong>
+                            <strong class="text-orange"><i class="fa fa-check text-orange" aria-hidden="true"></i> {{__('Email.de')}}</strong>
                             <br>
-                            <div class="text-white strong" style="margin-left:10px;margin-top:5px;font-size:1.1em;">{Aeropuerto o ubicacion}</div>
+                            <div class="text-white strong" style="margin-left:10px;margin-top:5px;font-size:1.1em;">{{$item['origin']}}</div>
                         </li>
                         <br>
                         <li>
-                            <strong class="text-orange"><i class="fa fa-check text-orange" aria-hidden="true"></i> Area</strong>
+                            <strong class="text-orange"><i class="fa fa-check text-orange" aria-hidden="true"></i> {{__('Email.zona')}}</strong>
                             <br>
-                            <div class="text-white strong" style="margin-left:10px;margin-top:5px;font-size:1.1em;">Cancun</div>
+                            <div class="text-white strong" style="margin-left:10px;margin-top:5px;font-size:1.1em;">{{$item['nameZone']}}</div>
                         </li>
                         <br>
                         <li>
-                            <strong class="text-orange"><i class="fa fa-check text-orange" aria-hidden="true"></i> {Hotel / Airbnb / Location || to}</strong>
+                            <strong class="text-orange"><i class="fa fa-check text-orange" aria-hidden="true"></i> {{__('Email.a')}}</strong>
                             <br>
-                            <div class="text-white strong" style="margin-left:10px;margin-top:5px;font-size:1.1em;">{Hotel Ryu | aeropuerto}</div>
+                            <div class="text-white strong" style="margin-left:10px;margin-top:5px;font-size:1.1em;">{{$item['destination']}}</div>
                         </li>
                         <br>
                         <li>
-                            <strong class="text-orange"><i class="fa fa-check text-orange" aria-hidden="true"></i> Pax</strong>
+                            <strong class="text-orange"><i class="fa fa-check text-orange" aria-hidden="true"></i> {{__('Email.pasajeros')}}</strong>
                             <br>
-                            <div class="text-white strong" style="margin-left:10px;margin-top:5px;font-size:1.1em;">10</div>
+                            <div class="text-white strong" style="margin-left:10px;margin-top:5px;font-size:1.1em;">{{$item['pax']}}</div>
                         </li>
                         <br>
                         <li>
-                            <strong class="text-orange"><i class="fa fa-check text-orange" aria-hidden="true"></i> Metodo pago</strong>
+                            <strong class="text-orange"><i class="fa fa-check text-orange" aria-hidden="true"></i> {{__('Email.metodo-pago')}}</strong>
                             <br>
-                            <div class="text-white strong" style="margin-left:10px;margin-top:5px;font-size:1.1em;">Efectivo</div>
+                            <div class="text-white strong" style="margin-left:10px;margin-top:5px;font-size:1.1em;">{{$item['payMethod']=='efectivo'?__('Email.efectivo'):'Paypal'}}</div>
                         </li>
                         <br>
                         <li>
-                            <strong class="text-orange"><i class="fa fa-check text-orange" aria-hidden="true"></i> Monto pagado (0 pagar)</strong>
+                            <strong class="text-orange"><i class="fa fa-check text-orange" aria-hidden="true"></i> {{__('Email.monto')}}</strong>
                             <br>
-                            <div class="text-white strong" style="margin-left:10px;margin-top:5px;font-size:1.1em;">$750.00 MXN</div>
+                            <div class="text-white strong" style="margin-left:10px;margin-top:5px;font-size:1.1em;">{{$total}}</div>
                         </li>
                     </ul>
                 </div>
             </div>
             <div style="width:80%; margin: 10px auto;">
-                <div class="text-blue strong" style="font-size:1.3em;">Comentarios</div>
-                <div class="text-gray strong" style="text-align: justify;">Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae sit cumque ipsam temporibus optio quaerat dolorum impedit ex natus placeat fuga aspernatur molestiae rem nemo consectetur, repellat velit, rerum voluptatem.</div>
+                <div class="text-blue strong" style="font-size:1.3em;">{{__('Email.comentarios')}}</div>
+                <div class="text-gray strong" style="text-align: justify;">{{$item['comments']}}</div>
             </div>
         </div>    
     </div>
-        
-    <script type="text/javascript">
-        // const canvas = document.getElementById("canvas");
-        // const ctx = canvas.getContext("2d");
-
-        // // ctx.fillStyle = "blue";
-        // // ctx.fillRect(90, 70, 300, 50);
-        // ctx.fillStyle='black';
-        // ctx.beginPath();
-        // ctx.moveTo(150, 80);
-        // ctx.lineTo(0, 400);
-        // ctx.lineTo(4000, 900);
-        // ctx.fill();
-
-        // ctx.fillStyle='blue';
-        // ctx.beginPath();
-        // ctx.moveTo(100, 175);
-        // ctx.lineTo(100, 350);
-        // ctx.lineTo(275, 350);
-        // ctx.fill();
-    </script>
 </body>
 </html>

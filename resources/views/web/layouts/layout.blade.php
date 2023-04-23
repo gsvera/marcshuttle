@@ -219,8 +219,8 @@
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <!-- <script src="{{ asset('js/jquery-3.3.1.js')}}"></script> -->
-    <!-- <script src="{{ asset('js/bootstrap-datepicker.js')}}"></script> -->
-    <script src="{{ asset('js/bootstrap-select.js')}}"></script>
+    <script src="{{ asset('js/bootstrap-datepicker.js')}}"></script>
+    <!-- <script src="{{ asset('js/bootstrap-select.js')}}"></script> -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="{{ asset('js/main.js')}}"></script>
     <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script> -->

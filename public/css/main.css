@@ -5,6 +5,7 @@
     --c-gray: #FFFFFF33;
     --c-silver: #788399;
     --c-cian:#3DD0FF;
+    --c-sky: #DBE4F4;
     --c-yellow:#F2C94C;
 }
 *, ::after, ::before{
@@ -145,6 +146,16 @@ body{
 .bor-y-r-5{
     border-radius: 0 5px 5px 0;
 }
+.btn-sky{
+    background-color: var(--c-sky);
+    color: var(--c-blue);
+    font-weight: bold;
+}
+.btn-sky:hover{
+    border: 1px solid var(--c-blue);
+    color: var(--c-blue);
+    font-weight: bold;
+}
 .btn-white-contac{
     background-color: white;
     border-radius: 5px;
@@ -201,7 +212,7 @@ body{
         flex-wrap: wrap;
         background-color: var(--c-blue);
         position: fixed;
-        z-index:10;
+        z-index:1000;
         top: 0;
         width: 100%;
     }
@@ -239,7 +250,7 @@ body{
     padding: 20px 80px;
     border-bottom: solid 1px var(--c-gray);
     position: fixed;
-    z-index:10;
+    z-index:1000;
     top: 0;
     width: 100%;
 }
@@ -459,9 +470,15 @@ body{
     position: relative;
     animation: btnFlotante 3s infinite;
 }
-.btn-orange, .btn-orange:hover{
+.btn-orange{
     background-color: var(--c-orange);
     color: white;
+    font-weight: bold;
+}
+.btn-orange:hover{
+    border: 1px solid var(--c-orange);
+    color: var(--c-orange);
+    font-weight: bold;
 }
 /*      CSS PARA PAGINA DE INICIO        */
 @media(min-width:640px)
