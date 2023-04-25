@@ -16,7 +16,7 @@ class BookingsTrip extends Migration
         Schema::create('bookings_trip', function(Blueprint $table)
         {
             $table->id();
-            $table->integer('paypal_order_id');
+            $table->string('paypal_order_id', 255);
             $table->string('folio',50);
             $table->string('first_name', 500);
             $table->string('last_name',500);

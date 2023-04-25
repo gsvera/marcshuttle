@@ -34,24 +34,10 @@
     <div class="azul-nav d-flex">
         <ul class="nav col">
             <li class="nav-item mr-3">
-                <a href="#" class="text-white-menu nav-link">
-                    <i class="fa fa-envelope" aria-hidden="true"></i> info@transpo.com
+                <a href="mailto:marcshuttlec@gmail.com" class="text-white-menu nav-link">
+                    <i class="fa fa-envelope" aria-hidden="true"></i> marcshuttlec@gmail.com
                 </a>
             </li>
-            <!-- <li class="nav-item d-flex">
-                <span class="text-white-menu nav-link">
-                    {{__('Home.siguenos')}}
-                </span>
-                <a href="#" class="text-white-menu nav-link px-1">
-                     <i class="fa fa-facebook" aria-hidden="true"></i> 
-                </a>
-                <a href="#" class="text-white-menu nav-link px-2">
-                    <i class="fa fa-twitter" aria-hidden="true"></i>
-                </a>
-                <a href="#" class="text-white-menu nav-link px-1">
-                    <i class="fa fa-instagram" aria-hidden="true"></i>
-                </a>
-            </li> -->
         </ul>
         <ul class="nav col row">
             <li class="nav-item" style="text-align:right;">
@@ -63,7 +49,9 @@
     </div>
     <nav class="transparent-nav d-flex" id="header">
         <div class="col-md-2 d-flex" style="align-items:center;">
-            <img width="50%" src="/img/logos/Logo-Marcshuttle.webp" alt="Logo">
+            <a href="{{$prefijo}}">
+                <img width="50%" src="/img/logos/Logo-Marcshuttle.webp" alt="Logo">
+            </a>
         </div>
         <ul class="nav justify-content-end col-md-9" style="align-items:center;">
             <li class="nav-item">
@@ -79,8 +67,8 @@
                 <a href="{{url($prefijo.__('Link.about'))}}" class="nav-link text-white-menu-lg">{{__('Home.acerca-nosotros')}}</a>
             </li> -->
             <li class="mx-3">
-                <a href="#" class="nav-link text-white-menu-lg">
-                    <span class="back-orange"><i class="fa fa-phone" aria-hidden="true"></i></span> 001-234-5678
+                <a href="tel:9981224280" class="nav-link text-white-menu-lg">
+                    <span class="back-orange"><i class="fa fa-phone" aria-hidden="true"></i></span> 998-122-4280
                 </a>
             </li>
             <li>
@@ -110,8 +98,10 @@
                     <button class="btn btn-orange" onclick="ShowHideMenu()"><i id="icon-menu" class="fa fa-bars" aria-hidden="true"></i></button>
                 </div>
             </div>
-            <div class="col-4 d-flex align-center" style="align-items:center;">
-                <img width="90%" src="/img/logos/Logo-Marcshuttle.webp" alt="Logo">
+            <div class="col-4 d-flex justify-content-center">
+                <a href="{{$prefijo}}">
+                    <img width="90%" src="/img/logos/Logo-Marcshuttle.webp" alt="Logo">
+                </a>
             </div>
             <div class="col-4 justify-content-center align-center d-flex">
                 <button class="btn btn-outline-white">Request cuote</button>
@@ -204,7 +194,9 @@
             </div>
             <div class="col-12 col-md-6 d-flex justify-content-end px-5">
                 <div class="text-center">
-                    <img width="15%" src="/img/logos/Logo-Marcshuttle.webp" alt="Logo">
+                    <a href="{{$prefijo}}">
+                        <img width="15%" src="/img/logos/Logo-Marcshuttle.webp" alt="Logo">
+                    </a>
                 </div>
             </div>
         </div>
@@ -213,7 +205,9 @@
                 © 2023 Marc Shuttle. Powered by Huella digital
             </div>
             <div class="col text-center py-3" style="align-items:center;">
+            <a href="{{$prefijo}}">
                 <img width="50%" src="/img/logos/Logo-Marcshuttle.webp" alt="Logo">
+            </a>
             </div>
         </div>
     </div>

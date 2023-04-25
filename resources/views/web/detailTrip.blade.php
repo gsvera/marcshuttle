@@ -220,6 +220,7 @@ else if($pax > 7)
         var step = document.querySelectorAll('.step')
         var payMethod = document.getElementById('payMethod')
         var gRecaptcha = document.querySelector('.g-recaptcha')
+        var inputOrderId = document.getElementById('orderId')
         var countStep = 0
         var urlWeb = window.location.origin
 
@@ -336,9 +337,9 @@ else if($pax > 7)
             onApprove: function(data, actions) {
                 console.log(data)
                 console.log(actions)
-
+                activeLoader('{{__('MotorBusqueda.registrando')}}', '{{__('MotorBusqueda.enviando-correo')}}')
                 var orderId = data.orderID
-                $('#orderId').val(orderId)
+                inputOrderId.value = orderId
 
                 return $.ajax({
                     url: '/checkout/api/paypal/order/',
@@ -348,10 +349,13 @@ else if($pax > 7)
                         orderId: orderId
                     },
                     success:function(data){
+                        
                         console.log(data)
                         if(data.error == false)
                         {
-                            if(data.status == 'APPROVED')
+                            
+                            console.log(data.data.status) 
+                            if(data.data.status == 'APPROVED')
                             {
                                 formBooking.submit()                                
                             }

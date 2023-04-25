@@ -67,5 +67,5 @@ return [
     "siguiente" => "Siguiente",
     "anterior" => "Anterior",
     "registrando" => "Guardando",
-    "enviando-correo" => "Send booking mail"
+    "enviando-correo" => "Enviando correo de registro"
 ];
