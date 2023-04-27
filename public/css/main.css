@@ -74,6 +74,12 @@ body{
 .text-gray{
     color:gray;
 }
+.text-gray-link{
+    color:gray;
+}
+.text-gray-link:hover{
+    color:var(--c-orange);
+}
 .text-silver{
     color: var(--c-silver);
 }
@@ -122,7 +128,9 @@ body{
         display: none;
     }
 }
-
+.without-link{
+    text-decoration: none;
+}
 .without-list{
     list-style: none;
 }
@@ -218,7 +226,43 @@ body{
     }
 }
 
-
+.transparent-nav ul ul.sub-menu, .transparent-nav-blue ul ul.sub-menu{
+    background-color:var(--c-blue);
+    width:200px;
+    text-align:center;
+    padding:25px 30px 13px;
+    transition:all ease .4s;
+    -webkit-transition:all ease .4s;
+    -moz-transition:all ease .4s;
+    visibility:hidden;
+    opacity:0;
+    margin:auto;
+    position:absolute;
+    /* right:0; */
+    text-align:center;
+    top:200px;
+    transform:translateX(10%);
+    z-index:100;
+    list-style: none;
+}
+.transparent-nav ul li:hover ul.sub-menu, .transparent-nav-blue ul li:hover ul.sub-menu{
+    visibility:visible;
+    opacity:1;
+    top:70px;
+}
+@keyframes menuShow{
+    0%{height: 0;display: block;}
+    100%{height: auto;display: block;}
+}
+.sub-menu-hv:hover > .sub-menu-mb{
+    animation: menuShow .1s;
+    display: block;
+    list-style: none;
+}
+.sub-menu-mb{
+    display: none;
+    list-style: none;
+}
 .text-white-menu, .text-white-menu:hover{
     color: white;
     font-size: 14px;
@@ -512,9 +556,29 @@ body{
 }
 .back-slider-home{
     background-image: url(/img/banners/hero-home.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
     z-index: -10;
 }
-.back-slider-home:before{
+.back-slider-playa{
+    background-image: url(/img/banners/transporte-cancun-a-playa-del-carmen.webp);
+    background-repeat: no-repeat;
+    background-size: cover;
+    z-index: -10;
+}
+.back-slider-tulum{
+    background-image: url(/img/banners/transporte-cancun-a-tulum.webp);
+    background-repeat: no-repeat;
+    background-size: cover;
+    z-index: -10;
+}
+.back-slider-bacalar{
+    background-image: url(/img/banners/transporte-cancun-a-bacalar.webp);
+    background-repeat: no-repeat;
+    background-size: cover;
+    z-index: -10;
+}
+.back-slider-home:before, .back-slider-playa:before, .back-slider-tulum:before{
     content:'';
 	position: absolute;
     top: 0;
@@ -614,6 +678,10 @@ body{
 .card-bus{
     border-radius: 5px;
     background-color: white;
+}
+.card-bus-blue{
+    border-radius: 5px;
+    background-color: var(--c-blue);
 }
 .bus-banner{
     margin-top: -50px;

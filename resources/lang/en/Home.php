@@ -26,7 +26,7 @@
         "reserva-rapida-text" => "En menos de 3 minutos, le llegará copia de su reservación.",
         "transporte-privado" => "Private shuttle",
         "transporte-privato-text" => "Solo ofrecemos transportación privada, sin servicio compartido.",
-        "rastreo-vuelo" => "Restreo de vuelo",
+        "rastreo-vuelo" => "Rastreo de vuelo",
         "rastreo-vuelo-text" => "Su chófer rastreará su número de vuelo en todo momento.",
         "mejor-precio" => "Best price",
         "mejor-precio-text" => "Nuestras tarifas de translados son fijas, no hay cargos extras",

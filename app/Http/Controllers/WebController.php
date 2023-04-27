@@ -34,4 +34,16 @@ class WebController extends Controller
     {
         return view('web.about');
     }
+    public function playaDelCarmen()
+    {
+        return view('web.destinations.playaDelCarmen');
+    }
+    public function tulum()
+    {
+        return view('web.destinations.tulum');
+    }
+    public function bacalar()
+    {
+        return view('web.destinations.bacalar');
+    }
 }

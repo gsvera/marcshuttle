@@ -22,7 +22,6 @@
                 </div>
                 <h5 class="font-weight-bold">{{__('Home.reserva-rapida')}}</h5>
                 <p class="text-gray">{{__('Home.reserva-rapida-text')}}</p>
-                <!-- <span class="text-blue font-weight-bold">Cheap Coach Tickets <i class="fa fa-angle-right" aria-hidden="true"></i></span> -->
             </div>
         </div>
         <div class="col-12 col-md-3 my-2">
@@ -32,7 +31,6 @@
                 </div>
                 <h5 class="font-weight-bold">{{__('Home.transporte-privado')}}</h5>
                 <p class="text-gray">{{__('Home.transporte-privato-text')}}</p>
-                <!-- <span class="text-blue font-weight-bold">Explore now <i class="fa fa-angle-right" aria-hidden="true"></i></span> -->
             </div>
         </div>
         <div class="col-12 col-md-3 my-2">
@@ -42,7 +40,6 @@
                 </div>
                 <h5 class="font-weight-bold">{{__('Home.rastreo-vuelo')}}</h5>
                 <p class="text-gray">{{__('Home.rastreo-vuelo-text')}}</p>
-                <!-- <span class="text-blue font-weight-bold">Sing up or Login <i class="fa fa-angle-right" aria-hidden="true"></i></span> -->
             </div>
         </div>
         <div class="col-12 col-md-3 my-2">
@@ -52,7 +49,6 @@
                 </div>
                 <h5 class="font-weight-bold">{{__('Home.mejor-precio')}}</h5>
                 <p class="text-gray">{{__('Home.mejor-precio-text')}}</p>
-                <!-- <span class="text-blue font-weight-bold">Sing up or Login <i class="fa fa-angle-right" aria-hidden="true"></i></span> -->
             </div>
         </div>
         <!-- <div class="col-12 col-md-3 my-2">
@@ -66,165 +62,8 @@
             </div>
         </div> -->
     </div>
-    <!-- <div class="section">
-        <div class="d-flex justify-content-center">
-            <div class="col-11 col-md-7 text-center mx-auto">
-                <div class="text-center text-blue font-weight-bold ls2">{{strtoupper(__('MotorBusqueda.servicios'))}}</div>
-                <h2 class="fsize-md font-weight-bold">Bus Rental & Shuttle <br /> Services</h2>
-                <div class="line-sm-blue mx-auto my-3"></div>
-                <p class="text-gray fsize-sm">Purus porta feugiat egestas a diam sed ipsum, enim orci. In lectus bibendum gravida aliquet faucibus id. Id gravida consectetur lectus imperdiet.</p>
-            </div>
-        </div>
-    </div> -->
-    <!-- <div class="section elementUp">
-        <div class="row col-12 col-md-10 mx-auto">
-            <div class="col-md-4">
-                <div class="services-back my-4">
-                    <div class="degradate-black row align-items-end" style="padding:0;margin:0;">
-                        <div class="col text-center">
-                            <p class="font-weight-bold text-white fsize-mds">School Bus Rental</p>
-                            <div class="row justify-content-center">
-                                <div class="icon-orange">
-                                    <i class="fa fa-arrow-right text-white fa-2x" aria-hidden="true"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="services-back my-4">
-                    <div class="degradate-black row align-items-end" style="padding:0;margin:0;">
-                        <div class="col text-center">
-                            <p class="font-weight-bold text-white fsize-mds">Wendding & Engagements</p>
-                            <div class="row justify-content-center">
-                                <div class="icon-orange">
-                                    <i class="fa fa-arrow-right text-white fa-2x" aria-hidden="true"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="services-back my-4">
-                    <div class="degradate-black row align-items-end" style="padding:0;margin:0;">
-                        <div class="col text-center">
-                            <p class="font-weight-bold text-white fsize-mds">Corporate Travel</p>
-                            <div class="row justify-content-center">
-                                <div class="icon-orange">
-                                    <i class="fa fa-arrow-right text-white fa-2x" aria-hidden="true"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row col-md-10 mx-auto">
-            <div class="col-md-4">
-                <div class="services-back my-4">
-                    <div class="degradate-black row align-items-end" style="padding:0;margin:0;">
-                        <div class="col text-center">
-                            <p class="font-weight-bold text-white fsize-mds">School Bus Rental</p>
-                            <div class="row justify-content-center">
-                                <div class="icon-orange">
-                                    <i class="fa fa-arrow-right text-white fa-2x" aria-hidden="true"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="services-back my-4">
-                    <div class="degradate-black row align-items-end" style="padding:0;margin:0;">
-                        <div class="col text-center">
-                            <p class="font-weight-bold text-white fsize-mds">Wendding & Engagements</p>
-                            <div class="row justify-content-center">
-                                <div class="icon-orange">
-                                    <i class="fa fa-arrow-right text-white fa-2x" aria-hidden="true"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="services-back my-4">
-                    <div class="degradate-black row align-items-end" style="padding:0;margin:0;">
-                        <div class="col text-center">
-                            <p class="font-weight-bold text-white fsize-mds">Corporate Travel</p>
-                            <div class="row justify-content-center">
-                                <div class="icon-orange">
-                                    <i class="fa fa-arrow-right text-white fa-2x" aria-hidden="true"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div> -->
+    
     <div class="section">
-        <!-- <div class="banner-bus">
-            <div class="row col-12 col-md-12 m-0">
-                <div class="col-12 col-md-6 row p-why">
-                    <div class="text-white ls2">WHY</div>
-                    <h2 class="text-white font-weight-bold fsize-md">Why Transpo Charters?</h2>
-                    <div class="line-sm-white my-3" style="margin-left: calc(var(--bs-gutter-x) * 0.5);"></div>
-                    <p class="text-white fsize-sm">Purus porta feugiat egestas a diam sed ipsum, enim orci. In lectus bibendum gravida aliquet faucibus id. Id gravida consectetur lectus imperdiet vulputate scelerisque. Tempor in aenean neque posuere. Vitae eleifend id tellus</p>
-                    <ul style="list-style:none;">
-                        <li class="text-white fsize-mds font-weight-bold">1. Traveling from coast to coast? <span class="text-cian">Covered.</span></li>
-                        <li class="text-white fsize-mds font-weight-bold">2. Need a quick shuttle service? <span class="text-cian">We’ve got you.</span></li>
-                        <li class="text-white fsize-mds font-weight-bold">3. Traveling from coast to coast? <span class="text-cian">No worries.</span></li>
-                    </ul>                    
-                </div>
-                <div class="col-12 col-md-6 row justify-content-center" style="padding:5% 0 5% 5%;">
-                    <div class="row">
-                        <div class="col-12 col-md-6 m-mobile-4">
-                            <div class="card-white row">
-                                <div class="my-3">
-                                    <span class="icon-cian"><img src="/img/icons/directions_bus.png" alt="virified user"></span>
-                                </div>
-                                <h4 class="font-weight-bold">5,000+</h4>
-                                <p class="text-gray fsize-sm">Transportation</p>                                
-                            </div>
-                        </div>
-                        <div class="col-12 col-md-6 m-mobile-4">
-                            <div class="card-white row">
-                                <div class="my-3">
-                                    <span class="icon-cian"><img src="/img/icons/groups.png" alt="virified user"></span>
-                                </div>
-                                <h4 class="font-weight-bold">700,000+</h4>
-                                <p class="text-gray fsize-sm">Passengers delighted</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-12 col-md-6 m-mobile-4">
-                            <div class="card-white row">
-                                <div class="my-3">
-                                    <span class="icon-cian"><img src="/img/icons/map.png" alt="virified user"></span>
-                                </div>
-                                <h4 class="font-weight-bold">25,000+</h4>
-                                <p class="text-gray fsize-sm">Charter bus trips</p>
-                            </div>
-                        </div>
-                        <div class="col-12 col-md-6 m-mobile-4">
-                            <div class="card-white row">
-                                <div class="my-3">
-                                    <span class="icon-cian"><img src="/img/icons/favorite.png" alt="virified user"></span>
-                                </div>
-                                <h4 class="font-weight-bold">100%</h4>
-                                <p class="text-gray fsize-sm">Satisfied passengers</p>
-                            </div>
-                        </div>
-                    </div>
-                    
-                </div>    
-            </div>            
-        </div> -->
         <div class="banner-driver">
             <div class="">
                 <div class="col-12 col-md-6 row"  style="padding:5% 0 5% 5%;">
@@ -353,12 +192,6 @@
             <div class="col-6 col-md-3 text-center my-3">
                 <img src="/img/logos/logo-ssl-secure-website.webp" class="logo-home-circle" alt="logo">
             </div>
-            <!-- <div class="col-6 col-md-2 text-center my-3">
-                <img src="/img/logos/logoipsum1.png" alt="logo">
-            </div>
-            <div class="col-6 col-md-2 text-center my-3">
-                <img src="/img/logos/logoipsum1.png" alt="logo">
-            </div> -->
         </div>
     </div>    
     <!-- <div class="mtn-2">
@@ -425,8 +258,8 @@
             <p class="text-gray fsize-sm">{{__('Home.destinos-texto-uno')}}</p>
         </div>
         <div class="bg-destination">
-            <div class="row col-md-11 mx-auto mt-5" style="padding-bottom: 100px;">
-                <div class="col-12 col-md-3">
+            <div class="row col-md-11 mx-auto mt-5 justify-content-center" style="padding-bottom: 100px;">
+                <!-- <div class="col-12 col-md-3">
                     <div class="card-destination">
                         <div class="over-hiden d-flex justify-content-center">
                             <img loading="lazy" src="/img/banners/traslados-cancun.webp" alt="translados cancun" class="img-destination">
@@ -437,7 +270,7 @@
                             <span class="text-orange font-weight-bold fsize-xs">{{__('Home.ver-mas')}} <i class="fa fa-angle-right" aria-hidden="true"></i></span>
                         </div>
                     </div>
-                </div>
+                </div> -->
                 <div class="col-12 col-md-3">
                     <div class="card-destination">
                         <div class="over-hiden d-flex justify-content-center">
@@ -446,7 +279,7 @@
                         <div class="p-3">
                             <h4 class="font-weight-bold fsize-sm">Playa del carme</h4>
                             <p class="text-gray font-weight-bold">{{__('Home.destination-text-dos')}}</p>
-                            <span class="text-orange font-weight-bold fsize-xs">{{__('Home.ver-mas')}} <i class="fa fa-angle-right" aria-hidden="true"></i></span>
+                            <a href="{{url(__('Playa.url'))}}" class="without-link text-orange font-weight-bold fsize-xs">{{__('Home.ver-mas')}} <i class="fa fa-angle-right" aria-hidden="true"></i></a>
                         </div>
                     </div>
                 </div>
@@ -458,7 +291,7 @@
                         <div class="p-3">
                             <h4 class="font-weight-bold fsize-sm">Tulum</h4>
                             <p class="text-gray font-weight-bold">{{__('Home.destination-text-tres')}}</p>
-                            <span class="text-orange font-weight-bold fsize-xs">{{__('Home.ver-mas')}} <i class="fa fa-angle-right" aria-hidden="true"></i></span>
+                            <a href="{{url(__('Tulum.url'))}}" class="without-link text-orange font-weight-bold fsize-xs">{{__('Home.ver-mas')}} <i class="fa fa-angle-right" aria-hidden="true"></i></a>
                         </div>
                     </div>
                 </div>
@@ -470,7 +303,7 @@
                         <div class="p-3">
                             <h4 class="font-weight-bold fsize-sm">Bacalar</h4>
                             <p class="text-gray font-weight-bold">{{__('Home.destination-test-cuatro')}}</p>
-                            <span class="text-orange font-weight-bold fsize-xs">{{__('Home.ver-mas')}} <i class="fa fa-angle-right" aria-hidden="true"></i></span>
+                            <a href="{{url(__('Bacalar.url'))}}" class="without-link text-orange font-weight-bold fsize-xs">{{__('Home.ver-mas')}} <i class="fa fa-angle-right" aria-hidden="true"></i></a>
                         </div>
                     </div>
                 </div>
@@ -530,10 +363,6 @@
                                 <div class="line-sm-orange my-3"></div>
                             </div>
                         </div>
-                        <!-- <p class="text-white fsize-sm">Purus porta feugiat egestas a diam sed ipsum, enim orci. In lectus bibendum gravida aliquet faucibus id. Id gravida consectetur lectus imperdiet.</p>
-                        <button class="btn btn-outline-white mt-4 font-weight-bold">
-                            View All
-                        </button> -->
                     </div>
                     <div class="col-12 col-md-4 text-center mt-3">
                         <div class="card-white">
@@ -619,17 +448,9 @@
     <script type="text/javascript">        
         $('#motorbusqueda').load('/motorbusqueda');
 
-        // let btnFaqs = document.querySelectorAll('.btn-faqs'),
         let acordFaq = document.querySelectorAll('.acord-faq'),
         iconFaq = document.querySelectorAll('.icon-faq')
 
-        // for(var i = 0; i < btnFaqs.length; i++)
-        // {
-        //     btnFaqs[i].addEventListener('click', e => {
-        //         e.preventDefault()
-        //         impri(btnFaqs[i].dataset.value)
-        //     })
-        // }
         function showFaq(event)
         {    
             var id = event.dataset.value        

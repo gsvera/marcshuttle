@@ -28,6 +28,8 @@
     <!-- <script type="text/javascript">
         window.CSRF_TOKEN = '{{ csrf_token() }}';
     </script> -->
+    @yield('headers')
+
     <meta name="csrf-token" content="{{ csrf_token() }}">
 </head>
 <body>
@@ -55,10 +57,15 @@
         </div>
         <ul class="nav justify-content-end col-md-9" style="align-items:center;">
             <li class="nav-item">
-                <a href="{{url($prefijo)}}" class="nav-link text-white-menu-lg" href="#">{{__('Home.home')}}</a>
+                <a href="{{url($prefijo)}}" class="nav-link text-white-menu-lg">{{__('Home.home')}}</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link text-white-menu-lg" href="#">{{__('Home.destinos')}}</a>
+                <a class="nav-link text-white-menu-lg" href="javascript:void(0)">{{__('Home.destinos')}}</a>
+                <ul class="sub-menu">
+                    <li><a class="text-white-menu-lg font-weight-bold" style="text-decoration:none;" href="{{__('Playa.url')}}">Playa del carmen</a></li>
+                    <li><a class="text-white-menu-lg font-weight-bold" style="text-decoration:none;" href="{{__('Tulum.url')}}">Tulum</a></li>
+                    <li><a class="text-white-menu-lg font-weight-bold" style="text-decoration:none;" href="{{url(__('Bacalar.url'))}}">Bacalar</a></li>
+                </ul>
             </li>
             <li class="nav-item">
                 <a class="nav-link text-white-menu-lg" href="#">Tours</a>
@@ -119,10 +126,15 @@
         <div class="sub-menu-hide" id="submenuhide" style="display:none;">
             <ul class="nav-mobile-hide">
                 <li class="nav-item">
-                    <a class="text-orange-menu" href="#">{{__('Home.home')}}</a>
+                    <a class="text-orange-menu" href="{{url($prefijo)}}">{{__('Home.home')}}</a>
                 </li>
-                <li class="nav-item">
-                    <a class="text-orange-menu" href="#">{{__('Home.destinos')}}</a>
+                <li class="nav-item sub-menu-hv">
+                    <a class="text-orange-menu" href="javascript:void(0)">{{__('Home.destinos')}}</a>
+                    <ul class="sub-menu-mb">
+                        <li><a class="text-gray font-weight-bold" style="text-decoration:none;" href="{{url(__('Playa.url'))}}">Playa del carmen</a></li>
+                        <li><a class="text-gray font-weight-bold" style="text-decoration:none;" href="{{url(__('Tulum.url'))}}">Tulum</a></li>
+                        <li><a class="text-gray font-weight-bold" style="text-decoration:none;" href="{{url(__('Bacalar.url'))}}">Bacalar</a></li>
+                    </ul>
                 </li>
                 <li class="nav-item">
                     <a class="text-orange-menu" href="#">Tours</a>
@@ -172,11 +184,21 @@
             <div class="col-12 col-md-3">
                 <h4 class="text-white font-weight-bold">{{__('Home.enlaces')}}</h4>
                 <ul class="none-list">
-                    <li class="text-gray fsize-sm">{{__('Home.translado-zona-hotelera')}}</li>
-                    <li class="text-gray fsize-sm">{{__('Home.translado-playa')}}</li>
-                    <li class="text-gray fsize-sm">{{__('Home.traslado-tulum')}}</li>
-                    <li class="text-gray fsize-sm">{{__('Home.traslado-bacalar')}}</li>
-                    <li class="text-gray fsize-sm">{{__('Home.traslado-holbox')}}</li>
+                    <li>
+                        <a href="{{url(__('Playa.url'))}}" class="text-gray-link fsize-sm without-link">
+                            {{__('Home.translado-playa')}}
+                        </a>
+                    </li>
+                    <li class="text-gray fsize-sm">
+                        <a href="{{url(__('Tulum.url'))}}" class="text-gray-link fsize-sm without-link">
+                            {{__('Home.traslado-tulum')}}
+                        </a>
+                    </li>
+                    <li class="text-gray fsize-sm">
+                        <a href="{{url(__('Bacalar.url'))}}" class="text-gray-link fsize-sm without-link">
+                            {{__('Home.traslado-bacalar')}}
+                        </a>
+                    </li>
                     <li class="text-gray fsize-sm">{{__('Home.politicas-privacidad')}}</li>
                 </ul>
             </div>
