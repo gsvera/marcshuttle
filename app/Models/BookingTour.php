@@ -42,7 +42,7 @@ class BookingTour extends Model
                 }
             }
     
-            $tour = $tour->GetTourById($data['idTour']);
+            $tour = $tour->GetTourById($data['idTour'])->data;
             $vehicle = $vehicle->GetVehicleById($data['idVehicle']);
 
             $dataMessage = [
@@ -82,6 +82,7 @@ class BookingTour extends Model
             $resp->Error = true;
             $resp->Message = $e->getMessage();
         }
+        return $resp;
     }
 
     public function SaveBookingtour($data)

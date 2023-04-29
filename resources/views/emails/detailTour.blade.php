@@ -143,19 +143,19 @@ $total = Utils::asDollars($item['amount']);
                         <li>
                             <strong class="text-orange"><i class="fa fa-check text-orange" aria-hidden="true"></i> {{__('Tours.descripcion')}}</strong>
                             <br>
-                            <div class="text-white strong" style="margin-left:10px;margin-top:5px;font-size:1.1em;">{{$tour['descripcion'.$lang]}}</div>
+                            <div class="text-white strong" style="margin-left:10px;margin-top:5px;font-size:1.1em;">{{$tour['descripcion_'.$lang]}}</div>
                         </li>
                         <br>
                         <li>
                             <strong class="text-orange"><i class="fa fa-check text-orange" aria-hidden="true"></i> {{__('Tours.vehiculo')}}</strong>
                             <br>
-                            <div class="text-white strong" style="margin-left:10px;margin-top:5px;font-size:1.1em;">{{$vechicle['name']}}</div>
+                            <div class="text-white strong" style="margin-left:10px;margin-top:5px;font-size:1.1em;">{{$vehicle['name']}}</div>
                         </li>
                         <br>
                         <li>
                             <strong class="text-orange"><i class="fa fa-check text-orange" aria-hidden="true"></i> {{__('Email.pasajeros')}}</strong>
                             <br>
-                            <div class="text-white strong" style="margin-left:10px;margin-top:5px;font-size:1.1em;">{{$vechicle['min_pax'].' - '.$vechicle['max_pax']}}</div>
+                            <div class="text-white strong" style="margin-left:10px;margin-top:5px;font-size:1.1em;">{{$vehicle['min_pax'].' - '.$vehicle['max_pax']}}</div>
                         </li>
                         <br>
                         <li>
