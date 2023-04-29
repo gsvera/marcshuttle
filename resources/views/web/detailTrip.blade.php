@@ -12,6 +12,7 @@ if($lang == 'en')
 $total = "";
 $amount = 0;
 $labelTypeTransfer = __('MotorBusqueda.aeropuerto-hotel');
+
 if($typetransfer == 2)
 {
     $labelTypeTransfer = __('MotorBusqueda.hotel-aeropuerto');
@@ -20,6 +21,7 @@ else if($typetransfer == 3)
 {
     $labelTypeTransfer = __('MotorBusqueda.redondo-aeropuerto');
 }
+
 
 if($pax < 8)
 {
@@ -33,8 +35,7 @@ if($pax < 8)
         $amount = $objDestination->uno_siete;
     }
 }
-
-else if($pax > 7)
+else if($pax > 7 && $pax <= 10)
 {
     if($typetransfer == 3)
     {
@@ -46,13 +47,68 @@ else if($pax > 7)
         $amount =$objDestination->ocho_diez;
     }
 }
+else
+{
+    //     PROCESO PARA CUANDO LOS PAX SUPERAN LA CANTIDAD DE 10
+    $ciclos = floor($pax / 10);
+    $enteros = 0;
+    $residuos = 0;
+    $divisor = 0;
+    
+    //  OBTENEMOS LOS ENTEROS PARA SABER CUANTAS VANS COMPLETAS SON
+    for($i = 1; $i < $ciclos + 1; $i++)
+    {
+        $divisor = $i * 10;
+        if($pax >= $divisor)
+        {
+            $enteros = $enteros + 1;
+        }
+    }
+    
+    //  OBTENEMOS LOS RESIDUOS PARA SABER LA CANTIDAD FALTANTES PARA LAS VANS
+    $residuo = $pax - $divisor;    
+    
+    if($typetransfer == 3)
+    {
+        $roundPrice = $objDestination->ocho_diez * 2;
+        $amount = $roundPrice * $enteros;
+    }
+    else{
+        $amount =$objDestination->ocho_diez * $enteros;
+    }
+    
+    if($residuo > 0 && $residuo < 8)
+    {
+        if($typetransfer == 3)
+        {
+            $amount = $amount + ($objDestination->uno_siete * 2);
+        }
+        else
+        {
+            $amount = $amount + $objDestination->uno_siete;
+        }        
+    }
+    else if($residuo > 0)
+    {
+        if($typetransfer == 3)
+        {
+            $amount = $amount + ($objDestination->ocho_diez * 2);
+        }
+        else
+        {
+            $amount = $amount + $objDestination->ocho_diez;
+        }
+    }
+}
+
+$total = Utils::asDollars($amount);
 
 ?>
 
 @extends('web.layouts.layout')
 @section('content')
-<div class="layer-about back-slider-detail-trip"></div>
-    <div class="row elementup m-0 col-12 col-md-12 text-center align-center" style="height:370px;">
+<div class="layer-detail back-slider-detail-trip"></div>
+    <div class="row elementup m-0 col-12 col-md-12 text-center align-center" style="height:250px;">
         <h1 class="font-weight-bold text-white fsize-xl">{{__('MotorBusqueda.detalle-viaje')}}</h1>    
     </div>
 <div>
@@ -97,10 +153,8 @@ else if($pax > 7)
                         <label for="comments" class="font-weight-bold fsize-sm text-gray">{{__('MotorBusqueda.comentarios')}}</label>
                         <textarea class="form-control" name="comments" id="comments" cols="30" rows="10" style="height:100px;"></textarea>
                     </div>
-                    <div class="d-flex justify-content-end">
-                        <!-- <div> -->
-                            <button type="button" class="btn btn-orange btn-lg" onclick="NextStep()">{{__('MotorBusqueda.siguiente')}}</button>
-                        <!-- </div> -->
+                    <div class="d-flex justify-content-end">                        
+                        <button type="button" class="btn btn-orange btn-lg" onclick="NextStep()">{{__('MotorBusqueda.siguiente')}}</button>                        
                     </div>
                 </div>
                 @if($typetransfer == 1 || $typetransfer == 3)                    
@@ -224,7 +278,29 @@ else if($pax > 7)
         var countStep = 0
         var urlWeb = window.location.origin
 
+       
+        
+
         $('#urlWeb').val(urlWeb)                
+        var fulldate = new Date();
+        var day = fulldate.getDate();
+        var month = fulldate.getMonth() + 1
+        var year = fulldate.getFullYear()
+        
+        if(month < 10)
+        {
+            month = '0'+month
+        }
+
+        @if($typetransfer == 1 || $typetransfer == 3)       
+            var dateArrival = document.getElementById('dateArrival')
+            dateArrival.setAttribute('min', year+'-'+month+'-'+day)
+        @endif
+        @if($typetransfer == 2 || $typetransfer == 3)       
+            var dateDeparture = document.getElementById('dateDeparture')
+            dateDeparture.setAttribute('min', year+'-'+month+'-'+day)
+        @endif
+        
         
         methodcash.addEventListener('change', e => {
             e.preventDefault()
@@ -306,6 +382,7 @@ else if($pax > 7)
 
             formBooking.submit()
         }        
+        
 //  FUNCIONES PARA PAYPAL
 
         window.paypal_sdk.Buttons({

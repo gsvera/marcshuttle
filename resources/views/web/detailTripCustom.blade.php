@@ -96,8 +96,19 @@
                 
         let formcustom = document.getElementById('formcustom'),
         urlWeb = window.location.origin
+        var dateDeparture = document.getElementById('dateDeparture')
 
-        $('#urlWeb').val(urlWeb)
+        $('#urlWeb').val(urlWeb)                
+        var fulldate = new Date();
+        var day = fulldate.getDate();
+        var month = fulldate.getMonth() + 1
+        var year = fulldate.getFullYear()
+        
+        if(month < 10)
+        {
+            month = '0'+month
+        }
+        dateDeparture.setAttribute('min', year+'-'+month+'-'+day)        
 
         $('#btnBooking').click(function(){
             SendReservation()

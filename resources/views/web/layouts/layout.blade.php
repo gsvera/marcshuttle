@@ -68,7 +68,7 @@
                 </ul>
             </li>
             <li class="nav-item">
-                <a class="nav-link text-white-menu-lg" href="#">Tours</a>
+                <a class="nav-link text-white-menu-lg" href="{{url(__('Tours.url'))}}">Tours</a>
             </li>
             <!-- <li class="nav-item">
                 <a href="{{url($prefijo.__('Link.about'))}}" class="nav-link text-white-menu-lg">{{__('Home.acerca-nosotros')}}</a>
@@ -137,7 +137,7 @@
                     </ul>
                 </li>
                 <li class="nav-item">
-                    <a class="text-orange-menu" href="#">Tours</a>
+                    <a class="text-orange-menu" href="{{url(__('Tours.url'))}}">Tours</a>
                 </li>
                 <!-- <li class="nav-item">
                     <a class="text-orange-menu">{{__('Home.acerca-nosotros')}}</a>
@@ -184,7 +184,7 @@
             <div class="col-12 col-md-3">
                 <h4 class="text-white font-weight-bold">{{__('Home.enlaces')}}</h4>
                 <ul class="none-list">
-                    <li>
+                    <li class="text-gray fsize-sm">
                         <a href="{{url(__('Playa.url'))}}" class="text-gray-link fsize-sm without-link">
                             {{__('Home.translado-playa')}}
                         </a>
@@ -199,7 +199,16 @@
                             {{__('Home.traslado-bacalar')}}
                         </a>
                     </li>
-                    <li class="text-gray fsize-sm">{{__('Home.politicas-privacidad')}}</li>
+                    <li class="text-gray fsize-sm">
+                        <a href="{{url(__('Tours.url'))}}" class="text-gray-link fsize-sm without-link">
+                            Tours
+                        </a>
+                    </li>
+                    <li class="text-gray fsize-sm">
+                        <a href="#" class="text-gray-link fsize-sm without-link">
+                            {{__('Home.politicas-privacidad')}}
+                        </a>
+                    </li>
                 </ul>
             </div>
             <div class="col-12 col-md-2">

@@ -8,6 +8,7 @@ use App\Models\Respuesta;
 use App\Models\Destination;
 use App\Models\Ubicaciones;
 use App\Models\BookingTrip;
+use App\Models\BookingTour;
 
 class MotorBusquedaController extends Controller
 {
@@ -66,32 +67,22 @@ class MotorBusquedaController extends Controller
     public function BookingTransfer(){
         $resp = new Respuesta;
         $booking = new BookingTrip;
+        $tour = new BookingTour;
         $folio = "";
         try{         
 
-            if(request('typetransfer') == 4)
+            if(request('typetransfer') == 'tour')
+            {
+                $resp = $tour->SendBookingTour(request()->all());
+            }
+            else if(request('typetransfer') == 4)
             {
                 $resp = $booking->SendCustomTrip(request()->all());
             }
             else{
                 $resp = $booking->SendOneWay(request()->all());
             }
-            // switch (request('typetransfer')) {
-            //     case 1:
-                    
-            //         break;
-            //     case 2:
-            //         break;
-            //     case 3: 
-            //         break;
-            //     case 4:
-                    
-            //         break;
-            //     default:
-            //         # code...
-            //         break;
-            // }               
-            
+
             if($resp->Error == false)
             {
                 return view('web.thanks');
@@ -106,6 +97,11 @@ class MotorBusquedaController extends Controller
             $resp->Message = $e->getMessage();
             return back()->with('messageError',$resp->Message);
         }
+    }
+
+    public function cotizarTour()
+    {
+        return view('web.detailTour')->with('idSelected', request('id'));
     }
 
     public function GetLocation(){

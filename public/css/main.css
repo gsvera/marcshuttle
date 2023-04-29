@@ -145,7 +145,7 @@ body{
 }
 
 .fsize-xs{
-    font-size: 0.9em;
+    font-size: 0.9em !important;
 }
 .ls2{
     letter-spacing:2px;
@@ -537,6 +537,19 @@ body{
     .footer-extend-2{
         display: none;
     }
+    .layer-tours{
+        height: 420px;
+        width: 100%;
+        top: 0;
+        left: 0;
+        position: absolute;
+    }
+    .margin-ext-banner{
+        margin-top:230px;
+    }
+    .mg-title-tour{
+        margin:50px auto 10%;
+    }
 }
 @media(max-width:640px)
 {
@@ -545,6 +558,19 @@ body{
     }
     .footer-extend{
         display: none;
+    }
+    .layer-tours{
+        height: 290px;
+        width: 100%;
+        top: 0;
+        left: 0;
+        position: absolute;
+    }
+    .margin-ext-banner{
+        margin-top:230px;
+    }
+    .mg-title-tour{
+        margin:50px auto 25%;
     }
 }
 .layer-home{
@@ -578,6 +604,13 @@ body{
     background-size: cover;
     z-index: -10;
 }
+.back-slider-tours{
+    background-image: url(/img/banners/QUINTANA-ROO.webp);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    z-index: -10;
+}
 .back-slider-home:before, .back-slider-playa:before, .back-slider-tulum:before{
     content:'';
 	position: absolute;
@@ -587,7 +620,16 @@ body{
 	right: 0;
 	background-color: rgba(0,0,0,0.3);
 }
-.back-slider-about:before, .back-slider-detail-trip:before, .back-slider-thanks:before{
+.back-slider-tours:before{
+    content:'';
+	position: absolute;
+    top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	background-color: rgba(0,0,0,0.3);
+}
+.back-slider-about:before, .back-slider-thanks:before{
     content:'';
 	position: absolute;
     top: 0;
@@ -595,6 +637,22 @@ body{
 	right: 0;
 	background-color: rgba(0,0,0,0.5);
     height: 500px;
+}
+.back-slider-detail-trip:before{
+    content:'';
+	position: absolute;
+    top: 0;
+	left: 0;
+	right: 0;
+	background-color: rgba(0,0,0,0.5);
+    height: 390px;
+}
+.layer-detail{
+    height: 390px;
+    width: 100%;
+    top: 0;
+    left: 0;
+    position: absolute;
 }
 .layer-about{
     height: 500px;
@@ -798,3 +856,83 @@ body{
     border-right: calc(89vw - 89vh) solid transparent;
     border-bottom: 6vh solid var(--blue-strong);
 }
+
+
+        /* CSS PARA TOURS */
+
+.content-img-card{
+     background-color: black;
+     border-radius: 5px;
+     width: 100%;
+     height: 350px;
+}
+.card-icono{
+    background-color: var(--c-orange);
+    border-radius: 50%;
+    padding: 8px 7px;
+    font-size: 15px;
+}
+
+
+
+
+.wrapper{
+    display: inline-flex;    
+    align-items: center;
+    justify-content: space-evenly;    
+  }
+  .wrapper .option{
+    background: #fff;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    margin: 0 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    padding: 0 10px;
+    border: 2px solid lightgrey;
+    transition: all 0.3s ease;
+  }
+  .wrapper .option .dot{
+    height: 20px;
+    width: 20px;
+    background: #d9d9d9;
+    border-radius: 50%;
+    position: relative;
+  }
+  .wrapper .option .dot::before{
+    position: absolute;
+    content: "";
+    top: 4px;
+    left: 4px;
+    width: 12px;
+    height: 12px;
+    background: #0069d9;
+    border-radius: 50%;
+    opacity: 0;
+    transform: scale(1.5);
+    transition: all 0.3s ease;
+  }
+  .inputCheckVehicle{
+    display: none;
+  }
+  .option-vehicle-cheked{
+    border-color: #0069d9 !important;
+    background: #0069d9 !important;
+  }
+  .option-vehicle-cheked .dot{
+    background: #fff !important;
+  }
+  .option-vehicle-cheked .dot::before{
+    opacity: 1 !important;
+    transform: scale(1) !important;
+  }
+  .wrapper .option span{
+    font-size: 20px;
+    color: #808080;
+  }
+  .option-vehicle-cheked span{
+    color: #fff !important;
+  }

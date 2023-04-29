@@ -46,4 +46,8 @@ class WebController extends Controller
     {
         return view('web.destinations.bacalar');
     }
+    public function tours()
+    {
+        return view('web.tours');
+    }
 }

@@ -15,5 +15,8 @@ class Folio extends Model
     {
         return $this->where("folio","BK-MS-")->first();
     }
-    
+    public function _GetFolioTour()
+    {
+        return $this->where("folio", "BK-TR-")->first();
+    }
 }
