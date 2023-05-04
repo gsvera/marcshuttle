@@ -4,10 +4,10 @@
     <div class="row mt-4 elementup m-0">
         <div class="col-12 col-md-6 row div-principal" >
             <div>
-                <p class="text-cian ls2">{{__('Home.transportacion-slogan')}}</p>
+                <p class="text-cian ls2 font-weight-bold">{{__('Home.transportacion-slogan')}}</p>
                 <h1 class="font-weight-bold text-white fsize-xl">{{__('Home.titulo-inicio')}}</h1>
                 <p class="font-weight-bold text-white">{{__('Home.texto-principal')}}</p>
-                <button class="btn btn-white-contac btn-lg font-weight-bold">{{__('Home.contactanos')}}</button>
+                <!-- <button class="btn btn-white-contac btn-lg font-weight-bold">{{__('Home.contactanos')}}</button> -->
             </div>
         </div>
         <div class="col-12 col-md-6">
@@ -277,7 +277,7 @@
                             <img loading="lazy" src="/img/assets/transporte-traslado-playa-del-carmen.webp" alt="transporte traslado playa del carmen" class="img-destination">
                         </div>
                         <div class="p-3">
-                            <h4 class="font-weight-bold fsize-sm">Playa del carme</h4>
+                            <h4 class="font-weight-bold fsize-sm">Playa del Carmen</h4>
                             <p class="text-gray font-weight-bold">{{__('Home.destination-text-dos')}}</p>
                             <a href="{{url(__('Playa.url'))}}" class="without-link text-orange font-weight-bold fsize-xs">{{__('Home.ver-mas')}} <i class="fa fa-angle-right" aria-hidden="true"></i></a>
                         </div>

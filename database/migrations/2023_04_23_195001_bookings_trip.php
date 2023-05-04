@@ -22,7 +22,7 @@ class BookingsTrip extends Migration
             $table->string('last_name',500);
             $table->string('email',500);
             $table->string('phone', 15);
-            $table->longText('comments');
+            $table->longText('comments')->nullable();
             $table->integer('id_destination');
             $table->integer('type_transfer');
             $table->string('origin', 500);
@@ -32,9 +32,10 @@ class BookingsTrip extends Migration
             $table->double('amount', 15, 2);
             $table->date('arrival_date');
             $table->time('arrival_time');
-            $table->longText('arrival_info');
+            $table->longText('arrival_info')->nullable();
             $table->date('departure_date');
             $table->time('departure_time');
+            $table->longText('departure_info')->nullable();
             $table->longText('departure_info');
             $table->timestamp('creation_date');
         });

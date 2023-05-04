@@ -936,3 +936,24 @@ body{
   .option-vehicle-cheked span{
     color: #fff !important;
   }
+  @media(max-width: 640px){
+    .chat-icon{
+        width: 60px;
+        height: 60px;
+        border-radius: 40px;
+        position: fixed;
+        bottom: 30px;
+        right: 20px;
+    }
+}
+@media(min-width: 640px){
+    .chat-icon{
+        width: 60px;
+        height: 60px;
+        border-radius: 40px;
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        margin-left: 50px;
+    }
+}

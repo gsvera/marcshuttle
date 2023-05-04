@@ -67,5 +67,7 @@ return [
     "siguiente" => "Siguiente",
     "anterior" => "Anterior",
     "registrando" => "Guardando",
-    "enviando-correo" => "Enviando correo de registro"
+    "enviando-correo" => "Enviando correo de registro",
+    "btn-reserva" => "Reserva ahora",
+    "texto-formulario" => "Ingrese sus datos en los siguientes campos. Por favor verifica que toda tu información sea correcta. Esta información nos ayudara a darte un mejor servicio en tu llegada o en caso de que tenga un cambio nosotros te notificaremos. Gracias por elegirnos."
 ];

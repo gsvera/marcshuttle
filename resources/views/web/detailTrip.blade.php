@@ -117,7 +117,7 @@ $total = Utils::asDollars($amount);
         <div class="col-12 col-md-7">
             <form class="container" id="formBooking" method="POST" action="{{url($prefijo.__('Home.gracias-url'))}}">
                 {{@csrf_field()}}
-                <p class="font-weight-bold">Enter your data in the following fields. Please verify the entered information is correct. This information will helps us give you the best service in your arrival or in case there is a change and we need to notify. Thanks for choosing us!</p>
+                <p class="font-weight-bold text-justify">{{__('Motorbusqueda.texto-formulario')}}</p>
                 <input type="hidden" id="typetransfer" name="typetransfer" value="{{$typetransfer}}">
                 <input type="hidden" name="orderId" id="orderId">
                 <input type="hidden" name="pax" id="pax" value={{$pax}}>
@@ -287,6 +287,9 @@ $total = Utils::asDollars($amount);
         var month = fulldate.getMonth() + 1
         var year = fulldate.getFullYear()
         
+        if(day < 10)
+            day = '0'+day
+
         if(month < 10)
         {
             month = '0'+month

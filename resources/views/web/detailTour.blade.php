@@ -32,7 +32,7 @@
         <div class="col-12 col-md-7">
             <form id="formBooking" class="container" method="POST" action="{{url($prefijo.__('Home.gracias-url'))}}">
                 {{@csrf_field()}}
-                <p class="font-weight-bold">Enter your data in the following fields. Please verify the entered information is correct. This information will helps us give you the best service in your arrival or in case there is a change and we need to notify. Thanks for choosing us!</p>
+                <p class="font-weight-bold text-justify">{{__('MotorBusqueda.texto-formulario')}}</p>
                 <div class="my-3 box-shadow-info step">
                     <h3 class="font-weight-bold fsize-mds text-blue">{{__('MotorBusqueda.datos-personales')}}</h3>                    
                     <input type="hidden" name="urlWeb" id="urlWeb">
@@ -170,6 +170,9 @@
         var month = fulldate.getMonth() + 1
         var year = fulldate.getFullYear()
         
+        if(day < 10)
+            day = '0'+day
+            
         if(month < 10)
         {
             month = '0'+month

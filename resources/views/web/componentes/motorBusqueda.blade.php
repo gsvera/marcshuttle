@@ -53,7 +53,7 @@
                 <input class="form-control p-3" type="date" name="dateDeparture" id="dateDeparture">
             </div>            
             <div class="d-grid">
-                <button class="btn btn-naranja btn-lg" type="button" onclick="SearchTrip()">{{__('Home.reserva')}}</button>
+                <button class="btn btn-naranja btn-lg" type="button" onclick="SearchTrip()">{{__('MotorBusqueda.btn-reserva')}}</button>
             </div>
         </div>
     </div>
@@ -75,6 +75,9 @@
     var day = fulldate.getDate();
     var month = fulldate.getMonth() + 1
     var year = fulldate.getFullYear()
+
+    if(day < 10)
+            day = '0'+day
     
     if(month < 10)
     {

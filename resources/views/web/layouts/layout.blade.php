@@ -167,8 +167,8 @@
                 <h4 class="text-white font-weight-bold">{{__('Home.contactanos')}}</h4>
                 <ul class="none-list">
                     <li class="text-gray fsize-sm">768 Market Street San Francisco, <br /> CA 64015, United States</li>
-                    <li class="text-gray fsize-sm">customer@transpo.com</li>
-                    <li class="text-gray fsize-sm">(+021) 345 678 910</li>
+                    <li class="text-gray fsize-sm">marcshuttlec@gmail.com</li>
+                    <li class="text-gray fsize-sm">(+52) 998 122 4280</li>
                 </ul>
                 <!-- <ul class="none-list">
                     <li class="text-gray fsize-sm">
@@ -242,6 +242,11 @@
             </div>
         </div>
     </div>
+    <a rel="nofollow" target="_blank" style="text-decoration:none;" href="https://wa.me/+529981224280">
+        <img class="chat-icon" src="/img/icons/whatsapp-icon.png" alt="icono chat whatsapp">
+    </a>
+
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <!-- <script src="{{ asset('js/jquery-3.3.1.js')}}"></script> -->
     <script src="{{ asset('js/bootstrap-datepicker.js')}}"></script>

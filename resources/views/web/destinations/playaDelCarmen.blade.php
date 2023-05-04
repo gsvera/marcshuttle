@@ -55,10 +55,10 @@
     <div class="row mt-4 elementup m-0">
         <div class="col-12 col-md-6 row div-principal" >
             <div>
-                <p class="text-cian ls2">{{__('Playa.span-titulo')}}</p>
+                <p class="text-cian ls2 font-weight-bold">{{__('Playa.span-titulo')}}</p>
                 <h1 class="font-weight-bold text-white fsize-xl">{{__('Playa.titulo')}}</h1>
                 <p class="font-weight-bold text-white">{{__('Playa.text-banner')}}</p>
-                <button class="btn btn-white-contac btn-lg font-weight-bold">{{__('Home.contactanos')}}</button>
+                <!-- <button class="btn btn-white-contac btn-lg font-weight-bold">{{__('Home.contactanos')}}</button> -->
             </div>
         </div>
         <div class="col-12 col-md-6">
@@ -263,9 +263,9 @@
                     <div class="line-sm-blue my-2" style="margin-left: calc(var(--bs-gutter-x) * 0.5);"></div>                    
                     <p class="text-gray fsize-sm mb-3">{{__('Playa.texto-marc-uno')}}</p>
                     <p class="text-gray fsize-sm">{{__('Home.texto-marc-dos')}}</p>                
-                    <div>
+                    <!-- <div>
                         <button type="button" class="btn btn-naranja btn-lg px-4 py2">{{__('MotorBusqueda.aprende-mas')}}</button>
-                    </div>
+                    </div> -->
                 </div>
             </div>
             <div>

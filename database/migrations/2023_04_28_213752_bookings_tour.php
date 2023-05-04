@@ -17,18 +17,18 @@ class BookingsTour extends Migration
             $table->id();
             $table->string('paypal_order', 500);
             $table->string('folio', 50);
-            $table->string('firts_name', 500);
+            $table->string('first_name', 500);
             $table->string('last_name', 500);
             $table->string('email', 500);
             $table->string('phone', 15);
             $table->date('departure_date');
             $table->time('departure_time');
-            $table->longText('comments');
+            $table->longText('comments')->nullable();
             $table->string('pay_method');
-            $table->dooble('amount', 15, 2);
+            $table->double('amount', 15, 2);
             $table->integer('id_tour');
             $table->integer('id_vehicle');
-            $tble->timestamp('creation_date');
+            $table->timestamp('creation_date');
         });
     }
 

@@ -66,7 +66,7 @@
                 <p class="text-cian ls2">{{__('Playa.span-titulo')}}</p>
                 <h1 class="font-weight-bold text-white fsize-xl">{{__('Bacalar.titulo')}}</h1>
                 <p class="font-weight-bold text-white">{{__('Playa.text-banner')}}</p>
-                <button class="btn btn-white-contac btn-lg font-weight-bold">{{__('Home.contactanos')}}</button>
+                <!-- <button class="btn btn-white-contac btn-lg font-weight-bold">{{__('Home.contactanos')}}</button> -->
             </div>
         </div>
         <div class="col-12 col-md-6">

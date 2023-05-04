@@ -16,6 +16,8 @@ class Tour extends Migration
         Schema::create('tour', function(Blueprint $table){
             $table->id();
             $table->string('name');
+            $table->longText('descripcion_es');
+            $table->longText('descripcion_en');
         });
     }
 
