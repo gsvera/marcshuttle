@@ -135,6 +135,12 @@ $total = Utils::asDollars($item['amount']);
                 <div class="card-blue">
                     <ul style="list-style:none;padding:0;">
                         <li>
+                            <strong class="text-orange"><i class="fa fa-check text-orange" aria-hidden="true"></i> Folio</strong>
+                            <br>
+                            <div class="text-white strong" style="margin-left:10px;margin-top:5px;font-size:1.1em;">{{$folio}}</div>
+                        </li>
+                        <br>
+                        <li>
                             <strong class="text-orange"><i class="fa fa-check text-orange" aria-hidden="true"></i> Tour</strong>
                             <br>
                             <div class="text-white strong" style="margin-left:10px;margin-top:5px;font-size:1.1em;">{{$tour['name']}}</div>
@@ -164,6 +170,14 @@ $total = Utils::asDollars($item['amount']);
                             <div class="text-white strong" style="margin-left:10px;margin-top:5px;font-size:1.1em;">{{$item['payMethod']=='efectivo'?__('Email.efectivo'):'Paypal'}}</div>
                         </li>
                         <br>
+                        @if($item['payMethod'] == 'paypal')
+                            <li>
+                                <strong class="text-orange"><i class="fa fa-check text-orange" aria-hidden="true"></i> Order Id</strong>
+                                <br>
+                                <div class="text-white strong" style="margin-left:10px;margin-top:5px;font-size:1.1em;">{{$item['orderId']}}</div>
+                            </li>
+                            <br>
+                        @endif
                         <li>
                             <strong class="text-orange"><i class="fa fa-check text-orange" aria-hidden="true"></i> {{__('Email.monto')}}</strong>
                             <br>

@@ -79,5 +79,6 @@
         "texto-servicio-extra" => "Nuestro servicio se adapta a todo tipo de turistas, desde aquellos que desean explorar las zonas más remotas del destino, hasta aquellos que buscan alojarse en un resort todo incluido, es por ello que a su disposición tiene las siguientes alternativas:",
         "extra-cuadro-uno" => "Viajes por la ciudad",
         "extra-cuadro-dos" => "Rutas y tours turísticos",
-        "extra-cuadro-tres" => "Servicio a grupos"
+        "extra-cuadro-tres" => "Servicio a grupos",
+        "btn-menu-reserva" => "Reserva ya"
     ];

@@ -1,6 +1,6 @@
 <?php
     return [
-        "url" => "/traslado-bacalar",
+        "url" => "/transporte-cancun-bacalar",
         "scritp-faq-question-uno" => "¿Cómo llegar a Bacalar desde Cancún?",
         "script-faq-answer-uno" => "Para trasladarse del Aeropuerto de Cancún a Bacalar, una opción conveniente y cómoda es utilizar un servicio de traslado privado.",
         "script-faq-question-dos" => "¿Qué precio tiene trasladarse de Cancún a Bacalar?",
@@ -29,5 +29,6 @@
         "faq-cinco" => "¿Cuál es la distancia de Cancún a Bacalar?",
         "faq-resp-cinco" => "La distancia entre Cancún y Bacalar es de aproximadamente 360 kilómetros (224 millas) en línea recta. Sin embargo, la distancia real del trayecto puede variar dependiendo de la ruta específica que se tome y de las condiciones del tráfico en el momento del traslado.",
         "faq-seis" => "¿Cuánto tiempo es del aeropuerto de Cancún a Tulum?",
-        "faq-resp-seis" => "Por lo general, el tiempo de viaje en transporte desde el Aeropuerto de Cancún a Tulum es de aproximadamente 1 hora y 30 minutos, dependiendo del tráfico y de las condiciones de la carretera. Es importante que tenga en cuenta que el tiempo de viaje puede variar y es recomendable planificar en consecuencia."
+        "faq-resp-seis" => "Por lo general, el tiempo de viaje en transporte desde el Aeropuerto de Cancún a Tulum es de aproximadamente 1 hora y 30 minutos, dependiendo del tráfico y de las condiciones de la carretera. Es importante que tenga en cuenta que el tiempo de viaje puede variar y es recomendable planificar en consecuencia.",
+        "titulo-marc-translados" => "Marcshuttle transporte de Cancún a Bacalar"
     ];

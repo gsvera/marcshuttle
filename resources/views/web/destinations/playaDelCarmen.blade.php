@@ -1,4 +1,14 @@
 @extends('web.layouts.layout')
+
+@section('metas')
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Servicio de traslado a Playa del carmen | Rápido y sencillo </title>
+    <meta name="description" content=" Reserve su traslado aeropuerto de Cancún a Playa del carmen y alrededores: ✓Mejor precio ✓Transporte cómodo">
+    <meta name="robots" content="index, follow">
+    <meta name="rating" content="safe for kids">
+@endsection
+
 @section('headers')
 <script type="application/ld+json">
     {
@@ -206,8 +216,8 @@
         </div>
         <div class="container row mx-auto mt-5">
             <div class="col-12 col-md-6">
-                <div>
-                    <button class="btn-faqs accordion-button" data-value="0" onclick="showFaq(this)" type="button">
+                <div class="my-2">
+                    <button class="btn-faqs accordion-button d-flex align-items-baseline" data-value="0" onclick="showFaq(this)" type="button">
                         <i class="fa fa-minus text-orange fa-2x icon-faq" aria-hidden="true"></i> <span class="fsize-mds font-weight-bold">{{__('Playa.faq-uno')}}</span>
                     </button>
                     <div class="acord-faq" data-display="1">
@@ -215,26 +225,27 @@
                         <p class="text-justify text-gray">{{__('Playa.faq-resp-uno-dos')}}</p>
                     </div>
                 </div>
-                <div>
-                    <button class="btn-faqs accordion-button" data-value="1" onclick="showFaq(this)" type="button">
-                        <i class="fa fa-plus text-orange fa-2x icon-faq" aria-hidden="true"></i> <span class="fsize-mds font-weight-bold">{{__('Playa.faq-dos')}}</span>
-                    </button>
-                    <div class="acord-faq d-none" data-display="0">
-                        <p class="text-justify text-gray">{{__('Playa.faq-resp-dos')}}</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-12 col-md-6">
-                <div>
-                    <button class="btn-faqs accordion-button" data-value="2" onclick="showFaq(this)" type="button">
+                <div class="my-2">
+                    <button class="btn-faqs accordion-button d-flex align-items-baseline" data-value="1" onclick="showFaq(this)" type="button">
                         <i class="fa fa-plus text-orange fa-2x icon-faq" aria-hidden="true"></i> <span class="fsize-mds font-weight-bold">{{__('Playa.faq-tres')}}</span>
                     </button>
                     <div class="acord-faq d-none" data-display="0">
                         <p class="text-justify text-gray">{{__('Playa.faq-resp-tres')}}</p>
                     </div>
                 </div>
-                <div>
-                    <button class="btn-faqs accordion-button" data-value="3" onclick="showFaq(this)" type="button">
+                
+            </div>
+            <div class="col-12 col-md-6">
+                <div class="my-2">
+                    <button class="btn-faqs accordion-button d-flex align-items-baseline" data-value="2" onclick="showFaq(this)" type="button">
+                        <i class="fa fa-plus text-orange fa-2x icon-faq" aria-hidden="true"></i> <span class="fsize-mds font-weight-bold">{{__('Playa.faq-dos')}}</span>
+                    </button>
+                    <div class="acord-faq d-none" data-display="0">
+                        <p class="text-justify text-gray">{{__('Playa.faq-resp-dos')}}</p>
+                    </div>
+                </div>
+                <div class="my-2">
+                    <button class="btn-faqs accordion-button d-flex align-items-baseline" data-value="3" onclick="showFaq(this)" type="button">
                         <i class="fa fa-plus text-orange fa-2x icon-faq" aria-hidden="true"></i> <span class="fsize-mds font-weight-bold">{{__('Playa.faq-cuatro')}}</span>
                     </button>
                     <div class="acord-faq d-none" data-display="0">
@@ -243,8 +254,8 @@
                 </div>
             </div>
             <div class="col-12 col-md-6">
-                <div>
-                    <button class="btn-faqs accordion-button" data-value="4" onclick="showFaq(this)" type="button">
+                <div class="my-2">
+                    <button class="btn-faqs accordion-button d-flex align-items-baseline" data-value="4" onclick="showFaq(this)" type="button">
                         <i class="fa fa-plus text-orange fa-2x icon-faq" aria-hidden="true"></i> <span class="fsize-mds font-weight-bold">{{__('Playa.faq-cinco')}}</span>
                     </button>
                     <div class="acord-faq d-none" data-display="0">
@@ -309,7 +320,7 @@
                 <div class="col-12 col-md-3">
                     <div class="card-destination">
                         <div class="over-hiden d-flex justify-content-center">
-                            <img loading="lazy" src="/img/assets/transporte-tulum.webp" alt="transporte-tulum" class="img-destination">
+                            <img loading="lazy" src="/img/assets/tulum.webp" alt="transporte-tulum" class="img-destination">
                         </div>
                         <div class="p-3">
                             <h4 class="font-weight-bold fsize-sm">Tulum</h4>
@@ -321,7 +332,7 @@
                 <div class="col-12 col-md-3">
                     <div class="card-destination">
                         <div class="over-hiden d-flex justify-content-center">
-                            <img loading="lazy" src="/img/assets/transporte-traslado.webp" alt="transporte traslado" class="img-destination">
+                            <img loading="lazy" src="/img/assets/bacalar.webp" alt="transporte traslado" class="img-destination">
                         </div>
                         <div class="p-3">
                             <h4 class="font-weight-bold fsize-sm">Bacalar</h4>

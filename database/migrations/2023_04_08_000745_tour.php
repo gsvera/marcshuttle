@@ -18,6 +18,7 @@ class Tour extends Migration
             $table->string('name');
             $table->longText('descripcion_es');
             $table->longText('descripcion_en');
+            $table->longText('image');
         });
     }
 

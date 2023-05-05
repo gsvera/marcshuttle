@@ -1,4 +1,27 @@
 @extends('web.layouts.layout')
+
+@section('metas')
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Servicio de traslado en Cancún aeropuerto | Rápido y sencillo</title>
+    <meta name="description" content="Reserve su traslado aeropuerto de Cancún a hotel y alrededores: ✓Mejor precio ✓Transporte cómodo ✓Viaje puntual">
+    <meta name="robots" content="index, follow">
+    <meta name="rating" content="safe for kids">
+    <meta property="og:type" content="business.business">
+    <meta property="og:title" content="Servicio de traslado en Cancún aeropuerto | Rápido y sencillo">
+    <meta property="og:url" content="https://marcshuttlecancun.com/">
+    <meta property="og:image" content="https://marcshuttlecancun.com/img/banners/servicio-de-traslado-en-cancun-aeropuerto.webp">
+    <meta property="og:description" content="Reserve su traslado aeropuerto de Cancún a hotel y alrededores: ✓Mejor precio ✓Transporte cómodo ✓Viaje puntual">
+    <meta property="business:contact_data:street_address" content="Aeropuerto de Cancún">
+    <meta property="business:contact_data:locality" content="Cancún">
+    <meta property="business:contact_data:region" content="Quintana roo">
+    <meta property="business:contact_data:postal_code" content="77500">
+    <meta property="business:contact_data:country_name" content="Mexico">
+
+@endsection
+
+
+
 @section('content')
     <div class="layer-home back-slider-home"></div>
     <div class="row mt-4 elementup m-0">
@@ -72,9 +95,9 @@
                     <div class="line-sm-blue my-2" style="margin-left: calc(var(--bs-gutter-x) * 0.5);"></div>                    
                     <p class="text-gray fsize-sm mb-3">{{__('Home.texto-marc-uno')}}</p>
                     <p class="text-gray fsize-sm">{{__('Home.texto-marc-dos')}}</p>                
-                    <div>
+                    <!-- <div>
                         <button type="button" class="btn btn-naranja btn-lg px-4 py2">{{__('MotorBusqueda.aprende-mas')}}</button>
-                    </div>
+                    </div> -->
                 </div>
             </div>
             <div>
@@ -274,7 +297,7 @@
                 <div class="col-12 col-md-3">
                     <div class="card-destination">
                         <div class="over-hiden d-flex justify-content-center">
-                            <img loading="lazy" src="/img/assets/transporte-traslado-playa-del-carmen.webp" alt="transporte traslado playa del carmen" class="img-destination">
+                            <img loading="lazy" src="/img/assets/playa-del-carmen-min.webp" alt="transporte traslado playa del carmen" class="img-destination">
                         </div>
                         <div class="p-3">
                             <h4 class="font-weight-bold fsize-sm">Playa del Carmen</h4>
@@ -286,7 +309,7 @@
                 <div class="col-12 col-md-3">
                     <div class="card-destination">
                         <div class="over-hiden d-flex justify-content-center">
-                            <img loading="lazy" src="/img/assets/transporte-tulum.webp" alt="transporte-tulum" class="img-destination">
+                            <img loading="lazy" src="/img/assets/tulum.webp" alt="transporte-tulum" class="img-destination">
                         </div>
                         <div class="p-3">
                             <h4 class="font-weight-bold fsize-sm">Tulum</h4>
@@ -298,7 +321,7 @@
                 <div class="col-12 col-md-3">
                     <div class="card-destination">
                         <div class="over-hiden d-flex justify-content-center">
-                            <img loading="lazy" src="/img/assets/transporte-traslado.webp" alt="transporte traslado" class="img-destination">
+                            <img loading="lazy" src="/img/assets/bacalar.webp" alt="transporte traslado" class="img-destination">
                         </div>
                         <div class="p-3">
                             <h4 class="font-weight-bold fsize-sm">Bacalar</h4>
@@ -318,9 +341,9 @@
             </div>
             <div class="col-12 col-md-10 row mx-auto">
                 <div class="col-12 col-md-4">
-                    <div class="card-black mx-auto mt-5">
+                    <div class="card-viajes-ciudad mx-auto mt-5">
                     </div>
-                    <div class="mx-auto text-center justify-content-center row" style="margin-top: -50px;">
+                    <div class="mx-auto text-center justify-content-center row card-on">
                         <span class="text-white font-weight-bold">{{__('Home.extra-cuadro-uno')}}</span>
                         <br>
                         <div class="icon-orange">
@@ -329,9 +352,9 @@
                     </div>
                 </div>
                 <div class="col-12 col-md-4">
-                    <div class="card-black mx-auto mt-5">
+                    <div class="card-rutas-tour mx-auto mt-5">
                     </div>
-                    <div class="mx-auto text-center justify-content-center row" style="margin-top: -50px;">
+                    <div class="mx-auto text-center justify-content-center row card-on">
                         <span class="text-white font-weight-bold">{{__('Home.extra-cuadro-dos')}}</span>
                         <br>
                         <div class="icon-orange">
@@ -340,9 +363,9 @@
                     </div>
                 </div>
                 <div class="col-12 col-md-4">
-                    <div class="card-black mx-auto mt-5">
+                    <div class="card-service-group mx-auto mt-5">
                     </div>
-                    <div class="mx-auto text-center justify-content-center row" style="margin-top: -50px;">
+                    <div class="mx-auto text-center justify-content-center row card-on">
                         <span class="text-white font-weight-bold">{{__('Home.extra-cuadro-tres')}}</span>
                         <br>
                         <div class="icon-orange">
@@ -374,9 +397,9 @@
                                 <i class="fa fa-star text-yellow fsize-15" aria-hidden="true"></i>
                                 <i class="fa fa-star text-yellow fsize-15" aria-hidden="true"></i>
                             </div>
-                            <p class="text-gray fsize-sm mb-4">“Purus porta feugiat egestas a diam sed ipsum enim orciIn lectus biben gravida aliquet faucibus consec tetur lectus imperdiet empor”</p>
-                            <p class="font-weight-bold fsize-sm">Leonardo Goodman</p>
-                            <span class="text-blue">Manager</span>
+                            <p class="text-gray fsize-sm mb-4">“Super puntuales, super atentos, no tienes que preocuparte de nada. Te atienden de maravilla desde que estás separando, el proceso de pago sin inconvenientes, platica amena, los encuentras fácil en el aeropuerto.”</p>
+                            <p class="font-weight-bold fsize-sm">Rodrigo de la Cruz</p>
+                            <!-- <span class="text-blue">Manager</span> -->
                         </div>
                     </div>
                     <div class="col-12 col-md-4 text-center mt-3">
@@ -389,9 +412,9 @@
                                 <i class="fa fa-star text-yellow fsize-15" aria-hidden="true"></i>
                                 <i class="fa fa-star text-yellow fsize-15" aria-hidden="true"></i>
                             </div>
-                            <p class="text-gray fsize-sm mb-4">“Purus porta feugiat egestas a diam sed ipsum enim orciIn lectus biben gravida aliquet faucibus consec tetur lectus imperdiet empor”</p>
-                            <p class="font-weight-bold fsize-sm">Emilia Porter</p>
-                            <span class="text-blue">Digital Marketer</span>
+                            <p class="text-gray fsize-sm mb-4">“Empresa seria y responsable. Los choferes fueron muy amables y maravillosos con nosotros en nuestro viaje a Playa del carmen. Muchas gracias! Repetiremos!”</p>
+                            <p class="font-weight-bold fsize-sm">Ricardo Horacio Valverde</p>
+                            <!-- <span class="text-blue">Digital Marketer</span> -->
                         </div>
                     </div>
                 </div>
@@ -405,16 +428,16 @@
         </div>
         <div class="container row mx-auto mt-5">
             <div class="col-12 col-md-6">
-                <div>
-                    <button class="btn-faqs accordion-button" data-value="0" onclick="showFaq(this)" type="button">
+                <div class="my-2">
+                    <button class="btn-faqs accordion-button d-flex align-items-baseline" data-value="0" onclick="showFaq(this)" type="button">
                         <i class="fa fa-minus text-orange fa-2x icon-faq" aria-hidden="true"></i> <span class="fsize-mds font-weight-bold">{{__('Home.faq-uno')}}</span>
                     </button>
                     <div class="acord-faq" data-display="1">
                         <p class="text-justify text-gray">{{__('Home.faq-resp-uno')}}</p>
                     </div>
                 </div>
-                <div>
-                    <button class="btn-faqs accordion-button" data-value="1" onclick="showFaq(this)" type="button">
+                <div class="my-2">
+                    <button class="btn-faqs accordion-button d-flex align-items-baseline" data-value="1" onclick="showFaq(this)" type="button">
                         <i class="fa fa-plus text-orange fa-2x icon-faq" aria-hidden="true"></i> <span class="fsize-mds font-weight-bold">{{__('Home.faq-dos')}}</span>
                     </button>
                     <div class="acord-faq d-none" data-display="0">
@@ -423,16 +446,16 @@
                 </div>
             </div>
             <div class="col-12 col-md-6">
-                <div>
-                    <button class="btn-faqs accordion-button" data-value="2" onclick="showFaq(this)" type="button">
+                <div class="my-2">
+                    <button class="btn-faqs accordion-button d-flex align-items-baseline" data-value="2" onclick="showFaq(this)" type="button">
                         <i class="fa fa-plus text-orange fa-2x icon-faq" aria-hidden="true"></i> <span class="fsize-mds font-weight-bold">{{__('Home.faq-tres')}}</span>
                     </button>
                     <div class="acord-faq d-none" data-display="0">
                         <p class="text-justify text-gray">{{__('Home.faq-resp-tres')}}</p>
                     </div>
                 </div>
-                <div>
-                    <button class="btn-faqs accordion-button" data-value="3" onclick="showFaq(this)" type="button">
+                <div class="my-2">
+                    <button class="btn-faqs accordion-button d-flex align-items-baseline" data-value="3" onclick="showFaq(this)" type="button">
                         <i class="fa fa-plus text-orange fa-2x icon-faq" aria-hidden="true"></i> <span class="fsize-mds font-weight-bold">{{__('Home.faq-cuatro')}}</span>
                     </button>
                     <div class="acord-faq d-none" data-display="0">

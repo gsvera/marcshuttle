@@ -10,8 +10,8 @@
 @endphp
 @extends('web.layouts.layout')
 @section('content')
-<div class="layer-about back-slider-detail-trip"></div>
-    <div class="row elementup m-0 col-12 col-md-12 text-center align-center" style="height:370px;">
+<div class="layer-detail back-slider-detail-trip"></div>
+    <div class="row elementup m-0 col-12 col-md-12 text-center align-center" style="height:250px;">
         <h1 class="font-weight-bold text-white fsize-xl">{{__('MotorBusqueda.detalle-viaje-personalizado')}}</h1>    
     </div>
 <div>
@@ -40,9 +40,9 @@
                         <label for="email" class="font-weight-bold fsize-sm text-gray">{{__('MotorBusqueda.email')}} <span class="text-danger font-weight-bold">*</span></label>
                         <input type="text" class="form-control" id="email" name="email" />
                     </div>
-                    <div class="form-group">
+                    <div class="form-group mb-3">
                         <label for="phone" class="font-weight-bold fsize-sm text-gray">{{__('MotorBusqueda.telefono')}} <span class="text-danger font-weight-bold">*</span></label>
-                        <input type="text" class="form-control" id="phone" name="phone" />
+                        <input type="tel" class="form-control" id="phone" name="phone" />
                     </div>
                     <div class="form-group mb-3">
                         <label for="dateDeparture" class="font-weight-bold fsize-sm text-gray">{{__('MotorBusqueda.fecha-salida')}} <span class="text-danger font-weight-bold">*</span></label>
@@ -93,6 +93,37 @@
 <script src="https://www.google.com/recaptcha/api.js"></script>
 </script>
     <script type="text/javascript">
+
+        //  actualiza boton menu para el home
+        document.getElementById('btbMenuBook').setAttribute('href', '/')
+
+
+        var inputPhone = document.getElementById("phone");
+        var iti = window.intlTelInput(inputPhone, {
+        // allowDropdown: false,
+        // autoHideDialCode: false,
+        // autoPlaceholder: "off",
+        // dropdownContainer: document.body,
+        // excludeCountries: ["us"],
+        // formatOnDisplay: false,
+        // geoIpLookup: function(callback) {
+        //   $.get("http://ipinfo.io", function() {}, "jsonp").always(function(resp) {
+        //     var countryCode = (resp && resp.country) ? resp.country : "";
+        //     callback(countryCode);
+        //   });
+        // },
+        // hiddenInput: "full_number",
+         initialCountry: "auto",
+        // localizedCountries: { 'de': 'Deutschland' },
+        // nationalMode: false,
+        // onlyCountries: ['us', 'gb', 'ch', 'ca', 'do'],
+        // placeholderNumberType: "MOBILE",
+        //preferredCountries: ['mx','do'],
+        separateDialCode: true,
+        utilsScript: "/js/utils.js",
+        });
+
+        iti.setCountry('MX')
                 
         let formcustom = document.getElementById('formcustom'),
         urlWeb = window.location.origin
@@ -139,6 +170,11 @@
             if(!regex.test(email))
             {
                 notification('error','{{__('Motorbusqueda.email-error')}}')
+                return false;
+            }
+            if(iti.isValidNumber() == false)
+            {
+                notification('error', '{{__('MotorBusqueda.telefono-valido')}}')
                 return false;
             }
             

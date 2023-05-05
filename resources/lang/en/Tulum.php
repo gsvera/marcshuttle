@@ -1,6 +1,6 @@
 <?php
     return [
-        "url" => "/en/tulum-transfer",
+        "url" => "/en/cancun-airport-shuttle-tulum",
         "scritp-faq-question-uno" => "How to get from Cancún Airport to Tulum?",
         "script-faq-answer-uno" => "To move from Cancun Airport to Tulum, the most convenient and comfortable option is using a private transportation service.",
         "script-faq-question-dos" => "How much is transporting from Cancún to Tulum?",

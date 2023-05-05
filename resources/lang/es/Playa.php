@@ -1,6 +1,6 @@
 <?php
     return [
-        "url" => "/traslado-playa-del-carmen",
+        "url" => "/transporte-cancun-playa-carmen",
         "span-titulo" => "Traslados comodos y seguros",
         "titulo" => "Servicio de transporte desde Cancún a playa del carmen",
         "text-banner" => "Disfrute de una experiencia exclusiva con nuestro servicio de transporte desde Cancún a Playa del carmen, donde tendrá una van solo para usted y su familia o grupo. Este es el servicio de traslado privado más destacado le llevaremos directamente a su hotel sin paradas intermedias. Disponible las 24 horas del dia en el aeropuerto de Cancún.",

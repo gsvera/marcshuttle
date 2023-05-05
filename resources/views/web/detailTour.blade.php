@@ -56,7 +56,7 @@
                     </div>
                     <div class="form-group mb-3">
                         <label for="phone" class="font-weight-bold fsize-sm text-gray">{{__('MotorBusqueda.telefono')}} <span class="text-danger font-weight-bold">*</span></label>
-                        <input type="text" class="form-control required" id="phone" name="phone" />
+                        <input type="tel" class="form-control required" id="phone" name="phone" data-intl-tel-input-id/>
                     </div>
                     <div class="d-flex justify-content-end">                        
                         <button type="button" class="btn btn-orange btn-lg" onclick="NextStep()">{{__('MotorBusqueda.siguiente')}}</button>                        
@@ -147,6 +147,36 @@
 <script src="https://www.google.com/recaptcha/api.js"></script>
 </script>
     <script type="text/javascript">                 
+        //  actualiza boton menu para el home
+        document.getElementById('btbMenuBook').setAttribute('href', '/')
+
+        var inputPhone = document.getElementById("phone");
+        var iti = window.intlTelInput(inputPhone, {
+        // allowDropdown: false,
+        // autoHideDialCode: false,
+        // autoPlaceholder: "off",
+        // dropdownContainer: document.body,
+        // excludeCountries: ["us"],
+        // formatOnDisplay: false,
+        // geoIpLookup: function(callback) {
+        //   $.get("http://ipinfo.io", function() {}, "jsonp").always(function(resp) {
+        //     var countryCode = (resp && resp.country) ? resp.country : "";
+        //     callback(countryCode);
+        //   });
+        // },
+        // hiddenInput: "full_number",
+         initialCountry: "auto",
+        // localizedCountries: { 'de': 'Deutschland' },
+        // nationalMode: false,
+        // onlyCountries: ['us', 'gb', 'ch', 'ca', 'do'],
+        // placeholderNumberType: "MOBILE",
+        //preferredCountries: ['mx','do'],
+        separateDialCode: true,
+        utilsScript: "/js/utils.js",
+        });
+
+        iti.setCountry('MX')
+
         let totalPagar = 0;
         var btnBooking = document.getElementById('btnBooking')
         var formBooking = document.getElementById('formBooking')
@@ -225,7 +255,12 @@
             {
                 if(!regex.test(document.getElementById('email').value))
                 {
-                    notification('error','{{__('Motorbusqueda.email-error')}}')
+                    notification('error','{{__('MotorBusqueda.email-error')}}')
+                    return false;
+                }
+                if(iti.isValidNumber() == false)
+                {
+                    notification('error', '{{__('MotorBusqueda.telefono-valido')}}')
                     return false;
                 }
             }

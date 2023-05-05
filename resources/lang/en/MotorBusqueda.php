@@ -69,5 +69,6 @@ return [
     "registrando" => "Booking",
     "enviando-correo" => "Send booking mail",
     "btn-reserva" => "Book now",
-    "texto-formulario" => "Enter your data in the following fields. Please verify the entered information is correct. This information will helps us give you the best service in your arrival or in case there is a change and we need to notify. Thanks for choosing us!"
+    "texto-formulario" => "Enter your data in the following fields. Please verify the entered information is correct. This information will helps us give you the best service in your arrival or in case there is a change and we need to notify. Thanks for choosing us!",
+    "telefono-valido" => "Number phone is invalid"
 ];

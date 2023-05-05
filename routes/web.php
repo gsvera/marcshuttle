@@ -19,10 +19,10 @@ use App\Http\Controllers\PaypalController;
 Route::get('/', function () {
     return view('web.index')->with('lang', App::getLocale())->with('sesion', request()->session()->get('lang'));
 });
-Route::get('/traslado-playa-del-carmen', [WebController::class, 'playaDelCarmen']);
-Route::get('/traslado-tulum', [WebController::class, 'tulum']);
-Route::get('/traslado-bacalar', [WebController::class, 'bacalar']);
-Route::get('/tours', [WebController::class, 'tours']);
+Route::get('/transporte-cancun-playa-carmen', [WebController::class, 'playaDelCarmen']);
+Route::get('/transporte-cancun-tulum', [WebController::class, 'tulum']);
+Route::get('/transporte-cancun-bacalar', [WebController::class, 'bacalar']);
+Route::get('/tours-quintanaroo', [WebController::class, 'tours']);
 Route::get('/tours/{tour}/{id}', [MotorBusquedaController::class, 'cotizarTour']);
 //Route::get('/acerca-de-nosotros',[WebController::class, 'about']);
 Route::get('/detalle-de-viaje', [MotorBusquedaController::class, 'detailTrip']);
@@ -36,9 +36,9 @@ Route::group(['prefix' => 'en'], function(){
     Route::get('/', function () {
         return view('web.index')->with('lang', App::getLocale())->with('sesion', request()->session()->get('lang'));
     });
-    Route::get('/playa-del-carmen-transfer', [WebController::class, 'playaDelCarmen']);
-    Route::get('/tulum-transfer', [WebController::class, 'tulum']);
-    Route::get('/bacalar-transfer', [WebController::class, 'bacalar']);
+    Route::get('/cancun-airport-shuttle-playa-carmen', [WebController::class, 'playaDelCarmen']);
+    Route::get('/cancun-airport-shuttle-tulum', [WebController::class, 'tulum']);
+    Route::get('/cancun-airport-shuttle-bacalar', [WebController::class, 'bacalar']);
     Route::get('/tours', [WebController::class, 'tours']);
     Route::get('/tours/{tour}/{id}', [MotorBusquedaController::class, 'cotizarTour']);
   //  Route::get('/about-us',[WebController::class, 'about']);

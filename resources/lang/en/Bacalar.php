@@ -1,6 +1,6 @@
 <?php
     return [
-        "url" => "/en/bacalar-transfer",
+        "url" => "/en/cancun-airport-shuttle-bacalar",
         "scritp-faq-question-uno" => "How to get from Cancún Airport to Bacalar?",
         "script-faq-answer-uno" => "To move from Cancun Airport to Bacalar the most convenient and comfortable option is using a private transportation service.",
         "script-faq-question-dos" => "How much is transporting from Cancún to Bacalar?",
@@ -29,5 +29,6 @@
         "faq-cinco" => "What is the distance from Cancun airport to Bacalar?",
         "faq-resp-cinco" => "The distance between the Cancún Airport and Bacalar is about 360 kilometers (224 miles) directly. However, the actual distance of the course may vary depending on the specific route that is taken and the traffic conditions at that time. ",
         "faq-seis" => "How long is it from Cancun airport to Bacalar?",
-        "faq-resp-seis" => "Generally, the travel time from the Cancún Airport to TBacalar is approximately 4 hours. This depends on the traffic and highway conditions. It is crucial that you have in mind that the travel time may vary and it is recommendable to plan accordingly."
+        "faq-resp-seis" => "Generally, the travel time from the Cancún Airport to TBacalar is approximately 4 hours. This depends on the traffic and highway conditions. It is crucial that you have in mind that the travel time may vary and it is recommendable to plan accordingly.",
+        "titulo-marc-translados" => "Marcshuttle transfer from Cancún to Bacalar"
     ];

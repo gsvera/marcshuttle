@@ -1,6 +1,6 @@
 <?php
     return [
-        "url" => "/traslado-tulum",
+        "url" => "/transporte-cancun-tulum",
         "scritp-faq-question-uno" => "¿Cómo trasladarse del aeropuerto de Cancún a Tulum?",
         "script-faq-answer-uno" => "Para trasladarse del Aeropuerto de Cancún a Tulum, una opción conveniente y cómoda es utilizar un servicio de traslado privado.",
         "script-faq-question-dos" => "¿Qué precio tiene trasladarse de Cancún a Tulum?",

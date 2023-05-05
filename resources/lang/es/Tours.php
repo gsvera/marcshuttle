@@ -1,6 +1,6 @@
 <?php
     return [
-        "url" => "/tours",
+        "url" => "/tours-quintanaroo",
         "titulo" => "Lugares turisticos en",
         "titulo-dos" => "Quintana Roo",
         "translados-slogan" => "La mejor manera de descubrir Quintana Roo",

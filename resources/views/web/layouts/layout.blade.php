@@ -21,6 +21,8 @@
     <link rel="stylesheet" href="{{ asset('css/bootstrap-select.css') }}">
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <link rel="stylesheet" href="{{ asset('css/main.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/intlTelInput.css') }}">
+    <script type="text/javascript" src="/js/intlTelInput.js"></script>
     <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css"> -->
     <script src="https://use.fontawesome.com/97a88bff0a.js"></script>
     <!-- <link href="https://kit-pro.fontawesome.com/releases/v5.15.3/css/pro.min.css" type="text/css" rel="stylesheet"> -->
@@ -28,6 +30,8 @@
     <!-- <script type="text/javascript">
         window.CSRF_TOKEN = '{{ csrf_token() }}';
     </script> -->
+    @yield('metas')
+
     @yield('headers')
 
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -75,14 +79,14 @@
             </li> -->
             <li class="mx-3">
                 <a href="tel:9981224280" class="nav-link text-white-menu-lg">
-                    <span class="back-orange"><i class="fa fa-phone" aria-hidden="true"></i></span> 998-122-4280
+                    <span class="back-orange"><i class="fa fa-phone" aria-hidden="true"></i></span> +52 998-122-4280
                 </a>
             </li>
             <li>
                 <div >
-                    <button class="btn btn-outline-white">
-                        {{__('Home.contactanos')}}
-                    </button>
+                    <a class="btn btn-outline-white" href="#motorbusqueda" id="btbMenuBook">
+                        {{__('Home.btn-menu-reserva')}}
+                    </a>
                 </div>
             </li>
         </ul>
@@ -167,8 +171,16 @@
                 <h4 class="text-white font-weight-bold">{{__('Home.contactanos')}}</h4>
                 <ul class="none-list">
                     <li class="text-gray fsize-sm">768 Market Street San Francisco, <br /> CA 64015, United States</li>
-                    <li class="text-gray fsize-sm">marcshuttlec@gmail.com</li>
-                    <li class="text-gray fsize-sm">(+52) 998 122 4280</li>
+                    <li class="fsize-sm">
+                        <a href="mailto:marcshuttlec@gmail.com" class="text-gray-link without-link">
+                            marcshuttlec@gmail.com
+                        </a>
+                    </li>
+                    <li class="text-gray fsize-sm">
+                        <a href="tel:9981224280" class="text-gray-link without-link">
+                            (+52) 998 122 4280
+                        </a>
+                    </li>
                 </ul>
                 <!-- <ul class="none-list">
                     <li class="text-gray fsize-sm">
@@ -220,8 +232,10 @@
         </div>
         <div class="divider"></div>
         <div class="footer-extend py-4 px-5">
-            <div class="col-12 col-md-6 text-silver px-5 fsize-sm font-weight-bold">
-                © 2023 Marc Shuttle. Powered by Huella digital
+            <div class="col-12 col-md-6">
+                <a href="https://huella-digital.mx/" class="text-gray-link px-5 fsize-sm font-weight-bold without-link">
+                    © 2023 Marc Shuttle. Powered by Huella digital
+                </a>
             </div>
             <div class="col-12 col-md-6 d-flex justify-content-end px-5">
                 <div class="text-center">
@@ -232,8 +246,10 @@
             </div>
         </div>
         <div class="footer-extend-2">
-            <div class="col-12 text-silver px-5 fsize-sm font-weight-bold text-center">
-                © 2023 Marc Shuttle. Powered by Huella digital
+            <div class="col-12 text-center">
+                <a href="https://huella-digital.mx/" class="text-gray-link px-5 fsize-sm font-weight-bold without-link">
+                    © 2023 Marc Shuttle. Powered by Huella digital
+                </a>
             </div>
             <div class="col text-center py-3" style="align-items:center;">
             <a href="{{$prefijo}}">

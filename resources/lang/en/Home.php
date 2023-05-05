@@ -79,5 +79,6 @@
         "texto-servicio-extra" => "Our transfer service adapts to any type of tourists, from those who wish to explore the remote areas of their destinations, to those who wish to stay in an all-inclusive resort. This is why we offer the following alternatives:",
         "extra-cuadro-uno" => "Tours around the city",
         "extra-cuadro-dos" => "Tourist routes and tours",
-        "extra-cuadro-tres" => "Group services"
+        "extra-cuadro-tres" => "Group services",
+        "btn-menu-reserva" => "Booking now"
     ];

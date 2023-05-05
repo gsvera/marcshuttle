@@ -5,3 +5,11 @@
     <h1 class="font-weight-bold text-white fsize-xl">{{__('Home.gracias')}}</h1>    
 </div>
 @endsection
+
+@push('scripts')
+    <script type="text/javascript">
+        //  actualiza boton menu para el home
+        document.getElementById('btbMenuBook').setAttribute('href', '/')
+    </script>
+
+@endpush

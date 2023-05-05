@@ -1,4 +1,14 @@
 @extends('web.layouts.layout')
+
+@section('metas')
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Servicio de traslado a Bacalar | Rápido y sencillo</title>
+    <meta name="description" content="Reserve su traslado aeropuerto de Cancún a Bacalar y alrededores: ✓Mejor precio ✓Transporte cómodo ✓Viaje puntual ">
+    <meta name="robots" content="index, follow">
+    <meta name="rating" content="safe for kids">
+@endsection
+
 @section('headers')
 <script type="application/ld+json">
     {
@@ -213,9 +223,9 @@
             <div class="line-md-orange mb-3 mx-auto"></div>
         </div>
         <div class="container row mx-auto mt-5">
-            <div class="col-12 col-md-12 d-flex">
-                <div class="col-12 col-md-6 px-4">
-                    <button class="btn-faqs accordion-button" data-value="0" onclick="showFaq(this)" type="button">
+            <div class="col-12 col-md-6">
+                <div class="my-2">
+                    <button class="btn-faqs accordion-button d-flex align-items-baseline" data-value="0" onclick="showFaq(this)" type="button">
                         <i class="fa fa-minus text-orange fa-2x icon-faq" aria-hidden="true"></i> <span class="fsize-mds font-weight-bold">{{__('Bacalar.faq-uno')}}</span>
                     </button>
                     <div class="acord-faq" data-display="1">
@@ -223,8 +233,8 @@
                         <p class="text-justify text-gray">{{__('Bacalar.faq-resp-uno-dos')}}</p>
                     </div>
                 </div>
-                <div class="col-12 col-md-6 px-4">
-                    <button class="btn-faqs accordion-button" data-value="1" onclick="showFaq(this)" type="button">
+                <div class="my-2">
+                    <button class="btn-faqs accordion-button d-flex align-items-baseline" data-value="1" onclick="showFaq(this)" type="button">
                         <i class="fa fa-plus text-orange fa-2x icon-faq" aria-hidden="true"></i> <span class="fsize-mds font-weight-bold">{{__('Bacalar.faq-dos')}}</span>
                     </button>
                     <div class="acord-faq d-none" data-display="0">
@@ -232,10 +242,8 @@
                         <p class="text-justify text-gray">{{__('Bacalar.faq-resp-dos-dos')}}</p>
                     </div>
                 </div>
-            </div>
-            <div class="col-12 col-md-12 d-flex">
-                <div class="col-12 col-md-6 px-4">
-                    <button class="btn-faqs accordion-button" data-value="2" onclick="showFaq(this)" type="button">
+                <div class="my-2">
+                    <button class="btn-faqs accordion-button d-flex align-items-baseline" data-value="2" onclick="showFaq(this)" type="button">
                         <i class="fa fa-plus text-orange fa-2x icon-faq" aria-hidden="true"></i> <span class="fsize-mds font-weight-bold">{{__('Bacalar.faq-tres')}}</span>
                     </button>
                     <div class="acord-faq d-none" data-display="0">
@@ -243,25 +251,25 @@
                         <p class="text-justify text-gray">{{__('Bacalar.faq-resp-tres-dos')}}</p>
                     </div>
                 </div>
-                <div class="col-12 col-md-6 px-4">
-                    <button class="btn-faqs accordion-button" data-value="3" onclick="showFaq(this)" type="button">
+            </div>
+            <div class="col-12 col-md-6">
+                <div class="my-2">
+                    <button class="btn-faqs accordion-button d-flex align-items-baseline" data-value="3" onclick="showFaq(this)" type="button">
                         <i class="fa fa-plus text-orange fa-2x icon-faq" aria-hidden="true"></i> <span class="fsize-mds font-weight-bold">{{__('Bacalar.faq-cuatro')}}</span>
                     </button>
                     <div class="acord-faq d-none" data-display="0">
                         <p class="text-justify text-gray">{{__('Bacalar.faq-resp-cuatro')}}</p>
                     </div>
                 </div>
-            </div>
-            <div class="col-12 col-md-12 d-flex">
-                <div class="col-12 col-md-6 px-4">
-                    <button class="btn-faqs accordion-button" data-value="4" onclick="showFaq(this)" type="button">
+                <div class="my-2">
+                    <button class="btn-faqs accordion-button d-flex align-items-baseline" data-value="4" onclick="showFaq(this)" type="button">
                         <i class="fa fa-plus text-orange fa-2x icon-faq" aria-hidden="true"></i> <span class="fsize-mds font-weight-bold">{{__('Bacalar.faq-cinco')}}</span>
                     </button>
                     <div class="acord-faq d-none" data-display="0">
                         <p class="text-justify text-gray">{{__('Bacalar.faq-resp-cinco')}}</p>
                     </div>
                 </div>
-                <div class="col-12 col-md-6 px-4">
+                <div class="my-2">
                     <button class="btn-faqs accordion-button" data-value="5" onclick="showFaq(this)" type="button">
                         <i class="fa fa-plus text-orange fa-2x icon-faq" aria-hidden="true"></i> <span class="fsize-mds font-weight-bold">{{__('Bacalar.faq-seis')}}</span>
                     </button>
@@ -269,7 +277,7 @@
                         <p class="text-justify text-gray">{{__('Bacalar.faq-resp-seis')}}</p>
                     </div>
                 </div>
-            </div>
+            </div>            
         </div>
     </div>
     <div class="section">
@@ -277,13 +285,13 @@
             <div class="">
                 <div class="col-12 col-md-6 row"  style="padding:5% 0 5% 5%;">
                     <div class="text-blue ls2 font-weight-bold">{{__('Home.titulo-servicio-usted')}}</div>
-                    <h2 class="font-weight-bold fsize-md">{{__('Playa.titulo-marc-translados')}}</h2>
+                    <h2 class="font-weight-bold fsize-md">{{__('Bacalar.titulo-marc-translados')}}</h2>
                     <div class="line-sm-blue my-2" style="margin-left: calc(var(--bs-gutter-x) * 0.5);"></div>                    
                     <p class="text-gray fsize-sm mb-3">{{__('Playa.texto-marc-uno')}}</p>
                     <p class="text-gray fsize-sm">{{__('Home.texto-marc-dos')}}</p>                
-                    <div>
+                    <!-- <div>
                         <button type="button" class="btn btn-naranja btn-lg px-4 py2">{{__('MotorBusqueda.aprende-mas')}}</button>
-                    </div>
+                    </div> -->
                 </div>
             </div>
             <div>
@@ -315,7 +323,7 @@
                 <div class="col-12 col-md-3">
                     <div class="card-destination">
                         <div class="over-hiden d-flex justify-content-center">
-                            <img loading="lazy" src="/img/assets/transporte-traslado-playa-del-carmen.webp" alt="transporte traslado playa del carmen" class="img-destination">
+                            <img loading="lazy" src="/img/assets/playa-del-carmen-min.webp" alt="transporte traslado playa del carmen" class="img-destination">
                         </div>
                         <div class="p-3">
                             <h4 class="font-weight-bold fsize-sm">Playa del carme</h4>
@@ -327,7 +335,7 @@
                 <div class="col-12 col-md-3">
                     <div class="card-destination">
                         <div class="over-hiden d-flex justify-content-center">
-                            <img loading="lazy" src="/img/assets/transporte-tulum.webp" alt="transporte-tulum" class="img-destination">
+                            <img loading="lazy" src="/img/assets/tulum.webp" alt="transporte-tulum" class="img-destination">
                         </div>
                         <div class="p-3">
                             <h4 class="font-weight-bold fsize-sm">Tulum</h4>
