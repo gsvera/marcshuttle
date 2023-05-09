@@ -80,5 +80,7 @@
         "extra-cuadro-uno" => "Tours around the city",
         "extra-cuadro-dos" => "Tourist routes and tours",
         "extra-cuadro-tres" => "Group services",
-        "btn-menu-reserva" => "Booking now"
+        "btn-menu-reserva" => "Booking now",
+        "texto-gracias-uno" => "A confirmation email has been sent to your email, our team will contact you shortly.",
+        "texto-gracias-dos" => "Your tracking folio is"
     ];

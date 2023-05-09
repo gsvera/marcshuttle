@@ -57,7 +57,9 @@ class BookingTour extends Model
                 "payMethod" => $data['payMethod'],
                 "amount" => $data['totalAmount'],
                 "idTour" => $data['idTour'],
-                "idVehicle" => $data['idVehicle']
+                "idVehicle" => $data['idVehicle'],
+                "sillaBebe" => $data['sillaBebe'],
+                "host" => $data['urlWeb']
             ];
     
             if($data['payMethod'] == 'paypal')
@@ -107,6 +109,7 @@ class BookingTour extends Model
             $bookingTour->amount = $data['amount'];
             $bookingTour->id_tour = $data['idTour'];
             $bookingTour->id_vehicle = $data['idVehicle'];
+            $bookingTour->silla_bebe = $data['sillaBebe'];
 
             if($data['payMethod'] == "paypal")
             {

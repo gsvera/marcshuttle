@@ -52,7 +52,8 @@ class BookingTrip extends Model
                     "dateDeparture" => $data['dateDeparture'],
                     "hourDeparture" => $data['hourDeparture'],
                     "comments" => $data['comments'],
-                    "host" => $data['urlWeb']
+                    "host" => $data['urlWeb'],
+                    "sillaBebe" => $data['sillaBebe']
                 ];
 
                 $resp = $this->SaveCustomTrip($datosMessage);
@@ -95,6 +96,7 @@ class BookingTrip extends Model
             $booking->departure_date = $data['dateDeparture'];
             $booking->departure_time = $data['hourDeparture'];
             $booking->pay_method = "efectivo";
+            $booking->silla_bebe = $data['sillaBebe'];
             $booking->save();
 
             $folio->count = $folio->count + 1;
@@ -142,7 +144,8 @@ class BookingTrip extends Model
                 "pax" => $data['pax'],
                 "host" => $data['urlWeb'],
                 "payMethod" => $data['payMethod'],
-                "amount" => $data['amount']
+                "amount" => $data['amount'],
+                "sillaBebe" => $data['sillaBebe']
             ];
 
             if($data['typetransfer'] == 2)
@@ -230,6 +233,7 @@ class BookingTrip extends Model
             $booking->pax = $data['pax'];            
             $booking->pay_method = $data['payMethod'];
             $booking->amount = $data['amount'];
+            $booking->silla_bebe = $data['sillaBebe'];
             
             if($data['typetransfer'] == 1 || $data['typetransfer'] == 3)
             {

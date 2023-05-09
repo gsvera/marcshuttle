@@ -77,10 +77,10 @@
 </style>
 </head>
 <body>
-    <div class="bg-principal">
+    <div class="bg-principal" style="margin-bottom:-200px">
         <div style="background-color:rgba(0,0,0,0.4);height:450px;">
             <div style="display:flex;">
-                <img class="img-logo" src="https://templatekits.themewarrior.com/transpo/wp-content/uploads/sites/64/2022/08/logo-light-transpo-1.png"/>
+                <img class="img-logo" src="{{$item['host']}}/img/logos/Logo-Marcshuttle.webp" width="200px"/>
             </div>
         </div>
     </div>
@@ -145,6 +145,12 @@
                             <strong class="text-orange"><i class="fa fa-check text-orange" aria-hidden="true"></i> {{__('MotorBusqueda.pasajeros')}}</strong>
                             <br>
                             <div class="text-white strong" style="margin-left:10px;margin-top:5px;font-size:1.1em;">{{$item['pax']}}</div>
+                        </li>
+                        <br>
+                        <li>
+                            <strong class="text-orange"><i class="fa fa-check text-orange" aria-hidden="true"></i> {{__('MotorBusqueda.silla-bebe')}}</strong>
+                            <br>
+                            <div class="text-white strong" style="margin-left:10px;margin-top:5px;font-size:1.1em;">{{$item['sillaBebe'] == 1 ? __('MotorBusqueda.si') : "No"}}</div>
                         </li>
                     </ul>
                 </div>

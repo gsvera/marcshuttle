@@ -28,6 +28,7 @@ class BookingsTrip extends Migration
             $table->string('origin', 500);
             $table->string('destination', 500);
             $table->integer('pax');
+            $table->tinyInteger('sillaBebe');
             $table->string('pay_method', 50);
             $table->double('amount', 15, 2);
             $table->date('arrival_date');

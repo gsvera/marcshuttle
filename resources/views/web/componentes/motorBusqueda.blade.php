@@ -72,12 +72,13 @@
     getLocations();
     
     var fulldate = new Date();
+    fulldate.setDate(fulldate.getDate() + 1)
     var day = fulldate.getDate();
     var month = fulldate.getMonth() + 1
     var year = fulldate.getFullYear()
 
     if(day < 10)
-            day = '0'+day
+        day = '0'+day
     
     if(month < 10)
     {

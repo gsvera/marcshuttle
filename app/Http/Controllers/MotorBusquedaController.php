@@ -85,7 +85,7 @@ class MotorBusquedaController extends Controller
 
             if($resp->Error == false)
             {
-                return view('web.thanks');
+                return view('web.thanks')->with('folio', $resp->data);
             }
             else{
                 return back()->with('messageError',$resp->Message);

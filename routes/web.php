@@ -32,6 +32,7 @@ Route::get('/gracias', function(){
 });
 
 
+
 Route::group(['prefix' => 'en'], function(){
     Route::get('/', function () {
         return view('web.index')->with('lang', App::getLocale())->with('sesion', request()->session()->get('lang'));

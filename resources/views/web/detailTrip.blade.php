@@ -126,6 +126,7 @@ $total = Utils::asDollars($amount);
                 <input type="hidden" name="urlWeb" id="urlWeb">
                 <input type="hidden" name="payMethod" id="payMethod" value="efectivo">
                 <input type="hidden" name="amount" id="amount" value="{{$amount}}">
+                <input type="hidden" id="sillaBebe" value="0">
                 @if($typetransfer == 2)
                     <input type="hidden" name="origin" id="origin" value="{{$origin}}">
                 @else
@@ -148,6 +149,19 @@ $total = Utils::asDollars($amount);
                     <div class="form-group mb-3">
                         <label for="phoneClient" class="font-weight-bold fsize-sm text-gray">{{__('MotorBusqueda.telefono')}} <span class="text-danger font-weight-bold">*</span></label>
                         <input type="tel" class="form-control required" id="phoneClient" name="phoneClient"/>
+                    </div>
+                    <div class="mb-3">
+                        <p class="font-weight-bold fsize-sm text-gray mb-0">{{__('MotorBusqueda.silla-bebe')}}</p>
+                        <div class="d-flex">
+                            <div class="d-flex align-center mx-2">
+                                <label for="noSilla" class="font-weight-bold fsize-sm mx-1">No</label>
+                                <input type="radio" name="sillaBebe" id="noSilla" onchange="changeChairbaby(event)" value="0" class="mycheck" checked>
+                            </div>
+                            <div class="d-flex align-center mx-2">
+                                <label for="siSilla" class="font-weight-bold fsize-sm mx-1">{{__('MotorBusqueda.si')}}</label>
+                                <input type="radio" name="sillaBebe" id="siSilla" onchange="changeChairbaby(event)" value="1" class="mycheck">
+                            </div>
+                        </div>
                     </div>
                     <div class="form-group mb-3">
                         <label for="comments" class="font-weight-bold fsize-sm text-gray">{{__('MotorBusqueda.comentarios')}}</label>
@@ -279,6 +293,7 @@ $total = Utils::asDollars($amount);
         var payMethod = document.getElementById('payMethod')
         var gRecaptcha = document.querySelector('.g-recaptcha')
         var inputOrderId = document.getElementById('orderId')
+        var sillabebe = document.getElementById('sillaBebe')    
         var countStep = 0
         var urlWeb = window.location.origin
 
@@ -312,9 +327,11 @@ $total = Utils::asDollars($amount);
 
         $('#urlWeb').val(urlWeb)                
         var fulldate = new Date();
+        fulldate.setDate(fulldate.getDate() + 1)
         var day = fulldate.getDate();
         var month = fulldate.getMonth() + 1
         var year = fulldate.getFullYear()
+
         
         if(day < 10)
             day = '0'+day
@@ -332,6 +349,11 @@ $total = Utils::asDollars($amount);
             var dateDeparture = document.getElementById('dateDeparture')
             dateDeparture.setAttribute('min', year+'-'+month+'-'+day)
         @endif
+
+        function changeChairbaby(event)
+        {
+            sillabebe.value = event.target.value
+        }
         
         
         methodcash.addEventListener('change', e => {
@@ -449,8 +471,8 @@ $total = Utils::asDollars($amount);
                 });
             },
             onApprove: function(data, actions) {
-                console.log(data)
-                console.log(actions)
+                // console.log(data)
+                // console.log(actions)
                 activeLoader('{{__('MotorBusqueda.registrando')}}', '{{__('MotorBusqueda.enviando-correo')}}')
                 var orderId = data.orderID
                 inputOrderId.value = orderId
@@ -464,11 +486,10 @@ $total = Utils::asDollars($amount);
                     },
                     success:function(data){
                         
-                        console.log(data)
+                        // console.log(data)
                         if(data.error == false)
                         {
-                            
-                            console.log(data.data.status) 
+                            // console.log(data.data.status) 
                             if(data.data.status == 'APPROVED')
                             {
                                 formBooking.submit()                                

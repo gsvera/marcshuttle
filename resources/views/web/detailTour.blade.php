@@ -42,6 +42,7 @@
                     <input type="hidden" name="idTour" id="idTour" value="{{$idSelected}}">
                     <input type="hidden" name="idVehicle" id="idVehicle">
                     <input type="hidden" name="orderId" id="orderId">
+                    <input type="hidden" id="sillaBebe" value="0">
                     <div class="form-group mb-3">
                         <label for="fristName" class="font-weight-bold fsize-sm text-gray">{{__('MotorBusqueda.nombres')}} <span class="text-danger font-weight-bold">*</span></label>
                         <input type="text" class="form-control required" id="firstName" name="firstName"/>
@@ -57,6 +58,19 @@
                     <div class="form-group mb-3">
                         <label for="phone" class="font-weight-bold fsize-sm text-gray">{{__('MotorBusqueda.telefono')}} <span class="text-danger font-weight-bold">*</span></label>
                         <input type="tel" class="form-control required" id="phone" name="phone" data-intl-tel-input-id/>
+                    </div>
+                    <div class="mb-3">
+                        <p class="font-weight-bold fsize-sm text-gray mb-0">{{__('MotorBusqueda.silla-bebe')}}</p>
+                        <div class="d-flex">
+                            <div class="d-flex align-center mx-2">
+                                <label for="noSilla" class="font-weight-bold fsize-sm mx-1">No</label>
+                                <input type="radio" name="sillaBebe" id="noSilla" onchange="changeChairbaby(event)" value="0" class="mycheck" checked>
+                            </div>
+                            <div class="d-flex align-center mx-2">
+                                <label for="siSilla" class="font-weight-bold fsize-sm mx-1">{{__('MotorBusqueda.si')}}</label>
+                                <input type="radio" name="sillaBebe" id="siSilla" onchange="changeChairbaby(event)" value="1" class="mycheck">
+                            </div>
+                        </div>
                     </div>
                     <div class="d-flex justify-content-end">                        
                         <button type="button" class="btn btn-orange btn-lg" onclick="NextStep()">{{__('MotorBusqueda.siguiente')}}</button>                        
@@ -192,14 +206,17 @@
         var countStep = 0
         var urlWeb = window.location.origin
         var switchShuttle = document.getElementById('switch-label')
-        var dateDeparture = document.getElementById('dateDeparture')        
+        var dateDeparture = document.getElementById('dateDeparture')    
+        var sillabebe = document.getElementById('sillaBebe')    
 
         $('#urlWeb').val(urlWeb)                
         var fulldate = new Date();
+        fulldate.setDate(fulldate.getDate() + 2)        
         var day = fulldate.getDate();
         var month = fulldate.getMonth() + 1
         var year = fulldate.getFullYear()
-        
+
+
         if(day < 10)
             day = '0'+day
             
@@ -209,6 +226,12 @@
         }
         dateDeparture.setAttribute('min', year+'-'+month+'-'+day)
         
+        function changeChairbaby(event)
+        {
+            sillabebe.value = event.target.value
+        }
+
+
         methodcash.addEventListener('change', e => {
             e.preventDefault()
 

@@ -80,5 +80,7 @@
         "extra-cuadro-uno" => "Viajes por la ciudad",
         "extra-cuadro-dos" => "Rutas y tours turísticos",
         "extra-cuadro-tres" => "Servicio a grupos",
-        "btn-menu-reserva" => "Reserva ya"
+        "btn-menu-reserva" => "Reserva ya",
+        "texto-gracias-uno" => "Se ha enviado el correo de confirmación, nuestro equipo se pondra en contacto con tigo muy pronto.",
+        "texto-gracias-dos" => "Tu folio de seguimiento es"
     ];
