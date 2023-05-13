@@ -82,5 +82,8 @@
         "extra-cuadro-tres" => "Group services",
         "btn-menu-reserva" => "Booking now",
         "texto-gracias-uno" => "A confirmation email has been sent to your email, our team will contact you shortly.",
-        "texto-gracias-dos" => "Your tracking folio is"
+        "texto-gracias-dos" => "Your tracking folio is",
+        "toyota-detalle" => "Toyota ( from 8 to 10 pax to arrival and departures, from 1 to 14 pax to tours)",
+        "transporter-detalle" => "Transporter ( from 1 to 7 pax to arrivals, departures and tours)",
+        "sprinter-detalle" => "Sprinter (from 15 to 20 pax for tours)"
     ];

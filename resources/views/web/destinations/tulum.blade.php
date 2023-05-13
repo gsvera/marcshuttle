@@ -124,10 +124,10 @@
             <div class="row col-12 col-md-12 mt-5 mx-0 justify-content-center">
                 <div class="col-12 col-md-3 p-2">
                     <div class="card-bus-blue pt-3">
-                        <h5 class="font-weight-bold text-white text-center">MCI Bus</h5>                                
+                        <h5 class="font-weight-bold text-white text-center">Toyota</h5>                                
                         <ul class="without-list text-left">
                             <li class="text-white font-weight-bold">
-                                <i class="fa fa-star text-yellow fsize-15" aria-hidden="true"></i> 1 - 10 {{__('MotorBusqueda.pasajeros')}}   
+                                <i class="fa fa-star text-yellow fsize-15" aria-hidden="true"></i> {{__('Home.toyota-detalle')}}
                             </li>
                             <li class="text-white font-weight-bold">
                                 <i class="fa fa-star text-yellow fsize-15" aria-hidden="true"></i> {{__('MotorBusqueda.aa')}}
@@ -144,10 +144,10 @@
                 </div>
                 <div class="col-12 col-md-3 p-2">
                     <div class="card-bus-blue pt-3">
-                        <h5 class="font-weight-bold text-white text-center">MCI Bus</h5>                                
+                        <h5 class="font-weight-bold text-white text-center">Transporter</h5>                                
                         <ul class="without-list text-left">
                             <li class="text-white font-weight-bold">
-                                <i class="fa fa-star text-yellow fsize-15" aria-hidden="true"></i> 1 - 10 {{__('MotorBusqueda.pasajeros')}}   
+                                <i class="fa fa-star text-yellow fsize-15" aria-hidden="true"></i> {{__('Home.transporter-detalle')}}   
                             </li>
                             <li class="text-white font-weight-bold">
                                 <i class="fa fa-star text-yellow fsize-15" aria-hidden="true"></i> {{__('MotorBusqueda.aa')}}
@@ -164,10 +164,10 @@
                 </div>
                 <div class="col-12 col-md-3 p-2">
                     <div class="card-bus-blue pt-3">
-                        <h5 class="font-weight-bold text-white text-center">MCI Bus</h5>                                
+                        <h5 class="font-weight-bold text-white text-center">Sprinter</h5>                                
                         <ul class="without-list text-left">
                             <li class="text-white font-weight-bold">
-                                <i class="fa fa-star text-yellow fsize-15" aria-hidden="true"></i> 1 - 10 {{__('MotorBusqueda.pasajeros')}}   
+                                <i class="fa fa-star text-yellow fsize-15" aria-hidden="true"></i> {{__('Home.sprinter-detalle')}}   
                             </li>
                             <li class="text-white font-weight-bold">
                                 <i class="fa fa-star text-yellow fsize-15" aria-hidden="true"></i> {{__('MotorBusqueda.aa')}}

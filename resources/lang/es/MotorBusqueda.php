@@ -72,5 +72,6 @@ return [
     "texto-formulario" => "Ingrese sus datos en los siguientes campos. Por favor verifica que toda tu información sea correcta. Esta información nos ayudara a darte un mejor servicio en tu llegada o en caso de que tenga un cambio nosotros te notificaremos. Gracias por elegirnos.",
     "telefono-valido" => "Ingrese un telefono valido",
     "silla-bebe" => "Silla para bebe",
-    "si" => "Si"
+    "si" => "Si",
+    "ejemplo-num-vuelo" => "Ejemplo: Y4 206"
 ];

@@ -62,7 +62,7 @@ class BookingTrip extends Model
                 {
                     $email = $data['email'];
                     Mail::send('emails.detailTripCustom',['item'=>$datosMessage, 'folio' => $resp->data],function($mensaje) use ($email){
-                        $mensaje->to(["gs.vera92@gmail.com", $email])->subject(__('MotorBusqueda.subject-custom'));
+                        $mensaje->to([env('MAIL_USERNAME'), $email])->subject(__('MotorBusqueda.subject-custom'));
                     });
                 }                    
             }

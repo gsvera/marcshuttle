@@ -71,11 +71,12 @@ class BookingTour extends Model
     
             if($resp->Error == false)
             {
+                $copia = env('MAIL_USERNAME');
                 $email = $data['email'];
                 $subject = __('Tours.tour-reservado');
                 
-                Mail::send('emails.detailTour',['item'=>$dataMessage, 'tour'=>$tour, 'vehicle' => $vehicle, 'folio' => $resp->data],function($mensaje) use ($email, $subject){
-                    $mensaje->to(["gs.vera92@gmail.com", $email])->subject($subject);
+                Mail::send('emails.detailTour',['item'=>$dataMessage, 'tour'=>$tour, 'vehicle' => $vehicle, 'folio' => $resp->data],function($mensaje) use ($copia, $email, $subject){
+                    $mensaje->to([$copia, $email])->subject($subject);
                 });
             }
         }

@@ -72,7 +72,9 @@
                     </div>
                 </div>
                 <div class="my-3 box-shadow-info">
-                    <div class="g-recaptcha" data-sitekey="6LdCmI0lAAAAAMkIr0M4gm2aOhkngFTQ5CJhTRgI"></div>
+                        <!-- TEST -->
+                        <!-- <div class="g-recaptcha mb-3" data-sitekey="6LdCmI0lAAAAAMkIr0M4gm2aOhkngFTQ5CJhTRgI"></div> -->
+                        <div class="g-recaptcha mb-3" data-sitekey="6Le3mAEmAAAAALvwUCA4AT3LBsANxgWQuESx3Z8-"></div>
                     <div class="col-12 col-md-12 d-grid mt-5">
                         <button id="btnBooking" class="btn btn-naranja btn-lg" type="submit">{{__('MotorBusqueda.boton-confirmar')}}</button>
                     </div>

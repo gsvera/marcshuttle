@@ -183,8 +183,8 @@ $total = Utils::asDollars($amount);
                             <input type="time" class="form-control required" id="hourArrival" name="hourArrival" required/>
                         </div>
                         <div class="form-group mb-3">
-                            <label for="infoArrival" class="font-weight-bold fsize-sm text-gray">{{__('MotorBusqueda.info-vuelo')}}</label>
-                            <input type="text" class="form-control" id="infoArrival" name="infoArrival" />
+                            <label for="infoArrival" class="font-weight-bold fsize-sm text-gray">{{__('MotorBusqueda.info-vuelo')}} <span class="text-danger font-weight-bold">*</span></label>
+                            <input type="text" class="form-control required" id="infoArrival" name="infoArrival" placeholder="{{__('MotorBusqueda.ejemplo-num-vuelo')}}" />
                         </div>
                         <div class="d-flex justify-content-between">
                             <button class="btn btn-sky btn-lg" type="button" onclick="PreviewStep()">{{__('MotorBusqueda.anterior')}}</button>
@@ -211,7 +211,7 @@ $total = Utils::asDollars($amount);
                         </div>
                         <div class="form-group mb-3">
                             <label for="infoDeparture" class="font-weight-bold fsize-sm text-gray">{{__('MotorBusqueda.info-vuelo')}}</label>
-                            <input type="text" class="form-control" id="infoDeparture" name="infoDeparture" />
+                            <input type="text" class="form-control required" id="infoDeparture" name="infoDeparture" placeholder="{{__('MotorBusqueda.ejemplo-num-vuelo')}}"/>
                         </div>    
                         <div class="d-flex justify-content-between">
                             <button class="btn btn-sky btn-lg" type="button" onclick="PreviewStep()">{{__('MotorBusqueda.anterior')}}</button>
@@ -232,7 +232,9 @@ $total = Utils::asDollars($amount);
                         </div>
                     </div>
                     <div class="col-12 col-md-12 d-grid mt-5 mb-3">
-                        <div class="g-recaptcha mb-3" data-sitekey="6LdCmI0lAAAAAMkIr0M4gm2aOhkngFTQ5CJhTRgI"></div>
+                        <!-- TEST -->
+                        <!-- <div class="g-recaptcha mb-3" data-sitekey="6LdCmI0lAAAAAMkIr0M4gm2aOhkngFTQ5CJhTRgI"></div> -->
+                        <div class="g-recaptcha mb-3" data-sitekey="6Le3mAEmAAAAALvwUCA4AT3LBsANxgWQuESx3Z8-"></div>
                         <button id="btnBooking" onclick="SendBookingCash()" class="btn btn-naranja btn-lg" type="button">{{__('MotorBusqueda.boton-confirmar')}}</button>
                         <div id="paypal-button-container" class="d-none"></div>
                     </div>

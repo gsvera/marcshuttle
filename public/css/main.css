@@ -736,10 +736,12 @@ body{
 .card-bus{
     border-radius: 5px;
     background-color: white;
+    height: 100%;
 }
 .card-bus-blue{
     border-radius: 5px;
     background-color: var(--c-blue);
+    height: 100%;
 }
 .bus-banner{
     margin-top: -50px;

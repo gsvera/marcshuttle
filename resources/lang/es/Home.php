@@ -82,5 +82,8 @@
         "extra-cuadro-tres" => "Servicio a grupos",
         "btn-menu-reserva" => "Reserva ya",
         "texto-gracias-uno" => "Se ha enviado el correo de confirmación, nuestro equipo se pondra en contacto con tigo muy pronto.",
-        "texto-gracias-dos" => "Tu folio de seguimiento es"
+        "texto-gracias-dos" => "Tu folio de seguimiento es",
+        "toyota-detalle" => "Toyota ( de 8 a 10 personas en llegadas y salidas, de 1 a 14 pax en tours)",
+        "transporter-detalle" => "Transporter ( de 1 a 7 pax en llegadas, salidad y tours)",
+        "sprinter-detalle" => "Sprinter (de 15 a 20 personas en tours)"
     ];

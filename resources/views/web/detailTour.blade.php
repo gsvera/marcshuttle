@@ -108,7 +108,9 @@
                         </div>
                     </div>
                     <div class="col-12 col-md-12 d-grid mt-5 mb-3">
-                        <div class="g-recaptcha mb-3" data-sitekey="6LdCmI0lAAAAAMkIr0M4gm2aOhkngFTQ5CJhTRgI"></div>
+                        <!-- TEST -->
+                        <!-- <div class="g-recaptcha mb-3" data-sitekey="6LdCmI0lAAAAAMkIr0M4gm2aOhkngFTQ5CJhTRgI"></div> -->
+                        <div class="g-recaptcha mb-3" data-sitekey="6Le3mAEmAAAAALvwUCA4AT3LBsANxgWQuESx3Z8-"></div>
                         <button id="btnBooking" onclick="SendBookingCash()" class="btn btn-naranja btn-lg" type="button">{{__('MotorBusqueda.boton-confirmar')}}</button>
                         <div id="paypal-button-container" class="d-none"></div>
                     </div>
@@ -160,7 +162,8 @@
 <script src="https://www.paypal.com/sdk/js?client-id={{env('PAYPAL_CLIENT_ID')}}&components=buttons,funding-eligibility&currency=MXN" data-namespace="paypal_sdk"></script>
 <script src="https://www.google.com/recaptcha/api.js"></script>
 </script>
-    <script type="text/javascript">                 
+    <script type="text/javascript"> 
+                    
         //  actualiza boton menu para el home
         document.getElementById('btbMenuBook').setAttribute('href', '/')
 
@@ -417,7 +420,7 @@
                 inputOrderId.value = orderId
 
                 return $.ajax({
-                    url: '/checkout/api/paypal/order/',
+                    url: '/checkout/api/paypal/order',
                     method: 'POST',
                     data: {
                         _token: "{{ csrf_token() }}",
@@ -446,46 +449,6 @@
                 console.log(error)
             }
         }).render('#paypal-button-container');
-        
-
-        // let formBooking = document.getElementById('formBooking')
-
-        // formBooking.addEventListener('submit', e => {
-        //     e.preventDefault()
-
-        //     var email=$('#email').val()
-        //     var firstName=$('#firstName').val()
-        //     var lastName=$('#lastName').val()
-        //     var phone=$('#phone').val()
-        //     var recaptcha=$('#g-recaptcha-response').val()
-        //     var dateDeparture=$('#dateDeparture').val()
-        //     var hourDeparture=$('#hourDeparture').val()
-
-        //     if(!regex.test(email))
-        //     {
-        //         notification('error','{{__('Motorbusqueda.email-error')}}')
-        //         return false;
-        //     }
-            
-        //     if(firstName == '' || lastName == '' || phone == "" || dateDeparture == '' || hourDeparture == '')
-        //     {
-        //         notification('error', '{{__('Motorbusqueda.campos-obligatorios')}}')
-        //         return false;
-        //     }
-        //     if(recaptcha == '')
-        //     {
-        //         notification('error', '{{__('MotorBusqueda.recaptcha-requerido')}}')
-        //         return false;
-        //     }       
-
-        //     document.getElementById('btnBooking').setAttribute('disabled', true)
-
-        //     activeLoader('cargando...', "enviando correo")
-
-        //     formBooking.submit()
-
-        // })
-
         
     </script>
 @endpush
