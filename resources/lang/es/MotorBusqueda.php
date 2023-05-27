@@ -73,5 +73,13 @@ return [
     "telefono-valido" => "Ingrese un telefono valido",
     "silla-bebe" => "Silla para bebe",
     "si" => "Si",
-    "ejemplo-num-vuelo" => "Ejemplo: Y4 206"
+    "ejemplo-num-vuelo" => "Ejemplo: Y4 206",
+    "incluido" => "Incluido",
+    "incluido-uno" => "Seguro de viajero",
+    "incluido-dos" => "Cambios sin cargo, con 24 horas de anticipación",
+    "incluido-tres" => "Elementos de transportación básica",
+    "incluido-cuatro" => "Partida inmediata",
+    "incluido-cinco" => "Letrero personalizado con su nombre",
+    "incluido-seis" => "Vehículo designado exclusivamente para su uso",
+    "incluido-siete" => "Agua de cortesía"
 ];

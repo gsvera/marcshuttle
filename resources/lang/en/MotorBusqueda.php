@@ -73,5 +73,13 @@ return [
     "telefono-valido" => "Number phone is invalid",
     "silla-bebe" => "Baby chair",
     "si" => "Yes",
-    "ejemplo-num-vuelo" => "Example: Y4 206"
+    "ejemplo-num-vuelo" => "Example: Y4 206",
+    "incluido" => "Include",
+    "incluido-uno" => "Traveler insurance",
+    "incluido-dos" => "Charge free changes, with 24 hour anticipation",
+    "incluido-tres" => "Basic transportation elements",
+    "incluido-cuatro" => "Immediate departure",
+    "incluido-cinco" => "Personalized sign with your name",
+    "incluido-seis" => "Designated vehicle exclusively for your use",
+    "incluido-siete" => "courtesy water"
 ];

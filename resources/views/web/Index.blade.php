@@ -119,7 +119,7 @@
                         <div class="col-12 col-md-3 p-2">
                             <div class="card-bus pt-3">
                                 <h5 class="font-weight-bold text-center">Toyota</h5>                                
-                                <ul class="without-list text-left">
+                                <ul class="without-list text-left pl-4">
                                     <li>
                                         <i class="fa fa-star text-yellow fsize-15" aria-hidden="true"></i> {{__('Home.toyota-detalle')}}   
                                     </li>
@@ -133,13 +133,13 @@
                                         <i class="fa fa-star text-yellow fsize-15" aria-hidden="true"></i> {{__('MotorBusqueda.cargadores-usb')}}
                                     </li>
                                 </ul>
-                                <img src="/img/assets/traslados-en-cancun.webp" alt="{{__('Home.autobus')}}" class="mx-auto" style="width:100%;">
+                                <img src="/img/assets/Toyota.webp" alt="{{__('Home.autobus')}}" class="mx-auto" style="width:80%;">
                             </div>
                         </div>
                         <div class="col-12 col-md-3 p-2">
                             <div class="card-bus text-center pt-3">
                                 <h5 class="font-weight-bold">Transporter</h5>
-                                <ul class="without-list text-left">
+                                <ul class="without-list text-left pl-4">
                                     <li>
                                         <i class="fa fa-star text-yellow fsize-15" aria-hidden="true"></i> {{__('Home.transporter-detalle')}}   
                                     </li>
@@ -153,13 +153,13 @@
                                         <i class="fa fa-star text-yellow fsize-15" aria-hidden="true"></i> {{__('MotorBusqueda.cargadores-usb')}}
                                     </li>
                                 </ul>
-                                <img src="/img/assets/traslados-en-cancun.webp" alt="{{__('Home.autobus')}}" class="mx-auto" style="width:100%;">
+                                <img src="/img/assets/Transporter.webp" alt="{{__('Home.autobus')}}" class="mx-auto" style="width:80%;">
                             </div>
                         </div>
                         <div class="col-12 col-md-3 p-2">
                             <div class="card-bus text-center pt-3">
                                 <h5 class="font-weight-bold">Sprinter</h5>
-                                <ul class="without-list text-left">
+                                <ul class="without-list text-left pl-4">
                                     <li>
                                         <i class="fa fa-star text-yellow fsize-15" aria-hidden="true"></i> {{__('Home.sprinter-detalle')}}   
                                     </li>
@@ -173,7 +173,7 @@
                                         <i class="fa fa-star text-yellow fsize-15" aria-hidden="true"></i> {{__('MotorBusqueda.cargadores-usb')}}
                                     </li>
                                 </ul>
-                                <img src="/img/assets/traslados-en-cancun.webp" alt="{{__('Home.autobus')}}" class="mx-auto" style="width:100%;">
+                                <img src="/img/assets/Sprinter.webp" alt="{{__('Home.autobus')}}" class="mx-auto" style="width:80%;">
                             </div>
                         </div>
                         <!-- <div class="col-12 col-md-3 p-2">

@@ -133,9 +133,9 @@
         <div class="mb-5">
             <div class="row col-12 col-md-12 mt-5 mx-0 justify-content-center">
                 <div class="col-12 col-md-3 p-2">
-                    <div class="card-bus-blue pt-3">
+                    <div class="card-bus-blue text-center pt-3">
                         <h5 class="font-weight-bold text-white text-center">Toyota</h5>                                
-                        <ul class="without-list text-left">
+                        <ul class="without-list text-left pl-4">
                             <li class="text-white font-weight-bold">
                                 <i class="fa fa-star text-yellow fsize-15" aria-hidden="true"></i> {{__('Home.toyota-detalle')}}
                             </li>
@@ -149,13 +149,13 @@
                                 <i class="fa fa-star text-yellow fsize-15" aria-hidden="true"></i> {{__('MotorBusqueda.cargadores-usb')}}
                             </li>
                         </ul>
-                        <img src="/img/assets/traslados-en-cancun.webp" alt="{{__('Home.autobus')}}" class="mx-auto" style="width:100%;">
+                        <img src="/img/assets/Toyota.webp" alt="{{__('Home.autobus')}}" class="mx-auto" style="width:80%;">
                     </div>
                 </div>
                 <div class="col-12 col-md-3 p-2">
-                    <div class="card-bus-blue pt-3">
+                    <div class="card-bus-blue text-center pt-3">
                         <h5 class="font-weight-bold text-white text-center">Transporter</h5>                                
-                        <ul class="without-list text-left">
+                        <ul class="without-list text-left pl-4">
                             <li class="text-white font-weight-bold">
                                 <i class="fa fa-star text-yellow fsize-15" aria-hidden="true"></i> {{__('Home.transporter-detalle')}}   
                             </li>
@@ -169,13 +169,13 @@
                                 <i class="fa fa-star text-yellow fsize-15" aria-hidden="true"></i> {{__('MotorBusqueda.cargadores-usb')}}
                             </li>
                         </ul>
-                        <img src="/img/assets/traslados-en-cancun.webp" alt="{{__('Home.autobus')}}" class="mx-auto" style="width:100%;">
+                        <img src="/img/assets/Transporter.webp" alt="{{__('Home.autobus')}}" class="mx-auto" style="width:80%;">
                     </div>
                 </div>
                 <div class="col-12 col-md-3 p-2">
-                    <div class="card-bus-blue pt-3">
+                    <div class="card-bus-blue text-center pt-3">
                         <h5 class="font-weight-bold text-white text-center">Sprinter</h5>                                
-                        <ul class="without-list text-left">
+                        <ul class="without-list text-left pl-4">
                             <li class="text-white font-weight-bold">
                                 <i class="fa fa-star text-yellow fsize-15" aria-hidden="true"></i> {{__('Home.sprinter-detalle')}}   
                             </li>
@@ -189,7 +189,7 @@
                                 <i class="fa fa-star text-yellow fsize-15" aria-hidden="true"></i> {{__('MotorBusqueda.cargadores-usb')}}
                             </li>
                         </ul>
-                        <img src="/img/assets/traslados-en-cancun.webp" alt="{{__('Home.autobus')}}" class="mx-auto" style="width:100%;">
+                        <img src="/img/assets/Sprinter.webp" alt="{{__('Home.autobus')}}" class="mx-auto" style="width:80%;">
                     </div>
                 </div>
             </div>
@@ -383,9 +383,9 @@
                                 <i class="fa fa-star text-yellow fsize-15" aria-hidden="true"></i>
                                 <i class="fa fa-star text-yellow fsize-15" aria-hidden="true"></i>
                             </div>
-                            <p class="text-gray fsize-sm mb-4">“Purus porta feugiat egestas a diam sed ipsum enim orciIn lectus biben gravida aliquet faucibus consec tetur lectus imperdiet empor”</p>
-                            <p class="font-weight-bold fsize-sm">Leonardo Goodman</p>
-                            <span class="text-blue">Manager</span>
+                            <p class="text-gray fsize-sm mb-4">“Super puntuales, super atentos, no tienes que preocuparte de nada. Te atienden de maravilla desde que estás separando, el proceso de pago sin inconvenientes, platica amena, los encuentras fácil en el aeropuerto.”</p>
+                            <p class="font-weight-bold fsize-sm">Rodrigo de la Cruz</p>
+                            <!-- <span class="text-blue">Manager</span> -->
                         </div>
                     </div>
                     <div class="col-12 col-md-4 text-center mt-3">
@@ -398,9 +398,9 @@
                                 <i class="fa fa-star text-yellow fsize-15" aria-hidden="true"></i>
                                 <i class="fa fa-star text-yellow fsize-15" aria-hidden="true"></i>
                             </div>
-                            <p class="text-gray fsize-sm mb-4">“Purus porta feugiat egestas a diam sed ipsum enim orciIn lectus biben gravida aliquet faucibus consec tetur lectus imperdiet empor”</p>
-                            <p class="font-weight-bold fsize-sm">Emilia Porter</p>
-                            <span class="text-blue">Digital Marketer</span>
+                            <p class="text-gray fsize-sm mb-4">“Empresa seria y responsable. Los choferes fueron muy amables y maravillosos con nosotros en nuestro viaje a Playa del carmen. Muchas gracias! Repetiremos!”</p>
+                            <p class="font-weight-bold fsize-sm">Ricardo Horacio Valverde</p>
+                            <!-- <span class="text-blue">Digital Marketer</span> -->
                         </div>
                     </div>
                 </div>
