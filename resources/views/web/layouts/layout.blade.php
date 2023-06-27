@@ -14,6 +14,45 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Google Tag Manager -->
+    <script>
+        (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+        })(window,document,'script','dataLayer','GTM-54PBCMK');
+    </script>
+    <!-- End Google Tag Manager -->
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-2C8389YX67"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-2C8389YX67');
+    </script>
+
+    <!-- Yandex.Metrika counter -->
+    <script type="text/javascript" >
+        (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+        m[i].l=1*new Date();
+        for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+        k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+        (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+        ym(94095721, "init", {
+                clickmap:true,
+                trackLinks:true,
+                accurateTrackBounce:true,
+                webvisor:true
+        });
+    </script>
+    <noscript><div><img src="https://mc.yandex.ru/watch/94095721" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+    <!-- /Yandex.Metrika counter -->
+
+
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -35,8 +74,13 @@
     @yield('headers')
 
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta name="google-site-verification" content="qJcq3XfUMapwFRCDFnO3dJ3DlOAWxnw-yDq5TCEnUbM" />
 </head>
 <body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-54PBCMK" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
     <div class="azul-nav d-flex">
         <ul class="nav col">
             <li class="nav-item mr-3">
@@ -74,9 +118,6 @@
             <li class="nav-item">
                 <a class="nav-link text-white-menu-lg" href="{{url(__('Tours.url'))}}">Tours</a>
             </li>
-            <!-- <li class="nav-item">
-                <a href="{{url($prefijo.__('Link.about'))}}" class="nav-link text-white-menu-lg">{{__('Home.acerca-nosotros')}}</a>
-            </li> -->
             <li class="mx-3">
                 <a href="tel:9981224280" class="nav-link text-white-menu-lg">
                     <span class="back-orange"><i class="fa fa-phone" aria-hidden="true"></i></span> +52 998-122-4280
@@ -143,9 +184,6 @@
                 <li class="nav-item">
                     <a class="text-orange-menu" href="{{url(__('Tours.url'))}}">Tours</a>
                 </li>
-                <!-- <li class="nav-item">
-                    <a class="text-orange-menu">{{__('Home.acerca-nosotros')}}</a>
-                </li> -->
             </ul>
         </div>
     </nav>
@@ -154,11 +192,7 @@
     <div>
         @yield('content')        
     </div>
-    <!-- <div class="div-angule">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 100" preserveAspectRatio="none" class="angule-blue">
-            <path class="elementor-shape-fill" d="M500.2,94.7L0,0v100h1000V0L500.2,94.7z" style="transform-origin: center;transform: rotateY(0deg)"></path>
-        </svg>
-    </div> -->
+    
     <div class="triangule-blue"></div>
     <div class="back-footer pt-5" style="bottom:0">
         <div class="row px-5 justify-content-center mx-0 col-12 col-md-12 mx-auto">
@@ -182,16 +216,6 @@
                         </a>
                     </li>
                 </ul>
-                <!-- <ul class="none-list">
-                    <li class="text-gray fsize-sm">
-                        
-                        {{__('Home.acerca-nosotros')}}
-                    </li>
-                    <li class="text-gray fsize-sm">{{__('Home.servicio-cliente')}}</li>
-                    <li class="text-gray fsize-sm">Bus Type</li>
-                    <li class="text-gray fsize-sm">{{__('Home.privacidad-politica')}}</li>
-                    <li class="text-gray fsize-sm">{{__('Home.terminos-condiciones')}}</li>
-                </ul> -->
             </div>
             <div class="col-12 col-md-3">
                 <h4 class="text-white font-weight-bold">{{__('Home.enlaces')}}</h4>

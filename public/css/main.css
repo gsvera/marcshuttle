@@ -48,7 +48,7 @@ body{
     margin-top: 1.5rem !important;
 }
 .mb-4{
-    margin-top: 1.5rem !important;
+    margin-bottom: 1.5rem !important;
 }
 .mt-5{
     margin-top: 3rem !important;
@@ -1013,3 +1013,21 @@ body{
 .mycheck:checked {
     background-color: var(--c-blue);
   }
+
+/* CSS ADMIN */
+
+.bg-admin-login{
+    background-color: var(--c-blue);
+}
+.bg-logo-back{
+    background-color: var(--blue-strong);
+    border-radius: 1rem 0 0 1rem;
+    justify-content: center;
+}
+.login-img{
+  background-image: url(/img/banners/driver.jpg);  
+}
+.bg-white{
+    background-color: white;
+    border-radius: 0 1rem 1rem 0;
+}

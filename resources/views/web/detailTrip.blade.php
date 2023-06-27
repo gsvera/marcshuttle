@@ -500,8 +500,8 @@ $total = Utils::asDollars($amount);
                 });
             },
             onApprove: function(data, actions) {
-                // console.log(data)
-                // console.log(actions)
+                console.log(data)
+                console.log(actions)
                 activeLoader('{{__('MotorBusqueda.registrando')}}', '{{__('MotorBusqueda.enviando-correo')}}')
                 var orderId = data.orderID
                 inputOrderId.value = orderId

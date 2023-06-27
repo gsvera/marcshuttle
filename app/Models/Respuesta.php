@@ -20,6 +20,6 @@ class Respuesta extends Model
     }
     public function getResult()
     {
-        return ["error" => $this->Error, "Message" => $this->Messsage, "data" => $this->data];
+        return ["error" => $this->Error, "Message" => $this->Message, "data" => $this->data];
     }    
 }
