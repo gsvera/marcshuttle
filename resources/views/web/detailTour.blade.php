@@ -251,13 +251,20 @@
         {
             month = '0'+month
         }
-        dateDeparture.setAttribute('min', year+'-'+month+'-'+day)
+
+        var minDay = year+'-'+month+'-'+day
+
+        dateDeparture.setAttribute('min', minDay)
         
         function changeChairbaby(event)
         {
             sillabebe.value = event.target.value
         }
 
+        function comprobarFecha(fecha)
+        {
+            return Date.parse(fecha) < Date.parse(minDay)
+        }
 
         methodcash.addEventListener('change', e => {
             e.preventDefault()
@@ -312,6 +319,15 @@
                 {
                     notification('error', '{{__('MotorBusqueda.telefono-valido')}}')
                     return false;
+                }
+            }
+
+            if(countStep > 0)
+            {
+                if(comprobarFecha(dateDeparture.value))
+                {
+                    notification('error', '{{__('MotorBusqueda.input-requerido-date-departure')}}')
+                    return false
                 }
             }
 

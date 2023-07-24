@@ -29,7 +29,7 @@
         "rastreo-vuelo" => "Flight tracking",
         "rastreo-vuelo-text" => "Your chauffeur will be able to track your flight at all moments.",
         "mejor-precio" => "Better price",
-        "mejor-precio-text" => "ur transfer tariffs are fixed, there are no additional fees.",
+        "mejor-precio-text" => "Our transfer tariffs are fixed, there are no additional fees.",
         "titulo-servicio-usted" => "A service made for you",
         "titulo-marc-translados" => "Marc Shuttle private transfers in Quintana Roo",
         "texto-marc-uno" => "Being an authorized provider of transfer in Cancún, the Riviera Maya and Tulum from the Cancún Airport, we understand that arriving after a long flight is exhausting. Thus, we have a friendly staff that will track your flight from the beginning until you land in Cancún.",

@@ -185,11 +185,18 @@
         {
             month = '0'+month
         }
-        dateDeparture.setAttribute('min', year+'-'+month+'-'+day)        
+        var minDay = year+'-'+month+'-'+day
+
+        dateDeparture.setAttribute('min', minDay)        
 
         $('#btnBooking').click(function(){
             SendReservation()
         })
+
+        function comprobarFecha(fecha)
+        {
+            return Date.parse(fecha) < Date.parse(minDay)
+        }
 
         function changeChairbaby(event)
         {
@@ -224,12 +231,17 @@
             {
                 notification('error', '{{__('MotorBusqueda.telefono-valido')}}')
                 return false;
-            }
+            }            
             
             if(firstName == '' || lastName == '' || phone == "" || dateDeparture == '' || hourDeparture == '')
             {
                 notification('error', '{{__('Motorbusqueda.campos-obligatorios')}}')
                 return false;
+            }
+            if(comprobarFecha(dateDeparture))
+            {
+                notification ('error', '{{__('MotorBusqueda.input-requerido-date-departure')}}')
+                return false
             }
             if(recaptcha == '')
             {

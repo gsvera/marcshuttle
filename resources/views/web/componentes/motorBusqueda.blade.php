@@ -76,7 +76,7 @@
     var day = fulldate.getDate();
     var month = fulldate.getMonth() + 1
     var year = fulldate.getFullYear()
-
+    
     if(day < 10)
         day = '0'+day
     
@@ -84,15 +84,15 @@
     {
         month = '0'+month
     }
-
-    dateArrival.setAttribute('min', year+'-'+month+'-'+day)
-    dateDeparture.setAttribute('min', year+'-'+month+'-'+day)
+    var minDay = year+'-'+month+'-'+day
+    dateArrival.setAttribute('min', minDay)
+    dateDeparture.setAttribute('min', minDay)
     
-    // $('#dateArrival').datepicker({
-    //     starDate: day + '/' + month + '/' + year
-    // })
-
-    //$('#dateArrival').datepicker()
+    
+    function comprobarFecha(fecha)
+    {
+        return Date.parse(fecha) < Date.parse(minDay)
+    }
 
     function getLocations(){
         $.ajax({
@@ -208,17 +208,18 @@
                 return false
             }
         }
-        if(typetransfer == 1 && dateArrival == '')
+        
+        if(typetransfer == 1 && (dateArrival == '' || comprobarFecha(dateArrival)))
         {
             notification('error', '{{__('MotorBusqueda.input-requerido-date-arrival')}}')
             return false            
         }
-        else if([2,4].indexOf(parseInt(typetransfer)) > -1 && dateDeparture == '')
+        else if([2,4].indexOf(parseInt(typetransfer)) > -1 && (dateDeparture == '' || comprobarFecha(dateDeparture)))
         {
             notification('error', '{{__('MotorBusqueda.input-requerido-date-departure')}}')
             return false
         }
-        else if(typetransfer == 3 && (dateArrival == '' || dateDeparture == ''))
+        else if(typetransfer == 3 && (dateArrival == '' || comprobarFecha(dateArrival) || dateDeparture == '' || comprobarFecha(dateDeparture)))
         {
             notification('error', '{{__('MotorBusqueda.input-requerido-date-arrival-departure')}}')
             return false

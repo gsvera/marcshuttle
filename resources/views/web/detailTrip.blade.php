@@ -210,7 +210,7 @@ $total = Utils::asDollars($amount);
                             <input type="time" class="form-control required" id="hourDeparture" name="hourDeparture" />
                         </div>
                         <div class="form-group mb-3">
-                            <label for="infoDeparture" class="font-weight-bold fsize-sm text-gray">{{__('MotorBusqueda.info-vuelo')}}</label>
+                            <label for="infoDeparture" class="font-weight-bold fsize-sm text-gray">{{__('MotorBusqueda.info-vuelo')}} <span class="text-danger font-weight-bold">*</span></label>
                             <input type="text" class="form-control required" id="infoDeparture" name="infoDeparture" placeholder="{{__('MotorBusqueda.ejemplo-num-vuelo')}}"/>
                         </div>    
                         <div class="d-flex justify-content-between">
@@ -360,24 +360,28 @@ $total = Utils::asDollars($amount);
         var day = fulldate.getDate();
         var month = fulldate.getMonth() + 1
         var year = fulldate.getFullYear()
-
         
         if(day < 10)
             day = '0'+day
 
         if(month < 10)
-        {
-            month = '0'+month
-        }
+            month = '0'+month                
+
+        var minDay = year+'-'+month+'-'+day
 
         @if($typetransfer == 1 || $typetransfer == 3)       
             var dateArrival = document.getElementById('dateArrival')
-            dateArrival.setAttribute('min', year+'-'+month+'-'+day)
+            dateArrival.setAttribute('min', minDay)
         @endif
         @if($typetransfer == 2 || $typetransfer == 3)       
             var dateDeparture = document.getElementById('dateDeparture')
-            dateDeparture.setAttribute('min', year+'-'+month+'-'+day)
+            dateDeparture.setAttribute('min', minDay)
         @endif
+
+        function comprobarFecha(fecha)
+        {
+            return Date.parse(fecha) < Date.parse(minDay)
+        }
 
         function changeChairbaby(event)
         {
@@ -424,6 +428,28 @@ $total = Utils::asDollars($amount);
                     return false;
                 }
             }
+
+            if(countStep > 0)
+            {
+                @if($typetransfer == 1 || $typetransfer == 3)       
+                    var dateArrival = document.getElementById('dateArrival')
+                    if(comprobarFecha(dateArrival.value))
+                    {
+                        notification('error', '{{__('MotorBusqueda.input-requerido-date-arrival')}}')
+                        return false
+                    }
+                @endif
+
+                @if($typetransfer == 2 || $typetransfer == 3)       
+                    var dateDeparture = document.getElementById('dateDeparture')
+                    if(comprobarFecha(dateDeparture.value))
+                    {
+                        notification('error', '{{__('MotorBusqueda.input-requerido-date-departure')}}')
+                        return false
+                    }                    
+                @endif
+            }
+            
 
             if(ValidInput(countStep) == true)
             {
