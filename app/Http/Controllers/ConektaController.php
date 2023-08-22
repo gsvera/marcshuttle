@@ -73,19 +73,25 @@ class ConektaController extends Controller
 
     public function ResponseConekta() 
     {
-        $bookingTour = new BookingTour;
+        
         $resp = new Respuesta;        
         try {
             $resp = $bookingTour->_UpdateBookingByConektaData(request('checkout_id'), request('order_id'), request('payment_status'));
 
-            if($resp->data["statusPay"] == -1)
+            if($resp->data["statusPay"] != -1)
             {                
+                return redirect()->route('es-gracias', [
+                    'folio' => $resp->data['folio'],
+                    "id" => $resp->data["idBookingTour"],
+                    "typeBooking" => "tour"
+                ]);
+            }
+            else{
                 return view('web.error');
             }
         } catch(Exception $e) {
             return view('web.error');
         }
-        return redirect()->route('es-gracias', ['folio' => $resp->data['folio']]);
     }
 
 

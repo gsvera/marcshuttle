@@ -14,5 +14,6 @@
         "metodo-pago" => "Payment method",
         "efectivo" => "Cash",
         "monto" => "Amount",
-        "comentarios" => "Comments"
+        "comentarios" => "Comments",
+        "status-pay" => "Status pay"
     ];

@@ -164,14 +164,17 @@ class BookingTour extends Model
             $datos = [
                 "lang" => $booking->lang,
                 "statusPay" => $booking->status_pay,
-                "folio" => $booking->folio
+                "folio" => $booking->folio,
+                "idBookingTour" => $booking->id
             ];
 
-            if($statusPay != -1)
+            if($booking->status_pay != -1 && $booking->email_confirm == 0)
             {
-                // $this->_SendBookingTour($booking, $statusPay);
+                $this->_SendBookingTour($booking, $statusPay);
+                $booking->email_confirm = 1;
+                $booking->save();
             }
-
+            $resp->Error = false;
             $resp->data = $datos;
 
         } catch(Exception $e) {
@@ -200,7 +203,8 @@ class BookingTour extends Model
                     'item'=>$booking,
                     'tour'=>$tour, 
                     'vehicle' => $vehicle,
-                    'folio' => $booking->folio
+                    'folio' => $booking->folio,
+                    'statusPay' => $statusPay
                 ], function($mensaje) use ($copia, $email, $subject) {
                     $mensaje->to([$copia, $email])->subject($subject);
                 }

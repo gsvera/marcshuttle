@@ -14,5 +14,6 @@
         "metodo-pago" => "Metodo de pago",
         "efectivo" => "Efectivo",
         "monto" => "Monto",
-        "comentarios" => "Comentarios"
+        "comentarios" => "Comentarios",
+        "status-pay" => "Estatus de pago"
     ];

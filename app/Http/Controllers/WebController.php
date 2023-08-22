@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Respuesta;
+use App\Models\BookingTour;
 use App;
 
 class WebController extends Controller
@@ -53,20 +54,26 @@ class WebController extends Controller
     public function gracias()
     {
         $lang = App::getLocale();
+        $bookingTour = new BookingTour;
+        try{
+            
+            if(request('checkout_id') && request('order_id') && request('payment_status')) {
+                $resp = $bookingTour->_UpdateBookingByConektaData(request('checkout_id'), request('order_id'), request('payment_status'));
 
-        if(request('folio'))
-        {
-            return view('web.thanks')->with('folio', request('folio'));
-        }
-        else {
-            if($lang == 'es')
-            {
-                return redirect('/');
+                return view('web.thanks')->with('folio', $resp->data['folio']);
             }
-            else
-            {
-                return redirect('/en');
+            else {
+                if($lang == 'es')
+                {
+                    return redirect('/');
+                }
+                else
+                {
+                    return redirect('/en');
+                }
             }
+        } catch ( Exception $e ) {
+            return view('web.error');
         }
     }
 }

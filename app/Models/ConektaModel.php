@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Http;
+use App;
 
 class ConektaModel extends Model
 {
@@ -88,8 +89,13 @@ class ConektaModel extends Model
 
     public function _MakeOrderConekta( $customerId, $items, $typeReserve, $currency = 'MXN' ) {
         $resp = new Respuesta;
-
+        $lang = App::getLocale();
+        $pathResponse = '/gracias';  
         try {
+            if($lang == 'en') {
+                $pathResponse = '/en/thanks';
+            }
+
             $params = [
                 "currency" => $currency,
                 "customer_info" => array(
@@ -106,7 +112,7 @@ class ConektaModel extends Model
                 "checkout" => array(
                     "type" => "HostedPayment",
                     "allowed_payment_methods" => array("card"),
-                    "success_url" => env('CONKETA_URL_RESPONSE').'/'.$typeReserve,
+                    "success_url" => env('CONKETA_URL_RESPONSE').$pathResponse,
                     "failure_url" => env('CONEKTA_ERROR_RESPONSE'),
                     "redirection_time" => 4
                 )
