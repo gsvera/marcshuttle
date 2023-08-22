@@ -23,7 +23,7 @@ use App\Http\Controllers\ConektaController;
     RUTAS PARA PAGINA WEB EN ESPAÑOL
 */
 
-Route::get('/conekta', [ConektaController::class, 'CreateCustomerConekta']);
+// Route::get('/conekta', [ConektaController::class, 'CreateCustomerConekta']);
 
 Route::get('/', function () {
     return view('web.index')->with('lang', App::getLocale())->with('sesion', request()->session()->get('lang'));
@@ -34,15 +34,19 @@ Route::get('/transporte-cancun-bacalar', [WebController::class, 'bacalar']);
 Route::get('/tours-quintanaroo', [WebController::class, 'tours']);
 Route::get('/tours/{tour}/{id}', [MotorBusquedaController::class, 'cotizarTour']);
 Route::get('/detalle-de-viaje', [MotorBusquedaController::class, 'detailTrip']);
-// Route::post('/gracias', [MotorBusquedaController::class, "BookingTransfer"])->name('es-gracias');
 Route::get('/gracias', [WebController::class, 'gracias'])->name('es-gracias');
+
+/*
+    RUTAS RESERVATION
+*/
+Route::post('/make-reservation-tour', [MotorBusquedaController::class, 'MakeBookingTour']);
 
 /*
     RUTAS CONEKTA
 */
-
 Route::post('/conekta-tour', [ConektaController::class, 'MakePayByTour']);
 Route::get('/response-conekta/tour', [ConektaController::class, 'ResponseConekta']);
+Route::get('/response-conekta-error', [ConektaController::class, 'ErrorResponse']);
 
 /* 
     RUTAS PARA PAGINA WEB EN INGLES
@@ -58,11 +62,8 @@ Route::group(['prefix' => 'en'], function(){
     Route::get('/tours', [WebController::class, 'tours']);
     Route::get('/tours/{tour}/{id}', [MotorBusquedaController::class, 'cotizarTour']);
     Route::get('/trip-detail', [MotorBusquedaController::class, 'detailTrip']);
-    Route::post('/thanks', [MotorBusquedaController::class, "BookingTransfer"]);
-    Route::post('/thanks', [MotorBusquedaController::class, "BookingTransfer"]);
-    Route::get('/thanks', function(){
-        return redirect('/en');
-    });
+    // Route::post('/thanks', [MotorBusquedaController::class, "BookingTransfer"]);
+    Route::get('/thanks', [WebController::class, 'gracias'])->name('en-thanks');
 });
 
 /* 
@@ -72,7 +73,7 @@ Route::group(['prefix' => 'en'], function(){
 Route::get('/motorbusqueda', [WebController::class, 'motorbusqueda']);
 Route::post('/changelenguage', [WebController::class, 'ChangeLenguage']);
 Route::get('/back/locations', [MotorBusquedaController::class, 'GetLocation']);
-Route::post('/checkout/api/paypal/order', [PaypalController::class, 'CheckoutOrder']);
+// Route::post('/checkout/api/paypal/order', [PaypalController::class, 'CheckoutOrder']);
 Route::post('/sendcustomtrip', [MotorBusquedaController::class, 'SendCustomTrip']);
 
 /* 

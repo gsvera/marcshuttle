@@ -7,6 +7,7 @@ use App\Models\ConektaModel;
 use App\Models\Respuesta;
 use App\Models\BookingTour;
 use App\Models\Tour;
+use App;
 
 class ConektaController extends Controller
 {
@@ -75,12 +76,19 @@ class ConektaController extends Controller
     {        
         $resp = new Respuesta;
         $bookingTour = new BookingTour;
+        $lang = App::getLocale();
+        $routeLang = 'es-gracias';
         try {
             $resp = $bookingTour->_UpdateBookingByConektaData(request('checkout_id'), request('order_id'), request('payment_status'));
 
+            if($lang == 'en')
+            {
+                $routeLang = 'en-thanks';
+            }
+
             if($resp->data["statusPay"] != -1)
             {                
-                return redirect()->route('es-gracias', ['folio' => $resp->data['folio']]);
+                return redirect()->route($routeLang, ['folio' => $resp->data['folio']]);
             }
             else{
                 return view('web.error');
@@ -88,5 +96,10 @@ class ConektaController extends Controller
         } catch(Exception $e) {
             return view('web.error');
         }
+    }
+
+    public function ErrorResponse()
+    {
+        return view('web.error');
     }
 }

@@ -64,6 +64,19 @@ class MotorBusquedaController extends Controller
         
     }
 
+    public function MakeBookingTour(){
+        $resp = new Respuesta;
+        $tour = new BookingTour;
+
+        try {
+            $resp = $tour->_MakeDirectTour(request()->all());
+        } catch(Exception $e) {
+            $resp->Error = true;
+            $resp->Message = 'Error: '.$e->getMessage();
+        }
+        return response()->json($resp->getResult());
+    }
+
     public function BookingTransfer(){
         $resp = new Respuesta;
         $booking = new BookingTrip;
@@ -71,11 +84,12 @@ class MotorBusquedaController extends Controller
         $folio = "";
         try{         
 
-            if(request('typetransfer') == 'tour')
-            {
-                $resp = $tour->SendBookingTour(request()->all());
-            }
-            else if(request('typetransfer') == 4)
+            // if(request('typetransfer') == 'tour')
+            // {
+            //     $resp = $tour->_MakeDirectTour(request()->all());
+            // }
+            // else 
+            if(request('typetransfer') == 4)
             {
                 $resp = $booking->SendCustomTrip(request()->all());
             }

@@ -13,6 +13,7 @@
         "pasajeros" => "Pax",
         "metodo-pago" => "Payment method",
         "efectivo" => "Cash",
+        "tarjeta" => "Card",
         "monto" => "Amount",
         "comentarios" => "Comments",
         "status-pay" => "Status pay"

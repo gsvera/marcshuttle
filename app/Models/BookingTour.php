@@ -20,7 +20,7 @@ class BookingTour extends Model
     protected $table = 'bookings_tour';
     public $timestamps = false;
 
-    public function SendBookingTour($data)
+    public function _MakeDirectTour($data)
     {
         $resp = new Respuesta;
         $tour = new Tour;
@@ -28,57 +28,57 @@ class BookingTour extends Model
         $utils = new Utils;
 
         try{
-            if($data['payMethod'] == "efectivo")
-            {
-                $response = Http::get('https://www.google.com/recaptcha/api/siteverify', [
-                    'secret' => $utils->GetRecaptchaSecret(),
-                    'response' => $data['g-recaptcha-response'] 
-                ]);
-                $body = json_decode($response->getBody());
-                
-                if (!$body->success){
-                    $resp->Error = true;
-                    $resp->Message = __('MotorBusqueda.recaptcha-requerido');
-                    return back()->with('messageError','El reCAPTCHA es inválido');
-                }
+            // if($data['payMethod'] == "efectivo")
+            // {
+            // }
+            $response = Http::get('https://www.google.com/recaptcha/api/siteverify', [
+                'secret' => env('GOOGLE_PRIVATE_KEY'),
+                'response' => $data['gRecaptchaResponse'] 
+            ]);
+
+            $body = json_decode($response->getBody());
+            
+            if (!$body->success){
+                $resp->Error = true;
+                $resp->Message = __('MotorBusqueda.recaptcha-requerido');
+                return $resp;
             }
-    
+
             $tour = $tour->GetTourById($data['idTour'])->data;
             $vehicle = $vehicle->GetVehicleById($data['idVehicle']);
 
-            $dataMessage = [
-                "payMethod" => $data['payMethod'],
-                "firstName" => $data['firstName'],
-                "lastName" => $data['lastName'],
-                "email" => $data['email'],
-                "phone" => $data['phone'],
-                "dateDeparture" => $data['dateDeparture'],
-                "hourDeparture" => $data['hourDeparture'],
-                "comments" => $data['comments'],
-                "payMethod" => $data['payMethod'],
-                "amount" => $data['totalAmount'],
-                "idTour" => $data['idTour'],
-                "idVehicle" => $data['idVehicle'],
-                "sillaBebe" => $data['sillaBebe'],
-                "host" => $data['urlWeb']
-            ];
+            // $dataMessage = [
+            //     "firstName" => $data['firstName'],
+            //     "lastName" => $data['lastName'],
+            //     "email" => $data['email'],
+            //     "phone" => $data['phone'],
+            //     "dateDeparture" => $data['dateDeparture'],
+            //     "hourDeparture" => $data['hourDeparture'],
+            //     "comments" => $data['comments'],
+            //     "payMethod" => $data['payMethod'],
+            //     "totalAmount" => $data['totalAmount'],
+            //     "idTour" => $data['idTour'],
+            //     "idVehicle" => $data['idVehicle'],
+            //     "sillaBebe" => $data['sillaBebe']
+            // ];
     
-            if($data['payMethod'] == 'card')
-            {
-                $dataMessage['orderId'] = $data['orderId'];
-            }
+            // if($data['payMethod'] == 'card')
+            // {
+            //     $dataMessage['orderId'] = $data['orderId'];
+            // }
     
-            $resp = $this->_SaveBookingtour($dataMessage);            
+            $resp = $this->_SaveBookingtour($data);            
     
             if($resp->Error == false)
             {
-                $copia = env('MAIL_USERNAME');
-                $email = $data['email'];
-                $subject = __('Tours.tour-reservado');
+                $this->_SendBookingTour($resp->data, 'paid');
+                // $copia = env('MAIL_USERNAME');
+                // $email = $data['email'];
+                // $subject = __('Tours.tour-reservado');
                 
-                Mail::send('emails.detailTour',['item'=>$dataMessage, 'tour'=>$tour, 'vehicle' => $vehicle, 'folio' => $resp->data],function($mensaje) use ($copia, $email, $subject){
-                    $mensaje->to([$copia, $email])->subject($subject);
-                });
+                // Mail::send('emails.detailTour',['item'=>$dataMessage, 'tour'=>$tour, 'vehicle' => $vehicle, 'folio' => $resp->data],function($mensaje) use ($copia, $email, $subject){
+                //     $mensaje->to([$copia, $email])->subject($subject);
+                // });
             }
         }
         catch(Exception $e)
@@ -133,7 +133,7 @@ class BookingTour extends Model
             $folio->save();
 
             $resp->Error = false;
-            // $resp->data = $folioBooking;
+            $resp->data = $bookingTour;
         }
         catch(Exception $e)
         {

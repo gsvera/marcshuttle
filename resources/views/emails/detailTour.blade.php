@@ -173,10 +173,10 @@ $total = Utils::asDollars($item['amount']);
                         <li>
                             <strong class="text-orange"><i class="fa fa-check text-orange" aria-hidden="true"></i> {{__('Email.metodo-pago')}}</strong>
                             <br>
-                            <div class="text-white strong" style="margin-left:10px;margin-top:5px;font-size:1.1em;">{{$item['payMethod']=='efectivo'?__('Email.efectivo'):'Card'}}</div>
+                            <div class="text-white strong" style="margin-left:10px;margin-top:5px;font-size:1.1em;">{{ $item['pay_method'] == 'efectivo' ? __('Email.efectivo') : __('Email.tarjeta') }}</div>
                         </li>
                         <br>
-                        @if($item['pay-method'] == 'card')
+                        @if($item['pay_method'] == 'card')
                             <li>
                                 <strong class="text-orange"><i class="fa fa-check text-orange" aria-hidden="true"></i> Order Id</strong>
                                 <br>

@@ -107,12 +107,9 @@
                         </div>
                     </div>
                     <div class="col-12 col-md-12 d-grid mt-5 mb-3">
-                        <!-- TEST -->
-                        <!-- <div class="g-recaptcha mb-3" data-sitekey="6LdCmI0lAAAAAMkIr0M4gm2aOhkngFTQ5CJhTRgI"></div> -->
-                        <div class="g-recaptcha mb-3" data-sitekey="6Le3mAEmAAAAALvwUCA4AT3LBsANxgWQuESx3Z8-"></div>
-                        <button id="btnBooking" onclick="SendBookingCash()" class="btn btn-naranja btn-lg" type="button">{{__('MotorBusqueda.boton-confirmar')}}</button>
+                        <div class="g-recaptcha mb-3" data-sitekey="{{env('GOOGLE_PUBLIC_KEY')}}"></div>
+                        <button id="btnBooking" class="btn btn-naranja btn-lg" type="button">{{__('MotorBusqueda.boton-confirmar')}}</button>
                         <button id="btnConekta" class="btn btn-lg btn-conekta d-none">{{__('MotorBusqueda.boton-conekta')}}</button>
-                        <!-- <div id="paypal-button-container" class="d-none"></div> -->
                     </div>
                     <div class="">
                         <button class="btn btn-sky btn-lg" type="button" onclick="PreviewStep()">{{__('MotorBusqueda.anterior')}}</button>
@@ -184,21 +181,8 @@
 
 @endsection
 @push('scripts')
-<script src="https://www.paypal.com/sdk/js?client-id={{env('PAYPAL_CLIENT_ID')}}&components=buttons,funding-eligibility&currency=MXN" data-namespace="paypal_sdk"></script>
-<script src="https://www.google.com/recaptcha/api.js"></script>
+    <script src="https://www.google.com/recaptcha/api.js"></script>
     <script type="text/javascript"> 
-    
-
-    function ejecutarFetch() {
-        fetch('/pruebapost', {
-            method: 'POST',
-            headers: headConexion
-        })
-        .then(resp => resp.json())
-        .then(resp => {
-            console.log(resp)
-        })
-    }
                     
         //  actualiza boton menu para el home
         document.getElementById('btbMenuBook').setAttribute('href', '/')
@@ -231,56 +215,52 @@
         iti.setCountry('MX')
 
         let totalPagar = 0;
-        var btnBooking = document.getElementById('btnBooking')
-        var formBooking = document.getElementById('formBooking')
-        var btnConekta = document.getElementById('btnConekta')
-        // var paypalButtonContainer = document.getElementById('paypal-button-container')
-        var methodcash = document.getElementById('methodcash')
-        var methodConekta = document.getElementById('methodConekta')
-        var step = document.querySelectorAll('.step')
-        var payMethod = document.getElementById('payMethod')
-        var gRecaptcha = document.querySelector('.g-recaptcha')
-        var inputOrderId = document.getElementById('orderId')
-        var idVehicle = document.getElementById('idVehicle')
-        var totalAmount = document.getElementById('totalAmount')
-        var countStep = 0
-        var urlWeb = window.location.origin
-        var switchShuttle = document.getElementById('switch-label')
-        var dateDeparture = document.getElementById('dateDeparture')    
-        var sillabebe = document.getElementById('sillaBebe')    
+        var btnBooking = document.getElementById('btnBooking');
+        var formBooking = document.getElementById('formBooking');
+        var btnConekta = document.getElementById('btnConekta');
+        var methodcash = document.getElementById('methodcash');
+        var methodConekta = document.getElementById('methodConekta');
+        var step = document.querySelectorAll('.step');
+        var payMethod = document.getElementById('payMethod');
+        var gRecaptcha = document.querySelector('.g-recaptcha');
+        var inputOrderId = document.getElementById('orderId');
+        var idVehicle = document.getElementById('idVehicle');
+        var totalAmount = document.getElementById('totalAmount');
+        var countStep = 0;
+        var urlWeb = window.location.origin;
+        var switchShuttle = document.getElementById('switch-label');
+        var dateDeparture = document.getElementById('dateDeparture'); 
+        var sillabebe = document.getElementById('sillaBebe');
 
-        $('#urlWeb').val(urlWeb)                
+        $('#urlWeb').val(urlWeb);
         var fulldate = new Date();
-        fulldate.setDate(fulldate.getDate() + 2)        
+        fulldate.setDate(fulldate.getDate() + 2);     
         var day = fulldate.getDate();
         var month = fulldate.getMonth() + 1
-        var year = fulldate.getFullYear()
-
+        var year = fulldate.getFullYear();
 
         if(day < 10)
-            day = '0'+day
+            day = '0'+day;
             
         if(month < 10)
-        {
-            month = '0'+month
-        }
+            month = '0'+month;
+        
+        var minDay = year+'-'+month+'-'+day;
 
-        var minDay = year+'-'+month+'-'+day
-
-        dateDeparture.setAttribute('min', minDay)
+        dateDeparture.setAttribute('min', minDay);
         
         function changeChairbaby(event)
         {
-            sillabebe.value = event.target.value
+            sillabebe.value = event.target.value;
         }
 
         function comprobarFecha(fecha)
         {
-            return Date.parse(fecha) < Date.parse(minDay)
+            return Date.parse(fecha) < Date.parse(minDay);
         }
 
         methodcash.addEventListener('change', e => {
-            e.preventDefault()
+            e.preventDefault();
 
             if(methodcash.checked)
             {
@@ -408,29 +388,16 @@
                 }
             }
         }
-        assingnementPrice()
+        
+        assingnementPrice();
 
-        @if(session('messageError'))
-                
-            console.log({{session('messageError')}}) 
-                
-        @endif
+        btnBooking.addEventListener('click', e => {
+            e.preventDefault();
+            btnBooking.setAttribute('disabled', true);
+            SendBookingCash();
+        })
 
-        function SendBookingCash(){
-            var recaptcha = $('#g-recaptcha-response').val()
-
-            if(recaptcha == '')
-            {
-                notification('error', '{{__('MotorBusqueda.recaptcha-requerido')}}')
-                return false;
-            }
-
-            btnBooking.setAttribute('disabled', true)
-
-            activeLoader('{{__('MotorBusqueda.registrando')}}...', '{{__('MotorBusqueda.enviando-correo')}}')
-
-            formBooking.submit()
-        }
+        
 
         btnConekta.addEventListener('click', e => {
             e.preventDefault();
@@ -438,9 +405,9 @@
             MakePayConekta();
         });
 
-        function MakePayConekta() {
-            var formData = new FormData(formBooking);
-            var objCustomer = {
+        // GENERA EL OBJETO DE RESERVACION
+        function makeObjReservation() {
+            return {
                 "firstName": $('#firstName').val(),
                 "lastName": $('#lastName').val(),
                 "email": $('#email').val(),
@@ -456,7 +423,41 @@
                 "hourDeparture": $('#hourDeparture').val(),
                 "comments": $('#comments').val()
             };
-            console.log(objCustomer)
+        }
+
+        function SendBookingCash(){
+            var recaptcha = $('#g-recaptcha-response').val()
+
+            if(recaptcha == '') {
+                notification('error', '{{__('MotorBusqueda.recaptcha-requerido')}}');
+                btnBooking.removeAttribute('disabled');
+                return false;
+            }
+
+            activeLoader('{{__('MotorBusqueda.registrando')}}...', '{{__('MotorBusqueda.enviando-correo')}}')
+
+            var objBooking = makeObjReservation();
+            objBooking.gRecaptchaResponse = recaptcha;
+
+            fetch('/make-reservation-tour', {
+                method: 'POST',
+                headers: headConexion,
+                body: JSON.stringify(objBooking)
+            })
+            .then(resp => resp.json())
+            .then(result => {
+                if(!result.Error) {
+                    var urlPath = '/gracias';
+                    if(result.data.lang == 'en')
+                        urlPath = '/en/thanks';
+
+                    window.location.href = `${urlPath}?folio=${result.data.folio}`
+                }
+            })
+        }
+
+        function MakePayConekta() {
+            var objCustomer = makeObjReservation();
             
             activeLoader(`{{__('Message.cargando')}}`, `{{__('Message.generar-link')}}`)
 
@@ -467,81 +468,10 @@
             })
             .then(resp => resp.json())
             .then(result => {
-                console.log(result)
                 if(!result.error) {
                     window.location.href = result.data.checkout.url;
                 }
             })
         }
-
-        /**
-         *  DEPRECIADO
-         */
-        //  FUNCIONES PARA PAYPAL
-
-        // window.paypal_sdk.Buttons({
-        //     fundingSource: window.paypal_sdk.FUNDING.CARD,
-        //     createOrder: function(data, actions) {
-        //         return actions.order.create({
-        //             application_context:{
-        //                 shipping_preference: "NO_SHIPPING"
-        //             },
-        //             payer:{
-        //                 email_address: $('#email').val(),
-        //                 name: {
-        //                     given_name: $('#firstName').val(),
-        //                     surname: $('#lastName').val(),
-        //                     phone: $('#phoneClient').val()
-        //                 },
-        //                 address: {
-        //                     country_code: "MX"
-        //                 }
-        //             },
-        //             purchase_units: [{
-        //                 amount: {
-        //                     "currency_code": "MXN",
-        //                     "value": totalPagar
-        //                 }
-        //             }],
-        //         });
-        //     },
-        //     onApprove: function(data, actions) {
-        //         console.log(data)
-        //         console.log(actions)
-        //         activeLoader('{{__('MotorBusqueda.registrando')}}', '{{__('MotorBusqueda.enviando-correo')}}')
-        //         var orderId = data.orderID
-        //         inputOrderId.value = orderId
-
-        //         return $.ajax({
-        //             url: '/checkout/api/paypal/order',
-        //             method: 'POST',
-        //             data: {
-        //                 _token: "{{ csrf_token() }}",
-        //                 orderId: orderId
-        //             },
-        //             success:function(data){
-                        
-        //                 console.log(data)
-        //                 if(data.error == false)
-        //                 {
-                            
-        //                     console.log(data.data.status) 
-        //                     if(data.data.status == 'APPROVED')
-        //                     {
-        //                         formBooking.submit()                                
-        //                     }
-        //                     else
-        //                         errorAlert("Error", '{{__('MotorBusqueda.ocurrio-error')}}')
-        //                 }
-        //                 else
-        //                     errorAlert("Error", '{{__('MotorBusqueda.ocurrio-error')}}')      
-        //             }
-        //         })
-        //     },
-        //     onError: function(error){
-        //         console.log(error)
-        //     }
-        // }).render('#paypal-button-container');
-        
     </script>
 @endpush
