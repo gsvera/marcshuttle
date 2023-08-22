@@ -54,13 +54,10 @@ class WebController extends Controller
     public function gracias()
     {
         $lang = App::getLocale();
-        $bookingTour = new BookingTour;
         try{
             
-            if(request('checkout_id') && request('order_id') && request('payment_status')) {
-                $resp = $bookingTour->_UpdateBookingByConektaData(request('checkout_id'), request('order_id'), request('payment_status'));
-
-                return view('web.thanks')->with('folio', $resp->data['folio']);
+            if(request('folio')) {
+                return view('web.thanks')->with('folio', request('folio'));
             }
             else {
                 if($lang == 'es')

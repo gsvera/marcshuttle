@@ -72,50 +72,21 @@ class ConektaController extends Controller
     }
 
     public function ResponseConekta() 
-    {
-        
-        $resp = new Respuesta;        
+    {        
+        $resp = new Respuesta;
+        $bookingTour = new BookingTour;
         try {
             $resp = $bookingTour->_UpdateBookingByConektaData(request('checkout_id'), request('order_id'), request('payment_status'));
 
             if($resp->data["statusPay"] != -1)
             {                
-                return redirect()->route('es-gracias', [
-                    'folio' => $resp->data['folio'],
-                    "id" => $resp->data["idBookingTour"],
-                    "typeBooking" => "tour"
-                ]);
+                return redirect()->route('es-gracias', ['folio' => $resp->data['folio']]);
             }
             else{
                 return view('web.error');
             }
         } catch(Exception $e) {
             return view('web.error');
-        }
-    }
-
-
-    // FUNCTION DEPRECADO 
-    public function ProcesarPago() 
-    {
-        Conekta::setApiKey(env('CONEKTA_SECRET_KEY'));
-
-        try {
-            $charge = \Conekta\Charge::create([
-                'amount' => 20000, // Monto en centavos
-                'currency' => 'MXN',
-                'description' => 'Compra en línea',
-                'reference_id' => 'orden_12345',
-                'card' => request('conektaTokenId'), // Token generado por Conekta.js
-                'details' => [
-                    'name' => request('nombre'),
-                    'email' => request('email'),
-                ]
-            ]);
-
-            return response()->json($charge);
-        } catch(Exception $e) {
-
         }
     }
 }
