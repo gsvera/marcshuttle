@@ -7,6 +7,7 @@ use App\Http\Controllers\MotorBusquedaController;
 use App\Http\Controllers\PaypalController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\ConektaController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -22,6 +23,8 @@ use App\Http\Controllers\AdminController;
     RUTAS PARA PAGINA WEB EN ESPAÑOL
 */
 
+Route::get('/conekta', [ConektaController::class, 'CreateCustomerConekta']);
+
 Route::get('/', function () {
     return view('web.index')->with('lang', App::getLocale())->with('sesion', request()->session()->get('lang'));
 });
@@ -31,10 +34,15 @@ Route::get('/transporte-cancun-bacalar', [WebController::class, 'bacalar']);
 Route::get('/tours-quintanaroo', [WebController::class, 'tours']);
 Route::get('/tours/{tour}/{id}', [MotorBusquedaController::class, 'cotizarTour']);
 Route::get('/detalle-de-viaje', [MotorBusquedaController::class, 'detailTrip']);
-Route::post('/gracias', [MotorBusquedaController::class, "BookingTransfer"]);
-Route::get('/gracias', function(){
-    return redirect('/');
-});
+// Route::post('/gracias', [MotorBusquedaController::class, "BookingTransfer"])->name('es-gracias');
+Route::get('/gracias', [WebController::class, 'gracias'])->name('es-gracias');
+
+/*
+    RUTAS CONEKTA
+*/
+
+Route::post('/conekta-tour', [ConektaController::class, 'MakePayByTour']);
+Route::get('/response-conekta/tour', [ConektaController::class, 'ResponseConekta']);
 
 /* 
     RUTAS PARA PAGINA WEB EN INGLES

@@ -43,6 +43,7 @@ return [
     "info-vuelo" => "información de vuelo",
     "metodo-pago" => "Método de pago",
     "boton-confirmar" => "Confirmar reserva",
+    "boton-conekta" => "Pago con Conekta",
     "uno-siete" => "1 a 7 pasajeros",
     "ocho-diez" => "8 a 10 pasajeros",
     "de" => "De",

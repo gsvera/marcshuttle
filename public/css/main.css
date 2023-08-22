@@ -1,6 +1,7 @@
 :root{
     --c-blue: #1346A8;
     --blue-strong:#17223A;
+    --purple-conekta: #211C43;
     --c-orange:#FE7A30;
     --c-gray: #FFFFFF33;
     --c-silver: #788399;
@@ -513,6 +514,17 @@ body{
     font-weight: bold;
     position: relative;
     animation: btnFlotante 3s infinite;
+}
+.btn-conekta {
+    background-color: var(--purple-conekta);
+    color: white;
+    font-weight: bold;
+}
+.btn-conekta:hover {
+    background-color: var(--purple-conekta);
+    color: white;
+    position: relative;
+    animation: btnFlotante 3s infinite;   
 }
 .btn-orange{
     background-color: var(--c-orange);

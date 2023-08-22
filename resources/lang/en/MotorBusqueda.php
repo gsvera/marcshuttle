@@ -43,6 +43,7 @@ return [
     "info-vuelo" => "Info flight",
     "metodo-pago" => "Payment methods",
     "boton-confirmar" => "Booking confirm",
+    "boton-conekta" => "Pay Conekta",
     "uno-siete" => "1 to 7 pax",
     "ocho-diez" => "8 to 10 pax",
     "de" => "From",

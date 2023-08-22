@@ -50,4 +50,23 @@ class WebController extends Controller
     {
         return view('web.tours');
     }
+    public function gracias()
+    {
+        $lang = App::getLocale();
+
+        if(request('folio'))
+        {
+            return view('web.thanks')->with('folio', request('folio'));
+        }
+        else {
+            if($lang == 'es')
+            {
+                return redirect('/');
+            }
+            else
+            {
+                return redirect('/en');
+            }
+        }
+    }
 }

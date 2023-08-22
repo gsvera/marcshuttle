@@ -11,6 +11,7 @@ use App\Models\Tour;
 use App\Models\Utils;
 use App\Models\Vehicle;
 use App\Models\Folio;
+use App;
 
 class BookingTour extends Model
 {
@@ -62,12 +63,12 @@ class BookingTour extends Model
                 "host" => $data['urlWeb']
             ];
     
-            if($data['payMethod'] == 'paypal')
+            if($data['payMethod'] == 'card')
             {
                 $dataMessage['orderId'] = $data['orderId'];
             }
     
-            $resp = $this->SaveBookingtour($dataMessage);            
+            $resp = $this->_SaveBookingtour($dataMessage);            
     
             if($resp->Error == false)
             {
@@ -88,13 +89,15 @@ class BookingTour extends Model
         return $resp;
     }
 
-    public function SaveBookingtour($data)
+    public function _SaveBookingtour($data)
     {
         $resp = new Respuesta;
         $folio = new Folio;
         $bookingTour = new BookingTour;
 
         try{
+            $lang = App::getLocale();
+
             $folio = $folio->_GetFolioTour();
             $folioBooking = $folio->folio .''.$folio->count;
 
@@ -107,24 +110,30 @@ class BookingTour extends Model
             $bookingTour->departure_time = $data['hourDeparture'];
             $bookingTour->comments = $data['comments'];
             $bookingTour->pay_method = $data['payMethod'];
-            $bookingTour->amount = $data['amount'];
+            $bookingTour->amount = $data['totalAmount'];
             $bookingTour->id_tour = $data['idTour'];
             $bookingTour->id_vehicle = $data['idVehicle'];
             $bookingTour->silla_bebe = $data['sillaBebe'];
+            $bookingTour->lang = $lang;
 
-            if($data['payMethod'] == "paypal")
+            if($data['payMethod'] == "card")
             {
-                $bookingTour->paypal_order = $data['orderId'];
+                $bookingTour->order_id = $data['orderId'];
+                $bookingTour->checkout_id = $data['checkoutId'];
+                $bookingTour->status_pay = 0;
+            }
+            else 
+            {
+                $bookingTour->status_pay = 1;
             }
 
             $bookingTour->save();
-
             
             $folio->count = $folio->count + 1;
             $folio->save();
 
             $resp->Error = false;
-            $resp->data = $folioBooking;
+            // $resp->data = $folioBooking;
         }
         catch(Exception $e)
         {
@@ -132,6 +141,74 @@ class BookingTour extends Model
             $resp->Message = $e->getMessage();
         }
 
+        return $resp;
+    }
+    public function _UpdateBookingByConektaData($checkoutId, $orderId, $statusPay)
+    {
+        $resp = new Respuesta;
+        try{
+            $booking = $this->where('order_id',$orderId)->where('checkout_id', $checkoutId)->first();
+            // SIGNIFICADO DEL STATUS DE PAGO: 1 => PAGADO, 2 => PAGO PENDIENTE, -1 => ERROR EN PAGO, 0 => PENDIETE
+            switch($statusPay) {
+                case 'paid':
+                    $booking->status_pay = 1;
+                    break;
+                case 'pending_payment':
+                    $booking->status_pay = 2;
+                    break;
+                case 'error':
+                    $booking->status_pay = -1;
+                    break;
+            }
+            $booking->save();
+            $datos = [
+                "lang" => $booking->lang,
+                "statusPay" => $booking->status_pay,
+                "folio" => $booking->folio
+            ];
+
+            if($statusPay != -1)
+            {
+                // $this->_SendBookingTour($booking, $statusPay);
+            }
+
+            $resp->data = $datos;
+
+        } catch(Exception $e) {
+            $resp->Error = true;
+            $resp->Message = $e->getMessage();
+        }
+
+        return $resp;
+    }
+
+    public function _SendBookingTour($booking, $statusPay) {
+        $resp = new Respuesta;
+        $tour = new Tour;
+        $vehicle = new Vehicle;
+        
+        try{
+            $tour = $tour->GetTourById($booking->id_tour)->data;
+            $vehicle = $vehicle->GetVehicleById($booking->id_vehicle);
+
+            $copia = env('MAIL_USERNAME');
+            $email = $booking->email;
+            $subject = __('Tours.tour-reservado');
+            
+            Mail::send('emails.detailTour', 
+                [
+                    'item'=>$booking,
+                    'tour'=>$tour, 
+                    'vehicle' => $vehicle,
+                    'folio' => $booking->folio
+                ], function($mensaje) use ($copia, $email, $subject) {
+                    $mensaje->to([$copia, $email])->subject($subject);
+                }
+            );
+        } catch(Exception $e) {
+            $resp->Error = true;
+            $resp->Message = $e->getMessage();
+        }
         return $resp;
     }
 }

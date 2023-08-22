@@ -30,8 +30,7 @@
 <div class="section">
     <div class="row m-0 px-4">
         <div class="col-12 col-md-7">
-            <form id="formBooking" class="container" method="POST" action="{{url($prefijo.__('Home.gracias-url'))}}">
-                {{@csrf_field()}}
+            <form id="formBooking" class="container">
                 <p class="font-weight-bold text-justify">{{__('MotorBusqueda.texto-formulario')}}</p>
                 <div class="my-3 box-shadow-info step">
                     <h3 class="font-weight-bold fsize-mds text-blue">{{__('MotorBusqueda.datos-personales')}}</h3>                    
@@ -98,13 +97,13 @@
                 <div class="my-3 box-shadow-info step d-none">
                     <h3 class="font-weight-bold fsize-mds text-blue">{{__('MotorBusqueda.metodo-pago')}}</h3>                    
                     <div class="row">
-                        <div class="col-md-6">
+                        <div class="col-md-6" style="display:flex; align-items:center;">
                             <input type="radio" name="payment_type" id="methodcash" value="efectivo" checked>
                             <label for="methodcash"><img src="/img/icons/cash.png" style="width:200px;" alt="Cash"></label>
                         </div>
                         <div class="col-md-6">
-                            <input type="radio" name="payment_type" id="methodpaypal" value="paypal">
-                            <label for="methodpaypal"><img src="/img/icons/paypal.png" style="width:200px;" alt="paypal"></label>
+                            <input type="radio" name="payment_type" id="methodConekta" value="card">
+                            <label for="methodConekta"><img src="/img/icons/conekta-visa.webp" style="width:200px;" alt="Conekta"></label>
                         </div>
                     </div>
                     <div class="col-12 col-md-12 d-grid mt-5 mb-3">
@@ -112,7 +111,8 @@
                         <!-- <div class="g-recaptcha mb-3" data-sitekey="6LdCmI0lAAAAAMkIr0M4gm2aOhkngFTQ5CJhTRgI"></div> -->
                         <div class="g-recaptcha mb-3" data-sitekey="6Le3mAEmAAAAALvwUCA4AT3LBsANxgWQuESx3Z8-"></div>
                         <button id="btnBooking" onclick="SendBookingCash()" class="btn btn-naranja btn-lg" type="button">{{__('MotorBusqueda.boton-confirmar')}}</button>
-                        <div id="paypal-button-container" class="d-none"></div>
+                        <button id="btnConekta" class="btn btn-lg btn-conekta d-none">{{__('MotorBusqueda.boton-conekta')}}</button>
+                        <!-- <div id="paypal-button-container" class="d-none"></div> -->
                     </div>
                     <div class="">
                         <button class="btn btn-sky btn-lg" type="button" onclick="PreviewStep()">{{__('MotorBusqueda.anterior')}}</button>
@@ -181,12 +181,24 @@
         </div>
     </div>
 </div>
+
 @endsection
 @push('scripts')
 <script src="https://www.paypal.com/sdk/js?client-id={{env('PAYPAL_CLIENT_ID')}}&components=buttons,funding-eligibility&currency=MXN" data-namespace="paypal_sdk"></script>
 <script src="https://www.google.com/recaptcha/api.js"></script>
-</script>
     <script type="text/javascript"> 
+    
+
+    function ejecutarFetch() {
+        fetch('/pruebapost', {
+            method: 'POST',
+            headers: headConexion
+        })
+        .then(resp => resp.json())
+        .then(resp => {
+            console.log(resp)
+        })
+    }
                     
         //  actualiza boton menu para el home
         document.getElementById('btbMenuBook').setAttribute('href', '/')
@@ -221,9 +233,10 @@
         let totalPagar = 0;
         var btnBooking = document.getElementById('btnBooking')
         var formBooking = document.getElementById('formBooking')
-        var paypalButtonContainer = document.getElementById('paypal-button-container')
+        var btnConekta = document.getElementById('btnConekta')
+        // var paypalButtonContainer = document.getElementById('paypal-button-container')
         var methodcash = document.getElementById('methodcash')
-        var methodpaypal = document.getElementById('methodpaypal')        
+        var methodConekta = document.getElementById('methodConekta')
         var step = document.querySelectorAll('.step')
         var payMethod = document.getElementById('payMethod')
         var gRecaptcha = document.querySelector('.g-recaptcha')
@@ -273,22 +286,22 @@
             {
                 blockschecks(false)
                 btnBooking.classList.remove('d-none')
-                paypalButtonContainer.classList.add('d-none')
+                btnConekta.classList.add('d-none')
                 payMethod.value = 'efectivo'
                 gRecaptcha.classList.remove('d-none')
             }
         })
 
-        methodpaypal.addEventListener('change', e => {
+        methodConekta.addEventListener('change', e => {
             e.preventDefault()
 
-            if(methodpaypal.checked)
+            if(methodConekta.checked)
             {
                 
                 blockschecks(true)
                 btnBooking.classList.add('d-none')
-                paypalButtonContainer.classList.remove('d-none')
-                payMethod.value = 'paypal'
+                btnConekta.classList.remove('d-none')
+                payMethod.value = 'card'
                 gRecaptcha.classList.add('d-none')
             }
         })
@@ -341,15 +354,13 @@
                 notification("warning", '{{__('MotorBusqueda.campos-obligatorios')}}')
             }
         }
-        function PreviewStep()
-        {
+        function PreviewStep() {
             step[countStep].classList.add('d-none')
             step[countStep - 1].classList.remove('d-none')
             countStep--
         }
 
-        function ValidInput(position)
-        {
+        function ValidInput(position) {
             var inputs = step[position].querySelectorAll('.required')
             
             for(i = 0; i < inputs.length; i++)
@@ -360,10 +371,7 @@
             return true
         }
 
-        function selectShuttle(obj,event)
-        {
-            // console.log(obj)
-            // console.log(event)
+        function selectShuttle(obj,event) {
             var parent = event.target.parentNode;
             var checkCurrent = document.querySelector('.option-vehicle-cheked')
             var imgShuttle = document.querySelectorAll('.img-shuttle')
@@ -424,71 +432,116 @@
             formBooking.submit()
         }
 
+        btnConekta.addEventListener('click', e => {
+            e.preventDefault();
+            btnConekta.setAttribute('disabled', true)
+            MakePayConekta();
+        });
+
+        function MakePayConekta() {
+            var formData = new FormData(formBooking);
+            var objCustomer = {
+                "firstName": $('#firstName').val(),
+                "lastName": $('#lastName').val(),
+                "email": $('#email').val(),
+                "totalAmount": $('#totalAmount').val(),
+                "idTour": $('#idTour').val(),
+                "urlWeb": $('#urlWeb').val(),
+                "payMethod": $('#payMethod').val(),
+                "typetransfer": $('#typetransfer').val(),
+                "idVehicle": $('#idVehicle').val(),
+                "sillaBebe": $('#sillaBebe').val(),
+                "phone": $('#phone').val(),
+                "dateDeparture": $('#dateDeparture').val(),
+                "hourDeparture": $('#hourDeparture').val(),
+                "comments": $('#comments').val()
+            };
+            console.log(objCustomer)
+            
+            activeLoader(`{{__('Message.cargando')}}`, `{{__('Message.generar-link')}}`)
+
+            fetch('/conekta-tour', {
+                method: 'POST',
+                headers: headConexion,
+                body: JSON.stringify(objCustomer)
+            })
+            .then(resp => resp.json())
+            .then(result => {
+                console.log(result)
+                if(!result.error) {
+                    window.location.href = result.data.checkout.url;
+                }
+            })
+        }
+
+        /**
+         *  DEPRECIADO
+         */
         //  FUNCIONES PARA PAYPAL
 
-        window.paypal_sdk.Buttons({
-            fundingSource: window.paypal_sdk.FUNDING.CARD,
-            createOrder: function(data, actions) {
-                return actions.order.create({
-                    application_context:{
-                        shipping_preference: "NO_SHIPPING"
-                    },
-                    payer:{
-                        email_address: $('#email').val(),
-                        name: {
-                            given_name: $('#firstName').val(),
-                            surname: $('#lastName').val(),
-                            phone: $('#phoneClient').val()
-                        },
-                        address: {
-                            country_code: "MX"
-                        }
-                    },
-                    purchase_units: [{
-                        amount: {
-                            "currency_code": "MXN",
-                            "value": totalPagar
-                        }
-                    }],
-                });
-            },
-            onApprove: function(data, actions) {
-                console.log(data)
-                console.log(actions)
-                activeLoader('{{__('MotorBusqueda.registrando')}}', '{{__('MotorBusqueda.enviando-correo')}}')
-                var orderId = data.orderID
-                inputOrderId.value = orderId
+        // window.paypal_sdk.Buttons({
+        //     fundingSource: window.paypal_sdk.FUNDING.CARD,
+        //     createOrder: function(data, actions) {
+        //         return actions.order.create({
+        //             application_context:{
+        //                 shipping_preference: "NO_SHIPPING"
+        //             },
+        //             payer:{
+        //                 email_address: $('#email').val(),
+        //                 name: {
+        //                     given_name: $('#firstName').val(),
+        //                     surname: $('#lastName').val(),
+        //                     phone: $('#phoneClient').val()
+        //                 },
+        //                 address: {
+        //                     country_code: "MX"
+        //                 }
+        //             },
+        //             purchase_units: [{
+        //                 amount: {
+        //                     "currency_code": "MXN",
+        //                     "value": totalPagar
+        //                 }
+        //             }],
+        //         });
+        //     },
+        //     onApprove: function(data, actions) {
+        //         console.log(data)
+        //         console.log(actions)
+        //         activeLoader('{{__('MotorBusqueda.registrando')}}', '{{__('MotorBusqueda.enviando-correo')}}')
+        //         var orderId = data.orderID
+        //         inputOrderId.value = orderId
 
-                return $.ajax({
-                    url: '/checkout/api/paypal/order',
-                    method: 'POST',
-                    data: {
-                        _token: "{{ csrf_token() }}",
-                        orderId: orderId
-                    },
-                    success:function(data){
+        //         return $.ajax({
+        //             url: '/checkout/api/paypal/order',
+        //             method: 'POST',
+        //             data: {
+        //                 _token: "{{ csrf_token() }}",
+        //                 orderId: orderId
+        //             },
+        //             success:function(data){
                         
-                        console.log(data)
-                        if(data.error == false)
-                        {
+        //                 console.log(data)
+        //                 if(data.error == false)
+        //                 {
                             
-                            console.log(data.data.status) 
-                            if(data.data.status == 'APPROVED')
-                            {
-                                formBooking.submit()                                
-                            }
-                            else
-                                errorAlert("Error", '{{__('MotorBusqueda.ocurrio-error')}}')
-                        }
-                        else
-                            errorAlert("Error", '{{__('MotorBusqueda.ocurrio-error')}}')      
-                    }
-                })
-            },
-            onError: function(error){
-                console.log(error)
-            }
-        }).render('#paypal-button-container');
+        //                     console.log(data.data.status) 
+        //                     if(data.data.status == 'APPROVED')
+        //                     {
+        //                         formBooking.submit()                                
+        //                     }
+        //                     else
+        //                         errorAlert("Error", '{{__('MotorBusqueda.ocurrio-error')}}')
+        //                 }
+        //                 else
+        //                     errorAlert("Error", '{{__('MotorBusqueda.ocurrio-error')}}')      
+        //             }
+        //         })
+        //     },
+        //     onError: function(error){
+        //         console.log(error)
+        //     }
+        // }).render('#paypal-button-container');
         
     </script>
 @endpush
