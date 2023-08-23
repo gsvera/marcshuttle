@@ -94,7 +94,7 @@ class MotorBusquedaController extends Controller
                 $resp = $booking->SendCustomTrip(request()->all());
             }
             else{
-                $resp = $booking->SendOneWay(request()->all());
+                // $resp = $booking->SendOneWay(request()->all());
             }
 
             if($resp->Error == false)

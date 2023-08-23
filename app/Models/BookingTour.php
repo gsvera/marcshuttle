@@ -165,7 +165,6 @@ class BookingTour extends Model
                 "lang" => $booking->lang,
                 "statusPay" => $booking->status_pay,
                 "folio" => $booking->folio
-                // "idBookingTour" => $booking->id
             ];
 
             if($booking->status_pay != -1 && $booking->email_confirm == 0)

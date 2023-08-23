@@ -45,7 +45,9 @@ Route::post('/make-reservation-tour', [MotorBusquedaController::class, 'MakeBook
     RUTAS CONEKTA
 */
 Route::post('/conekta-tour', [ConektaController::class, 'MakePayByTour']);
-Route::get('/response-conekta/tour', [ConektaController::class, 'ResponseConekta']);
+Route::post('/conekta-transfer', [ConektaController::class, 'MakePayByTransfer']);
+Route::get('/response-conekta/tour', [ConektaController::class, 'ResponseConektaTour']);
+Route::get('/response-conekta/transfer', [ConektaController::class, 'ResposeConektaTransfer']);
 Route::get('/response-conekta-error', [ConektaController::class, 'ErrorResponse']);
 
 /* 

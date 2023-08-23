@@ -36,4 +36,8 @@ class Destination extends Model
         }
         return $destination;
     }
+    public function _GetDestinationById($id)
+    {
+        return $this->find($id);
+    }
 }

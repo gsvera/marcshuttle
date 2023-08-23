@@ -40,7 +40,6 @@
                     <input type="hidden" name="totalAmount" id="totalAmount">
                     <input type="hidden" name="idTour" id="idTour" value="{{$idSelected}}">
                     <input type="hidden" name="idVehicle" id="idVehicle">
-                    <input type="hidden" name="orderId" id="orderId">
                     <input type="hidden" id="sillaBebe" value="0">
                     <div class="form-group mb-3">
                         <label for="fristName" class="font-weight-bold fsize-sm text-gray">{{__('MotorBusqueda.nombres')}} <span class="text-danger font-weight-bold">*</span></label>
@@ -401,7 +400,7 @@
 
         btnConekta.addEventListener('click', e => {
             e.preventDefault();
-            btnConekta.setAttribute('disabled', true)
+            btnConekta.setAttribute('disabled', true);
             MakePayConekta();
         });
 

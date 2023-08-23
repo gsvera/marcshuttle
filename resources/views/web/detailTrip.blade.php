@@ -115,11 +115,9 @@ $total = Utils::asDollars($amount);
 <div class="section">
     <div class="row m-0 px-4">
         <div class="col-12 col-md-7">
-            <form class="container" id="formBooking" method="POST" action="{{url($prefijo.__('Home.gracias-url'))}}">
-                {{@csrf_field()}}
+            <div class="container" id="formBooking">                
                 <p class="font-weight-bold text-justify">{{__('Motorbusqueda.texto-formulario')}}</p>
-                <input type="hidden" id="typetransfer" name="typetransfer" value="{{$typetransfer}}">
-                <input type="hidden" name="orderId" id="orderId">
+                <input type="hidden" id="typetransfer" name="typetransfer" value="{{$typetransfer}}">                
                 <input type="hidden" name="pax" id="pax" value={{$pax}}>
                 <input type="hidden" name="nameZone" id="nameZone" value="{{$objDestination->name}}">
                 <input type="hidden" name="idZone" id="idZone" value="{{$objDestination->id}}">
@@ -191,12 +189,6 @@ $total = Utils::asDollars($amount);
                             <button type="button" class="btn btn-orange btn-lg" onclick="NextStep()">{{__('MotorBusqueda.siguiente')}}</button>
                         </div>
                     </div>
-                    <!-- <div class="my-3 box-shadow-info">
-                        <h3 class="font-weight-bold fsize-mds text-blue">{{__('MotorBusqueda.destino-label')}}</h3>
-                        <p><span class="font-weight-bold text-gray">{{__('MotorBusqueda.zona')}}:</span> <span class="font-weight-bold">{{$objDestination->name}}</span></p>
-                        <P><span class="font-weight-bold text-gray">{{__('MotorBusqueda.destino')}}:</span> <span class="font-weight-bold">{{$destination}}</span></P>
-                        <P><span class="font-weight-bold text-gray">{{__('MotorBusqueda.pasajeros')}}:</span> <span class="font-weight-bold">{{$pax}}</span></P>
-                    </div> -->
                 @endif
                 @if($typetransfer == 2 || $typetransfer == 3)
                     <div class="my-3 box-shadow-info step d-none">
@@ -222,27 +214,25 @@ $total = Utils::asDollars($amount);
                 <div class="my-3 box-shadow-info step d-none">
                     <h3 class="font-weight-bold fsize-mds text-blue">{{__('MotorBusqueda.metodo-pago')}}</h3>                    
                     <div class="row">
-                        <div class="col-md-6">
+                        <div class="col-md-6" style="display:flex; align-items:center;">
                             <input type="radio" name="payment_type" id="methodcash" value="efectivo" checked>
                             <label for="methodcash"><img src="/img/icons/cash.png" style="width:200px;" alt="Cash"></label>
                         </div>
                         <div class="col-md-6">
-                            <input type="radio" name="payment_type" id="methodpaypal" value="paypal">
-                            <label for="methodpaypal"><img src="/img/icons/paypal.png" style="width:200px;" alt="paypal"></label>
+                            <input type="radio" name="payment_type" id="methodpaypal" value="card">
+                            <label for="methodpaypal"><img src="/img/icons/conekta-visa.webp" style="width:200px;" alt="Conekta"></label>
                         </div>
                     </div>
                     <div class="col-12 col-md-12 d-grid mt-5 mb-3">
-                        <!-- TEST -->
-                        <!-- <div class="g-recaptcha mb-3" data-sitekey="6LdCmI0lAAAAAMkIr0M4gm2aOhkngFTQ5CJhTRgI"></div> -->
-                        <div class="g-recaptcha mb-3" data-sitekey="6Le3mAEmAAAAALvwUCA4AT3LBsANxgWQuESx3Z8-"></div>
+                        <div class="g-recaptcha mb-3" data-sitekey="{{env('GOOGLE_PUBLIC_KEY')}}"></div>
                         <button id="btnBooking" onclick="SendBookingCash()" class="btn btn-naranja btn-lg" type="button">{{__('MotorBusqueda.boton-confirmar')}}</button>
-                        <div id="paypal-button-container" class="d-none"></div>
+                        <button id="btnConekta" class="btn btn-lg btn-conekta d-none">{{__('MotorBusqueda.boton-conekta')}}</button>
                     </div>
                     <div class="">
                         <button class="btn btn-sky btn-lg" type="button" onclick="PreviewStep()">{{__('MotorBusqueda.anterior')}}</button>
                     </div>
                 </div>
-            </form>
+            </div>
         </div>
         <div class="col-12 col-md-5">
             <div class="box-shadow-info">
@@ -296,9 +286,7 @@ $total = Utils::asDollars($amount);
                     <li>
                         <i class="fa fa-check-square-o text-orange" aria-hidden="true"></i> {{__('MotorBusqueda.incluido-siete')}}
                     </li>
-                </ul>
-                
-
+                </ul>                
                 <p><span class="font-weight-bold text-blue fsize-mds">Total:</span> <span class="font-weight-bold text-orange fsize-mds">{{$total}} MXN</span> </p>
             </div>    
         </div>
@@ -306,7 +294,6 @@ $total = Utils::asDollars($amount);
 </div>
 @endsection
 @push('scripts')
-    <script src="https://www.paypal.com/sdk/js?client-id={{env('PAYPAL_CLIENT_ID')}}&components=buttons,funding-eligibility&currency=MXN" data-namespace="paypal_sdk"></script>
     <script src="https://www.google.com/recaptcha/api.js"></script>
     <script type="text/javascript">
 
@@ -314,8 +301,9 @@ $total = Utils::asDollars($amount);
         document.getElementById('btbMenuBook').setAttribute('href', '/')
 
         var btnBooking = document.getElementById('btnBooking')
-        var formBooking = document.getElementById('formBooking')
-        var paypalButtonContainer = document.getElementById('paypal-button-container')
+        
+        // var paypalButtonContainer = document.getElementById('paypal-button-container')
+        var btnConekta = document.getElementById('btnConekta');
         var methodcash = document.getElementById('methodcash')
         var methodpaypal = document.getElementById('methodpaypal')        
         var step = document.querySelectorAll('.step')
@@ -395,7 +383,7 @@ $total = Utils::asDollars($amount);
             if(methodcash.checked)
             {
                 btnBooking.classList.remove('d-none')
-                paypalButtonContainer.classList.add('d-none')
+                btnConekta.classList.add('d-none')
                 payMethod.value = 'efectivo'
                 gRecaptcha.classList.remove('d-none')
             }
@@ -407,8 +395,8 @@ $total = Utils::asDollars($amount);
             if(methodpaypal.checked)
             {
                 btnBooking.classList.add('d-none')
-                paypalButtonContainer.classList.remove('d-none')
-                payMethod.value = 'paypal'
+                btnConekta.classList.remove('d-none')
+                payMethod.value = 'card'
                 gRecaptcha.classList.add('d-none')
             }
         })
@@ -440,7 +428,7 @@ $total = Utils::asDollars($amount);
                     }
                 @endif
 
-                @if($typetransfer == 2 || $typetransfer == 3)       
+                @if($typetransfer == 2 || $typetransfer == 3)
                     var dateDeparture = document.getElementById('dateDeparture')
                     if(comprobarFecha(dateDeparture.value))
                     {
@@ -480,6 +468,63 @@ $total = Utils::asDollars($amount);
             return true
         }
 
+        btnConekta.addEventListener('click', e => {
+            e.preventDefault();
+            btnConekta.setAttribute('disabled', true);
+            MakePayConekta();
+        });
+
+        function makeObjReservation() {
+            return {
+                @if($typetransfer == 1 || $typetransfer == 3)   
+                    "dateArrival": $('#dateArrival').val(),
+                    "hourArrival": $('#hourArrival').val(),
+                    "infoArrival": $('#infoArrival').val(),
+                @endif
+                @if($typetransfer == 2 || $typetransfer == 3)
+                    "dateDeparture": $('#dateDeparture').val(),
+                    "hourDeparture": $('#hourDeparture').val(),
+                    "infoDeparture": $('#infoDeparture').val(),
+                @endif
+                @if($typetransfer == 1 || $typetransfer == 3)
+                    "destination": $('#destination').val(),    
+                @endif
+                @if($typetransfer == 2)
+                    "origin": $('#origin').val(),
+                @endif
+                "typetransfer": $('#typetransfer').val(),
+                "pax": $('#pax').val(),
+                "nameZone": $('#nameZone').val(),
+                "idZone": $('#idZone').val(),
+                "urlWeb": $('#urlWeb').val(),
+                "payMethod": $('#payMethod').val(),
+                "amount": $('#amount').val(),
+                "sillaBebe": $('#sillaBebe').val(),
+                "firstName": $('#firstName').val(),
+                "lastName": $('#lastName').val(),
+                "email": $('#email').val(),
+                "phone": $('#phoneClient').val(),
+                "comments": $('#comments').val()
+            }
+        }
+
+        function MakePayConekta() {
+            activeLoader(`{{__('Message.cargando')}}`, `{{__('Message.generar-link')}}`);
+
+            fetch('/conekta-transfer', {
+                method: 'POST',
+                headers: headConexion,
+                body: JSON.stringify(makeObjReservation())
+            })
+            .then(resp => resp.json())
+            .then(res => {
+                console.log(res)
+                if(!res.error) {
+                    window.location.href = res.data.checkout.url;
+                }
+            })
+        }
+
         function SendBookingCash()
         {
             var recaptcha = $('#g-recaptcha-response').val()
@@ -494,74 +539,8 @@ $total = Utils::asDollars($amount);
 
             activeLoader('{{__('MotorBusqueda.registrando')}}...', '{{__('MotorBusqueda.enviando-correo')}}')
 
-            formBooking.submit()
+            // formBooking.submit()
         }        
-        
-//  FUNCIONES PARA PAYPAL
-
-        window.paypal_sdk.Buttons({
-            fundingSource: window.paypal_sdk.FUNDING.CARD,
-            createOrder: function(data, actions) {
-                return actions.order.create({
-                    application_context:{
-                        shipping_preference: "NO_SHIPPING"
-                    },
-                    payer:{
-                        email_address: $('#email').val(),
-                        name: {
-                            given_name: $('#firstName').val(),
-                            surname: $('#lastName').val(),
-                            phone: $('#phoneClient').val()
-                        },
-                        address: {
-                            country_code: "MX"
-                        }
-                    },
-                    purchase_units: [{
-                        amount: {
-                            "currency_code": "MXN",
-                            "value": {{$amount}}
-                        }
-                    }],
-                });
-            },
-            onApprove: function(data, actions) {
-                console.log(data)
-                console.log(actions)
-                activeLoader('{{__('MotorBusqueda.registrando')}}', '{{__('MotorBusqueda.enviando-correo')}}')
-                var orderId = data.orderID
-                inputOrderId.value = orderId
-
-                return $.ajax({
-                    url: '/checkout/api/paypal/order/',
-                    method: 'POST',
-                    data: {
-                        _token: "{{ csrf_token() }}",
-                        orderId: orderId
-                    },
-                    success:function(data){
-                        
-                        // console.log(data)
-                        if(data.error == false)
-                        {
-                            // console.log(data.data.status) 
-                            if(data.data.status == 'APPROVED')
-                            {
-                                formBooking.submit()                                
-                            }
-                            else
-                                errorAlert("Error", '{{__('MotorBusqueda.ocurrio-error')}}')
-                        }
-                        else
-                            errorAlert("Error", '{{__('MotorBusqueda.ocurrio-error')}}')      
-                    }
-                })
-            },
-            onError: function(error){
-                console.log(error)
-            }
-        }).render('#paypal-button-container');
-
         
     </script>
 @endpush

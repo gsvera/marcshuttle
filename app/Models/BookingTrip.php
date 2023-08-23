@@ -210,7 +210,7 @@ class BookingTrip extends Model
         }
         return $resp;
     }
-    public function SaveTrip($data){
+    public function _SaveBookingTrip($data){
         $folio = new Folio;
         $booking = new BookingTrip;
         $resp = new Respuesta;
@@ -228,8 +228,6 @@ class BookingTrip extends Model
             $booking->comments = $data['comments'];
             $booking->id_destination = $data['idZone'];
             $booking->type_transfer = $data['typetransfer'];
-            $booking->origin = $data['origin'];
-            $booking->destination = $data['destination'];
             $booking->pax = $data['pax'];            
             $booking->pay_method = $data['payMethod'];
             $booking->amount = $data['amount'];
@@ -248,9 +246,24 @@ class BookingTrip extends Model
                 $booking->departure_info = $data['infoDeparture'];
             }
 
-            if($data['payMethod'] == 'paypal')
+            if($data['typetransfer'] == 1 || $data['typetransfer'] == 3)
             {
-                $booking->paypal_order_id = $data['orderId'];
+                $booking->destination = $data['destination'];
+            }
+            else
+            {
+                $booking->origin = $data['origin'];
+            }
+
+            if($data['payMethod'] == 'card')
+            {
+                $booking->order_id = $data['orderId'];
+                $booking->checkout_id = $data['checkoutId'];
+                $booking->status_pay = 0;
+            }
+            else
+            {
+                $booking->status_pay = 1;
             }
             
             $booking->save();
@@ -259,14 +272,96 @@ class BookingTrip extends Model
             $folio->save();
 
             $resp->Error = false;
-            $resp->data = $folioBooking;
-            return $resp;
+            $resp->data = $booking;
         }
         catch(Exception $e)
         {
             $resp->Error = true;
             $resp->Message = $e->getMessage();
-            return $resp;
         }
+        return $resp;
+    }
+    public function _UpdateBookingTripByConektaData($checkoutId, $orderId, $statusPay)
+    {
+        $resp = new Respuesta;
+        try {
+            $booking = $this->where('order_id', $orderId)->where('checkout_id', $checkoutId)->first();
+            // SIGNIFICADO DEL STATUS DE PAGO: 1 => PAGADO, 2 => PAGO PENDIENTE, -1 => ERROR EN PAGO, 0 => PENDIETE
+            switch($statusPay) {
+                case 'paid':
+                    $booking->status_pay = 1;
+                    break;
+                case 'pending_payment':
+                    $booking->status_pay = 2;
+                    break;
+                case 'error':
+                    $booking->status_pay = -1;
+                    break;
+            }
+            $booking->save();
+            $datos = [
+                "lang" => $booking->lang,
+                "statusPay" => $booking->status_pay,
+                "folio" => $booking->folio
+            ];
+
+            
+            if($booking->status_pay != -1 && $booking->email_confirm == 0)
+            {
+                $this->_SendBookingTour($booking, $statusPay);
+                $booking->email_confirm = 1;
+                $booking->save();
+            }
+            $resp->Error = false;
+            $resp->data = $datos;
+
+        } catch(Exception $e) {
+            $res->Error = true;
+            $resp->Message = $e->getMessage();
+        }
+
+        return $resp;
+    }
+
+    public function _SendBookingTour($booking, $statusPay)
+    {
+        $resp = new Respuesta;
+        $destination = new Destination;
+        $subject = "";
+
+        try {   
+            switch($booking->type_transfer)
+            {
+                case 1:
+                    $subject = __('MotorBusqueda.reservacion-aeropuerto-hotel');
+                    break;
+                case 2:
+                    $subject = __('MotorBusqueda.reservacion-hotel-aeropuerto');
+                    break;
+                case 3:
+                    $subject = __('MotorBusqueda.reservacion-redondo-aeropuerto');
+                    break;
+            }
+
+            $copia = env('MAIL_USERNAME');
+            $email = $booking->email;
+            $nameZone = $destination->_GetDestinationById($booking->id_destination)->name;
+
+            Mail::send('emails.detailTrip',
+                [
+                    'item'=>$booking,
+                    'folio' => $booking->folio,
+                    'typetransfer' => $subject,
+                    'nameZone' => $nameZone
+                ], function($mensaje) use ($copia, $email, $subject){
+                    $mensaje->to([$copia, $email])->subject($subject);
+                }
+            );
+        } catch(Exception $e) {
+            $resp->Error = true;
+            $resp->Message = $e->getMessage();
+        }
+
+        return $resp;
     }
 }

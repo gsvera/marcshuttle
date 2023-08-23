@@ -33,7 +33,7 @@ $total = Utils::asDollars($item['amount']);
             height:450px;
             border:0;
             align:center;
-            background-image:url({{$item['host']}}/img/banners/traslados-cancun.webp);
+            background-image:url({{env('APP_URL')}}/img/banners/traslados-cancun.webp);
             background-repeat:no-repeat;
             background-size:cover;
         }
@@ -90,7 +90,7 @@ $total = Utils::asDollars($item['amount']);
     <div class="bg-principal" style="margin-bottom:-200px">
         <div style="background-color:rgba(0,0,0,0.4);height:450px;">
             <div style="display:flex;">
-                <img class="img-logo" src="{{$item['host']}}/img/logos/Logo-Marcshuttle.webp" width="200px"/>
+                <img class="img-logo" src="{{env('APP_URL')}}/img/logos/Logo-Marcshuttle.webp" width="200px"/>
             </div>
         </div>
     </div>
@@ -103,7 +103,7 @@ $total = Utils::asDollars($item['amount']);
                         <li>
                             <strong class="text-orange"><i class="fa fa-check text-blue" aria-hidden="true"></i> {{__('Email.nombre')}}</strong> 
                             <br>
-                            <div class="text-gray strong" style="margin-left:10px;margin-top:5px;font-size:1.1em;">{{$item['firstName']. ' '.$item['lastName']}}</div>
+                            <div class="text-gray strong" style="margin-left:10px;margin-top:5px;font-size:1.1em;">{{$item['first_name']. ' '.$item['last_name']}}</div>
                         </li>
                         <br>
                         <li>
