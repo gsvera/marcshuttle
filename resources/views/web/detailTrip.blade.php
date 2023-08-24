@@ -527,19 +527,37 @@ $total = Utils::asDollars($amount);
 
         function SendBookingCash()
         {
-            var recaptcha = $('#g-recaptcha-response').val()
-
+            var recaptcha = $('#g-recaptcha-response').val();
+            
             if(recaptcha == '')
             {
                 notification('error', '{{__('MotorBusqueda.recaptcha-requerido')}}')
                 return false;
             }
 
+            var objReservation = makeObjReservation();
+            objReservation.gRecaptchaResponse = recaptcha;
+
             btnBooking.setAttribute('disabled', true)
 
             activeLoader('{{__('MotorBusqueda.registrando')}}...', '{{__('MotorBusqueda.enviando-correo')}}')
 
-            // formBooking.submit()
+            fetch('/make-reservation-trip', {
+                method: 'POST',
+                headers: headConexion,
+                body: JSON.stringify(objReservation)
+            })
+            .then(resp => resp.json())
+            .then(result => {
+                console.log(result)
+                if(!result.Error) {
+                    var urlPath = '/gracias';
+                    if(result.data.lang == 'en')
+                        urlPath = '/en/thanks';
+
+                    window.location.href = `${urlPath}?folio=${result.data.folio}`
+                }
+            })
         }        
         
     </script>

@@ -27,10 +27,7 @@ class BookingTour extends Model
         $vehicle = new Vehicle;
         $utils = new Utils;
 
-        try{
-            // if($data['payMethod'] == "efectivo")
-            // {
-            // }
+        try{            
             $response = Http::get('https://www.google.com/recaptcha/api/siteverify', [
                 'secret' => env('GOOGLE_PRIVATE_KEY'),
                 'response' => $data['gRecaptchaResponse'] 
@@ -46,39 +43,12 @@ class BookingTour extends Model
 
             $tour = $tour->GetTourById($data['idTour'])->data;
             $vehicle = $vehicle->GetVehicleById($data['idVehicle']);
-
-            // $dataMessage = [
-            //     "firstName" => $data['firstName'],
-            //     "lastName" => $data['lastName'],
-            //     "email" => $data['email'],
-            //     "phone" => $data['phone'],
-            //     "dateDeparture" => $data['dateDeparture'],
-            //     "hourDeparture" => $data['hourDeparture'],
-            //     "comments" => $data['comments'],
-            //     "payMethod" => $data['payMethod'],
-            //     "totalAmount" => $data['totalAmount'],
-            //     "idTour" => $data['idTour'],
-            //     "idVehicle" => $data['idVehicle'],
-            //     "sillaBebe" => $data['sillaBebe']
-            // ];
-    
-            // if($data['payMethod'] == 'card')
-            // {
-            //     $dataMessage['orderId'] = $data['orderId'];
-            // }
     
             $resp = $this->_SaveBookingtour($data);            
     
             if($resp->Error == false)
             {
                 $this->_SendBookingTour($resp->data, 'paid');
-                // $copia = env('MAIL_USERNAME');
-                // $email = $data['email'];
-                // $subject = __('Tours.tour-reservado');
-                
-                // Mail::send('emails.detailTour',['item'=>$dataMessage, 'tour'=>$tour, 'vehicle' => $vehicle, 'folio' => $resp->data],function($mensaje) use ($copia, $email, $subject){
-                //     $mensaje->to([$copia, $email])->subject($subject);
-                // });
             }
         }
         catch(Exception $e)

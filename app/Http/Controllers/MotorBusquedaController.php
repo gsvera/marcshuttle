@@ -64,7 +64,23 @@ class MotorBusquedaController extends Controller
         
     }
 
-    public function MakeBookingTour(){
+    public function MakeBookingTrup()
+    {
+        $resp = new Respuesta;
+        $trip = new BookingTrip;
+
+        try {
+            $resp = $trip->_MakeDirectTour(request()->all());
+        } catch(Exception $e) {
+            $resp->Error = true;
+            $resp->Message = $e->getMessage();
+        }
+
+        return response()->json($resp->getResult());
+    }
+
+    public function MakeBookingTour()
+    {
         $resp = new Respuesta;
         $tour = new BookingTour;
 
@@ -94,7 +110,7 @@ class MotorBusquedaController extends Controller
                 $resp = $booking->SendCustomTrip(request()->all());
             }
             else{
-                // $resp = $booking->SendOneWay(request()->all());
+                $resp = $booking->SendOneWay(request()->all());
             }
 
             if($resp->Error == false)

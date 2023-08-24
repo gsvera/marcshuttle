@@ -13,25 +13,6 @@ use App;
 
 class ConektaController extends Controller
 {
-    // public function CreateCustomerConekta()
-    // {
-    //     $conekta = new ConektaModel;
-        
-    //     try {
-    //         $resp = $conekta->_MakeCustomer();
-
-    //         if(!$resp->Error) {
-    //             $resp = $conekta->_MakeOrderConekta($resp->data["id"]);
-    //         }
-    //     }
-    //     catch(Exception $e) {
-    //         $resp->Error = true;
-    //         $resp->Message = $e->getMessage();
-    //     }
-        
-    //     return response()->json($resp->getResult());
-    // }
-
     function MakePayByTour()
     {
         $conekta = new ConektaModel;
@@ -113,7 +94,7 @@ class ConektaController extends Controller
 
                 $transferDetail = [
                     "name" => __('MotorBusqueda.type-transfer') . ': '. $nameTransfer . ', ' . $nameDetail,
-                    "unit_price" => request('amount')."00",
+                    "unit_price" => request('amount')."00", // SE AGREGA 2 CEROS MAS POR QUE CONEKTA RECIBE DECIMALES 
                     "quantity" => 1
                 ];
 

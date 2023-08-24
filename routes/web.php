@@ -40,6 +40,7 @@ Route::get('/gracias', [WebController::class, 'gracias'])->name('es-gracias');
     RUTAS RESERVATION
 */
 Route::post('/make-reservation-tour', [MotorBusquedaController::class, 'MakeBookingTour']);
+Route::post('/make-reservation-trip', [MotorBusquedaController::class, 'MakeBookingTrup']);
 
 /*
     RUTAS CONEKTA

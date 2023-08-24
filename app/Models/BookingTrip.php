@@ -16,6 +16,37 @@ class BookingTrip extends Model
     protected $table = 'bookings_trip';
     public $timestamps = false;
 
+    public function _MakeDirectTour($data)
+    {
+        $resp = new Respuesta;
+
+        try{
+            $response = Http::get('https://www.google.com/recaptcha/api/siteverify', [
+                'secret' => env('GOOGLE_PRIVATE_KEY'),
+                'response' => $data['gRecaptchaResponse'] 
+            ]);
+            $body = json_decode($response->getBody());
+            
+            if (!$body->success){
+                $resp->Error = true;
+                $resp->Message = __('MotorBusqueda.recaptcha-requerido');
+                return $resp;
+            }
+
+            $resp = $this->_SaveBookingTrip($data);
+
+            if(!$resp->Error)
+            {
+                $this->_SendBookingTour($resp->data, 'paid');
+            }
+
+        } catch(Exception $e) {
+            $resp->Error = true;
+            $resp->Message = $e->getMessage();
+        }
+        return $resp;
+    }
+
     public function SendCustomTrip($data){
         $utils = new Utils;
         $resp = new Respuesta;
@@ -219,7 +250,6 @@ class BookingTrip extends Model
             $folio = $folio->_GetFolio();            
             $folioBooking = $folio->folio .''.$folio->count;
 
-
             $booking->folio = $folioBooking;
             $booking->first_name = $data['firstName'];
             $booking->last_name = $data['lastName'];
@@ -352,7 +382,8 @@ class BookingTrip extends Model
                     'item'=>$booking,
                     'folio' => $booking->folio,
                     'typetransfer' => $subject,
-                    'nameZone' => $nameZone
+                    'nameZone' => $nameZone,
+                    'statusPay' => $statusPay
                 ], function($mensaje) use ($copia, $email, $subject){
                     $mensaje->to([$copia, $email])->subject($subject);
                 }
