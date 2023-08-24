@@ -64,18 +64,32 @@ class MotorBusquedaController extends Controller
         
     }
 
-    public function MakeBookingTrup()
+    public function MakeBookingTrip()
     {
         $resp = new Respuesta;
         $trip = new BookingTrip;
 
         try {
-            $resp = $trip->_MakeDirectTour(request()->all());
+            $resp = $trip->_MakeDirectTrip(request()->all());
         } catch(Exception $e) {
             $resp->Error = true;
             $resp->Message = $e->getMessage();
         }
 
+        return response()->json($resp->getResult());
+    }
+
+    public function MakeBookingTripCustom()
+    {
+        $resp = new Respuesta;
+        $tripCustom = new BookingTrip;
+
+        try {
+            $resp = $tripCustom->_MakeDirectCustomTrip(request()->all());
+        } catch(Exception $e) {
+            $resp->Error = true;
+            $resp->Message = $e->getMessage();
+        }
         return response()->json($resp->getResult());
     }
 
@@ -93,41 +107,35 @@ class MotorBusquedaController extends Controller
         return response()->json($resp->getResult());
     }
 
-    public function BookingTransfer(){
-        $resp = new Respuesta;
-        $booking = new BookingTrip;
-        $tour = new BookingTour;
-        $folio = "";
-        try{         
+    // public function BookingTransfer(){
+    //     $resp = new Respuesta;
+    //     $booking = new BookingTrip;
+    //     $tour = new BookingTour;
+    //     $folio = "";
+    //     try{         
+    //         if(request('typetransfer') == 4)
+    //         {
+    //             $resp = $booking->SendCustomTrip(request()->all());
+    //         }
+    //         else{
+    //             $resp = $booking->SendOneWay(request()->all());
+    //         }
 
-            // if(request('typetransfer') == 'tour')
-            // {
-            //     $resp = $tour->_MakeDirectTour(request()->all());
-            // }
-            // else 
-            if(request('typetransfer') == 4)
-            {
-                $resp = $booking->SendCustomTrip(request()->all());
-            }
-            else{
-                $resp = $booking->SendOneWay(request()->all());
-            }
-
-            if($resp->Error == false)
-            {
-                return view('web.thanks')->with('folio', $resp->data);
-            }
-            else{
-                return back()->with('messageError',$resp->Message);
-            }            
-        }
-        catch(Exception $e)
-        {
-            $resp->Error = true;
-            $resp->Message = $e->getMessage();
-            return back()->with('messageError',$resp->Message);
-        }
-    }
+    //         if($resp->Error == false)
+    //         {
+    //             return view('web.thanks')->with('folio', $resp->data);
+    //         }
+    //         else{
+    //             return back()->with('messageError',$resp->Message);
+    //         }            
+    //     }
+    //     catch(Exception $e)
+    //     {
+    //         $resp->Error = true;
+    //         $resp->Message = $e->getMessage();
+    //         return back()->with('messageError',$resp->Message);
+    //     }
+    // }
 
     public function cotizarTour()
     {

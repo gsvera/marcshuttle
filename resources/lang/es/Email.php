@@ -16,5 +16,7 @@
         "tarjeta" => "Tarjeta",
         "monto" => "Monto",
         "comentarios" => "Comentarios",
-        "status-pay" => "Estatus de pago"
+        "status-pay" => "Estatus de pago",
+        "pendiente" => "Pago pendiente",
+        "pagado" => "Pagado"
     ];

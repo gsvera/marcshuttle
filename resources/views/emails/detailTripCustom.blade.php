@@ -26,7 +26,7 @@
             height:450px;
             border:0;
             align:center;
-            background-image:url(https://{{$item['host']}}/img/banners/traslados-cancun.webp);
+            background-image:url({{env('APP_URL')}}/img/banners/traslados-cancun.webp);
             background-repeat:no-repeat;
             background-size:cover;
         }
@@ -80,7 +80,7 @@
     <div class="bg-principal" style="margin-bottom:-200px">
         <div style="background-color:rgba(0,0,0,0.4);height:450px;">
             <div style="display:flex;">
-                <img class="img-logo" src="{{$item['host']}}/img/logos/Logo-Marcshuttle.webp" width="200px"/>
+                <img class="img-logo" src="{{env('APP_URL')}}/img/logos/Logo-Marcshuttle.webp" width="200px"/>
             </div>
         </div>
     </div>
@@ -93,7 +93,7 @@
                         <li>
                             <strong class="text-orange"><i class="fa fa-check text-blue" aria-hidden="true"></i> {{__('Email.nombre')}}:</strong> 
                             <br>
-                            <div class="text-gray strong" style="margin-left:10px;margin-top:5px;font-size:1.1em;">{{$item['firstName']. ' '.$item['lastName']}}</div>
+                            <div class="text-gray strong" style="margin-left:10px;margin-top:5px;font-size:1.1em;">{{$item['first_name']. ' '.$item['last_name']}}</div>
                         </li>
                         <br>
                         <li>
@@ -111,13 +111,13 @@
                         <li>
                             <strong class="text-orange"><i class="fa fa-check text-blue" aria-hidden="true"></i> {{__('Email.salida')}}:</strong> 
                             <br>
-                            <div class="text-gray strong" style="margin-left:10px;margin-top:5px;font-size:1.1em;">{{$item['dateDeparture']}}</div>
+                            <div class="text-gray strong" style="margin-left:10px;margin-top:5px;font-size:1.1em;">{{$item['departure_date']}}</div>
                         </li>
                         <br>
                         <li>
                             <strong class="text-orange"><i class="fa fa-check text-blue" aria-hidden="true"></i> {{__('Email.hora')}}:</strong> 
                             <br>
-                            <div class="text-gray strong" style="margin-left:10px;margin-top:5px;font-size:1.1em;">{{$item['hourDeparture']}}</div>
+                            <div class="text-gray strong" style="margin-left:10px;margin-top:5px;font-size:1.1em;">{{$item['departure_time']}}</div>
                         </li>                    
                     </ul>
                 </div>
@@ -151,6 +151,12 @@
                             <strong class="text-orange"><i class="fa fa-check text-orange" aria-hidden="true"></i> {{__('MotorBusqueda.silla-bebe')}}</strong>
                             <br>
                             <div class="text-white strong" style="margin-left:10px;margin-top:5px;font-size:1.1em;">{{$item['sillaBebe'] == 1 ? __('MotorBusqueda.si') : "No"}}</div>
+                        </li>
+                        <br>
+                        <li>
+                            <strong class="text-orange"><i class="fa fa-check text-orange" aria-hidden="true"></i>{{__('Email.status-pay')}}</strong>
+                            <br>
+                            <div class="text-white strong" style="margin-left:10px;margin-top:5px;font-size:1.1em;">{{__('Email.pendiente')}}</div>
                         </li>
                     </ul>
                 </div>

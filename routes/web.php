@@ -23,8 +23,6 @@ use App\Http\Controllers\ConektaController;
     RUTAS PARA PAGINA WEB EN ESPAÑOL
 */
 
-// Route::get('/conekta', [ConektaController::class, 'CreateCustomerConekta']);
-
 Route::get('/', function () {
     return view('web.index')->with('lang', App::getLocale())->with('sesion', request()->session()->get('lang'));
 });
@@ -40,7 +38,8 @@ Route::get('/gracias', [WebController::class, 'gracias'])->name('es-gracias');
     RUTAS RESERVATION
 */
 Route::post('/make-reservation-tour', [MotorBusquedaController::class, 'MakeBookingTour']);
-Route::post('/make-reservation-trip', [MotorBusquedaController::class, 'MakeBookingTrup']);
+Route::post('/make-reservation-trip', [MotorBusquedaController::class, 'MakeBookingTrip']);
+Route::post('/make-reservation-custom', [MotorBusquedaController::class, 'MakeBookingTripCustom']);
 
 /*
     RUTAS CONEKTA
@@ -65,7 +64,6 @@ Route::group(['prefix' => 'en'], function(){
     Route::get('/tours', [WebController::class, 'tours']);
     Route::get('/tours/{tour}/{id}', [MotorBusquedaController::class, 'cotizarTour']);
     Route::get('/trip-detail', [MotorBusquedaController::class, 'detailTrip']);
-    // Route::post('/thanks', [MotorBusquedaController::class, "BookingTransfer"]);
     Route::get('/thanks', [WebController::class, 'gracias'])->name('en-thanks');
 });
 
@@ -76,8 +74,6 @@ Route::group(['prefix' => 'en'], function(){
 Route::get('/motorbusqueda', [WebController::class, 'motorbusqueda']);
 Route::post('/changelenguage', [WebController::class, 'ChangeLenguage']);
 Route::get('/back/locations', [MotorBusquedaController::class, 'GetLocation']);
-// Route::post('/checkout/api/paypal/order', [PaypalController::class, 'CheckoutOrder']);
-Route::post('/sendcustomtrip', [MotorBusquedaController::class, 'SendCustomTrip']);
 
 /* 
     RUTAS PARA ADMIN

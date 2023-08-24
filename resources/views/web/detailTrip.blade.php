@@ -522,6 +522,11 @@ $total = Utils::asDollars($amount);
                 if(!res.error) {
                     window.location.href = res.data.checkout.url;
                 }
+            }).catch(error => {
+                closeAlert()
+                setTimeout(() => {
+                    errorAlert('Error', `{{__('Message.error-service')}}`)
+                }, 100)
             })
         }
 
@@ -549,14 +554,23 @@ $total = Utils::asDollars($amount);
             })
             .then(resp => resp.json())
             .then(result => {
-                console.log(result)
                 if(!result.Error) {
                     var urlPath = '/gracias';
                     if(result.data.lang == 'en')
                         urlPath = '/en/thanks';
 
                     window.location.href = `${urlPath}?folio=${result.data.folio}`
+                } else {
+                    closeAlert()
+                    setTimeout(() => {
+                        errorAlert('Error', `{{__('Message.error-service')}}`)
+                    }, 100)
                 }
+            }).catch(error => {
+                closeAlert()
+                setTimeout(() => {
+                    errorAlert('Error', `{{__('Message.error-service')}}`)
+                }, 100)
             })
         }        
         

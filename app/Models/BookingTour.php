@@ -48,7 +48,7 @@ class BookingTour extends Model
     
             if($resp->Error == false)
             {
-                $this->_SendBookingTour($resp->data, 'paid');
+                $this->_SendBookingTour($resp->data, 'pendiente');
             }
         }
         catch(Exception $e)

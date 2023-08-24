@@ -16,5 +16,7 @@
         "tarjeta" => "Card",
         "monto" => "Amount",
         "comentarios" => "Comments",
-        "status-pay" => "Status pay"
+        "status-pay" => "Status pay",
+        "pendiente" => "Pending payment",
+        "pagado" => "Paid"
     ];

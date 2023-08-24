@@ -451,7 +451,17 @@
                         urlPath = '/en/thanks';
 
                     window.location.href = `${urlPath}?folio=${result.data.folio}`
+                } else {
+                    closeAlert()
+                    setTimeout(() => {
+                        errorAlert('Error', `{{__('Message.error-service')}}`)
+                    }, 100)
                 }
+            }).catch(error => {
+                closeAlert()
+                setTimeout(() => {
+                    errorAlert('Error', `{{__('Message.error-service')}}`)
+                }, 100)
             })
         }
 
@@ -470,6 +480,11 @@
                 if(!result.error) {
                     window.location.href = result.data.checkout.url;
                 }
+            }).catch(error => {
+                closeAlert()
+                setTimeout(() => {
+                    errorAlert('Error', `{{__('Message.error-service')}}`)
+                }, 100)
             })
         }
     </script>
