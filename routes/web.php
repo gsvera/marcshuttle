@@ -23,6 +23,13 @@ use App\Http\Controllers\ConektaController;
     RUTAS PARA PAGINA WEB EN ESPAÑOL
 */
 
+// Route::get('/clear-cache', function () {
+//    echo Artisan::call('config:clear');
+//    echo Artisan::call('config:cache');
+//    echo Artisan::call('cache:clear');
+//    echo Artisan::call('route:clear');
+// });
+
 Route::get('/', function () {
     return view('web.index')->with('lang', App::getLocale())->with('sesion', request()->session()->get('lang'));
 });
