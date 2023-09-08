@@ -80,7 +80,8 @@ Route::group(['prefix' => 'en'], function(){
 
 Route::get('/motorbusqueda', [WebController::class, 'motorbusqueda']);
 Route::post('/changelenguage', [WebController::class, 'ChangeLenguage']);
-Route::get('/back/locations', [MotorBusquedaController::class, 'GetLocation']);
+Route::post('/back/locations', [MotorBusquedaController::class, 'GetLocation']);
+Route::get('/back/zone', [MotorBusquedaController::class, 'GetZone']);
 
 /* 
     RUTAS PARA ADMIN

@@ -23,10 +23,11 @@
 @section('metas')
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Servicio de tours privados en Quintana roo | Mejor precio</title>
-    <meta name="description" content=" No pierdas la oportunidad de conocer todos los rincones y tours de Quintana roo ¡Reserva Ahora!">
+    <meta name="title" content="{{__('Meta.tours-title')}}">
+    <meta name="description" content="{{__('Meta.tours-descripcion')}}">
     <meta name="robots" content="index, follow">
     <meta name="rating" content="safe for kids">
+    <meta name="language" content="Spanish">
 @endsection
 
 @section('content')
@@ -56,7 +57,7 @@
                                     <div class="content-img-card">
                                         <img src="{{$tour['image']}}" alt="{{$tour['name']}}" style="max-width:100%;max-height:100%;border-radius:5px;">
                                     </div>
-                                    <h4 class="font-weight-bold mt-2">{{$tour['name']}}</h4>
+                                    <h3 class="font-weight-bold mt-2">{{$tour['name']}}</h3>
                                     <div class="d-flex">
                                         <div class="col-9 col-md-9">
                                             @if($lang == 'en')

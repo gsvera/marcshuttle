@@ -22,17 +22,27 @@ else if($typetransfer == 3)
     $labelTypeTransfer = __('MotorBusqueda.redondo-aeropuerto');
 }
 
-
-if($pax < 8)
+if($pax < 4) {
+    if($typetransfer == 3)
+    {
+        $total = Utils::asDollars($objDestination->uno_tres * 2);
+        $amount = $objDestination->uno_tres * 2;
+    }
+    else{
+        $total = Utils::asDollars($objDestination->uno_tres);
+        $amount = $objDestination->uno_tres;
+    }
+}
+else if($pax > 3  && $pax < 8)
 {
     if($typetransfer == 3)
     {
-        $total = Utils::asDollars($objDestination->uno_siete * 2);
-        $amount = $objDestination->uno_siete * 2;
+        $total = Utils::asDollars($objDestination->cuatro_siete * 2);
+        $amount = $objDestination->cuatro_siete * 2;
     }
     else{
-        $total = Utils::asDollars($objDestination->uno_siete);
-        $amount = $objDestination->uno_siete;
+        $total = Utils::asDollars($objDestination->cuatro_siete);
+        $amount = $objDestination->cuatro_siete;
     }
 }
 else if($pax > 7 && $pax <= 10)
@@ -77,18 +87,28 @@ else
         $amount =$objDestination->ocho_diez * $enteros;
     }
     
-    if($residuo > 0 && $residuo < 8)
+    if($residuo > 0 && $residuo < 4)
     {
         if($typetransfer == 3)
         {
-            $amount = $amount + ($objDestination->uno_siete * 2);
+            $amount = $amount + ($objDestination->uno_tres * 2);
         }
         else
         {
-            $amount = $amount + $objDestination->uno_siete;
+            $amount = $amount + $objDestination->uno_tres;
         }        
     }
-    else if($residuo > 0)
+    else if($residuo > 3 && $residuo < 8) {
+        if($typetransfer == 3)
+        {
+            $amount = $amount + ($objDestination->cuatro_siete * 2);
+        }
+        else
+        {
+            $amount = $amount + $objDestination->cuatro_siete;
+        } 
+    }
+    else if($residuo > 7)
     {
         if($typetransfer == 3)
         {
@@ -237,15 +257,14 @@ $total = Utils::asDollars($amount);
         <div class="col-12 col-md-5">
             <div class="box-shadow-info">
                 <div class="d-flex">
-                    <img src="/img/assets/traslados-en-cancun.webp" alt="Bus" width="100%" class="mx-auto">
+                    @if($pax < 8)
+                        <img src="/img/assets/transporte-privado-en-cancun.webp" alt="Bus" width="35%" class="mx-auto">
+                    @else
+                        <img src="/img/assets/cancun-aeropuerto-transporte.webp" alt="Bus" width="35%" class="mx-auto">
+                    @endif
                 </div>
                 <div class="text-center">
                     <h3 class="font-weight-bold fsize-mds text-blue">{{__('MotorBusqueda.detalle-viaje')}}</h3>
-                    @if($pax < 8)
-                        <h4 class="font-weight-bold">{{__('MotorBusqueda.uno-siete')}}</h4>
-                    @elseif($pax > 7)
-                        <h4 class="font-weight-bold">{{__('MotorBusqueda.ocho-diez')}}</h4>
-                    @endif
                 </div>
                 
                 <p>

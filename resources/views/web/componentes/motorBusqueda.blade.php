@@ -3,14 +3,14 @@
     use App\Models\Destination;
     
     $destination = new Destination;
-    $listDestination = $destination->GetDestinationsAirport();
+    $listDestination = $destination->_GetDestinationsAirport();
 ?>
 
 
 <div class="d-flex justify-content-center">
     <div class="box-buscador col-md-9">
-        <h3 class="text-white font-weight-bold">{{__('MotorBusqueda.inicia-reserva')}}</h3>
-        <!-- <p class="text-white">{{__('MotorBusqueda.texto-1')}}</p> -->
+        <h5 class="text-white font-weight-bold" style="font-size: 1.575rem">{{__('MotorBusqueda.inicia-reserva')}}</h5>
+        <input type="hidden" id="idZone"/>
         <div class="mt-4">
             <div class="form-group mb-3">
                 <label for="typetransfer" class="font-weight-bold">{{__('MotorBusqueda.type-transfer')}}</label>
@@ -24,20 +24,17 @@
             <div class="form-group mb-3" id="divzone">
                 <label for="zone" class="font-weight-bold">{{__('MotorBusqueda.zona')}}</label>
                 <select name="zone" id="zone" class="form-control p-3 busquedalive">
-                    <option value="">{{__('MotorBusqueda.seleccione-zona')}}</option>
-                    @foreach($listDestination as $item)
-                        <option value="{{$item->id}}">{{$item->name}}</option>
-                    @endforeach
+                    <option value="">{{__('MotorBusqueda.seleccione-zona')}}</option>                    
                 </select>
             </div>
             <div class="from-group mb-3 d-none" id="divorigin">
                 <label for="origin" class="font-weight-bold">{{__('MotorBusqueda.origen')}}</label>
-                <input type="text" class="form-control p-3" name="origin" id="origin" placeholder="origen"/>                
+                <input type="text" class="form-control p-3" name="origin" id="origin" placeholder="{{__('MotorBusqueda.placeholder-origen')}}"/>
                 <ul id="optionOrigin" class="listOptionsLocations"></ul>
             </div>
             <div class="from-group mb-3" id="divdestination">
                 <label for="destination" class="font-weight-bold">{{__('MotorBusqueda.destino')}}</label>
-                <input type="text" class="form-control p-3" name="destination" id="destination" placeholder="destino"/>
+                <input type="text" class="form-control p-3" name="destination" id="destination" placeholder="{{__('MotorBusqueda.placeholder-destino')}}"/>
                 <ul id="optionDestination" class="listOptionsLocations"></ul>
             </div>
             <div class="form-group mb-3">
@@ -59,18 +56,17 @@
     </div>
 </div>
 <script type="text/javascript">
-    
-    var locations = ""
-    var listLocations = ""
-    var destination = document.getElementById('destination')
-    var origin = document.getElementById('origin')
+
+    var locations = "";
+    var listZone = "";
+    var destination = document.getElementById('destination');
+    var origin = document.getElementById('origin');
+    var zone = document.getElementById('zone');
+    // var listOptionsZone = document.getElementById('optionZone');
     var listOptionsDestination = document.getElementById('optionDestination')
     var listOptionsOrigin = document.getElementById('optionOrigin')
     var dateArrival = document.getElementById('dateArrival')
     var dateDeparture = document.getElementById('dateDeparture')
-    
-    getLocations();
-    
     var fulldate = new Date();
     fulldate.setDate(fulldate.getDate() + 1)
     var day = fulldate.getDate();
@@ -81,76 +77,138 @@
         day = '0'+day
     
     if(month < 10)
-    {
         month = '0'+month
-    }
+    
     var minDay = year+'-'+month+'-'+day
     dateArrival.setAttribute('min', minDay)
     dateDeparture.setAttribute('min', minDay)
     
     
-    function comprobarFecha(fecha)
-    {
+    function comprobarFecha(fecha) {
         return Date.parse(fecha) < Date.parse(minDay)
     }
 
-    function getLocations(){
-        $.ajax({
-            url: '/back/locations',
-            type: 'GET',
-            success: function(data)
-            {
-                locations = data.data
-            }
+    function getLocations(idZone = 0){
+        fetch('/back/locations', {
+            method: 'POST',
+            headers: headConexion,
+            body: JSON.stringify({idZone})
         })
+        .then(res => res.json())
+        .then(result => {
+            console.log(result)
+            locations = result.data;
+        });
     }
+
+    function getZone() {
+        fetch('/back/zone')
+        .then(res => res.json())
+        .then(result => {
+            console.log(result)
+            listZone = result.data;
+
+            listZone.map((item) => {
+                zone.insertAdjacentHTML('beforeend', `<option onClick="setZone(this)" value="${item.id}">${item.name}</option>`)
+            });
+        });
+    }
+
+    getZone();
+    getLocations();
     
-    function autoCompleteLocations(valor){
-        
+    function autoCompleteLocations(valor) {    
         return locations.filter(item => {
-            var nombreLower = item.nombre.toLowerCase()
-            var valorLower = valor.toLowerCase()
-            return nombreLower.includes(valorLower)
-        })
+            var nombreLower = item.nombre.toLowerCase();
+            var valorLower = valor.toLowerCase();
+            return nombreLower.includes(valorLower);
+        });
+    }
+    function autoCompleteZone(valor) {
+        return listZone.filter(item => item.name.toLowerCase().includes(valor.toLowerCase()))
     }
 
     function setDestination(event){
         destination.value = event.dataset.option
-        listOptionsDestination.innerHTML = ""        
+        zone.value = event.dataset.idorigin;
+        closeOptionsList();
     }   
     function setOrigin(event){
         origin.value = event.dataset.option
-        listOptionsOrigin.innerHTML = ""        
+        zone.value = event.dataset.idorigin;
+        closeOptionsList();
     }   
+    function setZone(event) {
+        zone.value = event.dataset.option;
+        $('#idZone').val(event.dataset.id);
+        getLocations(event.dataset.id);
+        closeOptionsList();
+    }
+
+    function closeOptionsList() {
+        listOptionsOrigin.innerHTML = "";
+        listOptionsDestination.innerHTML = "";
+    }
 
     document.body.addEventListener("keydown", function(event) {
         // console.log(event.code, event.keyCode);
         if (event.code === 'Escape' || event.keyCode === 27 || event.code === 'Tap' || event.keyCode === 9) {
-            listOptionsDestination.innerHTML = ""
-            listOptionsOrigin.innerHTML = ""
-            document.getElementById('pax').focus()
+            listOptionsDestination.innerHTML = "";
+            listOptionsOrigin.innerHTML = "";
+            document.getElementById('pax').focus();
         }
     });
 
 
     destination.addEventListener('keyup', e => {
-        e.preventDefault()                                                                                
-        var locationFilter = autoCompleteLocations(destination.value)        
-        listOptionsDestination.innerHTML = ""
-        
-        locationFilter.map((item) => {
-            listOptionsDestination.insertAdjacentHTML('beforeend', `<li onclick="setDestination(this)" data-option="${item.nombre}">${item.nombre}</li>`)            
-        })
+        e.preventDefault();                                                 
+        showListDestination(e.target.value);
+    });
+
+    destination.addEventListener('click', e => {
+        e.preventDefault();
+        closeOptionsList();
+        showListDestination("");
     })
 
-    origin.addEventListener('keyup', e => {
-        e.preventDefault()                                                                                
-        var locationFilter = autoCompleteLocations(origin.value)        
-        listOptionsOrigin.innerHTML = ""
+    function showListDestination(value) {
+        var locationFilter = autoCompleteLocations(value);
+        listOptionsDestination.innerHTML = "";
         
         locationFilter.map((item) => {
-            listOptionsOrigin.insertAdjacentHTML('beforeend', `<li onclick="setOrigin(this)" data-option="${item.nombre}">${item.nombre}</li>`)            
-        })
+            listOptionsDestination.insertAdjacentHTML('beforeend', `<li onclick="setDestination(this)" data-idorigin="${item.idOrigin}" data-option="${item.nombre}">${item.nombre} <span>(${item.origin})</span></li>`)            
+        });
+    }
+
+    origin.addEventListener('keyup', e => {
+        e.preventDefault();                                                    
+        showListOrigin(e.target.value);
+    })
+
+    origin.addEventListener('click', e => {
+        e.preventDefault();
+        closeOptionsList();
+        showListOrigin("");
+    })
+
+    function showListOrigin(value) {
+        var locationFilter = autoCompleteLocations(value);
+        listOptionsOrigin.innerHTML = "";
+        
+        locationFilter.map((item) => {
+            listOptionsOrigin.insertAdjacentHTML('beforeend', `<li onclick="setOrigin(this)" data-idorigin="${item.idOrigin}" data-option="${item.nombre}">${item.nombre} <span>(${item.origin})</span></li>`)            
+        });
+    }
+
+    zone.addEventListener('change', e => {
+        e.preventDefault();
+        closeOptionsList();
+        getLocations(zone.value);
+    })
+    
+    zone.addEventListener('click', e => {
+        e.preventDefault();
+        closeOptionsList();
     })
     
     function HidenShowInputs()

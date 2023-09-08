@@ -81,15 +81,14 @@
         <div class="col-12 col-md-5">
             <div class="box-shadow-info">
                 <div class="d-flex">
-                    <img src="/img/assets/traslados-en-cancun.webp" alt="Bus" width="100%" class="mx-auto">
+                    @if($pax < 8)
+                        <img src="/img/assets/transporte-privado-en-cancun.webp" alt="Bus" width="35%" class="mx-auto">
+                    @else
+                        <img src="/img/assets/cancun-aeropuerto-transporte.webp" alt="Bus" width="35%" class="mx-auto">
+                    @endif
                 </div>
                 <div class="text-center">
                     <h3 class="font-weight-bold fsize-mds text-blue">{{__('MotorBusqueda.detalle-viaje')}}</h3>
-                    @if($pax < 8)
-                        <h4 class="font-weight-bold">{{__('MotorBusqueda.uno-siete')}}</h4>
-                    @elseif($pax > 7)
-                        <h4 class="font-weight-bold">{{__('MotorBusqueda.ocho-diez')}}</h4>
-                    @endif
                 </div>
                 <p>
                     <span class="font-weight-bold text-gray">{{__('MotorBusqueda.type-transfer')}}:</span> <span class="font-weight-bold">{{__('MotorBusqueda.viaje-personalizado')}}</span>

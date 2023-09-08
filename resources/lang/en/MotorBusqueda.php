@@ -16,6 +16,8 @@ return [
     "type-transfer" => "Type of transfer",
     "origen" => "Hotel / Airbnb / Destination (Origin)",
     "destino" => "Hotel / Airbnb / Destination (Destination)",
+    "placeholder-origen" => "Origin",
+    "placeholder-destino" => "Destination",
     "destino-label" => "Destination",
     "pasajeros" => "Passengers",
     "ubicacion" => "Hotel / Airbnb / Destination",

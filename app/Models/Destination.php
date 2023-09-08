@@ -12,7 +12,7 @@ class Destination extends Model
     protected $table = 'destination';
     public $timestamps = false;
 
-    public function GetDestinationsAirport(){
+    public function _GetDestinationsAirport(){
         $obj = new Destination;
         try{
             $destination = $obj->where('id_origin', 1)->get();

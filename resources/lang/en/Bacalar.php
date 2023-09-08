@@ -14,6 +14,8 @@
         "scritp-faq-question-seis" => "How long is it from Cancun airport to Bacalar?",
         "script-faq-answer-seis" => "Generally, the travel time from the Cancún Airport to TBacalar is approximately 4 hours.",
         "titulo" => "Transfer service from Cancún to Bacalar",
+        "text-banner" => "Enjoy an exclusive experience with our transportation service from Cancun to Bacalar, where you will have a van exclusively for you, your family, or your group. This is a first-class private transfer service that will take you directly to your hotel without making any intermediate stops. It is available 24 hours a day, departing from Cancun Airport.",
+        "autobus-slogan" => "Private transportation in Cancún to Bacalar",
         "translados-slogan" => "Transfer from Cancún airport to Bacalar",
         "faq-uno" => "How to get from Cancún Airport to Bacalar?",
         "faq-resp-uno" => "To move from Cancun Airport to Bacalar the most convenient and comfortable option is using a private transportation service.",

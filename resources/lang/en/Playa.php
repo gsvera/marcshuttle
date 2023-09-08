@@ -3,7 +3,7 @@
         "url" => "/en/cancun-airport-shuttle-playa-carmen",
         "span-titulo" => "Confortable and safe transportations",
         "titulo" => "Transfer service from Cancún to Playa del Carmen",
-        "text-banner" => "Disfrute de una experiencia exclusiva con nuestro servicio de transporte desde Cancún a Playa del carmen, donde tendrá una van solo para usted y su familia o grupo. Este es el servicio de traslado privado más destacado le llevaremos directamente a su hotel sin paradas intermedias. Disponible las 24 horas del dia en el aeropuerto de Cancún.",
+        "text-banner" => "Enjoy an exclusive experience with our transportation service from Cancun to Playa del Carmen, where you will have a van exclusively for you, your family, or your group. This is a first-class private transfer service that will take you directly to your hotel without making any intermediate stops. It is available 24 hours a day, departing from Cancun Airport.",
         "translados-slogan" => "Transfer from Cancún airport to Playa del carmen",
         "faq-uno" => "How to get from Cancún Airport to Playa del Carmen?",
         "faq-resp-uno" => "To move from Cancun Airport to Playa del Carmen the most convenient and comfortable option is using a private transportation service.",
@@ -27,5 +27,6 @@
         "script-faq-question-cuatro" => "What is the distance from Cancun airport to Playa del Carmen?",
         "script-faq-answer-cuatro" => "The distance between the Cancún Airport and Playa del Carmen is about 68 kilometers (48 miles) directly.",
         "scritp-faq-question-cinco" => "How long is it from Cancun airport to Playa del Carmen?",
-        "script-faq-answer-cinco" => "Generally, the travel time from the Cancún Airport to Playa del Carmen is approximately 45 minutes to 1 hour."
+        "script-faq-answer-cinco" => "Generally, the travel time from the Cancún Airport to Playa del Carmen is approximately 45 minutes to 1 hour.",
+        "autobus-slogan" => "Private transportation in Playa del Carmen"
     ];

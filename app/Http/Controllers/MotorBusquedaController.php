@@ -107,36 +107,6 @@ class MotorBusquedaController extends Controller
         return response()->json($resp->getResult());
     }
 
-    // public function BookingTransfer(){
-    //     $resp = new Respuesta;
-    //     $booking = new BookingTrip;
-    //     $tour = new BookingTour;
-    //     $folio = "";
-    //     try{         
-    //         if(request('typetransfer') == 4)
-    //         {
-    //             $resp = $booking->SendCustomTrip(request()->all());
-    //         }
-    //         else{
-    //             $resp = $booking->SendOneWay(request()->all());
-    //         }
-
-    //         if($resp->Error == false)
-    //         {
-    //             return view('web.thanks')->with('folio', $resp->data);
-    //         }
-    //         else{
-    //             return back()->with('messageError',$resp->Message);
-    //         }            
-    //     }
-    //     catch(Exception $e)
-    //     {
-    //         $resp->Error = true;
-    //         $resp->Message = $e->getMessage();
-    //         return back()->with('messageError',$resp->Message);
-    //     }
-    // }
-
     public function cotizarTour()
     {
         return view('web.detailTour')->with('idSelected', request('id'));
@@ -147,10 +117,25 @@ class MotorBusquedaController extends Controller
         $ubicaciones = new Ubicaciones;
 
         try{
-            $resp->data = $ubicaciones->_GetLocations();            
+            $resp->data = $ubicaciones->_GetLocations(request('idZone'));            
         }
         catch(Exception $e)
         {
+            $resp->Error = true;
+            $resp->Message = $e->getMessage();
+        }
+        return response()->json($resp->getResult());
+    }
+
+    public function GetZone()
+    {
+        $resp = new Respuesta;
+        $destination = new Destination;
+        
+        try {
+            $resp->data = $destination->_GetDestinationsAirport();
+
+        } catch(Exception $e) {
             $resp->Error = true;
             $resp->Message = $e->getMessage();
         }

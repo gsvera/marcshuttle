@@ -1,9 +1,9 @@
 <?php
     return [
         "url" => "/transporte-cancun-playa-carmen",
-        "span-titulo" => "Traslados comodos y seguros",
-        "titulo" => "Servicio de transporte desde Cancún a playa del carmen",
-        "text-banner" => "Disfrute de una experiencia exclusiva con nuestro servicio de transporte desde Cancún a Playa del carmen, donde tendrá una van solo para usted y su familia o grupo. Este es el servicio de traslado privado más destacado le llevaremos directamente a su hotel sin paradas intermedias. Disponible las 24 horas del dia en el aeropuerto de Cancún.",
+        "span-titulo" => "Traslados cómodos y seguros",
+        "titulo" => "Servicio de transporte del aeropuerto de Cancún a Playa del Carmen",
+        "text-banner" => "Disfrute de una experiencia exclusiva con nuestro servicio de transporte desde Cancún hasta Playa del Carmen, donde contará con una van exclusivamente para usted, su familia o su grupo. Este es el servicio de traslado privado de primera categoría que lo llevará directamente a su hotel sin realizar paradas intermedias. Está disponible las 24 horas del día saliendo desde el aeropuerto de Cancún.",
         "translados-slogan" => "Traslados aeropuerto Cancún a Playa del carmen",
         "faq-uno" => "¿Cómo trasladarse del aeropuerto de Cancún a playa del carmen",
         "faq-resp-uno" => "Para trasladarse del Aeropuerto de Cancún a Playa del Carmen, una opción conveniente y cómoda es utilizar un servicio de traslado privado.",
@@ -27,5 +27,6 @@
         "script-faq-question-cuatro" => "¿Cuál es la distancia entre el aeropuerto de Cancún a Playa del Carmen?",
         "script-faq-answer-cuatro" => "La distancia entre el Aeropuerto de Cancún y Playa del Carmen es de aproximadamente 68 kilómetros en línea recta.",
         "scritp-faq-question-cinco" => "¿Cuánto tiempo es del aeropuerto de Cancún a Playa del Carmen?",
-        "script-faq-answer-cinco" => "El tiempo de viaje en transporte desde el Aeropuerto de Cancún a Playa del Carmen es de aproximadamente 45 minutos a 1 hora"
+        "script-faq-answer-cinco" => "El tiempo de viaje en transporte desde el Aeropuerto de Cancún a Playa del Carmen es de aproximadamente 45 minutos a 1 hora",
+        "autobus-slogan" => "Transporte privado Playa del Carmen"
     ];

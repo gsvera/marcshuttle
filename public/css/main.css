@@ -95,6 +95,9 @@ body{
 }
 @media(min-width:640px)
 {
+    .fsize-xxl {
+        font-size: 7em;
+    }
     .fsize-xl{
         font-size: 4em;
     }
@@ -113,6 +116,9 @@ body{
 }
 @media(max-width:640px)
 {
+    .fsize-xxl {
+        font-size: 5em;
+    }
     .fsize-xl{
         font-size: 2em;
     }
@@ -630,7 +636,7 @@ body{
 	bottom: 0;
 	left: 0;
 	right: 0;
-	background-color: rgba(0,0,0,0.3);
+	background-color: rgba(0,0,0,0.7);
 }
 .back-slider-tours:before{
     content:'';
@@ -900,6 +906,10 @@ body{
     padding: 7px 15px;
     border-bottom: 1px solid rgba(0,0,0,0.2);
     font-weight: bold;
+}
+.listOptionsLocations > li > span {
+    font-size: 0.8em;
+    font-weight: 100;
 }
 .triangule-blue{
     width: 0;
