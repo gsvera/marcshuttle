@@ -96,7 +96,6 @@
         })
         .then(res => res.json())
         .then(result => {
-            console.log(result)
             locations = result.data;
         });
     }
@@ -105,7 +104,6 @@
         fetch('/back/zone')
         .then(res => res.json())
         .then(result => {
-            console.log(result)
             listZone = result.data;
 
             listZone.map((item) => {

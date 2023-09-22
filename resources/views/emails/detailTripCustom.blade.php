@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Marc Shuttle</title>
     <script src="https://use.fontawesome.com/97a88bff0a.js"></script>
     <style>
         table.roundedCorners { 
