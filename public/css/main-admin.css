@@ -1,0 +1,11 @@
+.footer-admin {
+    position: absolute;
+    bottom: 0;
+}
+
+.table-admin-report{
+    box-shadow: 0 0 5px -1px rgba(92, 99, 106, 0.7);
+}
+.odd > td {
+    white-space: nowrap;
+}

@@ -184,4 +184,34 @@ class BookingTour extends Model
         }
         return $resp;
     }
+
+    public function _GetBookingsTour($params) {
+        $resp = new Respuesta;
+
+        try {
+            $query = $this->leftJoin('tour as t', 'bookings_tour.id_tour', 't.id');
+
+            if(!is_null($params['dateDepartureStart'])) {
+                $query->where('departure_date', '>=', $params['dateDepartureStart']);
+            }
+
+            if(!is_null($params['dateDepartureEnd'])) {
+                $query->where('departure_date', '<=', $params['dateDepartureEnd']);
+            }
+
+            if($params['toursSelect'] != 0) {
+                $query->where('id_tour', $params['toursSelect']);
+            }
+
+            if($params['payMethod'] != '0') {
+                $query->where('pay_method', 'like', '%'.$params['payMethod'].'%');
+            }
+
+            $resp->data = $query->select('bookings_tour.*', 't.name as tour_name')->get();
+        } catch(Exception $e) {
+            $resp->Error = true;
+            $resp->Message = $e->getMessage();
+        }
+        return $resp;
+    }
 }

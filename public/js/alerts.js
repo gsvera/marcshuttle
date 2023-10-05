@@ -31,8 +31,6 @@ function activeLoader(title,html){
   })
 }
 
-
-
 function notification(icon, message)
 {
     Toast.fire({

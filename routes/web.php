@@ -8,6 +8,13 @@ use App\Http\Controllers\PaypalController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ConektaController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\ZonasController;
+use App\Http\Controllers\UbicacionesController;
+use App\Http\Controllers\ToursController;
+use App\Http\Controllers\VehiclesController;
+use App\Http\Controllers\BookingsTripController;
+use App\Http\Controllers\BookingsTourController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -90,10 +97,58 @@ Route::get('/back/zone', [MotorBusquedaController::class, 'GetZone']);
 Route::get('/admin-marcshuttle/login', [LoginController::class, 'index']);
 Route::post('/admin-marcshuttle/login', [Logincontroller::class, 'login'])->name('login');
 Route::get('/admin-marcshuttle/logout', [LoginController::class, 'logout']);
-
+Route::get('/admin-marcshuttle/forget-password', [LoginController::class, 'ForgetPasswordView'])->name('forget-password');
+Route::post('/admin-marcshuttle/send-token-reset-password', [LoginController::class, 'sendTokenResetPassword']);
+Route::get('/admin-marcshuttle/reset-password', [LoginController::class, 'resetPasswordView']);
+Route::post('/admin-marcshuttle/save-new-reset-password', [LoginController::class, 'saveNewResetPassword']);
 
 Route::group(['middleware' => 'userAuth', 'prefix' => 'admin-marcshuttle'], function(){
     Route::get('panel', [AdminController::class, 'Home']);
-    Route::get('nuevo-usuario', [AdminController::class, 'NuevoUsuario']);
-    Route::post('create-user', [AdminController::class, 'CreateUser']);
+    Route::get('user', [AdminController::class, 'user']);
+    Route::get('zona', [AdminController::class, 'zona']);
+    Route::get('location', [AdminController::class, 'location']);
+    Route::get('tour', [AdminController::class, 'tour']);
+    Route::get('vehicle', [AdminController::class, 'vehicle']);
+    Route::get('bookins-trip-report', [AdminController::class, 'bookingsTripReport']);
+    Route::get('bookings-tour-report', [AdminController::class, 'bookingsTourReport']);
+    
+    // Metodos par users
+    Route::get('getUsers', [UserController::class, 'getUsers']);
+    Route::get('getProfiles', [UserController::class, 'getProfiles']);
+    Route::get('getUserById', [UserController::class, 'getUserById']);
+    Route::post('create-user', [UserController::class, 'CreateUser']);
+    Route::put('update-user', [UserController::class, 'UpdateUser']);
+    Route::put('enabled-disabled-user', [UserController::class, 'EnabledDisableUser']);
+    Route::get('get-current-data-user', [UserController::class, 'GetCurrentUser']);
+    Route::put('update-current-data-user', [UserController::class, 'UpdateCurrentUser']);
+    Route::put('change-password', [UserController::class, 'ChangePassword']);
+
+    // Metodos de zonas / destinos
+    Route::get('getZonas', [ZonasController::class, 'getZonas']);
+    Route::post('create-zona', [ZonasController::class, 'createZona']);
+    Route::get('get-zona-by-id', [ZonasController::class, 'getZonaById']);
+    Route::put('update-zona', [ZonasController::class, 'updateZona']);
+
+    // Metodos de locaciones / ubicaciones
+    Route::get('get-locations', [UbicacionesController::class , 'getLocations']);
+    Route::get('get-location-by-id', [UbicacionesController::class, 'getLocationsByIdZona']);
+    Route::post('create-location', [UbicacionesController::class, 'createLocation']);
+    Route::put('update-location', [UbicacionesController::class, 'updateLocation']);
+
+    // Metodos de tours
+    Route::get('get-tours', [ToursController::class, 'getTours']);
+    Route::get('get-tour-by-id', [ToursController::class, 'getTourById']);
+    Route::post('save-tour', [ToursController::class, 'saveTour']);
+    Route::put('update-tour', [ToursController::class, 'updateTour']);
+    Route::get('get-tour-options', [ToursController::class, 'getTourOptions']);
+
+    // Metodos de vehiculos
+    Route::get('get-vehicles', [VehiclesController::class, 'getVehicles']);
+    Route::post('save-vehicle', [VehiclesController::class, 'saveVehicle']);
+    Route::get('get-vehicle-by-id', [VehiclesController::class, 'getVehicleById']);
+    Route::put('update-vehicle', [VehiclesController::class, 'updateVehicle']);
+
+    // Reportes de bookings
+    Route::get('get-bookings-trip-report', [BookingsTripController::class, 'getBookinsgTripReport']);
+    Route::get('get-bookings-tour-report', [BookingsTourController::class, 'getBookingsTourReport']);
 });

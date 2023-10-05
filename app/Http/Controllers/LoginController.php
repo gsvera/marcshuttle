@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Respuesta;
 use App\Models\Usuario;
+use App\Models\ResetPassword;
+
 
 class LoginController extends Controller
 {
@@ -46,5 +48,45 @@ class LoginController extends Controller
         request()->session()->forget('name_user');
 
         return redirect('/admin-marcshuttle/login');
+    }
+
+    public function ForgetPasswordView(){
+        return view('admin.forget-password');
+    }
+
+    public function sendTokenResetPassword(){
+        $resp = new Respuesta;
+        $usuario = new Usuario;
+        try{
+            $resp = $usuario->_sendTokenResetPassword(request('email'));
+        }
+        catch(Exception $e) {
+            $resp->Error = true;
+            $resp->Message = $e->getMessage();
+        }
+        return response()->json($resp->getResult());
+    }
+    public function resetPasswordView() {
+        return view('admin.reset-password')->with('token', request('token'));
+    }
+    public function saveNewResetPassword() {
+        $resp = new Respuesta;
+        $user = new Usuario;
+        $resetPassword = new ResetPassword;
+
+        try{            
+            $resp = $resetPassword->_FindToken(request('token'));
+            
+            if($resp->Error == false) {
+                $resp = $user->_UpdatePasswordForget($resp->data, request('newPassword'));
+            }
+            else {
+                $resp->Message = "No se pudo actualizar la contraseña, intente mas tarde por favor.";
+            }
+        } catch(Exeption $e) {
+            $resp->Error = true;
+            $resp->Message = $e->getMessage();
+        }
+        return response()->json($resp->getResult());
     }
 }

@@ -28,4 +28,40 @@ class Ubicaciones extends Model
                         ->get();
         }
     }
+
+    public function _CreateLocation($nameUbicacion, $idZona) {
+        $resp = new Respuesta;
+
+        try{
+            $newUbicacion = new Ubicaciones;
+            $newUbicacion->nombre = $nameUbicacion;
+            $newUbicacion->save();
+
+            $pivot = new DestinationXUbicacion;
+            $pivot->id_destination = $idZona;
+            $pivot->id_ubicaciones = $newUbicacion->id;
+            $pivot->save();
+
+            $resp->Message = "Registro guardado correctamente";
+        } catch(Exception $e ) {
+            $resp->Error = true;
+            $resp->Message = $e->getMessage();
+        }
+        return $resp;
+    }
+
+    public function _UpdateLocation($data) {
+        $resp = new Respuesta;
+
+        try{
+            $location = $this->find($data['id']);
+            $location->nombre = $data['name'];
+            $location->save();
+            
+        } catch(Exception $e) {
+            $resp->Error = true;
+            $resp->Message = $e->getMessage();
+        }
+        return $resp;
+    }
 }

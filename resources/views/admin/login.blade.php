@@ -38,8 +38,9 @@
                     <div class="pt-1 mb-4">
                         <button class="btn btn-lg btn-success" style="width:100%;" type="submit">Login</button>
                     </div>
-                    
-                    <a class="small text-muted" href="#!">Forgot password?</a>
+                    <div class="text-center">
+                      <a class="small text-muted" href="{{route('forget-password')}}">¿Olvido su contraseña?</a>
+                    </div>
                     @if(session('message'))
                       <div class="alert alert-danger">{{session('message')}}</div>
                     @endif
@@ -52,9 +53,7 @@
         </div>
       </div>
     </section>
-
-
-    <!-- <script src="{{ asset('../../js/app.js') }}"></script> -->
+    
     <script src="{{ asset('js/app.js') }}"></script>
     
 </body>

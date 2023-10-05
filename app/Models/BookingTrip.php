@@ -303,4 +303,42 @@ class BookingTrip extends Model
 
         return $resp;
     }
+
+    public function _getBookingsTrip($params) {
+        $resp = new Respuesta();
+        try {
+            $query = $this->leftJoin('transfer_catalog as tc', 'bookings_trip.type_transfer', 'tc.id');
+
+            if($params['typeTransfer'] != 0) {
+                $query->where('bookings_trip.type_transfer', $params['typeTransfer']);
+            }
+
+            if($params['payMethod'] != '0') {
+                $query->where('bookings_trip.pay_method', 'like', '%'.$params['payMethod'].'%');
+            }
+            
+            if(!is_null($params['dataArrivalStart'])) {
+                $query->where('bookings_trip.arrival_date', '>=', $params['dataArrivalStart']);
+            }
+
+            if(!is_null($params['dataArrivalEnd'])) {
+                $query->where('bookings_trip.arrival_date', '<=', $params['dataArrivalEnd']);
+            }
+
+            if(!is_null($params['dataDepartureStart'])) {
+                $query->where('bookings_trip.departure_date', '>=', $params['dataDepartureStart']);
+            }
+
+            if(!is_null($params['dataDepartureEnd'])) {
+                $query->where('bookings_trip.departure_date', '<=', $params['dataDepartureEnd']);
+            }
+                            
+            $resp->data = $query->select('bookings_trip.*', 'tc.name_es as name_type_transfer')->get();
+        } catch(Exception $e) {
+            $resp->Error = true;
+            $resp->Message = $e->getMessage();
+        }
+
+        return $resp;
+    }
 }

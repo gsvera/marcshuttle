@@ -120,7 +120,7 @@
             <div class="box-shadow-info">
                 <div class="d-flex">
                     @foreach($listPrecios as $precios)
-                        <img src="{{$precios['image']}}" alt="Bus" width="100%" class="mx-auto img-shuttle img-shuttle-{{$precios['vehicle_id']}} {{$countImg>0?'d-none':''}}">                        
+                        <img src="{{empty($precios['image_base_64']) ? $precios['image'] : $precios['image_base_64']}}" alt="Bus" width="100%" class="mx-auto img-shuttle img-shuttle-{{$precios['vehicle_id']}} {{$countImg>0?'d-none':''}}">                        
                         @php $countImg = $countImg + 1; @endphp
                     @endforeach
                 </div>
