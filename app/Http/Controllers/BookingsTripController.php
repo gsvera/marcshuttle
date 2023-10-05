@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Respuesta;
 use App\Models\BookingTrip;
+use App\Models\TransferCatalog;
 
 class BookingsTripController extends Controller
 {
@@ -19,5 +20,20 @@ class BookingsTripController extends Controller
             $res->Message = $e->getMessage();
         }
         return response()->json($resp->getResult());
+    }
+
+    public function getTypeTrip() {
+        $resp = new Respuesta;
+        $typesTransfer = new TransferCatalog;
+
+        try {
+            $resp = $typesTransfer->_GetTransferCatalog();
+        } catch(Exception $e) {
+            $resp->Error = true;
+            $resp->Message = $e->getMessage();
+        }
+
+        return response()->json($resp->getResult());
+
     }
 }

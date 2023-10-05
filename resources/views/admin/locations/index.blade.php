@@ -1,3 +1,6 @@
+<?php
+    use App\Models\Utils;
+?>
 <div class="mx-5 mt-3 mb-5">
     <div>
         <h4>Hotel / airbnb por zonas</h4>
@@ -30,6 +33,7 @@
         <div class="form-group">
             <hr>
             <p class="text-center text-secondary font-weight-bold">Locaciones</p>
+            @if(Utils::validPermision(request()->session()->get('permisos'), config('ListPermision.AGREGAR_LOCACIONES')))
             <div class="d-flex">
               <div class="col-10 p-0">
                 <input type="text" class="form-control" name="newUbication" id="newUbication">
@@ -38,6 +42,7 @@
                 <button type="button" class="btn btn-success" onclick="addZona()"><i class="fa fa-plus" aria-hidden="true"></i></button>
               </div>
             </div>
+            @endif
             <div class="scroll-div" id="contentLocaciones"></div>
         </div>
       </form>

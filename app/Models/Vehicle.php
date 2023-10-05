@@ -81,4 +81,23 @@ class Vehicle extends Model
         }
         return $resp;
     }
+
+    public function _DeleteVehicle($id) {
+        $resp = new Respuesta;
+        $pivot = new VehicleTour;
+
+        try {
+            $delete = $this->find($id)->delete();
+
+            if($delete) {
+                $pivot->where('vehicle_id', $id)->delete();
+            }
+
+        } catch(Exception $e) {
+            $resp->Error = true;
+            $resp->Message = $e->getMessage();
+        }
+
+        return $resp;
+    }
 }

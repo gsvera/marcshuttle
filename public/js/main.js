@@ -8,6 +8,7 @@ const headConexion = {
     'X-CSRF-TOKEN': window.CSRF_TOKEN //the token is create in head html
 };
 const sizeImgAvailable = 2097152;
+const opciones = { year: 'numeric', month: 'numeric', day: 'numeric' };
 
 $.ajaxSetup({
     headers: {
@@ -16,7 +17,26 @@ $.ajaxSetup({
 })
 
 /**
- * 
+ *  Recibe el nombre del permiso para consultar al backend
+ * @param {string} permision 
+ * @returns 
+ */
+async function validPermision(permision) {
+    return await new Promise((resolve) => {
+        fetch(`/admin-marcshuttle/valid-permision?permiso=${permision}`)
+        .then(res => res.json())
+        .then(result => {
+            if(result.error == false) {
+                resolve(result.data);
+            }
+            else
+                return resolve(false);
+        })
+    }) 
+}
+
+/**
+ *  Valida el peso del archivo maxico permitido 2MB
  * @param {number} fileSize 
  * @returns 
  */
@@ -74,3 +94,11 @@ function validOnlyPrice(price){
 function resetForm(idForm){
     idForm.reset();
 }
+
+function generarColorRGB() {
+    const r = Math.floor(Math.random() * 256); 
+    const g = Math.floor(Math.random() * 256); 
+    const b = Math.floor(Math.random() * 256); 
+  
+    return `rgb(${r}, ${g}, ${b})`;
+  }

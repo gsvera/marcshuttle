@@ -8,8 +8,7 @@ use App\Models\Respuesta;
 
 class AdminController extends Controller
 {
-    public function Home()
-    {
+    public function Home() {
         return view('admin.home');
     }
     public function user() {
@@ -32,5 +31,8 @@ class AdminController extends Controller
     }
     public function bookingsTourReport() {
         return view('admin.reports.bookings-tour.index');
+    }
+    public function chart() {
+        return view('admin.charts');
     }
 }

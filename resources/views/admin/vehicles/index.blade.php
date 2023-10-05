@@ -1,11 +1,16 @@
+<?php
+    use App\Models\Utils;
+?>
 <div class="mx-5 my-3">
     <div class="d-flex justify-content-between my-3">
         <div>
             <h4>Vehiculos</h4>
         </div>
-        <div>
-            <button class="btn btn-success" onClick="showModalVehicle()"><i class="fa fa-plus" aria-hidden="true"></i> Agregar vehiculo</button>
-        </div>
+        @if(Utils::validPermision(request()->session()->get('permisos'), config('ListPermision.AGREGAR_VEHICULOS')))
+          <div>
+              <button class="btn btn-success" onClick="showModalVehicle()"><i class="fa fa-plus" aria-hidden="true"></i> Agregar vehiculo</button>
+          </div>
+        @endif
     </div>
     <div>
     <div id="content-group-vehicle" class="row"></div>        

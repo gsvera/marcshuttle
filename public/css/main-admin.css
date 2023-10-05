@@ -9,3 +9,6 @@
 .odd > td {
     white-space: nowrap;
 }
+.c-pointer {
+    cursor: pointer;
+}

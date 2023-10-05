@@ -62,3 +62,19 @@ function successAlert(title, html){
       text: html
   })
 }
+
+function confirmDelete(id, callFunction) {
+  Swal.fire({
+    title: '¿Estas seguro de eliminar el registro?',
+    text: "¡Esto no se podra revertir!",
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#d33',
+    cancelButtonColor: '#5c636a',
+    confirmButtonText: 'Borrar!'
+  }).then((result) => {
+    if (result.isConfirmed) {
+      callFunction(id)
+    }
+  })
+}

@@ -1,3 +1,6 @@
+<?php
+    use App\Models\Utils;
+?>
 <div class="mx-5 mt-3 mb-5">
     <div>
         <h4>Tours</h4>
@@ -11,9 +14,11 @@
                 </button>
             </div>
         </div>
+        @if(Utils::validPermision(request()->session()->get('permisos'), config('ListPermision.AGREGAR_TOURS')))
         <div>
             <button type="button" class="btn btn-success" onclick="openModalTour()"><i class="fa fa-plus" aria-hidden="true"></i> Agregar tour</button>
         </div>
+        @endif
     </div>    
     <div id="content-group-tour" class="row"></div>
 </div>

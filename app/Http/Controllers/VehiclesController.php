@@ -55,4 +55,18 @@ class VehiclesController extends Controller
         }
         return response()->json($resp->getResult());
     }
+
+    public function deleteVehicle() {
+        $resp = new Respuesta;
+        $vehicle = new Vehicle;
+
+        try {
+            $resp = $vehicle->_DeleteVehicle(request('idVehicle'));
+        } catch(Exception $e) {
+            $resp->Error = true;
+            $resp->Message = $e->getResult();
+        }
+
+        return response()->json($resp->getResult());
+    }
 }

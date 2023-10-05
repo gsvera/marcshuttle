@@ -1,9 +1,11 @@
+<?php
+    use App\Models\Utils;
+?>
 
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -32,7 +34,7 @@
 
             <!-- Sidebar - Brand -->
             <div class="sidebar-brand d-flex align-items-center justify-content-center">
-                <div class="sidebar-brand-icon">
+                <div class="sidebar-brand-icon c-pointer" onclick="menuHome()">
                     <img src="/img/logos/Logo-Marcshuttle.webp" alt="Logo Marcshuttle" style="width:100px;">
                 </div>
             </div>
@@ -60,11 +62,19 @@
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Shuttle:</h6>
-                        <a class="collapse-item" onclick="menuZonas()">Zonas</a>
-                        <a class="collapse-item" onclick="menuLocations()">Hotel / Airbnb</a>
+                        @if(Utils::validPermision(request()->session()->get('permisos'), config('ListPermision.VISUALIZAR_ZONAS')))
+                            <a class="collapse-item c-pointer" onclick="menuZonas()">Zonas</a>
+                        @endif
+                        @if(Utils::validPermision(request()->session()->get('permisos'), config('ListPermision.VISUALIZAR_LOCACIONES')))
+                            <a class="collapse-item c-pointer" onclick="menuLocations()">Hotel / Airbnb</a>
+                        @endif
                         <h6 class="collapse-header">Tours:</h6>
-                        <a class="collapse-item" onclick="menuVehicles()">Vehiculos</a>
-                        <a class="collapse-item" onclick="menuTours()">Tour</a>
+                        @if(Utils::validPermision(request()->session()->get('permisos'), config('ListPermision.VISUALIZAR_VEHICULOS')))
+                            <a class="collapse-item c-pointer" onclick="menuVehicles()">Vehiculos</a>
+                        @endif
+                        @if(Utils::validPermision(request()->session()->get('permisos'), config('ListPermision.VISUALIZAR_TOURS')))
+                            <a class="collapse-item c-pointer" onclick="menuTours()">Tour</a>
+                        @endif
                     </div>
                 </div>
             </li>
@@ -93,31 +103,31 @@
                 </a>
                 <div id="collapseReports" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" onclick="menuBookingsTripReport()">Bookings Trip</a>
-                        <a class="collapse-item" onclick="menuBookingsTourReport()">Bookings Tours</a>
+                        @if(Utils::validPermision(request()->session()->get('permisos'), config('ListPermision.VISUALIZAR_REPORTE_TRIP')))
+                            <a class="collapse-item c-pointer" onclick="menuBookingsTripReport()">Bookings Trip</a>
+                        @endif
+                        @if(Utils::validPermision(request()->session()->get('permisos'), config('ListPermision.VISUALIZAR_REPORTE_TOUR')))
+                            <a class="collapse-item c-pointer" onclick="menuBookingsTourReport()">Bookings Tours</a>
+                        @endif
                     </div>
                 </div>
             </li>
 
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUsers"
-                    aria-expanded="true" aria-controls="collapseUsers">
-                    <i class="fa fa-user" aria-hidden="true"></i>
-                    <span>Usuarios</span>
-                </a>
-                <div id="collapseUsers" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" onclick="menuUser()">Usuarios</a>
-                    </div>
-                </div>
-            </li>
-            <!-- Nav Item - Charts -->
-            <li class="nav-item">
-                <a class="nav-link" href="#">
-                    <i class="fas fa-fw fa-chart-area"></i>
-                    <span>Charts</span></a>
-            </li>
-            
+                @if(Utils::validPermision(request()->session()->get('permisos'), config('ListPermision.VISUALIZAR_USUARIOS')))
+                    <li class="nav-item">
+                        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUsers"
+                            aria-expanded="true" aria-controls="collapseUsers">
+                            <i class="fa fa-user" aria-hidden="true"></i>
+                            <span>Usuarios</span>
+                        </a>
+                        <div id="collapseUsers" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                            <div class="bg-white py-2 collapse-inner rounded">
+                                <a class="collapse-item c-pointer" onclick="menuUser()">Usuarios</a>
+                            </div>
+                        </div>
+                    </li>
+                @endif
+           
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
             <!-- Sidebar Toggler (Sidebar) -->
@@ -279,9 +289,7 @@
     <script src="{{asset('vendor/jquery-easing/jquery.easing.min.js')}}"></script>
     <script src="{{asset('js/sb-admin-2.min.js')}}"></script>
     <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.js"></script>
-    <!-- <script src="{{asset('vendor/chart.js/Chart.min.js')}}"></script>
-    <script src="{{asset('js/demo/chart-area-demo.js')}}"></script>
-    <script src="{{asset('js/demo/chart-pie-demo.js')}}"></script> -->
+    
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="{{ asset('js/alerts.js')}}"></script>
     <script src="{{ asset('js/main.js')}}"></script>

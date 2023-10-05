@@ -15,6 +15,7 @@ class Usuario extends Model
     protected $table = 'users';
     protected $fillable = ['email', 'password'];
     public $timestamps = false;
+    protected $primaryKey = 'id_profile';
 
     private $validations = [
         'first_name' => 'required|string',
@@ -31,6 +32,10 @@ class Usuario extends Model
         'password.required' => 'El campo contraseña es obligatoria',
         'id_profile.required' => 'El campo perfile es obligatorio',
     ];
+
+    public function _Permisos() {
+        return $this->hasMany(PermisosXPerfil::class, 'id_perfil');
+    }
 
     public function _CrearUsuario($data)
     {
@@ -113,7 +118,11 @@ class Usuario extends Model
         $resp = new Respuesta;
         
         try{
-            $user = $this->where('email', $data['email'])->first();
+            $user = $this->with(array('_Permisos' => function($query) {
+                    $query->select('id_permiso');
+                }))
+                ->where('email', $data['email'])->first();
+                
             if($user->estatus != 1) {
                 $resp->Error = true;
                 $resp->Message = "Usuario inhabilitado";

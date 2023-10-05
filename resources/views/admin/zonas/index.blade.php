@@ -1,3 +1,7 @@
+<?php
+    use App\Models\Utils;
+?>
+
 <div class="mx-5 mt-3 mb-5">
     <div>
         <h4>Zonas</h4>
@@ -11,9 +15,11 @@
                 </button>
             </div>
         </div>
+        @if(Utils::validPermision(request()->session()->get('permisos'), config('ListPermision.AGREGAR_ZONAS')))
         <div>
             <button type="button" class="btn btn-success" onclick="openModalAdd()"><i class="fa fa-plus" aria-hidden="true"></i> Agregar zona</button>
         </div>
+        @endif
     </div>    
     <table class="table mb-0">
         <thead class="thead-dark">

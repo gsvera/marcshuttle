@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Usuario;
 use App\Models\Respuesta;
 use App\Models\Perfil;
+use App\Models\Utils;
 
 class UserController extends Controller
 {
@@ -119,6 +120,20 @@ class UserController extends Controller
 
         try{
             $resp = $usuario->_ChangePassword(request()->session()->get('user_auth'), request('currentPassword'), request('newPassword'));
+        } catch(Exception $e) {
+            $resp->Error = true;
+            $resp->Message = $e->getMessage();
+        }
+
+        return response()->json($resp->getResult());
+    }
+
+    public function validPermision () {
+        $resp = new Respuesta;
+
+        try {
+            $resp->data = Utils::validPermision(request()->session()->get('permisos'), config('ListPermision.'.request('permiso')));
+
         } catch(Exception $e) {
             $resp->Error = true;
             $resp->Message = $e->getMessage();

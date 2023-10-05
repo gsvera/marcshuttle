@@ -111,6 +111,7 @@ Route::group(['middleware' => 'userAuth', 'prefix' => 'admin-marcshuttle'], func
     Route::get('vehicle', [AdminController::class, 'vehicle']);
     Route::get('bookins-trip-report', [AdminController::class, 'bookingsTripReport']);
     Route::get('bookings-tour-report', [AdminController::class, 'bookingsTourReport']);
+    Route::get('chart', [AdminController::class, 'chart']);
     
     // Metodos par users
     Route::get('getUsers', [UserController::class, 'getUsers']);
@@ -122,7 +123,8 @@ Route::group(['middleware' => 'userAuth', 'prefix' => 'admin-marcshuttle'], func
     Route::get('get-current-data-user', [UserController::class, 'GetCurrentUser']);
     Route::put('update-current-data-user', [UserController::class, 'UpdateCurrentUser']);
     Route::put('change-password', [UserController::class, 'ChangePassword']);
-
+    Route::get('valid-permision', [UserController::class, 'validPermision']);
+    
     // Metodos de zonas / destinos
     Route::get('getZonas', [ZonasController::class, 'getZonas']);
     Route::post('create-zona', [ZonasController::class, 'createZona']);
@@ -147,8 +149,10 @@ Route::group(['middleware' => 'userAuth', 'prefix' => 'admin-marcshuttle'], func
     Route::post('save-vehicle', [VehiclesController::class, 'saveVehicle']);
     Route::get('get-vehicle-by-id', [VehiclesController::class, 'getVehicleById']);
     Route::put('update-vehicle', [VehiclesController::class, 'updateVehicle']);
+    Route::delete('delete-vehicle', [VehiclesController::class, 'deleteVehicle']);
 
     // Reportes de bookings
     Route::get('get-bookings-trip-report', [BookingsTripController::class, 'getBookinsgTripReport']);
+    Route::get('get-type-trip', [BookingsTripController::class, 'getTypeTrip']);
     Route::get('get-bookings-tour-report', [BookingsTourController::class, 'getBookingsTourReport']);
 });

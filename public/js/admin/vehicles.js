@@ -1,6 +1,9 @@
-function getVehicles() {
+async function getVehicles() {
     var contentGroupVehicle = document.getElementById('content-group-vehicle');
     contentGroupVehicle.innerHTML = '';
+
+    var canEditVehicle = await validPermision('EDITAR_VEHICULOS');
+    var canDeleteVehicle = await validPermision('ELIMINAR_VEHICULOS');
 
     fetch('/admin-marcshuttle/get-vehicles')
     .then(res => res.json())
@@ -13,9 +16,17 @@ function getVehicles() {
                         <div class="row no-gutters align-items-center">
                             <div class="d-flex justify-content-between">
                                 <div class="font-weight-bold text-primary text-uppercase mb-1 fsize-sm">${item.name}</div>
-                                <button type="button" class="d-flex align-center btn btn-outline-primary" onclick="showModalVehicle(${item.id})">
-                                    <i class="fa fa-pencil" style="font-size: 1.4em;" aria-hidden="true"></i>
-                                </button>
+                                <div class="d-flex justify-content-between">
+                                    ${canEditVehicle ? 
+                                        '<div class="mr-2"><button type="button" class="d-flex align-center btn btn-outline-primary" onclick="showModalVehicle('+item.id+')"><i class="fa fa-pencil" style="font-size: 1.4em;" aria-hidden="true"></i></button></div>' 
+                                        : ''
+                                    }
+                                    ${canDeleteVehicle ? 
+                                        '<div><button type="button" class="d-flex align-center btn btn-outline-danger" onclick="confirmDelete('+item.id+', deleteVehicle)"><i class="fa fa-trash" style="font-size: 1.4em;" aria-hidden="true"></i></button></div>'
+                                        : ''
+                                    }
+                                    
+                                </div>
                             </div>
                             <div class="">
                                 <div class="h5 mb-0 font-weight-bold text-gray-800">pax</div>
@@ -187,4 +198,20 @@ function showModalVehicle(idVehicle = '') {
 
 function changeBtnSave (btnText) {
     $('#btn-save-vehicle').text(btnText);
+}
+
+function deleteVehicle(id) {
+    fetch(`/admin-marcshuttle/delete-vehicle?idVehicle=${id}`, {
+        method: 'DELETE',
+        headers: headConexion
+    })
+    .then(res => res.json())
+    .then(result => {
+        if(result.error == false)  {
+            getVehicles()
+            notification('success', 'Se elimino el registro correctamente');
+        }
+        else
+            notification('error', result.message);
+    })
 }

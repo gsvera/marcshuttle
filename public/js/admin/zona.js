@@ -1,7 +1,9 @@
-function getZonas(nameZona = '') {
+async function getZonas(nameZona = '') {
     var tableBodyZonas = document.getElementById('table-body-zona');
     tableBodyZonas.innerHTML = "";
 
+    var canEditZona = await validPermision('EDITAR_ZONAS');
+    
     fetch(`/admin-marcshuttle/getZonas?namezona=${nameZona}`)
     .then(res => res.json())
     .then(result => {        
@@ -12,9 +14,9 @@ function getZonas(nameZona = '') {
                     <td class="text-center">${convertCurrency(item.uno_tres)}</td>
                     <td class="text-center">${convertCurrency(item.cuatro_siete)}</td>
                     <td class="text-center">${convertCurrency(item.ocho_diez)}</td>
-                    <td class="text-center">
-                        <button class="btn btn-outline-primary" onclick="openModalEditZona(${item.id})"><i class="fa fa-pencil" aria-hidden="true"></i></button>
-                    </td>
+                    ${canEditZona ? 
+                    '<td class="text-center"><button class="btn btn-outline-primary" onclick="openModalEditZona('+item.id+')"><i class="fa fa-pencil" aria-hidden="true"></i></button></td>'
+                    : "<td></td>" }
                 </tr>`;
 
                 tableBodyZonas.insertAdjacentHTML('beforeend', element);
@@ -26,6 +28,7 @@ function getZonas(nameZona = '') {
 function fireSearchZone() {
     getZonas($('#search-zona').val());
 }
+
 $(document).ready(() => {
     getZonas();
 

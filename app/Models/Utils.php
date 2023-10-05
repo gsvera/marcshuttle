@@ -29,4 +29,13 @@ class Utils extends Model
         if ($valor<0) return "-".asDollars(-$valor);
         return '$' . number_format($valor, 2);
     }
+
+    static function validPermision($arrayPermision, $idPermision) {
+        foreach($arrayPermision as $permision) {
+            if($permision == $idPermision) {
+                return true;
+            }
+        }
+         return false;
+    }
 }

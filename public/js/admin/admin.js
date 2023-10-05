@@ -1,3 +1,6 @@
+function menuHome() {
+    window.location.reload();
+}
 
 function menuUser() {
     $('#content-body').load('/admin-marcshuttle/user')
@@ -105,3 +108,7 @@ function updatePassword() {
         }
     })
 }
+
+$(document).ready(() => {
+    $('#div-chart').load('/admin-marcshuttle/chart');
+})

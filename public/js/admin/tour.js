@@ -1,8 +1,10 @@
 var arrayVehicle = [];
 
-function getTours(nameTour = "") {
+async function getTours(nameTour = "") {
     var contentGroupTour = document.getElementById('content-group-tour');
     contentGroupTour.innerHTML = "";
+
+    var canEditTours = await validPermision('EDITAR_TOURS');
 
     fetch(`/admin-marcshuttle/get-tours?nameTour=${nameTour}`)
     .then(res => res.json())
@@ -18,9 +20,11 @@ function getTours(nameTour = "") {
                                             ${item.name}
                                         </div> 
                                         <div>
-                                            <button type="button" class="d-flex align-center btn btn-outline-success" onclick="openModalTour(${item.id})">
-                                                <i class="fa fa-pencil" style="font-size: 1.4em;" aria-hidden="true"></i>
-                                            </button>
+                                        ${canEditTours ? 
+                                            '<button type="button" class="d-flex align-center btn btn-outline-success" onclick="openModalTour('+item.id+')"><i class="fa fa-pencil" style="font-size: 1.4em;" aria-hidden="true"></i></button>'
+                                            : ''
+                                        }
+                                            
                                         </div>
                                     </div>
                                     <div class="mt-2">

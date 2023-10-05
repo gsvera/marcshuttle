@@ -16,7 +16,7 @@ function getLocationsByZona(nameZona = "") {
                                 <span>Total ubicaciones (${item._detail_locations.length})</span>
                             </div>
                             <div class="d-flex align-center btn btn-outline-primary" onclick="openModalLocations(${item.id})">
-                                <i class="fa fa-pencil" style="font-size: 1.4em;" aria-hidden="true"></i>
+                                <i class="fa fa-eye" style="font-size: 1.4em;" aria-hidden="true"></i>
                             </div>
                         </div>
                     </div>
@@ -37,9 +37,12 @@ function searchZoneLocations(){
     getLocationsByZona($('#search-zona-locations').val());
 }
 
-function openModalLocations(idZona) {
+async function openModalLocations(idZona) {
     var contentLocaciones = document.getElementById('contentLocaciones');
     contentLocaciones.innerHTML = "";
+
+    var canEditLocacion = await validPermision('EDITAR_LOCACIONES');
+
     fetch(`/admin-marcshuttle/get-location-by-id?id=${idZona}`)
     .then(res => res.json())
     .then(result => {
@@ -51,11 +54,9 @@ function openModalLocations(idZona) {
                     <div class="col-10 p-0">
                         <input type="text" class="form-control mb-3" id="location-${item.id}" value="${item.nombre}" onchange="handleLocation(this, ${item.id})" />
                     </div>
-                    <div class="col-1">
-                        <button class="btn btn-info" type="button" onclick="updateLocation(${item.id})" id="btn-location-${item.id}" disabled>
-                            <i class="fa fa-floppy-o" aria-hidden="true"></i>
-                        </button>
-                    </div>
+                    ${canEditLocacion ? 
+                    '<div class="col-1"><button class="btn btn-info" type="button" onclick="updateLocation('+item.id+')" id="btn-location-'+item.id+'" disabled><i class="fa fa-floppy-o" aria-hidden="true"></i></button></div>'
+                    : ''}                    
                 </div>`;
                 
                 contentLocaciones.insertAdjacentHTML('beforeend', element)

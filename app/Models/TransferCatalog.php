@@ -15,4 +15,17 @@ class TransferCatalog extends Model
     {
         return $this->find($id);
     }
+
+    public function _GetTransferCatalog() {
+        $resp = new Respuesta;
+
+        try {
+            $resp->data = $this->get();
+        } catch(Exception $e) {
+            $resp->Error = true;
+            $resp->Message = $e->getMessage();
+        }
+
+        return $resp;
+    }
 }
