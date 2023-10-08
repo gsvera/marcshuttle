@@ -154,5 +154,7 @@ Route::group(['middleware' => 'userAuth', 'prefix' => 'admin-marcshuttle'], func
     // Reportes de bookings
     Route::get('get-bookings-trip-report', [BookingsTripController::class, 'getBookinsgTripReport']);
     Route::get('get-type-trip', [BookingsTripController::class, 'getTypeTrip']);
+    Route::post('resend-email-trip', [BookingsTripController::class, 'resendEmailTrip']);
     Route::get('get-bookings-tour-report', [BookingsTourController::class, 'getBookingsTourReport']);
+    Route::post('resend-email-tour', [BookingsTourController::class, 'resendEmailTour']);
 });

@@ -36,4 +36,16 @@ class BookingsTripController extends Controller
         return response()->json($resp->getResult());
 
     }
+
+    public function resendEmailTrip() {
+        $resp = new Respuesta;
+        $bookingTrip = new BookingTrip;
+        try {
+            $resp = $bookingTrip->_ResendBookingTrip(request()->all());
+        } catch(Exception $e) {
+            $resp->Error = true;
+            $resp->Message = $e->getMessage();
+        }
+        return response()->json($resp->getResult());
+    }
 }

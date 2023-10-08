@@ -21,4 +21,18 @@ class BookingsTourController extends Controller
 
         return response()->json($resp->getResult());
     }
+
+    public function resendEmailTour() {
+        $resp = new Respuesta;
+        $bookingTour = new BookingTour;
+
+        try{
+            $resp = $bookingTour->_ResendBookingTour(request()->all());
+        } catch(Exception $e) {
+            $resp->Error = true;
+            $resp->Message = $e->getMessage();
+        }
+
+        return response()->json($resp->getResult());
+    }
 }

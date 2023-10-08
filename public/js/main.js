@@ -1,4 +1,8 @@
-
+ /**
+  * regex para email
+  * regexPassword para password de mayusculas, minusculas y numero
+  * regexPrice para numero con punto decimal
+  */
 const regex = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i
 const regexPassword = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$/;
 const regexPrice = /^\d+(\.\d+)?$/
@@ -9,6 +13,7 @@ const headConexion = {
 };
 const sizeImgAvailable = 2097152;
 const opciones = { year: 'numeric', month: 'numeric', day: 'numeric' };
+const initYear = 2022;
 
 $.ajaxSetup({
     headers: {

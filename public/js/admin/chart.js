@@ -1,25 +1,41 @@
+var myPieChart; var myChartTrip;
 
-var labelMonth = { month: 'long' };
-var currentDate = new Date();
-var currenMonthLabel = currentDate.toLocaleDateString(undefined, labelMonth);
-currentDate.setDate(1);
+function handleMonthChart() {
+  var date = new Date();
+  date.setMonth($('#month-chart').val() -1)
+  date.setFullYear($('#year-chart').val());
+  setDatesCharts(date);
+}
 
-var firstDay = currentDate.getDate() < 10 ? '0'+currentDate.getDate() : currentDate.getDate(); 
-var currentMont = (currentDate.getMonth + 1) < 10 ? ('0'+currentDate.getMonth() + 1) : (currentDate.getMonth() + 1);
-var currentYear = currentDate.getFullYear();
 
-currentDate.setMonth(currentDate.getMonth() + 1);
-currentDate.setDate(currentDate.getDate() - 1);
+function setDatesCharts(currentDate = new Date()) {
 
-var lastDate = currentDate.getDate();
+  var labelMonth = { month: 'long' };
+  
+  var currenMonthLabel = currentDate.toLocaleDateString(undefined, labelMonth);
+  currentDate.setDate(1);
+  
+  var firstDay = currentDate.getDate() < 10 ? '0'+currentDate.getDate() : currentDate.getDate(); 
+  var currentMont = (currentDate.getMonth + 1) < 10 ? ('0'+currentDate.getMonth() + 1) : (currentDate.getMonth() + 1);
+  var currentYear = currentDate.getFullYear();
+  
+  currentDate.setMonth(currentDate.getMonth() + 1);
+  currentDate.setDate(currentDate.getDate() - 1);
+  
+  var lastDate = currentDate.getDate();
+  
+  var starDate = currentYear + '-' + currentMont + '-' + firstDay;
+  var endDate = currentYear + '-' + currentMont + '-' + lastDate;
+  
+  $('.currentMonthTrip').text(currenMonthLabel);
+  $('.currentMonthTour').text(currenMonthLabel);
 
-var starDate = currentYear + '-' + currentMont + '-' + firstDay;
-var endDate = currentYear + '-' + currentMont + '-' + lastDate;
+  getTripsChart(starDate, endDate);
+  getToursChart(starDate, endDate);
 
-$('.currentMonthTrip').text(currenMonthLabel);
-$('.currentMonthTour').text(currenMonthLabel);
+}
 
-function getTripsChart() {
+function getTripsChart(starDate, endDate) {
     var totalTrip = 0;
     var countTrip = 0;
     var dataLabels = [];
@@ -57,7 +73,7 @@ function getTripsChart() {
     })
 }
 
-function getToursChart() {
+function getToursChart(starDate, endDate) {
     var totalTour = 0;
     var countTour = 0;
     var dataLabels = [];
@@ -98,8 +114,12 @@ function getToursChart() {
 function createChartTrip(dataLabels = [], dataValue = [], dataColor = [], maxAmount) {
 
     var ctx = document.getElementById("myChartTrip");
-    
-    var myChartTrip = new Chart(ctx, {
+    if(myChartTrip != undefined) 
+    {
+      myChartTrip.clear();
+      myChartTrip.destroy();
+    }
+    myChartTrip = new Chart(ctx, {
       type: 'bar',
       data: {
         labels: dataLabels,
@@ -183,8 +203,11 @@ function createChartTrip(dataLabels = [], dataValue = [], dataColor = [], maxAmo
 
 function createCharTour(dataLabels = [], dataValue = [], dataColor = []) {
     var ctx = document.getElementById("myChartTour");
-
-    var myPieChart = new Chart(ctx, {
+    if(myPieChart != undefined) {
+      myPieChart.clear();
+      myPieChart.destroy();
+    }
+      myPieChart = new Chart(ctx, {
         type: 'polarArea',
         data: {
           labels: dataLabels,
@@ -226,7 +249,16 @@ function createCharTour(dataLabels = [], dataValue = [], dataColor = []) {
 }
 
 $(document).ready(() => {
-    getTripsChart();
-    getToursChart();
-    createCharTour()
+    var yearChart = document.getElementById('year-chart');
+    var mountChart = document.getElementById('month-chart');
+    var currentDate = new Date();
+
+    for(let i = initYear; i < (currentDate.getFullYear() + 1); i ++) {
+      var optionYear = `<option value="${i}">${i}</option>`;
+      yearChart.insertAdjacentHTML('beforeend', optionYear);
+    }
+
+    yearChart.value = currentDate.getFullYear();
+    mountChart.value = (currentDate.getMonth + 1) < 10 ? ('0'+currentDate.getMonth() + 1) : (currentDate.getMonth() + 1);
+    setDatesCharts(currentDate)
 })

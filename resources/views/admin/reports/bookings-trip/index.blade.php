@@ -102,6 +102,7 @@
         <table id="tableReport" class="table table-striped" cellspacing="0" style="width:100%">
             <thead class="">
                 <tr>
+                    <th></th>
                     <th scope="col">Folio</th>
                     <th scope="col">Nombre</th>
                     <th scope="col">Email</th>
@@ -120,6 +121,31 @@
                 
             </tbody>
         </table>
+    </div>
+</div>
+
+ <!-- Logout Modal-->
+ <div class="modal fade" id="resendEmailModal" tabindex="-1" role="dialog" aria-labelledby="resendEmailModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="resendEmailModalLabel">Reenvio de reservacion</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div> 
+            <div class="modal-body">
+                <input type="hidden" id="idReservationTrip" name="idReservationTrip" />
+                <div class="form-group">
+                    <label for="">Eamil</label>
+                    <input class="form-control" type="text" name="emailResendTrip" id="emailResendTrip">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+                <button class="btn btn-primary" onclick="resendEmailTrip()">Enviar correo</button>
+            </div>
+        </div>
     </div>
 </div>
 

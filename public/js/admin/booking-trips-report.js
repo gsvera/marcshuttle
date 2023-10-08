@@ -15,7 +15,8 @@ function searchBookingsTripReports() {
             result.data.map(item => {
                 var element = [
                     [
-                        item.folio, 
+                        `<button class="btn btn-outline-primary" onclick="modalSendEmail(${item.id}, '${item.email}')"><i class="fa fa-envelope" aria-hidden="true"></i></button>`, 
+                        item.folio,
                         item.first_name +' '+ item.last_name, 
                         item.email, item.phone, 
                         item.arrival_date ?? "", 
@@ -49,3 +50,38 @@ $(document).ready(() => {
 
 })
 
+function modalSendEmail(idTrip, email) {
+    $('#idReservationTrip').val(idTrip);
+    $('#emailResendTrip').val(email);
+    $('#resendEmailModal').modal('show');
+}
+
+function resendEmailTrip() {
+    if(!regex.test($('#emailResendTrip').val())) {
+        notification('error', 'Ingrese un email valido')
+        return false
+    }
+
+    var obj = {
+        idReservation: $('#idReservationTrip').val(),
+        email: $('#emailResendTrip').val()
+    };
+
+    activeLoader('Reenviando...', 'Se esta enviando nuevamente el email de confirmación');
+
+    fetch('/admin-marcshuttle/resend-email-trip', {
+        method: 'POST',
+        headers: headConexion,
+        body: JSON.stringify(obj)
+    })
+    .then(res => res.json())
+    .then(result => {
+        closeAlert();
+        if(result.error == false) {
+            notification('success', 'Se envio el email correctamente');
+            $('#resendEmailModal').modal('hide');
+        }
+        else
+            notification('error', result.message);
+    })
+}

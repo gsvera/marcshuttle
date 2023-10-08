@@ -341,4 +341,21 @@ class BookingTrip extends Model
 
         return $resp;
     }
+
+    public function _ResendBookingTrip($data) {
+        $resp = new Respuesta;
+
+        try {
+            $bookingTrip = $this->find($data['idReservation']);
+            $bookingTrip->email = $data['email'];
+            
+            $resp = $this->_SendBookingTrip($bookingTrip, $bookingTrip->status_pay);
+
+        } catch(Exception $e) {
+            $resp->Error = true;
+            $resp->Message = $e->getMessage();
+        }
+
+        return $resp;
+    }
 }

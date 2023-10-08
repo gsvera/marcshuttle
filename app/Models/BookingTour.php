@@ -214,4 +214,21 @@ class BookingTour extends Model
         }
         return $resp;
     }
+
+    public function _ResendBookingTour($data) {
+        $resp = new Respuesta;
+
+        try {
+            $bookingTour = $this->find($data['idReservation']);
+            $bookingTour->email = $data['email'];
+            
+            $resp = $this->_SendBookingTour($bookingTour, $bookingTour->status_pay);
+
+        } catch(Exception $e) {
+            $resp->Error = true;
+            $resp->Message = $e->getMessage();
+        }
+
+        return $resp;
+    }
 }

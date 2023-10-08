@@ -1,4 +1,31 @@
-<div class="px-5 mt-2 pb-5">
+<div class="px-5 pb-5">
+    <div class="d-flex justify-content-end col-12">
+        <div class="d-flex col-6">
+            <div class="form-group col-12 col-sm-6 col-md-6">
+                <label for="month-chart" class="font-weight-bold text-gray">Mes</label>
+                <select class="form-control" id="month-chart" onchange="handleMonthChart()">
+                    <option value="01">Enero</option>
+                    <option value="02">Febrero</option>
+                    <option value="03">Marzo</option>
+                    <option value="04">Abril</option>
+                    <option value="05">Mayo</option>
+                    <option value="06">Junio</option>
+                    <option value="07">Julio</option>
+                    <option value="08">Agosto</option>
+                    <option value="09">Septiembre</option>
+                    <option value="10">Octubre</option>
+                    <option value="11">Noviembre</option>
+                    <option value="12">Diciembre</option>
+                </select>
+            </div>
+            <div class="form-group col-12 col-sm-6 col-md-6">
+                <label for="mounth-chart" class="font-weight-bold text-gray">Año</label>
+                <select class="form-control" id="year-chart" onchange="handleMonthChart()">
+                    
+                </select>
+            </div>
+        </div>
+    </div>
     <div class="row">
         <!-- Earnings (Monthly) Card Example -->
         <div class="col-xl-3 col-md-6 mb-4">
