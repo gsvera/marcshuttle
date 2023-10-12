@@ -137,7 +137,7 @@
             <div class="modal-body">
                 <input type="hidden" id="idReservationTrip" name="idReservationTrip" />
                 <div class="form-group">
-                    <label for="">Eamil</label>
+                    <label for="">Email</label>
                     <input class="form-control" type="text" name="emailResendTrip" id="emailResendTrip">
                 </div>
             </div>

@@ -13,7 +13,7 @@ const headConexion = {
 };
 const sizeImgAvailable = 2097152;
 const opciones = { year: 'numeric', month: 'numeric', day: 'numeric' };
-const initYear = 2022;
+const initYear = 2023;
 
 $.ajaxSetup({
     headers: {

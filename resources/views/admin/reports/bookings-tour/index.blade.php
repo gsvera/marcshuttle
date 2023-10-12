@@ -105,7 +105,7 @@
             <div class="modal-body">
                 <input type="hidden" id="idReservationTour" name="idReservationTour" />
                 <div class="form-group">
-                    <label for="">Eamil</label>
+                    <label for="">Email</label>
                     <input class="form-control" type="text" name="emailResendTour" id="emailResendTour">
                 </div>
             </div>
