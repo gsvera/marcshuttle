@@ -22,7 +22,6 @@ function searchBookingsTourReports() {
     fetch(`/admin-marcshuttle/get-bookings-tour-report?dateDepartureStart=${dateDepartureStart}&dateDepartureEnd=${dateDepartureEnd}&toursSelect=${toursSelect}&payMethod=${payMethod}`)
     .then(res => res.json())
     .then(result => {
-        console.log(result)
         if(result.error == false) {
             table.clear().draw();
             result.data.map(item => {
@@ -83,7 +82,6 @@ function resendEmailTour() {
     })
     .then(res => res.json())
     .then(result => {
-        console.log(result)
         closeAlert()
         if(result.error == false) {
             notification('success', 'Se envio el email correctamente');

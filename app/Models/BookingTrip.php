@@ -348,8 +348,13 @@ class BookingTrip extends Model
         try {
             $bookingTrip = $this->find($data['idReservation']);
             $bookingTrip->email = $data['email'];
-            
-            $resp = $this->_SendBookingTrip($bookingTrip, $bookingTrip->status_pay);
+
+            if($bookingTrip->type_transfer == 4) {
+                $resp = $this->_SendBookingCustomTrip($bookingTrip, $bookingTrip->status_pay);
+            }
+            else {
+                $resp = $this->_SendBookingTrip($bookingTrip, $bookingTrip->status_pay);
+            }
 
         } catch(Exception $e) {
             $resp->Error = true;

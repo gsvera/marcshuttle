@@ -245,7 +245,6 @@
             })
             .then(resp => resp.json())
             .then(result => {
-                console.log(result)
                 if(!result.Error) {
                     var urlPath = '/gracias';
                     if(result.data.lang == 'en')

@@ -11,7 +11,6 @@ use Illuminate\Support\Facades\Mail;
 class Usuario extends Model
 {
     use HasFactory;
-    public $valo;
     protected $table = 'users';
     protected $fillable = ['email', 'password'];
     public $timestamps = false;
@@ -82,7 +81,7 @@ class Usuario extends Model
         $resp = new Respuesta;
 
         try{   
-            $user = $this->find($data['id']);
+            $user = $this->where('id', $data['id'])->first();
 
             $user->first_name = $data['first_name'];
             $user->last_name = $data['last_name'];
@@ -103,7 +102,7 @@ class Usuario extends Model
         $resp = new Respuesta;
         
         try{
-            $user = $this->find($idUser);
+            $user = $this->where('id', $idUser)->first();;
             $user->estatus = !$estatus;
             $user->save();
             $resp->Error = false;
@@ -165,7 +164,8 @@ class Usuario extends Model
         $resp = new Respuesta;
 
         try {
-            $user = $this->find($id);
+            $user = $this->where('id', $id)->first();
+            
             $resp->data = $user;
         } catch(Exception $e) {
             $resp->Error = true;
@@ -179,7 +179,7 @@ class Usuario extends Model
         $resp = new Respuesta;
 
         try{
-            $user = $this->select('first_name', 'last_name', 'email')->find($id);
+            $user = $this->select('first_name', 'last_name', 'email')->where('id', $id)->first();
             $resp->data = $user;
         }
         catch(Exception $e) {
@@ -193,7 +193,7 @@ class Usuario extends Model
         $resp = new Respuesta;
 
         try{
-            $user = $this->find($id);
+            $user = $this->where('id', $id)->first();
             $user->first_name = $data['first_name'];
             $user->last_name = $data['last_name'];
             $user->email = $data['email'];
@@ -213,7 +213,7 @@ class Usuario extends Model
         $resp = new Respuesta;
 
         try{
-            $user = $this->find($idUser);
+            $user = $this->where('id', $idUser)->first();;
 
             if(Hash::check($currentPassword, $user->password)) {
                 $user->password = Hash::Make($newPassword);

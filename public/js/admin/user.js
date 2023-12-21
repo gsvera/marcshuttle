@@ -115,7 +115,6 @@ function UpdateUser(usuario) {
     })
     .then(res => res.json())
     .then(result => {
-        console.log(result)
         closeAlert();
         getUsers();
         if(result.error == false){

@@ -537,7 +537,6 @@ $total = Utils::asDollars($amount);
             })
             .then(resp => resp.json())
             .then(res => {
-                console.log(res)
                 if(!res.error) {
                     window.location.href = res.data.checkout.url;
                 }

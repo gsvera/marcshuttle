@@ -128,7 +128,6 @@ function saveVehicle(vehicle) {
     })
     .then(res => res.json())
     .then(result => {
-        console.log(result)
         closeAlert();
         if(result.error == false) {
             getVehicles();
@@ -150,7 +149,6 @@ function updateVehicle(vehicle) {
     })
     .then(res => res.json())
     .then(result => {
-        console.log(result)
         if(result.error == false) {
             getVehicles();
             notification('success', 'Se actualio correctamente el vehiculo');
@@ -177,7 +175,6 @@ function showModalVehicle(idVehicle = '') {
         fetch(`/admin-marcshuttle/get-vehicle-by-id?idVehicle=${idVehicle}`)
         .then(res => res.json())
         .then(result => {
-            console.log(result)
             if(result.error == false) {
                 $('#idVehicle').val(result.data.id);
                 $('#nameVehicle').val(result.data.name);

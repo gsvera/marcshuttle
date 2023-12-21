@@ -106,7 +106,6 @@ function updateZona(zona) {
     })
     .then(res => res.json())
     .then(result => {
-        console.log(result);
         closeAlert();
         if(result.error == false) {
             getZonas();

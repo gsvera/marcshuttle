@@ -90,7 +90,6 @@
             })
             .then(res => res.json())
             .then(result => {
-                console.log(result)
                 closeAlert();
                 if(result.error == false) {
                     notification('success', 'Se actualizo la contraseña correctamente.');
