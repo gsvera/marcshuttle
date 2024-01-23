@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Respuesta extends Model
 {
     use HasFactory;
-    public $Error;
+    public $Error = false;
     public $Message;
     public $data;
 

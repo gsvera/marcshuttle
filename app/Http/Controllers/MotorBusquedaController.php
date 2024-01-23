@@ -64,39 +64,47 @@ class MotorBusquedaController extends Controller
         
     }
 
-    public function BookingTransfer(){
+    public function MakeBookingTrip()
+    {
         $resp = new Respuesta;
-        $booking = new BookingTrip;
-        $tour = new BookingTour;
-        $folio = "";
-        try{         
+        $trip = new BookingTrip;
 
-            if(request('typetransfer') == 'tour')
-            {
-                $resp = $tour->SendBookingTour(request()->all());
-            }
-            else if(request('typetransfer') == 4)
-            {
-                $resp = $booking->SendCustomTrip(request()->all());
-            }
-            else{
-                $resp = $booking->SendOneWay(request()->all());
-            }
-
-            if($resp->Error == false)
-            {
-                return view('web.thanks')->with('folio', $resp->data);
-            }
-            else{
-                return back()->with('messageError',$resp->Message);
-            }            
-        }
-        catch(Exception $e)
-        {
+        try {
+            $resp = $trip->_MakeDirectTrip(request()->all());
+        } catch(Exception $e) {
             $resp->Error = true;
             $resp->Message = $e->getMessage();
-            return back()->with('messageError',$resp->Message);
         }
+
+        return response()->json($resp->getResult());
+    }
+
+    public function MakeBookingTripCustom()
+    {
+        $resp = new Respuesta;
+        $tripCustom = new BookingTrip;
+
+        try {
+            $resp = $tripCustom->_MakeDirectCustomTrip(request()->all());
+        } catch(Exception $e) {
+            $resp->Error = true;
+            $resp->Message = $e->getMessage();
+        }
+        return response()->json($resp->getResult());
+    }
+
+    public function MakeBookingTour()
+    {
+        $resp = new Respuesta;
+        $tour = new BookingTour;
+
+        try {
+            $resp = $tour->_MakeDirectTour(request()->all());
+        } catch(Exception $e) {
+            $resp->Error = true;
+            $resp->Message = 'Error: '.$e->getMessage();
+        }
+        return response()->json($resp->getResult());
     }
 
     public function cotizarTour()
@@ -109,10 +117,25 @@ class MotorBusquedaController extends Controller
         $ubicaciones = new Ubicaciones;
 
         try{
-            $resp->data = $ubicaciones->_GetLocations();            
+            $resp->data = $ubicaciones->_GetLocations(request('idZone'));            
         }
         catch(Exception $e)
         {
+            $resp->Error = true;
+            $resp->Message = $e->getMessage();
+        }
+        return response()->json($resp->getResult());
+    }
+
+    public function GetZone()
+    {
+        $resp = new Respuesta;
+        $destination = new Destination;
+        
+        try {
+            $resp->data = $destination->_GetDestinationsAirport();
+
+        } catch(Exception $e) {
             $resp->Error = true;
             $resp->Message = $e->getMessage();
         }

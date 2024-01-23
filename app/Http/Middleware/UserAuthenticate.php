@@ -21,7 +21,7 @@ class UserAuthenticate
             if(!$request->session()->get('user_auth')){
                 request()->session()->forget('user_auth');
                 
-                return redirect('/admin-marchshuttle/login');
+                return redirect('/admin-marcshuttle/login');
             }
             
             return $next($request);

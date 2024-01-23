@@ -8,29 +8,31 @@ use App\Models\Respuesta;
 
 class AdminController extends Controller
 {
-    public function Home()
-    {
+    public function Home() {
         return view('admin.home');
     }
-    public function NuevoUsuario()
-    {
-        return view('admin.newuser');
+    public function user() {
+        return view('admin.user.index');
     }
-    public function CreateUser()
-    {        
-        $Usuario = new Usuario;
-        $resp = new Respuesta;
-
-        try{
-            $datos = json_decode(request('usuario'), true);      
-            $resp = $Usuario->_CrearUsuario($datos);            
-        }
-        catch(Exception $e)
-        {
-            $resp->Error = true;
-            $resp->Message = $e->getMessage();
-        }        
-
-        return response()->json($resp->getResult());
+    public function zona() {
+        return view('admin.zonas.index');
+    }
+    public function location() {
+        return view('admin.locations.index');
+    }
+    public function tour() {
+        return view('admin.tours.index');
+    }
+    public function vehicle() {
+        return view('admin.vehicles.index');
+    }
+    public function bookingsTripReport() {
+        return view('admin.reports.bookings-trip.index');
+    }
+    public function bookingsTourReport() {
+        return view('admin.reports.bookings-tour.index');
+    }
+    public function chart() {
+        return view('admin.charts');
     }
 }
