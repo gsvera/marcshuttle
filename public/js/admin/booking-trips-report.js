@@ -6,11 +6,12 @@ function searchBookingsTripReports() {
     var typeTransfer = $('#typeTransfer').val();
     var payMethod = $('#payMethod').val();
 
+    activeLoader('Cargando...', 'Cargando datos');
+
     fetch(`/admin-marcshuttle/get-bookings-trip-report?dataArrivalStart=${dataArrivalStart}&dataArrivalEnd=${dataArrivalEnd}&dataDepartureStart=${dataDepartureStart}&dataDepartureEnd=${dataDepartureEnd}&typeTransfer=${typeTransfer}&payMethod=${payMethod}`)
     .then(res => res.json())
     .then(result => {
-        if(result.error == false) {
-            
+        if(result.error == false) {            
             table.clear().draw();
             result.data.map(item => {
                 var element = [
@@ -26,14 +27,16 @@ function searchBookingsTripReports() {
                         item.destination,
                         item.pax,
                         item.pay_method,
+                        item.order_id == '0' ? '' : item.order_id,
+                        item.payer_id,
+                        item.payment_id,
                         convertCurrency(item.amount)
                     ]
                 ];
                 table.rows.add(element).draw();
             });
-
         }
-        
+        closeAlert();
     })
 }
 

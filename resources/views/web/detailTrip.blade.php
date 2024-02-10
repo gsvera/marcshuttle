@@ -136,7 +136,7 @@ $total = Utils::asDollars($amount);
     <div class="row m-0 px-4">
         <div class="col-12 col-md-7">
             <div class="container" id="formBooking">                
-                <p class="font-weight-bold text-justify">{{__('Motorbusqueda.texto-formulario')}}</p>
+                <p class="font-weight-bold text-justify">{{__('MotorBusqueda.texto-formulario')}}</p>
                 <input type="hidden" id="typetransfer" name="typetransfer" value="{{$typetransfer}}">                
                 <input type="hidden" name="pax" id="pax" value={{$pax}}>
                 <input type="hidden" name="nameZone" id="nameZone" value="{{$objDestination->name}}">
@@ -144,6 +144,10 @@ $total = Utils::asDollars($amount);
                 <input type="hidden" name="urlWeb" id="urlWeb">
                 <input type="hidden" name="payMethod" id="payMethod" value="efectivo">
                 <input type="hidden" name="amount" id="amount" value="{{$amount}}">
+                <input type="hidden" name="orderId" id="orderId">
+                <input type="hidden" name="payerId" id="payerId">
+                <input type="hidden" name="paymentId" id="paymentId">
+                <input type="hidden" name="statusPaypal" id="statusPaypal">
                 <input type="hidden" id="sillaBebe" value="0">
                 @if($typetransfer == 2)
                     <input type="hidden" name="origin" id="origin" value="{{$origin}}">
@@ -194,14 +198,14 @@ $total = Utils::asDollars($amount);
                         <h3 class="font-weight-bold fsize-mds text-blue">{{__('MotorBusqueda.llegada')}}</h3>
                         <div class="form-group mb-3">
                             <label for="dateArrival" class="font-weight-bold fsize-sm text-gray">{{__('MotorBusqueda.fecha-llegada')}} <span class="text-danger font-weight-bold">*</span></label>
-                            <input type="date" class="form-control required" id="dateArrival" name="dateArrival" value="{{$dateArrival}}" required/>
+                            <input type="date" class="form-control required" id="dateArrival" name="dateArrival" value="{{$dateArrival}}" onclick="handleShowPicker(this)" required/>
                         </div>
                         <div class="form-group mb-3">
-                            <label for="hourArrival" class="font-weight-bold fsize-sm text-gray">{{__('MotorBusqueda.hora')}} <span class="text-danger font-weight-bold">*</span></label>
-                            <input type="time" class="form-control required" id="hourArrival" name="hourArrival" required/>
+                            <label for="hourArrival" class="font-weight-bold fsize-sm text-gray">{{__('MotorBusqueda.hora-llegada')}} <span class="text-danger font-weight-bold">*</span></label>
+                            <input type="time" class="form-control required" id="hourArrival" name="hourArrival" onclick="handleShowPicker(this)" required/>
                         </div>
                         <div class="form-group mb-3">
-                            <label for="infoArrival" class="font-weight-bold fsize-sm text-gray">{{__('MotorBusqueda.info-vuelo')}} <span class="text-danger font-weight-bold">*</span></label>
+                            <label for="infoArrival" class="font-weight-bold fsize-sm text-gray">{{__('MotorBusqueda.info-vuelo-llegada')}} <span class="text-danger font-weight-bold">*</span></label>
                             <input type="text" class="form-control required" id="infoArrival" name="infoArrival" placeholder="{{__('MotorBusqueda.ejemplo-num-vuelo')}}" />
                         </div>
                         <div class="d-flex justify-content-between">
@@ -215,14 +219,14 @@ $total = Utils::asDollars($amount);
                         <h3 class="font-weight-bold fsize-mds text-blue">{{__('MotorBusqueda.salida')}}</h3>
                         <div class="form-group mb-3">
                             <label for="dateDeparture" class="font-weight-bold fsize-sm text-gray">{{__('MotorBusqueda.fecha-salida')}} <span class="text-danger font-weight-bold">*</span></label>
-                            <input type="date" class="form-control required" id="dateDeparture" name="dateDeparture" value="{{$dateDeparture}}" />
+                            <input type="date" class="form-control required" id="dateDeparture" name="dateDeparture" value="{{$dateDeparture}}" onclick="handleShowPicker(this)" />
                         </div>
                         <div class="form-group mb-3">
-                            <label for="hourDeparture" class="font-weight-bold fsize-sm text-gray">{{__('MotorBusqueda.hora')}} <span class="text-danger font-weight-bold">*</span></label>
-                            <input type="time" class="form-control required" id="hourDeparture" name="hourDeparture" />
+                            <label for="hourDeparture" class="font-weight-bold fsize-sm text-gray">{{__('MotorBusqueda.hora-salida')}} <span class="text-danger font-weight-bold">*</span></label>
+                            <input type="time" class="form-control required" id="hourDeparture" name="hourDeparture" onclick="handleShowPicker(this)" />
                         </div>
                         <div class="form-group mb-3">
-                            <label for="infoDeparture" class="font-weight-bold fsize-sm text-gray">{{__('MotorBusqueda.info-vuelo')}} <span class="text-danger font-weight-bold">*</span></label>
+                            <label for="infoDeparture" class="font-weight-bold fsize-sm text-gray">{{__('MotorBusqueda.info-vuelo-salida')}} <span class="text-danger font-weight-bold">*</span></label>
                             <input type="text" class="form-control required" id="infoDeparture" name="infoDeparture" placeholder="{{__('MotorBusqueda.ejemplo-num-vuelo')}}"/>
                         </div>    
                         <div class="d-flex justify-content-between">
@@ -240,13 +244,13 @@ $total = Utils::asDollars($amount);
                         </div>
                         <div class="col-md-6">
                             <input type="radio" name="payment_type" id="methodpaypal" value="card">
-                            <label for="methodpaypal"><img src="/img/icons/conekta-visa.webp" style="width:200px;" alt="Conekta"></label>
+                            <label for="methodpaypal"><img src="/img/icons/paypal.png" style="width:200px;" alt="Paypal"></label>
                         </div>
                     </div>
                     <div class="col-12 col-md-12 d-grid mt-5 mb-3">
                         <div class="g-recaptcha mb-3" data-sitekey="{{env('GOOGLE_PUBLIC_KEY')}}"></div>
                         <button id="btnBooking" onclick="SendBookingCash()" class="btn btn-naranja btn-lg" type="button">{{__('MotorBusqueda.boton-confirmar')}}</button>
-                        <button id="btnConekta" class="btn btn-lg btn-conekta d-none">{{__('MotorBusqueda.boton-conekta')}}</button>
+                        <div id="paypal-button-container" class="d-none"></div>
                     </div>
                     <div class="">
                         <button class="btn btn-sky btn-lg" type="button" onclick="PreviewStep()">{{__('MotorBusqueda.anterior')}}</button>
@@ -314,15 +318,14 @@ $total = Utils::asDollars($amount);
 @endsection
 @push('scripts')
     <script src="https://www.google.com/recaptcha/api.js"></script>
+    <script src="https://www.paypal.com/sdk/js?client-id={{env('PAYPAL_CLIENT_ID')}}&components=buttons,funding-eligibility&currency=MXN" data-namespace="paypal_sdk"></script>
     <script type="text/javascript">
 
         //  actualiza boton menu para el home
         document.getElementById('btbMenuBook').setAttribute('href', '/')
 
         var btnBooking = document.getElementById('btnBooking')
-        
-        // var paypalButtonContainer = document.getElementById('paypal-button-container')
-        var btnConekta = document.getElementById('btnConekta');
+        var paypalButtonContainer = document.getElementById('paypal-button-container')
         var methodcash = document.getElementById('methodcash')
         var methodpaypal = document.getElementById('methodpaypal')        
         var step = document.querySelectorAll('.step')
@@ -402,7 +405,7 @@ $total = Utils::asDollars($amount);
             if(methodcash.checked)
             {
                 btnBooking.classList.remove('d-none')
-                btnConekta.classList.add('d-none')
+                paypalButtonContainer.classList.add('d-none')
                 payMethod.value = 'efectivo'
                 gRecaptcha.classList.remove('d-none')
             }
@@ -414,7 +417,7 @@ $total = Utils::asDollars($amount);
             if(methodpaypal.checked)
             {
                 btnBooking.classList.add('d-none')
-                btnConekta.classList.remove('d-none')
+                paypalButtonContainer.classList.remove('d-none')
                 payMethod.value = 'card'
                 gRecaptcha.classList.add('d-none')
             }
@@ -486,13 +489,6 @@ $total = Utils::asDollars($amount);
             }
             return true
         }
-
-        btnConekta.addEventListener('click', e => {
-            e.preventDefault();
-            btnConekta.setAttribute('disabled', true);
-            MakePayConekta();
-        });
-
         function makeObjReservation() {
             return {
                 @if($typetransfer == 1 || $typetransfer == 3)   
@@ -590,7 +586,89 @@ $total = Utils::asDollars($amount);
                     errorAlert('Error', `{{__('Message.error-service')}}`)
                 }, 100)
             })
-        }        
+        }
+
+        window.paypal_sdk.Buttons({
+            fundingSource: window.paypal_sdk.FUNDING.CARD,
+            createOrder: function(data, actions) {
+                return actions.order.create({
+                    application_context:{
+                        shipping_preference: "NO_SHIPPING"
+                    },
+                    payer:{
+                        email_address: $('#email').val(),
+                        name: {
+                            given_name: $('#firstName').val(),
+                            surname: $('#lastName').val(),
+                            phone: $('#phoneClient').val()
+                        },
+                        address: {
+                            country_code: "MX"
+                        }
+                    },
+                    purchase_units: [{
+                        amount: {
+                            "currency_code": "MXN",
+                            "value": {{$amount}}
+                        }
+                    }],
+                });
+            },
+            onApprove: function(data, actions) {
+                console.log(data)
+                console.log(actions)
+                activeLoader('{{__('MotorBusqueda.registrando')}}', '{{__('MotorBusqueda.enviando-correo')}}')
+                var objReservation = makeObjReservation();
+                objReservation.orderId = data.orderID;
+                objReservation.payerId = data.payerID;
+                objReservation.paymentId = data.paymentID;
+
+                fetch('/checkout/api/paypal/order', {
+                    method: 'POST',
+                    headers: headConexion,
+                    body: JSON.stringify({orderId: data.orderID})
+                })
+                .then(res => res.json())
+                .then(result => {
+                    if(result.error == false)
+                    {
+                        if(result.data.status == 'APPROVED')
+                        {
+                            objReservation.statusPaypal = result.data.status;
+                            fetch('/checkout/paypal/create-order-trip', {
+                                method: 'POST',
+                                headers: headConexion,
+                                body: JSON.stringify(objReservation)
+                            })
+                            .then(resCreate => resCreate.json())
+                            .then(resultCreate => {
+                                // console.log(resultCreate);
+                                if(!resultCreate.error) {
+                                    var urlPath = '/gracias';
+                                    if(resultCreate.data.lang == 'en')
+                                        urlPath = '/en/thanks';
+
+                                    window.location.href = `${urlPath}?folio=${resultCreate.data.folio}`
+                                } else {
+                                    closeAlert()
+                                    setTimeout(() => {
+                                        errorAlert('Error', `{{__('Message.error-service')}}`)
+                                    }, 100)
+                                }
+                            })                         
+                        }
+                        else
+                            errorAlert("Error", '{{__('MotorBusqueda.ocurrio-error')}}')
+                    }
+                    else
+                        errorAlert("Error", '{{__('MotorBusqueda.ocurrio-error')}}')      
+                })
+            },
+            onError: function(error){
+                console.log(error)
+                errorAlert("Error", '{{__('MotorBusqueda.ocurrio-error')}}')
+            }
+        }).render('#paypal-button-container');
         
     </script>
 @endpush

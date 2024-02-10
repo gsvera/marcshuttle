@@ -9,12 +9,15 @@ use App\Models\Destination;
 use App\Models\Ubicaciones;
 use App\Models\BookingTrip;
 use App\Models\BookingTour;
+use App\Models\DestinationXUbicacion;
 
 class MotorBusquedaController extends Controller
 {
     public function detailTrip(){
         $resp = new Respuesta;
-        $objDestination = new Destination();        
+        $objDestination = new Destination();   
+        $objLocation = new Ubicaciones();
+        $relationUXD = new DestinationXUbicacion();     
         $pax=request('pax');
         $origin=request('origin');
         $destination=request('destination');
@@ -33,23 +36,27 @@ class MotorBusquedaController extends Controller
             return redirect($prefijo);
         }
 
+        
         try{    
             if($typetransfer != 4)
             {
-                $objDestination = $objDestination->GetDestination(request('zone'));
+                $idLocation = $origin == 'null' ? $destination : $origin; 
+                $objRelationUXD = $relationUXD->_GetRelationByLocation($idLocation);
+                $objLocation = $objLocation->_GetById($idLocation);
+                $objDestination = $objDestination->GetDestination($objRelationUXD->id_destination);
             }
 
             if($typetransfer == 1)
             {   
-                return view('web.detailTrip', ["objDestination"=>$objDestination, "destination"=>$destination, "dateArrival"=>$dateArrival, "typetransfer"=>$typetransfer, "pax"=>$pax ]);
+                return view('web.detailTrip', ["objDestination"=>$objDestination, "destination"=>$objLocation->nombre, "dateArrival"=>$dateArrival, "typetransfer"=>$typetransfer, "pax"=>$pax ]);
             }
             if($typetransfer == 2)
             {
-                return view('web.detailTrip', ["objDestination"=>$objDestination, "origin"=>$origin, "dateDeparture"=>$dateDeparture,"typetransfer"=>$typetransfer, "pax"=>$pax]);
+                return view('web.detailTrip', ["objDestination"=>$objDestination, "origin"=>$objLocation->nombre, "dateDeparture"=>$dateDeparture,"typetransfer"=>$typetransfer, "pax"=>$pax]);
             }
             if($typetransfer == 3)
             {
-                return view('web.detailTrip', ["objDestination"=>$objDestination, "destination"=>$destination, "dateArrival"=>$dateArrival, "dateDeparture"=>$dateDeparture, "typetransfer"=>$typetransfer, "pax"=>$pax]);
+                return view('web.detailTrip', ["objDestination"=>$objDestination, "destination"=>$objLocation->nombre, "dateArrival"=>$dateArrival, "dateDeparture"=>$dateDeparture, "typetransfer"=>$typetransfer, "pax"=>$pax]);
             }
             if($typetransfer == 4)
             {

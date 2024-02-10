@@ -78,12 +78,12 @@
                     <h3 class="font-weight-bold fsize-mds text-blue">{{__('MotorBusqueda.salida')}}</h3>
                     <div class="form-group mb-3">
                         <label for="dateDeparture" class="font-weight-bold fsize-sm text-gray">{{__('MotorBusqueda.fecha-salida')}} <span class="text-danger font-weight-bold">*</span></label>
-                        <input type="date" class="form-control required" id="dateDeparture" name="dateDeparture" />
+                        <input type="date" class="form-control required" id="dateDeparture" name="dateDeparture" onclick="handleShowPicker(this)"/>
                     </div>
                     <div class="form-group mb-3">
-                        <label for="hourDeparture" class="font-weight-bold fsize-sm text-gray">{{__('MotorBusqueda.hora')}} <span class="text-danger font-weight-bold">*</span></label>
-                        <input type="time" class="form-control required" id="hourDeparture" name="hourDeparture" />
-                    </div>
+                        <label for="hourDeparture" class="font-weight-bold fsize-sm text-gray">{{__('MotorBusqueda.hora-tour')}} <span class="text-danger font-weight-bold">*</span></label>
+                        <input type="time" class="form-control required" id="hourDeparture" name="hourDeparture" onclick="handleShowPicker(this)"/>
+                    </div>  
                     <div class="form-group mb-3">
                         <label for="comments" class="font-weight-bold fsize-sm text-gray">{{__('MotorBusqueda.comentarios')}}</label>
                         <textarea class="form-control" name="comments" id="comments" cols="30" rows="10" style="height:100px;"></textarea>
@@ -101,14 +101,15 @@
                             <label for="methodcash"><img src="/img/icons/cash.png" style="width:200px;" alt="Cash"></label>
                         </div>
                         <div class="col-md-6">
-                            <input type="radio" name="payment_type" id="methodConekta" value="card">
-                            <label for="methodConekta"><img src="/img/icons/conekta-visa.webp" style="width:200px;" alt="Conekta"></label>
+
+                            <input type="radio" name="payment_type" id="methodpaypal" value="paypal">
+                            <label for="methodpaypal"><img src="/img/icons/paypal.png" style="width:200px;" alt="paypal"></label>
                         </div>
                     </div>
                     <div class="col-12 col-md-12 d-grid mt-5 mb-3">
                         <div class="g-recaptcha mb-3" data-sitekey="{{env('GOOGLE_PUBLIC_KEY')}}"></div>
                         <button id="btnBooking" class="btn btn-naranja btn-lg" type="button">{{__('MotorBusqueda.boton-confirmar')}}</button>
-                        <button id="btnConekta" class="btn btn-lg btn-conekta d-none">{{__('MotorBusqueda.boton-conekta')}}</button>
+                        <div id="paypal-button-container" class="d-none"></div>
                     </div>
                     <div class="">
                         <button class="btn btn-sky btn-lg" type="button" onclick="PreviewStep()">{{__('MotorBusqueda.anterior')}}</button>
@@ -181,6 +182,7 @@
 @endsection
 @push('scripts')
     <script src="https://www.google.com/recaptcha/api.js"></script>
+    <script src="https://www.paypal.com/sdk/js?client-id={{env('PAYPAL_CLIENT_ID')}}&components=buttons,funding-eligibility&currency=MXN" data-namespace="paypal_sdk"></script>
     <script type="text/javascript"> 
                     
         //  actualiza boton menu para el home
@@ -216,9 +218,9 @@
         let totalPagar = 0;
         var btnBooking = document.getElementById('btnBooking');
         var formBooking = document.getElementById('formBooking');
-        var btnConekta = document.getElementById('btnConekta');
         var methodcash = document.getElementById('methodcash');
-        var methodConekta = document.getElementById('methodConekta');
+        var paypalButtonContainer = document.getElementById('paypal-button-container');
+        var methodpaypal = document.getElementById('methodpaypal');
         var step = document.querySelectorAll('.step');
         var payMethod = document.getElementById('payMethod');
         var gRecaptcha = document.querySelector('.g-recaptcha');
@@ -265,21 +267,21 @@
             {
                 blockschecks(false)
                 btnBooking.classList.remove('d-none')
-                btnConekta.classList.add('d-none')
+                paypalButtonContainer.classList.add('d-none');
                 payMethod.value = 'efectivo'
                 gRecaptcha.classList.remove('d-none')
             }
         })
 
-        methodConekta.addEventListener('change', e => {
+        methodpaypal.addEventListener('change', e => {
             e.preventDefault()
 
-            if(methodConekta.checked)
+            if(methodpaypal.checked)
             {
                 
                 blockschecks(true)
                 btnBooking.classList.add('d-none')
-                btnConekta.classList.remove('d-none')
+                paypalButtonContainer.classList.remove('d-none')
                 payMethod.value = 'card'
                 gRecaptcha.classList.add('d-none')
             }
@@ -395,15 +397,6 @@
             btnBooking.setAttribute('disabled', true);
             SendBookingCash();
         })
-
-        
-
-        btnConekta.addEventListener('click', e => {
-            e.preventDefault();
-            btnConekta.setAttribute('disabled', true);
-            MakePayConekta();
-        });
-
         // GENERA EL OBJETO DE RESERVACION
         function makeObjReservation() {
             return {
@@ -465,27 +458,82 @@
             })
         }
 
-        function MakePayConekta() {
-            var objCustomer = makeObjReservation();
-            
-            activeLoader(`{{__('Message.cargando')}}`, `{{__('Message.generar-link')}}`)
+        //  FUNCIONES PARA PAYPAL
 
-            fetch('/conekta-tour', {
-                method: 'POST',
-                headers: headConexion,
-                body: JSON.stringify(objCustomer)
-            })
-            .then(resp => resp.json())
-            .then(result => {
-                if(!result.error) {
-                    window.location.href = result.data.checkout.url;
-                }
-            }).catch(error => {
-                closeAlert()
-                setTimeout(() => {
-                    errorAlert('Error', `{{__('Message.error-service')}}`)
-                }, 100)
-            })
-        }
+        window.paypal_sdk.Buttons({
+            fundingSource: window.paypal_sdk.FUNDING.CARD,
+            createOrder: function(data, actions) {
+                return actions.order.create({
+                    application_context:{
+                        shipping_preference: "NO_SHIPPING"
+                    },
+                    payer:{
+                        email_address: $('#email').val(),
+                        name: {
+                            given_name: $('#firstName').val(),
+                            surname: $('#lastName').val(),
+                            phone: $('#phoneClient').val()
+                        },
+                        address: {
+                            country_code: "MX"
+                        }
+                    },
+                    purchase_units: [{
+                        amount: {
+                            "currency_code": "MXN",
+                            "value": totalPagar
+                        }
+                    }],
+                });
+            },
+            onApprove: function(data, actions) {
+                console.log(data)
+                console.log(actions)
+                activeLoader('{{__('MotorBusqueda.registrando')}}', '{{__('MotorBusqueda.enviando-correo')}}')
+                var objReservation = makeObjReservation();
+                objReservation.orderId = data.orderID;
+                objReservation.payerId = data.payerID;
+                objReservation.paymentId = data.paymentID;
+
+                fetch('/checkout/api/paypal/order', {
+                    method: 'POST',
+                    headers: headConexion,
+                    body: JSON.stringify({orderId: data.orderID})
+                })
+                .then(res => res.json())
+                .then(result => {
+                    if(result.error == false) {
+                        if(result.data.status == 'APPROVED') {
+                            objReservation.statusPaypal = result.data.status;
+                            console.log("🚀 ~ objReservation:", objReservation)
+                            fetch('/checkout/paypal/create-order-tour', {
+                                method: 'POST',
+                                headers: headConexion,
+                                body: JSON.stringify(objReservation)
+                            })
+                            .then(resCreate => resCreate.json())
+                            .then(resultCreate => {
+                                if(!resultCreate.error) {
+                                    console.log("🚀 ~ resultCreate:", resultCreate)
+                                    var urlPath = '/gracias';
+                                    if(resultCreate.data.lang == 'en')
+                                        urlPath = '/en/thanks';
+
+                                    window.location.href = `${urlPath}?folio=${resultCreate.data.folio}`
+                                } else {
+                                    closeAlert()
+                                    setTimeout(() => {
+                                        errorAlert('Error', `{{__('Message.error-service')}}`)
+                                    }, 100)
+                                }
+                            })
+                        }
+                    }
+                })
+            },
+            onError: function(error){
+                console.log(error)
+            }
+        }).render('#paypal-button-container');
     </script>
 @endpush

@@ -30,12 +30,13 @@ use App\Http\Controllers\BookingsTourController;
     RUTAS PARA PAGINA WEB EN ESPAÑOL
 */
 
-// Route::get('/clear-cache', function () {
-//    echo Artisan::call('config:clear');
-//    echo Artisan::call('config:cache');
-//    echo Artisan::call('cache:clear');
-//    echo Artisan::call('route:clear');
-// });
+Route::get('/clear-cache', function () {
+   echo Artisan::call('config:clear');
+   echo Artisan::call('config:cache');
+   echo Artisan::call('cache:clear');
+   echo Artisan::call('route:clear');
+   return '{respuesta: "actualizdo"}';
+});
 
 Route::get('/', function () {
     return view('web.index')->with('lang', App::getLocale())->with('sesion', request()->session()->get('lang'));
@@ -54,6 +55,15 @@ Route::get('/gracias', [WebController::class, 'gracias'])->name('es-gracias');
 Route::post('/make-reservation-tour', [MotorBusquedaController::class, 'MakeBookingTour']);
 Route::post('/make-reservation-trip', [MotorBusquedaController::class, 'MakeBookingTrip']);
 Route::post('/make-reservation-custom', [MotorBusquedaController::class, 'MakeBookingTripCustom']);
+
+/*
+    RUTAS PAYPAL
+*/
+
+
+Route::post('/checkout/api/paypal/order', [PaypalController::class, 'CheckoutOrder']);
+Route::post('/checkout/paypal/create-order-trip', [PaypalController::class, 'CreateOrderTrip']);
+Route::post('/checkout/paypal/create-order-tour', [PaypalController::class, 'CreateOrderTour']);
 
 /*
     RUTAS CONEKTA

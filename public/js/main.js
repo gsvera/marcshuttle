@@ -107,3 +107,47 @@ function generarColorRGB() {
   
     return `rgb(${r}, ${g}, ${b})`;
   }
+
+  function handleShowPicker(inputDate) {
+    inputDate.showPicker();
+  }
+
+  function makeDataToSelect(zone = [], locations) {
+    const arr = []
+    zone?.map(item => {
+        const zoneArr = {
+            text: item.name,
+            children: locations?.filter(l => item?.id === l.idOrigin)?.map(lo => {
+                return {id: lo?.id, text: lo.nombre, idOrigin: lo?.idOrigin }
+            })
+        }
+        if(zoneArr.children.length > 0)
+            arr.push(zoneArr)
+    })
+    return arr
+  }
+
+  function matchDataLocation(params, data) {
+    if ($.trim(params.term) === '') {
+        return data;
+    }
+
+    if (typeof data.children === 'undefined') {
+        return null;
+    }
+
+    var filteredChildren = [];
+    $.each(data.children, function (idx, child) {
+        if (child.text.toUpperCase().includes(params.term.toUpperCase())) {
+        filteredChildren.push(child);
+        }
+    });
+    if (filteredChildren.length) {
+        var modifiedData = $.extend({}, data, true);
+        modifiedData.children = filteredChildren;
+
+        return modifiedData;
+    }
+
+    return null;
+}

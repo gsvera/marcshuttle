@@ -82,6 +82,9 @@
                     <th scope="col">Fecha Salida</th>
                     <th scope="col">Tour</th>                    
                     <th scope="col">Metodo de pago</th>
+                    <th scope="col">Order Id</th>
+                    <th scope="col">Payer Id</th>
+                    <th scope="col">Payment Id</th>
                     <th scope="col">Monto</th>
                 </tr>
             </thead>

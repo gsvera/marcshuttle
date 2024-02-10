@@ -89,12 +89,14 @@ class BookingTour extends Model
             if($data['payMethod'] == "card")
             {
                 $bookingTour->order_id = $data['orderId'];
-                $bookingTour->checkout_id = $data['checkoutId'];
-                $bookingTour->status_pay = 0;
+                $bookingTour->status_pay = 1;
+                $bookingTour->payer_id = $data['payerId'];  // Campos para paypal
+                $bookingTour->payment_id = $data['paymentId'];  // Campos para paypal
+                $bookingTour->status_paypal = $data['statusPaypal']; // Campos para paypal
             }
             else 
             {
-                $bookingTour->status_pay = 1;
+                $bookingTour->status_pay = 0;
             }
 
             $bookingTour->save();
@@ -118,7 +120,7 @@ class BookingTour extends Model
         $resp = new Respuesta;
         try{
             $booking = $this->where('order_id',$orderId)->where('checkout_id', $checkoutId)->first();
-            // SIGNIFICADO DEL STATUS DE PAGO: 1 => PAGADO, 2 => PAGO PENDIENTE, -1 => ERROR EN PAGO, 0 => PENDIETE
+            // SIGNIFICADO DEL STATUS DE PAGO EN CONEKTA: 1 => PAGADO, 2 => PAGO PENDIENTE, -1 => ERROR EN PAGO, 0 => PENDIETE
             switch($statusPay) {
                 case 'paid':
                     $booking->status_pay = 1;
@@ -151,6 +153,21 @@ class BookingTour extends Model
             $resp->Message = $e->getMessage();
         }
 
+        return $resp;
+    }
+
+    public function _MakeBookingByPaypal($data) {
+        $resp = new Respuesta;
+        try{
+            $resp = $this->_SaveBookingtour($data);
+
+            if(!$resp->Error) {
+                $this->_SendBookingTour($resp->data, $data['statusPaypal']);
+            }
+        } catch(Exception $e) {
+            $resp->Error = true;
+            $resp->Message = $e->getMessage();
+        }
         return $resp;
     }
 

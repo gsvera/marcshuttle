@@ -59,11 +59,11 @@
                     </div>
                     <div class="form-group mb-3">
                         <label for="dateDeparture" class="font-weight-bold fsize-sm text-gray">{{__('MotorBusqueda.fecha-salida')}} <span class="text-danger font-weight-bold">*</span></label>
-                        <input type="date" class="form-control" id="dateDeparture" name="dateDeparture" value="{{$dateDeparture}}" />
+                        <input type="date" class="form-control" id="dateDeparture" name="dateDeparture" value="{{$dateDeparture}}" onclick="handleShowPicker(this)" />
                     </div>
                     <div class="form-group mb-3">
                         <label for="hourDeparture" class="font-weight-bold fsize-sm text-gray">{{__('MotorBusqueda.hora')}} <span class="text-danger font-weight-bold">*</span></label>
-                        <input type="time" class="form-control" id="hourDeparture" name="hourDeparture" />
+                        <input type="time" class="form-control" id="hourDeparture" name="hourDeparture" onclick="handleShowPicker(this)"/>
                     </div>
                     <div class="form-group">
                         <label for="comments" class="font-weight-bold fsize-sm text-gray">{{__('MotorBusqueda.comentarios')}}</label>

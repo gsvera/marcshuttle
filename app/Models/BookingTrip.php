@@ -128,13 +128,15 @@ class BookingTrip extends Model
 
             if($data['payMethod'] == 'card')
             {
-                $booking->order_id = $data['orderId'];
-                $booking->checkout_id = $data['checkoutId'];
-                $booking->status_pay = 0;
+                $booking->order_id = $data['orderId']; // Campos para paypal
+                $booking->status_pay = 1;
+                $booking->payer_id = $data['payerId'];  // Campos para paypal
+                $booking->payment_id = $data['paymentId'];  // Campos para paypal
+                $booking->status_paypal = $data['statusPaypal'];    // Campos para paypal
             }
             else
             {
-                $booking->status_pay = 1;
+                $booking->status_pay = 0;
             }
             
             $booking->save();
@@ -152,6 +154,7 @@ class BookingTrip extends Model
         }
         return $resp;
     }
+
     public function _UpdateBookingTripByConektaData($checkoutId, $orderId, $statusPay)
     {
         $resp = new Respuesta;
@@ -193,6 +196,25 @@ class BookingTrip extends Model
 
         return $resp;
     }
+
+    public function _MakeBookingByPaypal($data) {
+        $resp = new Respuesta;
+
+        try {
+            $resp = $this->_SaveBookingTrip($data);
+
+            if(!$resp->Error)
+            {
+                $this->_SendBookingTrip($resp->data, $data['statusPaypal']);
+            }
+
+        } catch(Exception $e) {
+            $resp->Error = true;
+            $resp->Message = $e->getMessage();
+        }
+        return $resp;
+    }
+
 
     public function _SendBookingTrip($booking, $statusPay)
     {

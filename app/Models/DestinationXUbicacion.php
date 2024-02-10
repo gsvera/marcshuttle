@@ -12,4 +12,8 @@ class DestinationXUbicacion extends Model
     protected $table = 'destination_x_ubicaciones';
 
     public $timestamps = false;
+
+    public function _GetRelationByLocation($idLocation) {
+        return $this->where('id_ubicaciones', $idLocation)->first();
+    }
 }

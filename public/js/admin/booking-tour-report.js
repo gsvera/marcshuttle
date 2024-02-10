@@ -19,6 +19,8 @@ function searchBookingsTourReports() {
     var toursSelect = $('#toursSelect').val();
     var payMethod = $('#payMethod').val();
 
+    activeLoader('Cargando...', 'Cargando datos');
+
     fetch(`/admin-marcshuttle/get-bookings-tour-report?dateDepartureStart=${dateDepartureStart}&dateDepartureEnd=${dateDepartureEnd}&toursSelect=${toursSelect}&payMethod=${payMethod}`)
     .then(res => res.json())
     .then(result => {
@@ -35,12 +37,16 @@ function searchBookingsTourReports() {
                         item.departure_date,
                         item.tour_name,
                         item.pay_method,
+                        item.order_id == '0' ? '' : item.order_id,
+                        item.payer_id,
+                        item.payment_id,
                         convertCurrency(item.amount)
                     ]
                 ];
                 table.rows.add(element).draw();
             })
         }
+        closeAlert();
     })
 }
 

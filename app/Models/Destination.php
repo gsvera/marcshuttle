@@ -21,7 +21,7 @@ class Destination extends Model
     public function _GetDestinationsAirport(){
         $obj = new Destination;
         try{
-            $destination = $obj->where('id_origin', 1)->get();
+            $destination = $obj->where('id_origin', 1)->orderBy('name')->get();
         }
         catch(Exception $e)
         {            

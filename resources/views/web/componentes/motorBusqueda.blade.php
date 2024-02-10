@@ -14,40 +14,44 @@
         <div class="mt-4">
             <div class="form-group mb-3">
                 <label for="typetransfer" class="font-weight-bold">{{__('MotorBusqueda.type-transfer')}}</label>
-                <select class="form-select p-3" name="typetransfer" id="typetransfer" onchange="HidenShowInputs()">
+                <select class="form-select select-zone p-2" name="typetransfer" id="typetransfer" onchange="HidenShowInputs()">
                         <option value="1">{{__('MotorBusqueda.aeropuerto-hotel')}}</option>
                         <option value="2">{{__('MotorBusqueda.hotel-aeropuerto')}}</option>
                         <option value="3">{{__('MotorBusqueda.redondo-aeropuerto')}}</option>
                         <option value="4">{{__('MotorBusqueda.viaje-personalizado')}}</option>
                 </select> 
             </div>
-            <div class="form-group mb-3" id="divzone">
-                <label for="zone" class="font-weight-bold">{{__('MotorBusqueda.zona')}}</label>
-                <select name="zone" id="zone" class="form-control p-3 busquedalive">
-                    <option value="">{{__('MotorBusqueda.seleccione-zona')}}</option>                    
-                </select>
-            </div>
             <div class="from-group mb-3 d-none" id="divorigin">
                 <label for="origin" class="font-weight-bold">{{__('MotorBusqueda.origen')}}</label>
-                <input type="text" class="form-control p-3" name="origin" id="origin" placeholder="{{__('MotorBusqueda.placeholder-origen')}}"/>
-                <ul id="optionOrigin" class="listOptionsLocations"></ul>
+                <select class="form-control search-locations p-3" name="origin" id="origin" >
+                    <option value="" disabled selected>{{__('MotorBusqueda.placeholder-origen')}}</option>
+                </select>                
             </div>
             <div class="from-group mb-3" id="divdestination">
                 <label for="destination" class="font-weight-bold">{{__('MotorBusqueda.destino')}}</label>
-                <input type="text" class="form-control p-3" name="destination" id="destination" placeholder="{{__('MotorBusqueda.placeholder-destino')}}"/>
-                <ul id="optionDestination" class="listOptionsLocations"></ul>
+                <select class="form-control search-locations p-3" name="destination" id="destination">
+                    <option value="" disabled selected>{{__('MotorBusqueda.placeholder-destino')}}</option>
+                </select>                
+            </div>
+            <div class="form-froup mb-3 d-none" id="divcustomorigin">
+                <label for="originCustom" class="font-weight-bold">{{__('MotorBusqueda.origen')}}</label>
+                <input type="text" class="form-control" id="originCustom" name="originCustom" placeholder="{{__('MotorBusqueda.placeholder-custom-origen')}}"/>
+            </div>
+            <div class="form-froup mb-3 d-none" id="divcustomdestination">
+                <label for="destinationCustom" class="font-weight-bold">{{__('MotorBusqueda.destino')}}</label>
+                <input type="text" class="form-control" id="destinationCustom" name="destinationCustom" placeholder="{{__('MotorBusqueda.placeholder-custom-destino')}}"/>
             </div>
             <div class="form-group mb-3">
                 <label for="pax" class="font-weight-bold">{{__('MotorBusqueda.pasajeros')}}</label>
-                <input type="number" class="form-control p-3" min="1" value='1' name="pax" id="pax"/>
+                <input type="number" class="form-control p-2" min="1" value='1' name="pax" id="pax"/>
             </div>
             <div class="form-group mb-3" id="divarrival">
                 <label for="dateArrival" class="font-weight-bold">{{__('MotorBusqueda.fecha-llegada')}}</label>
-                <input class="form-control p-3" type="date" name="dateArrival" id="dateArrival" >
+                <input class="form-control form-control-date p-2" type="date" name="dateArrival" id="dateArrival" onclick="handleShowPicker(this)">
             </div>
             <div class="form-group d-none mb-3" id="divdeparture">
                 <label for="dateDeparture" class="font-weight-bold">{{__('MotorBusqueda.fecha-salida')}}</label>
-                <input class="form-control p-3" type="date" name="dateDeparture" id="dateDeparture">
+                <input class="form-control p-2" type="date" name="dateDeparture" id="dateDeparture" onclick="handleShowPicker(this)">
             </div>            
             <div class="d-grid">
                 <button class="btn btn-naranja btn-lg" type="button" onclick="SearchTrip()">{{__('MotorBusqueda.btn-reserva')}}</button>
@@ -57,14 +61,14 @@
 </div>
 <script type="text/javascript">
 
+    $(document).ready(function() {
+        $('.select-zone').select2()
+    })
+
     var locations = "";
     var listZone = "";
     var destination = document.getElementById('destination');
     var origin = document.getElementById('origin');
-    var zone = document.getElementById('zone');
-    // var listOptionsZone = document.getElementById('optionZone');
-    var listOptionsDestination = document.getElementById('optionDestination')
-    var listOptionsOrigin = document.getElementById('optionOrigin')
     var dateArrival = document.getElementById('dateArrival')
     var dateDeparture = document.getElementById('dateDeparture')
     var fulldate = new Date();
@@ -88,126 +92,32 @@
         return Date.parse(fecha) < Date.parse(minDay)
     }
 
-    function getLocations(idZone = 0){
-        fetch('/back/locations', {
-            method: 'POST',
-            headers: headConexion,
-            body: JSON.stringify({idZone})
-        })
-        .then(res => res.json())
-        .then(result => {
-            locations = result.data;
-        });
-    }
+    
 
     function getZone() {
         fetch('/back/zone')
         .then(res => res.json())
         .then(result => {
-            listZone = result.data;
-
-            listZone.map((item) => {
-                zone.insertAdjacentHTML('beforeend', `<option onClick="setZone(this)" value="${item.id}">${item.name}</option>`)
-            });
+            getLocations(result?.data);
         });
     }
 
     getZone();
-    getLocations();
-    
-    function autoCompleteLocations(valor) {    
-        return locations.filter(item => {
-            var nombreLower = item.nombre.toLowerCase();
-            var valorLower = valor.toLowerCase();
-            return nombreLower.includes(valorLower);
+
+    function getLocations(ListZone = []){
+        fetch('/back/locations', {
+            method: 'POST',
+            headers: headConexion            
+        })
+        .then(res => res.json())
+        .then(result => {
+            $('.search-locations').select2({
+            data: makeDataToSelect(ListZone, result.data),
+            matcher: matchDataLocation
+            
+            })            
         });
     }
-    function autoCompleteZone(valor) {
-        return listZone.filter(item => item.name.toLowerCase().includes(valor.toLowerCase()))
-    }
-
-    function setDestination(event){
-        destination.value = event.dataset.option
-        zone.value = event.dataset.idorigin;
-        closeOptionsList();
-    }   
-    function setOrigin(event){
-        origin.value = event.dataset.option
-        zone.value = event.dataset.idorigin;
-        closeOptionsList();
-    }   
-    function setZone(event) {
-        zone.value = event.dataset.option;
-        $('#idZone').val(event.dataset.id);
-        getLocations(event.dataset.id);
-        closeOptionsList();
-    }
-
-    function closeOptionsList() {
-        listOptionsOrigin.innerHTML = "";
-        listOptionsDestination.innerHTML = "";
-    }
-
-    document.body.addEventListener("keydown", function(event) {
-        // console.log(event.code, event.keyCode);
-        if (event.code === 'Escape' || event.keyCode === 27 || event.code === 'Tap' || event.keyCode === 9) {
-            listOptionsDestination.innerHTML = "";
-            listOptionsOrigin.innerHTML = "";
-            document.getElementById('pax').focus();
-        }
-    });
-
-
-    destination.addEventListener('keyup', e => {
-        e.preventDefault();                                                 
-        showListDestination(e.target.value);
-    });
-
-    destination.addEventListener('click', e => {
-        e.preventDefault();
-        closeOptionsList();
-        showListDestination("");
-    })
-
-    function showListDestination(value) {
-        var locationFilter = autoCompleteLocations(value);
-        listOptionsDestination.innerHTML = "";
-        
-        locationFilter.map((item) => {
-            listOptionsDestination.insertAdjacentHTML('beforeend', `<li onclick="setDestination(this)" data-idorigin="${item.idOrigin}" data-option="${item.nombre}">${item.nombre} <span>(${item.origin})</span></li>`)            
-        });
-    }
-
-    origin.addEventListener('keyup', e => {
-        e.preventDefault();                                                    
-        showListOrigin(e.target.value);
-    })
-
-    origin.addEventListener('click', e => {
-        e.preventDefault();
-        closeOptionsList();
-        showListOrigin("");
-    })
-
-    function showListOrigin(value) {
-        var locationFilter = autoCompleteLocations(value);
-        listOptionsOrigin.innerHTML = "";
-        
-        locationFilter.map((item) => {
-            listOptionsOrigin.insertAdjacentHTML('beforeend', `<li onclick="setOrigin(this)" data-idorigin="${item.idOrigin}" data-option="${item.nombre}">${item.nombre} <span>(${item.origin})</span></li>`)            
-        });
-    }
-
-    zone.addEventListener('change', e => {
-        e.preventDefault();
-        closeOptionsList();
-        getLocations(zone.value);
-    })
-    
-    zone.addEventListener('click', e => {
-        e.preventDefault();
-        closeOptionsList();
-    })
     
     function HidenShowInputs()
     {
@@ -219,7 +129,8 @@
             $('#divorigin').addClass("d-none")
             $('#divarrival').removeClass("d-none")
             $('#divdeparture').addClass("d-none")
-            $("#divzone").removeClass("d-none")
+            $('#divcustomorigin').addClass("d-none");
+            $('#divcustomdestination').addClass("d-none");
         }
         else if(typetransfer == 2)
         {
@@ -227,7 +138,8 @@
             $('#divorigin').removeClass("d-none")
             $('#divarrival').addClass("d-none")
             $('#divdeparture').removeClass("d-none")
-            $("#divzone").removeClass("d-none")
+            $('#divcustomorigin').addClass("d-none");
+            $('#divcustomdestination').addClass("d-none");
         }
         else if(typetransfer == 3)
         {
@@ -235,51 +147,47 @@
             $('#divorigin').addClass("d-none")
             $('#divarrival').removeClass("d-none")
             $('#divdeparture').removeClass("d-none")
-            $("#divzone").removeClass("d-none")
+            $('#divcustomorigin').addClass("d-none");
+            $('#divcustomdestination').addClass("d-none");
+            // $("#divzone").removeClass("d-none")
         }    
         else if(typetransfer == 4)
         {
-            $('#divdestination').removeClass("d-none")
-            $('#divorigin').removeClass("d-none")
+            $('#divdestination').addClass("d-none")
+            $('#divorigin').addClass("d-none")
             $('#divdeparture').removeClass("d-none")
             $('#divarrival').addClass("d-none")
-            $("#divzone").addClass("d-none")
+            $('#divcustomorigin').removeClass("d-none");
+            $('#divcustomdestination').removeClass("d-none");
+            // $("#divzone").addClass("d-none")
         }
     }
     function SearchTrip()
     {
-        var zone = $('#zone').val()        
-        var origin = $('#origin').val()
-        var destination = $('#destination').val()
-        var typetransfer = $('#typetransfer').val()
-        var dateArrival = $('#dateArrival').val()
-        var dateDeparture = $('#dateDeparture').val()
-        var pax = $('#pax').val()
+        // var zone = $('#zone').val()        
+        var origin = $('#origin').val();
+        var destination = $('#destination').val();
+        var originCustom = $('#originCustom').val();
+        var destinationCustom = $('#destinationCustom').val();
+        var typetransfer = $('#typetransfer').val();
+        var dateArrival = $('#dateArrival').val();
+        var dateDeparture = $('#dateDeparture').val();
+        var pax = $('#pax').val();
+        var pathURL = '';
         
-        if(typetransfer != 4)
-        {
-            if(zone == "")
-            {
-                notification('error', '{{__('MotorBusqueda.input-requerido-zona')}}')
-                return false
-            }
-        }
-        
-        if(typetransfer == 1 && (dateArrival == '' || comprobarFecha(dateArrival)))
-        {
+        if(typetransfer == 1 && (dateArrival == '' || comprobarFecha(dateArrival))){
             notification('error', '{{__('MotorBusqueda.input-requerido-date-arrival')}}')
             return false            
         }
-        else if([2,4].indexOf(parseInt(typetransfer)) > -1 && (dateDeparture == '' || comprobarFecha(dateDeparture)))
-        {
+        else if([2,4].indexOf(parseInt(typetransfer)) > -1 && (dateDeparture == '' || comprobarFecha(dateDeparture))){
             notification('error', '{{__('MotorBusqueda.input-requerido-date-departure')}}')
             return false
         }
-        else if(typetransfer == 3 && (dateArrival == '' || comprobarFecha(dateArrival) || dateDeparture == '' || comprobarFecha(dateDeparture)))
-        {
+        else if(typetransfer == 3 && (dateArrival == '' || comprobarFecha(dateArrival) || dateDeparture == '' || comprobarFecha(dateDeparture))){
             notification('error', '{{__('MotorBusqueda.input-requerido-date-arrival-departure')}}')
             return false
         }
+
         if([1,3].indexOf(parseInt(typetransfer)) > -1 && destination == "")
         {            
             notification('error', '{{__('MotorBusqueda.input-requerido-destino')}}')
@@ -290,13 +198,20 @@
             notification('error', '{{__('MotorBusqueda.input-requerido-origen')}}')
             return false
         }
-        else if(typetransfer == 4 && (origin == "" || destination == ""))
+        else if(typetransfer == 4 && (originCustom == "" || destinationCustom == ""))
         {
             notification('error', '{{__('MotorBusqueda.input-requerido-origen-destino')}}')
             return false
         }
 
-        window.location.href = `/{{__('MotorBusqueda.url-detail')}}?zone=${zone}&origin=${origin}&destination=${destination}&typetransfer=${typetransfer}&datearrival=${dateArrival}&datedeparture=${dateDeparture}&pax=${pax}`
+        pathURL = `/{{__('MotorBusqueda.url-detail')}}?typetransfer=${typetransfer}&datearrival=${dateArrival}&datedeparture=${dateDeparture}&pax=${pax}`
+        
+        if(typetransfer == 4) {
+            pathURL = pathURL + `&origin=${originCustom}&destination=${destinationCustom}` ;
+        } else {
+            pathURL = pathURL + `&origin=${origin}&destination=${destination}`
+        }
+        window.location.href = pathURL;
         
     }
 </script>

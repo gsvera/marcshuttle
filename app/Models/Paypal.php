@@ -20,8 +20,7 @@ class Paypal extends Model
                 ->post(env('PAYPAL_API').'/v1/oauth2/token', [
                     'grant_type' => 'client_credentials'
                 ]);
-            
-            $data = json_decode($client->getBody(), true);
+                $data = json_decode($client->getBody(), true);
             return $data["access_token"];
         }
         catch(Exception $e)
@@ -33,7 +32,6 @@ class Paypal extends Model
     {
         $resp = new Respuesta;
         $accesToken = $this->HttpRequestTokenPaypal();
-        
         try{
             $response = Http::withHeaders(["Accept" => "application/json",])->withToken($accesToken)
             ->get(env('PAYPAL_API').'/v2/checkout/orders/'.$orderID);
