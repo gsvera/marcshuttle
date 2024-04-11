@@ -461,7 +461,7 @@
         //  FUNCIONES PARA PAYPAL
 
         window.paypal_sdk.Buttons({
-            fundingSource: window.paypal_sdk.FUNDING.CARD,
+            fundingSource: window.paypal_sdk.FUNDING.PAYPAL,
             createOrder: function(data, actions) {
                 return actions.order.create({
                     application_context:{
@@ -487,8 +487,8 @@
                 });
             },
             onApprove: function(data, actions) {
-                console.log(data)
-                console.log(actions)
+                // console.log(data)
+                // console.log(actions)
                 activeLoader('{{__('MotorBusqueda.registrando')}}', '{{__('MotorBusqueda.enviando-correo')}}')
                 var objReservation = makeObjReservation();
                 objReservation.orderId = data.orderID;
@@ -497,37 +497,50 @@
 
                 fetch('/checkout/api/paypal/order', {
                     method: 'POST',
-                    headers: headConexion,
-                    body: JSON.stringify({orderId: data.orderID})
+                    headers: headConexion
+                    // body: JSON.stringify({orderId: data.orderID})
                 })
                 .then(res => res.json())
                 .then(result => {
+                    // console.log(result)
                     if(result.error == false) {
-                        if(result.data.status == 'APPROVED') {
-                            objReservation.statusPaypal = result.data.status;
-                            console.log("🚀 ~ objReservation:", objReservation)
-                            fetch('/checkout/paypal/create-order-tour', {
-                                method: 'POST',
-                                headers: headConexion,
-                                body: JSON.stringify(objReservation)
-                            })
-                            .then(resCreate => resCreate.json())
-                            .then(resultCreate => {
-                                if(!resultCreate.error) {
-                                    console.log("🚀 ~ resultCreate:", resultCreate)
-                                    var urlPath = '/gracias';
-                                    if(resultCreate.data.lang == 'en')
-                                        urlPath = '/en/thanks';
+                        fetch(`{{env('PAYPAL_API')}}/v2/checkout/orders/${data.orderID}/capture`,{
+                            method: 'POST',
+                            headers: {
+                                "Content-Type": "application/json",
+                                Authorization: `Bearer ${result.data}`
+                            }
+                        })
+                        .then(resCheckout => resCheckout.json())
+                        .then(resultCheckout => {
+                            // console.log(resultCheckout)
+                            if(resultCheckout.status == 'COMPLETED') {
+                                objReservation.statusPaypal = resultCheckout.status;
+                                fetch('/checkout/paypal/create-order-tour', {
+                                    method: 'POST',
+                                    headers: headConexion,
+                                    body: JSON.stringify(objReservation)
+                                })
+                                .then(resCreate => resCreate.json())
+                                .then(resultCreate => {
+                                    if(!resultCreate.error) {
+                                        // console.log("🚀 ~ resultCreate:", resultCreate)
+                                        var urlPath = '/gracias';
+                                        if(resultCreate.data.lang == 'en')
+                                            urlPath = '/en/thanks';
 
-                                    window.location.href = `${urlPath}?folio=${resultCreate.data.folio}`
-                                } else {
-                                    closeAlert()
-                                    setTimeout(() => {
-                                        errorAlert('Error', `{{__('Message.error-service')}}`)
-                                    }, 100)
-                                }
-                            })
-                        }
+                                        window.location.href = `${urlPath}?folio=${resultCreate.data.folio}`
+                                    } else {
+                                        closeAlert()
+                                        setTimeout(() => {
+                                            errorAlert('Error', `{{__('Message.error-paypal')}}`)
+                                        }, 100)
+                                    }
+                                })
+                            }
+                        })
+                    } else {
+                        errorAlert('Error', `{{__('Message.error-paypal')}}`)
                     }
                 })
             },

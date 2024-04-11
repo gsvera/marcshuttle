@@ -89,5 +89,6 @@ return [
     "incluido-cuatro" => "Immediate departure",
     "incluido-cinco" => "Personalized sign with your name",
     "incluido-seis" => "Designated vehicle exclusively for your use",
-    "incluido-siete" => "courtesy water"
+    "incluido-siete" => "courtesy water",
+    "error-paypal" => "Error with PayPal, plis contact us to help with your reservation."
 ];

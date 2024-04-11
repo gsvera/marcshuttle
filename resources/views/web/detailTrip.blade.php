@@ -589,7 +589,7 @@ $total = Utils::asDollars($amount);
         }
 
         window.paypal_sdk.Buttons({
-            fundingSource: window.paypal_sdk.FUNDING.CARD,
+            fundingSource: window.paypal_sdk.FUNDING.PAYPAL,
             createOrder: function(data, actions) {
                 return actions.order.create({
                     application_context:{
@@ -615,8 +615,7 @@ $total = Utils::asDollars($amount);
                 });
             },
             onApprove: function(data, actions) {
-                console.log(data)
-                console.log(actions)
+                // console.log(data)
                 activeLoader('{{__('MotorBusqueda.registrando')}}', '{{__('MotorBusqueda.enviando-correo')}}')
                 var objReservation = makeObjReservation();
                 objReservation.orderId = data.orderID;
@@ -625,48 +624,57 @@ $total = Utils::asDollars($amount);
 
                 fetch('/checkout/api/paypal/order', {
                     method: 'POST',
-                    headers: headConexion,
-                    body: JSON.stringify({orderId: data.orderID})
+                    headers: headConexion
                 })
                 .then(res => res.json())
                 .then(result => {
-                    if(result.error == false)
-                    {
-                        if(result.data.status == 'APPROVED')
-                        {
-                            objReservation.statusPaypal = result.data.status;
-                            fetch('/checkout/paypal/create-order-trip', {
-                                method: 'POST',
-                                headers: headConexion,
-                                body: JSON.stringify(objReservation)
-                            })
-                            .then(resCreate => resCreate.json())
-                            .then(resultCreate => {
-                                // console.log(resultCreate);
-                                if(!resultCreate.error) {
-                                    var urlPath = '/gracias';
-                                    if(resultCreate.data.lang == 'en')
-                                        urlPath = '/en/thanks';
-
-                                    window.location.href = `${urlPath}?folio=${resultCreate.data.folio}`
-                                } else {
-                                    closeAlert()
-                                    setTimeout(() => {
-                                        errorAlert('Error', `{{__('Message.error-service')}}`)
-                                    }, 100)
-                                }
-                            })                         
-                        }
-                        else
-                            errorAlert("Error", '{{__('MotorBusqueda.ocurrio-error')}}')
+                    if(result.error == false) {
+                        fetch(`{{env('PAYPAL_API')}}/v2/checkout/orders/${data.orderID}/capture`,{
+                            method: 'POST',
+                            headers: {
+                                "Content-Type": "application/json",
+                                Authorization: `Bearer ${result.data}`
+                            }
+                        })
+                        .then(resCheckout => resCheckout.json())
+                        .then(resultCheckout => {
+                            // console.log(resultCheckout)
+                            if(resultCheckout.status == 'COMPLETED')
+                            {
+                                objReservation.statusPaypal = resultCheckout.status;
+                                fetch('/checkout/paypal/create-order-trip', {
+                                    method: 'POST',
+                                    headers: headConexion,
+                                    body: JSON.stringify(objReservation)
+                                })
+                                .then(resCreate => resCreate.json())
+                                .then(resultCreate => {
+                                    // console.log(resultCreate);
+                                    if(!resultCreate.error) {
+                                        var urlPath = '/gracias';
+                                        if(resultCreate.data.lang == 'en')
+                                            urlPath = '/en/thanks';
+    
+                                        window.location.href = `${urlPath}?folio=${resultCreate.data.folio}`
+                                    } else {
+                                        closeAlert()
+                                        setTimeout(() => {
+                                            errorAlert('Error', '{{__('MotorBusqueda.error-paypal')}}')
+                                        }, 100)
+                                    }
+                                })                         
+                            }
+                            else
+                                errorAlert("Error", '{{__('MotorBusqueda.error-paypal')}}')
+                        })
                     }
                     else
-                        errorAlert("Error", '{{__('MotorBusqueda.ocurrio-error')}}')      
+                        errorAlert("Error", '{{__('MotorBusqueda.error-paypal')}}')
                 })
             },
             onError: function(error){
                 console.log(error)
-                errorAlert("Error", '{{__('MotorBusqueda.ocurrio-error')}}')
+                errorAlert("Error", '{{__('MotorBusqueda.error-paypal')}}')
             }
         }).render('#paypal-button-container');
         

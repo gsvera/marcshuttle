@@ -16,7 +16,7 @@ class PaypalController extends Controller
         $paypal = new Paypal;
 
         try{
-            $resp = $paypal->GetProcess(request('orderId'));
+            $resp = $paypal->HttpRequestTokenPaypal();
             $resp->Error = false;
         }
         catch(Exception $e)

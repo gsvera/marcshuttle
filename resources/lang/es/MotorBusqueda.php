@@ -89,5 +89,6 @@ return [
     "incluido-cuatro" => "Partida inmediata",
     "incluido-cinco" => "Letrero personalizado con su nombre",
     "incluido-seis" => "Vehículo designado exclusivamente para su uso",
-    "incluido-siete" => "Agua de cortesía"
+    "incluido-siete" => "Agua de cortesía",
+    "error-paypal" => "Ocurrio un erro con paypal, por favor comuniquese directamente con nosotros para ayudarle con su servicio."
 ];
