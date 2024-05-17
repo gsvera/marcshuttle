@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <link rel="stylesheet" href="{{ asset('css/main.css') }}">
-    <title>Login Marcshuttle</title>
 </head>
 <body class="bg-admin-login">
     <section id="" class="col-11 mx-auto mt-5">
@@ -39,8 +38,9 @@
                     <div class="pt-1 mb-4">
                         <button class="btn btn-lg btn-success" style="width:100%;" type="submit">Login</button>
                     </div>
-                    
-                    <a class="small text-muted" href="#!">Forgot password?</a>
+                    <div class="text-center">
+                      <a class="small text-muted" href="{{route('forget-password')}}">¿Olvido su contraseña?</a>
+                    </div>
                     @if(session('message'))
                       <div class="alert alert-danger">{{session('message')}}</div>
                     @endif
@@ -53,9 +53,7 @@
         </div>
       </div>
     </section>
-
-
-    <!-- <script src="{{ asset('../../js/app.js') }}"></script> -->
+    
     <script src="{{ asset('js/app.js') }}"></script>
     
 </body>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Respuesta;
+use App\Models\BookingTour;
 use App;
 
 class WebController extends Controller
@@ -49,5 +50,27 @@ class WebController extends Controller
     public function tours()
     {
         return view('web.tours');
+    }
+    public function gracias()
+    {
+        $lang = App::getLocale();
+        try{
+            
+            if(request('folio')) {
+                return view('web.thanks')->with('folio', request('folio'));
+            }
+            else {
+                if($lang == 'es')
+                {
+                    return redirect('/');
+                }
+                else
+                {
+                    return redirect('/en');
+                }
+            }
+        } catch ( Exception $e ) {
+            return view('web.error');
+        }
     }
 }

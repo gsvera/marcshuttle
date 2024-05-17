@@ -18,7 +18,7 @@
 <div class="section">
     <div class="row m-0 px-4">
         <div class="col-12 col-md-7">
-            <form id="formBooking" class="container" method="POST" action="{{url($prefijo.__('Home.gracias-url'))}}">
+            <form id="formBooking" class="container">
                 {{@csrf_field()}}
                 <p class="font-weight-bold text-justify">{{__('MotorBusqueda.texto-formulario')}}</p>
                 <div class="my-3 box-shadow-info">
@@ -27,7 +27,6 @@
                     <input type="hidden" name="origin" id="origin" value="{{$origin}}">
                     <input type="hidden" name="destination" id="destination" value="{{$destination}}">
                     <input type="hidden" name="pax" id="pax" value="{{$pax}}">
-                    <input type="hidden" name="urlWeb" id="urlWeb">
                     <input type="hidden" id="sillaBebe" value="0">
                     <div class="form-group mb-3">
                         <label for="fristName" class="font-weight-bold fsize-sm text-gray">{{__('MotorBusqueda.nombres')}} <span class="text-danger font-weight-bold">*</span></label>
@@ -60,11 +59,11 @@
                     </div>
                     <div class="form-group mb-3">
                         <label for="dateDeparture" class="font-weight-bold fsize-sm text-gray">{{__('MotorBusqueda.fecha-salida')}} <span class="text-danger font-weight-bold">*</span></label>
-                        <input type="date" class="form-control" id="dateDeparture" name="dateDeparture" value="{{$dateDeparture}}" />
+                        <input type="date" class="form-control" id="dateDeparture" name="dateDeparture" value="{{$dateDeparture}}" onclick="handleShowPicker(this)" />
                     </div>
                     <div class="form-group mb-3">
                         <label for="hourDeparture" class="font-weight-bold fsize-sm text-gray">{{__('MotorBusqueda.hora')}} <span class="text-danger font-weight-bold">*</span></label>
-                        <input type="time" class="form-control" id="hourDeparture" name="hourDeparture" />
+                        <input type="time" class="form-control" id="hourDeparture" name="hourDeparture" onclick="handleShowPicker(this)"/>
                     </div>
                     <div class="form-group">
                         <label for="comments" class="font-weight-bold fsize-sm text-gray">{{__('MotorBusqueda.comentarios')}}</label>
@@ -72,9 +71,7 @@
                     </div>
                 </div>
                 <div class="my-3 box-shadow-info">
-                        <!-- TEST -->
-                        <!-- <div class="g-recaptcha mb-3" data-sitekey="6LdCmI0lAAAAAMkIr0M4gm2aOhkngFTQ5CJhTRgI"></div> -->
-                        <div class="g-recaptcha mb-3" data-sitekey="6Le3mAEmAAAAALvwUCA4AT3LBsANxgWQuESx3Z8-"></div>
+                    <div class="g-recaptcha mb-3" data-sitekey="{{env('GOOGLE_PUBLIC_KEY')}}"></div>
                     <div class="col-12 col-md-12 d-grid mt-5">
                         <button id="btnBooking" class="btn btn-naranja btn-lg" type="submit">{{__('MotorBusqueda.boton-confirmar')}}</button>
                     </div>
@@ -84,15 +81,14 @@
         <div class="col-12 col-md-5">
             <div class="box-shadow-info">
                 <div class="d-flex">
-                    <img src="/img/assets/traslados-en-cancun.webp" alt="Bus" width="100%" class="mx-auto">
+                    @if($pax < 8)
+                        <img src="/img/assets/transporte-privado-en-cancun.webp" alt="Bus" width="35%" class="mx-auto">
+                    @else
+                        <img src="/img/assets/cancun-aeropuerto-transporte.webp" alt="Bus" width="35%" class="mx-auto">
+                    @endif
                 </div>
                 <div class="text-center">
                     <h3 class="font-weight-bold fsize-mds text-blue">{{__('MotorBusqueda.detalle-viaje')}}</h3>
-                    @if($pax < 8)
-                        <h4 class="font-weight-bold">{{__('MotorBusqueda.uno-siete')}}</h4>
-                    @elseif($pax > 7)
-                        <h4 class="font-weight-bold">{{__('MotorBusqueda.ocho-diez')}}</h4>
-                    @endif
                 </div>
                 <p>
                     <span class="font-weight-bold text-gray">{{__('MotorBusqueda.type-transfer')}}:</span> <span class="font-weight-bold">{{__('MotorBusqueda.viaje-personalizado')}}</span>
@@ -165,12 +161,10 @@
 
         iti.setCountry('MX')
                 
-        let formcustom = document.getElementById('formcustom'),
-        urlWeb = window.location.origin
+        let formcustom = document.getElementById('formcustom');
         var dateDeparture = document.getElementById('dateDeparture')
         var sillabebe = document.getElementById('sillaBebe')    
-
-        $('#urlWeb').val(urlWeb)                
+        var btnBooking = document.getElementById('btnBooking');
         var fulldate = new Date();
         fulldate.setDate(fulldate.getDate() + 1)
         var day = fulldate.getDate();
@@ -188,10 +182,6 @@
         var minDay = year+'-'+month+'-'+day
 
         dateDeparture.setAttribute('min', minDay)        
-
-        $('#btnBooking').click(function(){
-            SendReservation()
-        })
 
         function comprobarFecha(fecha)
         {
@@ -211,18 +201,13 @@
 
         let formBooking = document.getElementById('formBooking')
 
-        formBooking.addEventListener('submit', e => {
+        btnBooking.addEventListener('click', e => {
             e.preventDefault()
 
-            var email=$('#email').val()
-            var firstName=$('#firstName').val()
-            var lastName=$('#lastName').val()
-            var phone=$('#phone').val()
-            var recaptcha=$('#g-recaptcha-response').val()
-            var dateDeparture=$('#dateDeparture').val()
-            var hourDeparture=$('#hourDeparture').val()
+            var objRegister = makeObjService();
+            objRegister.gRecaptchaResponse = $('#g-recaptcha-response').val();
 
-            if(!regex.test(email))
+            if(!regex.test(objRegister.email))
             {
                 notification('error','{{__('Motorbusqueda.email-error')}}')
                 return false;
@@ -233,29 +218,71 @@
                 return false;
             }            
             
-            if(firstName == '' || lastName == '' || phone == "" || dateDeparture == '' || hourDeparture == '')
+            if(objRegister.firstName == '' || objRegister.lastName == '' || objRegister.phone == "" || objRegister.dateDeparture == '' || objRegister.hourDeparture == '')
             {
                 notification('error', '{{__('Motorbusqueda.campos-obligatorios')}}')
                 return false;
             }
-            if(comprobarFecha(dateDeparture))
+            if(comprobarFecha(objRegister.dateDeparture))
             {
                 notification ('error', '{{__('MotorBusqueda.input-requerido-date-departure')}}')
                 return false
             }
-            if(recaptcha == '')
+            if(objRegister.gRecaptchaResponse == '')
             {
                 notification('error', '{{__('MotorBusqueda.recaptcha-requerido')}}')
                 return false;
             }       
 
-            document.getElementById('btnBooking').setAttribute('disabled', true)
+            btnBooking.setAttribute('disabled', true)
 
             activeLoader('cargando...', "enviando correo")
 
-            formBooking.submit()
+            fetch('/make-reservation-custom', {
+                method: 'POST',
+                headers: headConexion,
+                body: JSON.stringify(objRegister)
+            })
+            .then(resp => resp.json())
+            .then(result => {
+                if(!result.Error) {
+                    var urlPath = '/gracias';
+                    if(result.data.lang == 'en')
+                        urlPath = '/en/thanks';
+
+                    window.location.href = `${urlPath}?folio=${result.data.folio}`
+                } else {
+                    closeAlert()
+                    setTimeout(() => {
+                        errorAlert('Error', `{{__('Message.error-service')}}`)
+                    }, 100)
+                }
+            })
+            .catch(error => {
+                closeAlert()
+                setTimeout(() => {
+                    errorAlert('Error', `{{__('Message.error-service')}}`)
+                }, 100)
+            })
 
         })
+
+        function makeObjService() {
+            return {
+                "typetransfer": $('#typetransfer').val(),
+                "origin": $('#origin').val(),
+                "destination" : $('#destination').val(),
+                "pax": $('#pax').val(),
+                "sillaBebe": $('#sillaBebe').val(),
+                "firstName": $('#firstName').val(),
+                "lastName": $('#lastName').val(),
+                "email": $('#email').val(),
+                "phone": $('#phone').val(),
+                "dateDeparture": $('#dateDeparture').val(),
+                "hourDeparture": $('#hourDeparture').val(),
+                "comments": $('#comments').val()
+            };
+        }
 
         
     </script>

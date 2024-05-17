@@ -10,8 +10,9 @@ use App\Models\Respuesta;
 class Paypal extends Model
 {
     use HasFactory;
-    private function HttpRequestTokenPaypal()
+    public function HttpRequestTokenPaypal()
     {
+        $resp = new Respuesta;
         try{
             $client = Http::asForm()->withHeaders([
                     "Accept" => "application/json",
@@ -20,23 +21,24 @@ class Paypal extends Model
                 ->post(env('PAYPAL_API').'/v1/oauth2/token', [
                     'grant_type' => 'client_credentials'
                 ]);
-            
-            $data = json_decode($client->getBody(), true);
-            return $data["access_token"];
+                $data = json_decode($client->getBody(), true);
+                $resp->data = $data["access_token"];
         }
         catch(Exception $e)
         {
-            return "Exception: ".$e->getMessage();
+            $resp->Error = true;
+            $resp->Message = "Exception: ".$e->getMessage();
         }
+        return $resp;
     }
-    public function GetProcess($orderID)
+    public function GetProcess($orderID, $uuid)
     {
         $resp = new Respuesta;
         $accesToken = $this->HttpRequestTokenPaypal();
-        
+
         try{
-            $response = Http::withHeaders(["Accept" => "application/json",])->withToken($accesToken)
-            ->get(env('PAYPAL_API').'/v2/checkout/orders/'.$orderID);
+            $response = Http::withHeaders(["Content-Type" => "application/json"])->withToken($accesToken)
+            ->get(env('PAYPAL_API').'/v2/checkout/orders/'.$orderID.'/capture');
     
             $resp->data = json_decode($response->getBody(), true);
         }

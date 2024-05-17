@@ -30,8 +30,7 @@
 <div class="section">
     <div class="row m-0 px-4">
         <div class="col-12 col-md-7">
-            <form id="formBooking" class="container" method="POST" action="{{url($prefijo.__('Home.gracias-url'))}}">
-                {{@csrf_field()}}
+            <form id="formBooking" class="container">
                 <p class="font-weight-bold text-justify">{{__('MotorBusqueda.texto-formulario')}}</p>
                 <div class="my-3 box-shadow-info step">
                     <h3 class="font-weight-bold fsize-mds text-blue">{{__('MotorBusqueda.datos-personales')}}</h3>                    
@@ -41,7 +40,6 @@
                     <input type="hidden" name="totalAmount" id="totalAmount">
                     <input type="hidden" name="idTour" id="idTour" value="{{$idSelected}}">
                     <input type="hidden" name="idVehicle" id="idVehicle">
-                    <input type="hidden" name="orderId" id="orderId">
                     <input type="hidden" id="sillaBebe" value="0">
                     <div class="form-group mb-3">
                         <label for="fristName" class="font-weight-bold fsize-sm text-gray">{{__('MotorBusqueda.nombres')}} <span class="text-danger font-weight-bold">*</span></label>
@@ -80,12 +78,12 @@
                     <h3 class="font-weight-bold fsize-mds text-blue">{{__('MotorBusqueda.salida')}}</h3>
                     <div class="form-group mb-3">
                         <label for="dateDeparture" class="font-weight-bold fsize-sm text-gray">{{__('MotorBusqueda.fecha-salida')}} <span class="text-danger font-weight-bold">*</span></label>
-                        <input type="date" class="form-control required" id="dateDeparture" name="dateDeparture" />
+                        <input type="date" class="form-control required" id="dateDeparture" name="dateDeparture" onclick="handleShowPicker(this)"/>
                     </div>
                     <div class="form-group mb-3">
-                        <label for="hourDeparture" class="font-weight-bold fsize-sm text-gray">{{__('MotorBusqueda.hora')}} <span class="text-danger font-weight-bold">*</span></label>
-                        <input type="time" class="form-control required" id="hourDeparture" name="hourDeparture" />
-                    </div>
+                        <label for="hourDeparture" class="font-weight-bold fsize-sm text-gray">{{__('MotorBusqueda.hora-tour')}} <span class="text-danger font-weight-bold">*</span></label>
+                        <input type="time" class="form-control required" id="hourDeparture" name="hourDeparture" onclick="handleShowPicker(this)"/>
+                    </div>  
                     <div class="form-group mb-3">
                         <label for="comments" class="font-weight-bold fsize-sm text-gray">{{__('MotorBusqueda.comentarios')}}</label>
                         <textarea class="form-control" name="comments" id="comments" cols="30" rows="10" style="height:100px;"></textarea>
@@ -98,20 +96,19 @@
                 <div class="my-3 box-shadow-info step d-none">
                     <h3 class="font-weight-bold fsize-mds text-blue">{{__('MotorBusqueda.metodo-pago')}}</h3>                    
                     <div class="row">
-                        <div class="col-md-6">
+                        <div class="col-md-6" style="display:flex; align-items:center;">
                             <input type="radio" name="payment_type" id="methodcash" value="efectivo" checked>
-                            <label for="methodcash"><img src="/img/icons/cash.png" style="width:200px;" alt="Cash"></label>
+                            <label for="methodcash"><img src="/img/icons/{{$lang == 'es' ? 'efectivo' : 'cash'}}.png" style="width:200px;" alt="Cash"></label>
                         </div>
                         <div class="col-md-6">
+
                             <input type="radio" name="payment_type" id="methodpaypal" value="paypal">
                             <label for="methodpaypal"><img src="/img/icons/paypal.png" style="width:200px;" alt="paypal"></label>
                         </div>
                     </div>
                     <div class="col-12 col-md-12 d-grid mt-5 mb-3">
-                        <!-- TEST -->
-                        <!-- <div class="g-recaptcha mb-3" data-sitekey="6LdCmI0lAAAAAMkIr0M4gm2aOhkngFTQ5CJhTRgI"></div> -->
-                        <div class="g-recaptcha mb-3" data-sitekey="6Le3mAEmAAAAALvwUCA4AT3LBsANxgWQuESx3Z8-"></div>
-                        <button id="btnBooking" onclick="SendBookingCash()" class="btn btn-naranja btn-lg" type="button">{{__('MotorBusqueda.boton-confirmar')}}</button>
+                        <div class="g-recaptcha mb-3" data-sitekey="{{env('GOOGLE_PUBLIC_KEY')}}"></div>
+                        <button id="btnBooking" class="btn btn-naranja btn-lg" type="button">{{__('MotorBusqueda.boton-confirmar')}}</button>
                         <div id="paypal-button-container" class="d-none"></div>
                     </div>
                     <div class="">
@@ -124,7 +121,7 @@
             <div class="box-shadow-info">
                 <div class="d-flex">
                     @foreach($listPrecios as $precios)
-                        <img src="{{$precios['image']}}" alt="Bus" width="100%" class="mx-auto img-shuttle img-shuttle-{{$precios['vehicle_id']}} {{$countImg>0?'d-none':''}}">                        
+                        <img src="{{empty($precios['image_base_64']) ? $precios['image'] : $precios['image_base_64']}}" alt="Bus" width="100%" class="mx-auto img-shuttle img-shuttle-{{$precios['vehicle_id']}} {{$countImg>0?'d-none':''}}">                        
                         @php $countImg = $countImg + 1; @endphp
                     @endforeach
                 </div>
@@ -181,11 +178,11 @@
         </div>
     </div>
 </div>
+
 @endsection
 @push('scripts')
-<script src="https://www.paypal.com/sdk/js?client-id={{env('PAYPAL_CLIENT_ID')}}&components=buttons,funding-eligibility&currency=MXN" data-namespace="paypal_sdk"></script>
-<script src="https://www.google.com/recaptcha/api.js"></script>
-</script>
+    <script src="https://www.google.com/recaptcha/api.js"></script>
+    <script src="https://www.paypal.com/sdk/js?client-id={{env('PAYPAL_CLIENT_ID')}}&components=buttons,funding-eligibility&currency=MXN" data-namespace="paypal_sdk"></script>
     <script type="text/javascript"> 
                     
         //  actualiza boton menu para el home
@@ -219,61 +216,58 @@
         iti.setCountry('MX')
 
         let totalPagar = 0;
-        var btnBooking = document.getElementById('btnBooking')
-        var formBooking = document.getElementById('formBooking')
-        var paypalButtonContainer = document.getElementById('paypal-button-container')
-        var methodcash = document.getElementById('methodcash')
-        var methodpaypal = document.getElementById('methodpaypal')        
-        var step = document.querySelectorAll('.step')
-        var payMethod = document.getElementById('payMethod')
-        var gRecaptcha = document.querySelector('.g-recaptcha')
-        var inputOrderId = document.getElementById('orderId')
-        var idVehicle = document.getElementById('idVehicle')
-        var totalAmount = document.getElementById('totalAmount')
-        var countStep = 0
-        var urlWeb = window.location.origin
-        var switchShuttle = document.getElementById('switch-label')
-        var dateDeparture = document.getElementById('dateDeparture')    
-        var sillabebe = document.getElementById('sillaBebe')    
+        var btnBooking = document.getElementById('btnBooking');
+        var formBooking = document.getElementById('formBooking');
+        var methodcash = document.getElementById('methodcash');
+        var paypalButtonContainer = document.getElementById('paypal-button-container');
+        var methodpaypal = document.getElementById('methodpaypal');
+        var step = document.querySelectorAll('.step');
+        var payMethod = document.getElementById('payMethod');
+        var gRecaptcha = document.querySelector('.g-recaptcha');
+        var inputOrderId = document.getElementById('orderId');
+        var idVehicle = document.getElementById('idVehicle');
+        var totalAmount = document.getElementById('totalAmount');
+        var countStep = 0;
+        var urlWeb = window.location.origin;
+        var switchShuttle = document.getElementById('switch-label');
+        var dateDeparture = document.getElementById('dateDeparture'); 
+        var sillabebe = document.getElementById('sillaBebe');
 
-        $('#urlWeb').val(urlWeb)                
+        $('#urlWeb').val(urlWeb);
         var fulldate = new Date();
-        fulldate.setDate(fulldate.getDate() + 2)        
+        fulldate.setDate(fulldate.getDate() + 2);     
         var day = fulldate.getDate();
         var month = fulldate.getMonth() + 1
-        var year = fulldate.getFullYear()
-
+        var year = fulldate.getFullYear();
 
         if(day < 10)
-            day = '0'+day
+            day = '0'+day;
             
         if(month < 10)
-        {
-            month = '0'+month
-        }
+            month = '0'+month;
+        
+        var minDay = year+'-'+month+'-'+day;
 
-        var minDay = year+'-'+month+'-'+day
-
-        dateDeparture.setAttribute('min', minDay)
+        dateDeparture.setAttribute('min', minDay);
         
         function changeChairbaby(event)
         {
-            sillabebe.value = event.target.value
+            sillabebe.value = event.target.value;
         }
 
         function comprobarFecha(fecha)
         {
-            return Date.parse(fecha) < Date.parse(minDay)
+            return Date.parse(fecha) < Date.parse(minDay);
         }
 
         methodcash.addEventListener('change', e => {
-            e.preventDefault()
+            e.preventDefault();
 
             if(methodcash.checked)
             {
                 blockschecks(false)
                 btnBooking.classList.remove('d-none')
-                paypalButtonContainer.classList.add('d-none')
+                paypalButtonContainer.classList.add('d-none');
                 payMethod.value = 'efectivo'
                 gRecaptcha.classList.remove('d-none')
             }
@@ -288,7 +282,7 @@
                 blockschecks(true)
                 btnBooking.classList.add('d-none')
                 paypalButtonContainer.classList.remove('d-none')
-                payMethod.value = 'paypal'
+                payMethod.value = 'card'
                 gRecaptcha.classList.add('d-none')
             }
         })
@@ -341,15 +335,13 @@
                 notification("warning", '{{__('MotorBusqueda.campos-obligatorios')}}')
             }
         }
-        function PreviewStep()
-        {
+        function PreviewStep() {
             step[countStep].classList.add('d-none')
             step[countStep - 1].classList.remove('d-none')
             countStep--
         }
 
-        function ValidInput(position)
-        {
+        function ValidInput(position) {
             var inputs = step[position].querySelectorAll('.required')
             
             for(i = 0; i < inputs.length; i++)
@@ -360,10 +352,7 @@
             return true
         }
 
-        function selectShuttle(obj,event)
-        {
-            // console.log(obj)
-            // console.log(event)
+        function selectShuttle(obj,event) {
             var parent = event.target.parentNode;
             var checkCurrent = document.querySelector('.option-vehicle-cheked')
             var imgShuttle = document.querySelectorAll('.img-shuttle')
@@ -400,34 +389,79 @@
                 }
             }
         }
-        assingnementPrice()
+        
+        assingnementPrice();
 
-        @if(session('messageError'))
-                
-            console.log({{session('messageError')}}) 
-                
-        @endif
+        btnBooking.addEventListener('click', e => {
+            e.preventDefault();
+            btnBooking.setAttribute('disabled', true);
+            SendBookingCash();
+        })
+        // GENERA EL OBJETO DE RESERVACION
+        function makeObjReservation() {
+            return {
+                "firstName": $('#firstName').val(),
+                "lastName": $('#lastName').val(),
+                "email": $('#email').val(),
+                "totalAmount": $('#totalAmount').val(),
+                "idTour": $('#idTour').val(),
+                "urlWeb": $('#urlWeb').val(),
+                "payMethod": $('#payMethod').val(),
+                "typetransfer": $('#typetransfer').val(),
+                "idVehicle": $('#idVehicle').val(),
+                "sillaBebe": $('#sillaBebe').val(),
+                "phone": $('#phone').val(),
+                "dateDeparture": $('#dateDeparture').val(),
+                "hourDeparture": $('#hourDeparture').val(),
+                "comments": $('#comments').val()
+            };
+        }
 
         function SendBookingCash(){
             var recaptcha = $('#g-recaptcha-response').val()
 
-            if(recaptcha == '')
-            {
-                notification('error', '{{__('MotorBusqueda.recaptcha-requerido')}}')
+            if(recaptcha == '') {
+                notification('error', '{{__('MotorBusqueda.recaptcha-requerido')}}');
+                btnBooking.removeAttribute('disabled');
                 return false;
             }
 
-            btnBooking.setAttribute('disabled', true)
-
             activeLoader('{{__('MotorBusqueda.registrando')}}...', '{{__('MotorBusqueda.enviando-correo')}}')
 
-            formBooking.submit()
+            var objBooking = makeObjReservation();
+            objBooking.gRecaptchaResponse = recaptcha;
+
+            fetch('/make-reservation-tour', {
+                method: 'POST',
+                headers: headConexion,
+                body: JSON.stringify(objBooking)
+            })
+            .then(resp => resp.json())
+            .then(result => {
+                if(!result.Error) {
+                    var urlPath = '/gracias';
+                    if(result.data.lang == 'en')
+                        urlPath = '/en/thanks';
+
+                    window.location.href = `${urlPath}?folio=${result.data.folio}`
+                } else {
+                    closeAlert()
+                    setTimeout(() => {
+                        errorAlert('Error', `{{__('Message.error-service')}}`)
+                    }, 100)
+                }
+            }).catch(error => {
+                closeAlert()
+                setTimeout(() => {
+                    errorAlert('Error', `{{__('Message.error-service')}}`)
+                }, 100)
+            })
         }
 
         //  FUNCIONES PARA PAYPAL
 
         window.paypal_sdk.Buttons({
-            fundingSource: window.paypal_sdk.FUNDING.CARD,
+            fundingSource: window.paypal_sdk.FUNDING.PAYPAL,
             createOrder: function(data, actions) {
                 return actions.order.create({
                     application_context:{
@@ -453,35 +487,60 @@
                 });
             },
             onApprove: function(data, actions) {
-                console.log(data)
-                console.log(actions)
+                // console.log(data)
+                // console.log(actions)
                 activeLoader('{{__('MotorBusqueda.registrando')}}', '{{__('MotorBusqueda.enviando-correo')}}')
-                var orderId = data.orderID
-                inputOrderId.value = orderId
+                var objReservation = makeObjReservation();
+                objReservation.orderId = data.orderID;
+                objReservation.payerId = data.payerID;
+                objReservation.paymentId = data.paymentID;
 
-                return $.ajax({
-                    url: '/checkout/api/paypal/order',
+                fetch('/checkout/api/paypal/order', {
                     method: 'POST',
-                    data: {
-                        _token: "{{ csrf_token() }}",
-                        orderId: orderId
-                    },
-                    success:function(data){
-                        
-                        console.log(data)
-                        if(data.error == false)
-                        {
-                            
-                            console.log(data.data.status) 
-                            if(data.data.status == 'APPROVED')
-                            {
-                                formBooking.submit()                                
+                    headers: headConexion
+                    // body: JSON.stringify({orderId: data.orderID})
+                })
+                .then(res => res.json())
+                .then(result => {
+                    // console.log(result)
+                    if(result.error == false) {
+                        fetch(`{{env('PAYPAL_API')}}/v2/checkout/orders/${data.orderID}/capture`,{
+                            method: 'POST',
+                            headers: {
+                                "Content-Type": "application/json",
+                                Authorization: `Bearer ${result.data}`
                             }
-                            else
-                                errorAlert("Error", '{{__('MotorBusqueda.ocurrio-error')}}')
-                        }
-                        else
-                            errorAlert("Error", '{{__('MotorBusqueda.ocurrio-error')}}')      
+                        })
+                        .then(resCheckout => resCheckout.json())
+                        .then(resultCheckout => {
+                            // console.log(resultCheckout)
+                            if(resultCheckout.status == 'COMPLETED') {
+                                objReservation.statusPaypal = resultCheckout.status;
+                                fetch('/checkout/paypal/create-order-tour', {
+                                    method: 'POST',
+                                    headers: headConexion,
+                                    body: JSON.stringify(objReservation)
+                                })
+                                .then(resCreate => resCreate.json())
+                                .then(resultCreate => {
+                                    if(!resultCreate.error) {
+                                        // console.log("🚀 ~ resultCreate:", resultCreate)
+                                        var urlPath = '/gracias';
+                                        if(resultCreate.data.lang == 'en')
+                                            urlPath = '/en/thanks';
+
+                                        window.location.href = `${urlPath}?folio=${resultCreate.data.folio}`
+                                    } else {
+                                        closeAlert()
+                                        setTimeout(() => {
+                                            errorAlert('Error', `{{__('Message.error-paypal')}}`)
+                                        }, 100)
+                                    }
+                                })
+                            }
+                        })
+                    } else {
+                        errorAlert('Error', `{{__('Message.error-paypal')}}`)
                     }
                 })
             },
@@ -489,6 +548,5 @@
                 console.log(error)
             }
         }).render('#paypal-button-container');
-        
     </script>
 @endpush

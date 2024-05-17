@@ -3,24 +3,22 @@
 @section('metas')
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Servicio de traslado en Cancún aeropuerto | Rápido y sencillo</title>
-    <meta name="description" content="Reserve su traslado aeropuerto de Cancún a hotel y alrededores: ✓Mejor precio ✓Transporte cómodo ✓Viaje puntual">
+    <meta name="title" content="{{__('Meta.index-title')}}"> 
+    <meta name="description" content="{{__('Meta.index-descripcion')}}">
     <meta name="robots" content="index, follow">
     <meta name="rating" content="safe for kids">
+    <meta name="language" content="{{__('Meta.index-lenguage')}}">
     <meta property="og:type" content="business.business">
-    <meta property="og:title" content="Servicio de traslado en Cancún aeropuerto | Rápido y sencillo">
+    <meta property="og:title" content="{{__('Meta.index-title-og')}}">
     <meta property="og:url" content="https://marcshuttlecancun.com/">
     <meta property="og:image" content="https://marcshuttlecancun.com/img/banners/servicio-de-traslado-en-cancun-aeropuerto.webp">
-    <meta property="og:description" content="Reserve su traslado aeropuerto de Cancún a hotel y alrededores: ✓Mejor precio ✓Transporte cómodo ✓Viaje puntual">
+    <meta property="og:description" content="{{__('Meta.index-descripcion-og')}}">
     <meta property="business:contact_data:street_address" content="Aeropuerto de Cancún">
     <meta property="business:contact_data:locality" content="Cancún">
     <meta property="business:contact_data:region" content="Quintana roo">
     <meta property="business:contact_data:postal_code" content="77500">
     <meta property="business:contact_data:country_name" content="Mexico">
-
 @endsection
-
-
 
 @section('content')
     <div class="layer-home back-slider-home"></div>
@@ -30,7 +28,6 @@
                 <p class="text-cian ls2 font-weight-bold">{{__('Home.transportacion-slogan')}}</p>
                 <h1 class="font-weight-bold text-white fsize-xl">{{__('Home.titulo-inicio')}}</h1>
                 <p class="font-weight-bold text-white">{{__('Home.texto-principal')}}</p>
-                <!-- <button class="btn btn-white-contac btn-lg font-weight-bold">{{__('Home.contactanos')}}</button> -->
             </div>
         </div>
         <div class="col-12 col-md-6">
@@ -43,7 +40,7 @@
                 <div class="my-3">
                     <span class="icon-cian"><img src="/img/icons/book-confirm.png" alt="book confirm"></span>
                 </div>
-                <h5 class="font-weight-bold">{{__('Home.reserva-rapida')}}</h5>
+                <p class="font-weight-bold" style="font-size: 1.125rem">{{__('Home.reserva-rapida')}}</p>
                 <p class="text-gray">{{__('Home.reserva-rapida-text')}}</p>
             </div>
         </div>
@@ -52,7 +49,7 @@
                 <div class="my-3">
                     <span class="icon-cian"><img src="/img/icons/verified_user.png" alt="virified user"></span>
                 </div>
-                <h5 class="font-weight-bold">{{__('Home.transporte-privado')}}</h5>
+                <p class="font-weight-bold" style="font-size: 1.125rem">{{__('Home.transporte-privado')}}</p>
                 <p class="text-gray">{{__('Home.transporte-privato-text')}}</p>
             </div>
         </div>
@@ -61,7 +58,7 @@
                 <div class="my-3">
                     <span class="icon-cian"><img src="/img/icons/book-confirm.png" alt="currency exchange"></span>
                 </div>
-                <h5 class="font-weight-bold">{{__('Home.rastreo-vuelo')}}</h5>
+                <p class="font-weight-bold" style="font-size: 1.125rem">{{__('Home.rastreo-vuelo')}}</p>
                 <p class="text-gray">{{__('Home.rastreo-vuelo-text')}}</p>
             </div>
         </div>
@@ -70,20 +67,10 @@
                 <div class="my-3">
                     <span class="icon-cian"><img src="/img/icons/currency_exchange.png" alt="currency exchange"></span>
                 </div>
-                <h5 class="font-weight-bold">{{__('Home.mejor-precio')}}</h5>
+                <p class="font-weight-bold" style="font-size: 1.125rem">{{__('Home.mejor-precio')}}</p>
                 <p class="text-gray">{{__('Home.mejor-precio-text')}}</p>
             </div>
         </div>
-        <!-- <div class="col-12 col-md-3 my-2">
-            <div class="card-img">
-                <div class="card-img-blue row">
-                    <div>
-                        <h5 class="text-white font-weight-bold mb-4" style="font-size:1.7em;">Travel now. Pay later. <br />Always interest-free.</h5>
-                        <button class="btn btn-white-contac btn-lg font-weight-bold">Learn More</button>
-                    </div>
-                </div>
-            </div>
-        </div> -->
     </div>
     
     <div class="section">
@@ -95,9 +82,6 @@
                     <div class="line-sm-blue my-2" style="margin-left: calc(var(--bs-gutter-x) * 0.5);"></div>                    
                     <p class="text-gray fsize-sm mb-3">{{__('Home.texto-marc-uno')}}</p>
                     <p class="text-gray fsize-sm">{{__('Home.texto-marc-dos')}}</p>                
-                    <!-- <div>
-                        <button type="button" class="btn btn-naranja btn-lg px-4 py2">{{__('MotorBusqueda.aprende-mas')}}</button>
-                    </div> -->
                 </div>
             </div>
             <div>
@@ -118,7 +102,7 @@
                     <div class="row col-12 col-md-12 mt-5 mx-0 justify-content-center">
                         <div class="col-12 col-md-3 p-2">
                             <div class="card-bus pt-3">
-                                <h5 class="font-weight-bold text-center">Toyota</h5>                                
+                                <h3 class="font-weight-bold text-center">Toyota</h3>                                
                                 <ul class="without-list text-left pl-4">
                                     <li>
                                         <i class="fa fa-star text-yellow fsize-15" aria-hidden="true"></i> {{__('Home.toyota-detalle')}}   
@@ -138,7 +122,7 @@
                         </div>
                         <div class="col-12 col-md-3 p-2">
                             <div class="card-bus text-center pt-3">
-                                <h5 class="font-weight-bold">Transporter</h5>
+                                <h3 class="font-weight-bold">Transporter</h3>
                                 <ul class="without-list text-left pl-4">
                                     <li>
                                         <i class="fa fa-star text-yellow fsize-15" aria-hidden="true"></i> {{__('Home.transporter-detalle')}}   
@@ -158,7 +142,7 @@
                         </div>
                         <div class="col-12 col-md-3 p-2">
                             <div class="card-bus text-center pt-3">
-                                <h5 class="font-weight-bold">Sprinter</h5>
+                                <h3 class="font-weight-bold">Sprinter</h3>
                                 <ul class="without-list text-left pl-4">
                                     <li>
                                         <i class="fa fa-star text-yellow fsize-15" aria-hidden="true"></i> {{__('Home.sprinter-detalle')}}   
@@ -176,20 +160,6 @@
                                 <img src="/img/assets/Sprinter.webp" alt="{{__('Home.autobus')}}" class="mx-auto" style="width:80%;">
                             </div>
                         </div>
-                        <!-- <div class="col-12 col-md-3 p-2">
-                            <div class="card-bus text-center pt-3">
-                                <h5 class="font-weight-bold">Setra Bus</h5>
-                                <div class="text-gray mb-1">39 - 57 Passengers</div>
-                                <div class="d-flex justify-content-center">
-                                    <i class="fa fa-star text-yellow fsize-15" aria-hidden="true"></i>
-                                    <i class="fa fa-star text-yellow fsize-15" aria-hidden="true"></i>
-                                    <i class="fa fa-star text-yellow fsize-15" aria-hidden="true"></i>
-                                    <i class="fa fa-star text-yellow fsize-15" aria-hidden="true"></i>
-                                    <i class="fa fa-star text-yellow fsize-15" aria-hidden="true"></i>
-                                </div>
-                                <img src="/img/assets/bus-card.png" alt="{{__('Home.autobus')}}" class="mx-auto my-5" style="width:80%;">
-                            </div>
-                        </div> -->
                     </div>
                 </div>
             </div>
@@ -217,36 +187,6 @@
             </div>
         </div>
     </div>    
-    <!-- <div class="mtn-2">
-        <div class="col-12 col-md-10 back-footer row bor-y-r-5 m-0">
-            <div class="col-12 col-md-6 p-0">
-                <img src="/img/assets/bus-banner.png" alt="{{__('Home.autobus')}}" class="bus-banner">
-            </div>
-            <div class="col-12 col-md-6 py-5 px-4">
-                <div class="ls2 text-orange font-weight-bold">PREMIUM</div>
-                <h2 class="text-white font-weight-bold fsize-md">PREMIUM AMENITIES ON BOARD</h2>
-                <div class="line-sm-orange my-3"></div>
-                <p class="text-white fsize-sm">Purus porta feugiat egestas a diam sed ipsum, enim orci. In lectus bibendum gravida aliquet faucibus consectetur lectus imperdiet vulputate scelerisque. Tempor in aenean neque</p>
-                <div class="col-md-8">
-                    <div class="d-flex my-5">
-                        <div class="col-md-4 text-white font-weight-bold fsize-sm">
-                            Premium <br class="none-mobile"/> Class
-                        </div>
-                        <div class="col-md-5 d-flex align-center">
-                            <i class="fa fa-star text-yellow fsize-15" aria-hidden="true"></i>
-                            <i class="fa fa-star text-yellow fsize-15" aria-hidden="true"></i>
-                            <i class="fa fa-star text-yellow fsize-15" aria-hidden="true"></i>
-                            <i class="fa fa-star text-yellow fsize-15" aria-hidden="true"></i>
-                            <i class="fa fa-star text-yellow fsize-15" aria-hidden="true"></i>
-                        </div>
-                    </div>
-                </div>
-                <button class="btn btn-naranja btn-lg">Request a Quote</button>
-                <button class="btn btn-outline-white">
-                    <i class="fa fa-phone" aria-hidden="true"></i> 001-234-5678
-                </button>
-            </div>
-        </div> -->
     </div>
     <div class="section">
         <div class="row m-0">
@@ -281,26 +221,14 @@
             <p class="text-gray fsize-sm">{{__('Home.destinos-texto-uno')}}</p>
         </div>
         <div class="bg-destination">
-            <div class="row col-md-11 mx-auto mt-5 justify-content-center" style="padding-bottom: 100px;">
-                <!-- <div class="col-12 col-md-3">
-                    <div class="card-destination">
-                        <div class="over-hiden d-flex justify-content-center">
-                            <img loading="lazy" src="/img/banners/traslados-cancun.webp" alt="translados cancun" class="img-destination">
-                        </div>
-                        <div class="p-3">
-                            <h4 class="font-weight-bold fsize-sm">Zona Hotelera</h4>
-                            <p class="text-gray font-weight-bold">{{__('Home.destination-text-uno')}}</p>
-                            <span class="text-orange font-weight-bold fsize-xs">{{__('Home.ver-mas')}} <i class="fa fa-angle-right" aria-hidden="true"></i></span>
-                        </div>
-                    </div>
-                </div> -->
+            <div class="row col-md-11 mx-auto mt-5 justify-content-center" style="padding-bottom: 100px;">             
                 <div class="col-12 col-md-3">
                     <div class="card-destination">
                         <div class="over-hiden d-flex justify-content-center">
                             <img loading="lazy" src="/img/assets/playa-del-carmen-min.webp" alt="transporte traslado playa del carmen" class="img-destination">
                         </div>
                         <div class="p-3">
-                            <h4 class="font-weight-bold fsize-sm">Playa del Carmen</h4>
+                            <h3 class="font-weight-bold fsize-sm">Playa del Carmen</h3>
                             <p class="text-gray font-weight-bold">{{__('Home.destination-text-dos')}}</p>
                             <a href="{{url(__('Playa.url'))}}" class="without-link text-orange font-weight-bold fsize-xs">{{__('Home.ver-mas')}} <i class="fa fa-angle-right" aria-hidden="true"></i></a>
                         </div>
@@ -312,7 +240,7 @@
                             <img loading="lazy" src="/img/assets/tulum.webp" alt="transporte-tulum" class="img-destination">
                         </div>
                         <div class="p-3">
-                            <h4 class="font-weight-bold fsize-sm">Tulum</h4>
+                            <h3 class="font-weight-bold fsize-sm">Tulum</h3>
                             <p class="text-gray font-weight-bold">{{__('Home.destination-text-tres')}}</p>
                             <a href="{{url(__('Tulum.url'))}}" class="without-link text-orange font-weight-bold fsize-xs">{{__('Home.ver-mas')}} <i class="fa fa-angle-right" aria-hidden="true"></i></a>
                         </div>
@@ -324,7 +252,7 @@
                             <img loading="lazy" src="/img/assets/bacalar.webp" alt="transporte traslado" class="img-destination">
                         </div>
                         <div class="p-3">
-                            <h4 class="font-weight-bold fsize-sm">Bacalar</h4>
+                            <h3 class="font-weight-bold fsize-sm">Bacalar</h3>
                             <p class="text-gray font-weight-bold">{{__('Home.destination-test-cuatro')}}</p>
                             <a href="{{url(__('Bacalar.url'))}}" class="without-link text-orange font-weight-bold fsize-xs">{{__('Home.ver-mas')}} <i class="fa fa-angle-right" aria-hidden="true"></i></a>
                         </div>
@@ -399,7 +327,6 @@
                             </div>
                             <p class="text-gray fsize-sm mb-4">“Super puntuales, super atentos, no tienes que preocuparte de nada. Te atienden de maravilla desde que estás separando, el proceso de pago sin inconvenientes, platica amena, los encuentras fácil en el aeropuerto.”</p>
                             <p class="font-weight-bold fsize-sm">Rodrigo de la Cruz</p>
-                            <!-- <span class="text-blue">Manager</span> -->
                         </div>
                     </div>
                     <div class="col-12 col-md-4 text-center mt-3">
@@ -414,7 +341,6 @@
                             </div>
                             <p class="text-gray fsize-sm mb-4">“Empresa seria y responsable. Los choferes fueron muy amables y maravillosos con nosotros en nuestro viaje a Playa del carmen. Muchas gracias! Repetiremos!”</p>
                             <p class="font-weight-bold fsize-sm">Ricardo Horacio Valverde</p>
-                            <!-- <span class="text-blue">Digital Marketer</span> -->
                         </div>
                     </div>
                 </div>
@@ -477,15 +403,12 @@
         function showFaq(event)
         {    
             var id = event.dataset.value        
-            if(acordFaq[id].dataset.display == 0)
-            {
+            if(acordFaq[id].dataset.display == 0) {
                 acordFaq[id].classList.remove('d-none')
                 acordFaq[id].dataset.display = 1
                 iconFaq[id].classList.remove('fa-plus')
                 iconFaq[id].classList.add('fa-minus')
-            }
-            else
-            {
+            } else {
                 acordFaq[id].classList.add('d-none')
                 acordFaq[id].dataset.display = 0
                 iconFaq[id].classList.add('fa-plus')

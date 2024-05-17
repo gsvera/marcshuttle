@@ -11,7 +11,6 @@ $total = Utils::asDollars($item['amount']);
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Marc Shuttle</title>
     <script src="https://use.fontawesome.com/97a88bff0a.js"></script>
     <style>
         table.roundedCorners { 
@@ -33,7 +32,7 @@ $total = Utils::asDollars($item['amount']);
             height:450px;
             border:0;
             align:center;
-            background-image:url({{$item['host']}}/img/banners/traslados-cancun.webp);
+            background-image:url({{env('APP_URL')}}/img/banners/traslados-cancun.webp);
             background-repeat:no-repeat;
             background-size:cover;
         }
@@ -90,7 +89,7 @@ $total = Utils::asDollars($item['amount']);
     <div class="bg-principal" style="margin-bottom:-200px">
         <div style="background-color:rgba(0,0,0,0.4);height:450px;">
             <div style="display:flex;">
-                <img class="img-logo" src="{{$item['host']}}/img/logos/Logo-Marcshuttle.webp" width="200px"/>
+                <img class="img-logo" src="{{env('APP_URL')}}/img/logos/Logo-Marcshuttle.webp" width="200px"/>
             </div>
         </div>
     </div>
@@ -103,7 +102,7 @@ $total = Utils::asDollars($item['amount']);
                         <li>
                             <strong class="text-orange"><i class="fa fa-check text-blue" aria-hidden="true"></i> {{__('Email.nombre')}}</strong> 
                             <br>
-                            <div class="text-gray strong" style="margin-left:10px;margin-top:5px;font-size:1.1em;">{{$item['firstName']. ' '.$item['lastName']}}</div>
+                            <div class="text-gray strong" style="margin-left:10px;margin-top:5px;font-size:1.1em;">{{$item['first_name']. ' '.$item['last_name']}}</div>
                         </li>
                         <br>
                         <li>
@@ -121,13 +120,13 @@ $total = Utils::asDollars($item['amount']);
                         <li>
                             <strong class="text-orange"><i class="fa fa-check text-blue" aria-hidden="true"></i> {{__('Email.salida')}}:</strong> 
                             <br>
-                            <div class="text-gray strong" style="margin-left:10px;margin-top:5px;font-size:1.1em;">{{$item['dateDeparture']}}</div>
+                            <div class="text-gray strong" style="margin-left:10px;margin-top:5px;font-size:1.1em;">{{$item['departure_date']}}</div>
                         </li>
                         <br>
                         <li>
                             <strong class="text-orange"><i class="fa fa-check text-blue" aria-hidden="true"></i> {{__('Email.hora')}}:</strong> 
                             <br>
-                            <div class="text-gray strong" style="margin-left:10px;margin-top:5px;font-size:1.1em;">{{$item['hourDeparture']}}</div>
+                            <div class="text-gray strong" style="margin-left:10px;margin-top:5px;font-size:1.1em;">{{$item['departure_time']}}</div>
                         </li>
                         <br>                        
                     </ul>
@@ -173,17 +172,23 @@ $total = Utils::asDollars($item['amount']);
                         <li>
                             <strong class="text-orange"><i class="fa fa-check text-orange" aria-hidden="true"></i> {{__('Email.metodo-pago')}}</strong>
                             <br>
-                            <div class="text-white strong" style="margin-left:10px;margin-top:5px;font-size:1.1em;">{{$item['payMethod']=='efectivo'?__('Email.efectivo'):'Paypal'}}</div>
+                            <div class="text-white strong" style="margin-left:10px;margin-top:5px;font-size:1.1em;">{{ $item['pay_method'] == 'efectivo' ? __('Email.efectivo') : __('Email.tarjeta') }}</div>
                         </li>
                         <br>
-                        @if($item['payMethod'] == 'paypal')
+                        @if($item['pay_method'] == 'card')
                             <li>
                                 <strong class="text-orange"><i class="fa fa-check text-orange" aria-hidden="true"></i> Order Id</strong>
                                 <br>
-                                <div class="text-white strong" style="margin-left:10px;margin-top:5px;font-size:1.1em;">{{$item['orderId']}}</div>
+                                <div class="text-white strong" style="margin-left:10px;margin-top:5px;font-size:1.1em;">{{$item['order_id']}}</div>
                             </li>
                             <br>
                         @endif
+                        <li>
+                            <strong class="text-orange"><i class="fa fa-check text-orange" aria-hidden="true"></i>{{__('Email.status-pay')}}</strong>
+                            <br>
+                            <div class="text-white strong" style="margin-left:10px;margin-top:5px;font-size:1.1em;">{{$statusPay == 'pendiente' ? __('Email.pendiente') : $statusPay}}</div>
+                        </li>
+                        <br>
                         <li>
                             <strong class="text-orange"><i class="fa fa-check text-orange" aria-hidden="true"></i> {{__('Email.monto')}}</strong>
                             <br>

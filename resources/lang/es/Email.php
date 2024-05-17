@@ -13,6 +13,10 @@
         "pasajeros" => "Pasajeros",
         "metodo-pago" => "Metodo de pago",
         "efectivo" => "Efectivo",
+        "tarjeta" => "Tarjeta",
         "monto" => "Monto",
-        "comentarios" => "Comentarios"
+        "comentarios" => "Comentarios",
+        "status-pay" => "Estatus de pago",
+        "pendiente" => "Pago pendiente",
+        "pagado" => "Pagado"
     ];

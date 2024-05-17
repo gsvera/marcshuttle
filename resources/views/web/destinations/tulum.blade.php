@@ -2,10 +2,11 @@
 @section('metas')
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Servicio de traslado a Tulum | Rápido y sencillo</title>
-    <meta name="description" content="Reserve su traslado aeropuerto de Cancún a Bacalar Tulum y alrededores: ✓Mejor precio ✓Transporte cómodo ">
+    <meta name="title" content="{{__('Meta.tulum-title')}}">
+    <meta name="description" content="{{__('Meta.tulum-descripcion')}}">
     <meta name="robots" content="index, follow">
     <meta name="rating" content="safe for kids">
+    <meta name="language" content="Spanish">
 @endsection
 @section('headers')
 <script type="application/ld+json">
@@ -66,7 +67,6 @@
                 <p class="text-cian ls2 font-weight-bold">{{__('Playa.span-titulo')}}</p>
                 <h1 class="font-weight-bold text-white fsize-xl">{{__('Tulum.titulo')}}</h1>
                 <p class="font-weight-bold text-white">{{__('Playa.text-banner')}}</p>
-                <!-- <button class="btn btn-white-contac btn-lg font-weight-bold">{{__('Home.contactanos')}}</button> -->
             </div>
         </div>
         <div class="col-12 col-md-6">
@@ -79,7 +79,7 @@
                 <div class="my-3">
                     <span class="icon-cian"><img src="/img/icons/book-confirm.png" alt="book confirm"></span>
                 </div>
-                <h5 class="font-weight-bold">{{__('Home.reserva-rapida')}}</h5>
+                <P class="font-weight-bold" style="font-size: 1.125rem">{{__('Home.reserva-rapida')}}</P>
                 <p class="text-gray">{{__('Home.reserva-rapida-text')}}</p>
             </div>
         </div>
@@ -88,7 +88,7 @@
                 <div class="my-3">
                     <span class="icon-cian"><img src="/img/icons/verified_user.png" alt="virified user"></span>
                 </div>
-                <h5 class="font-weight-bold">{{__('Home.transporte-privado')}}</h5>
+                <P class="font-weight-bold" style="font-size: 1.125rem">{{__('Home.transporte-privado')}}</P>
                 <p class="text-gray">{{__('Home.transporte-privato-text')}}</p>
             </div>
         </div>
@@ -97,7 +97,7 @@
                 <div class="my-3">
                     <span class="icon-cian"><img src="/img/icons/book-confirm.png" alt="currency exchange"></span>
                 </div>
-                <h5 class="font-weight-bold">{{__('Home.rastreo-vuelo')}}</h5>
+                <P class="font-weight-bold" style="font-size: 1.125rem">{{__('Home.rastreo-vuelo')}}</P>
                 <p class="text-gray">{{__('Home.rastreo-vuelo-text')}}</p>
             </div>
         </div>
@@ -106,14 +106,14 @@
                 <div class="my-3">
                     <span class="icon-cian"><img src="/img/icons/currency_exchange.png" alt="currency exchange"></span>
                 </div>
-                <h5 class="font-weight-bold">{{__('Home.mejor-precio')}}</h5>
+                <P class="font-weight-bold" style="font-size: 1.125rem">{{__('Home.mejor-precio')}}</P>
                 <p class="text-gray">{{__('Home.mejor-precio-text')}}</p>
             </div>
         </div>
     </div>
     <div>
         <div class="text-center" style="padding:50px 50px">
-            <div class="ls2 font-weight-bold">{{__('Home.autobus-slogan')}}</div>
+            <div class="ls2 font-weight-bold">{{__('Tulum.autobus-slogan')}}</div>
             <h2 class="font-weight-bold fsize-md">{{__('Home.autobus-titulo')}}</h2>
             <div class="line-sm-blue my-3 mx-auto"></div>
             <div class="col-12 col-md-7 mx-auto">
@@ -124,7 +124,7 @@
             <div class="row col-12 col-md-12 mt-5 mx-0 justify-content-center">
                 <div class="col-12 col-md-3 p-2">
                     <div class="card-bus-blue text-center pt-3">
-                        <h5 class="font-weight-bold text-white text-center">Toyota</h5>                                
+                        <h3 class="font-weight-bold text-white text-center">Toyota</h5>                                
                         <ul class="without-list text-left pl-4">
                             <li class="text-white font-weight-bold">
                                 <i class="fa fa-star text-yellow fsize-15" aria-hidden="true"></i> {{__('Home.toyota-detalle')}}
@@ -144,7 +144,7 @@
                 </div>
                 <div class="col-12 col-md-3 p-2">
                     <div class="card-bus-blue text-center pt-3">
-                        <h5 class="font-weight-bold text-white text-center">Transporter</h5>                                
+                        <h3 class="font-weight-bold text-white text-center">Transporter</h3>                                
                         <ul class="without-list text-left pl-4">
                             <li class="text-white font-weight-bold">
                                 <i class="fa fa-star text-yellow fsize-15" aria-hidden="true"></i> {{__('Home.transporter-detalle')}}   
@@ -164,7 +164,7 @@
                 </div>
                 <div class="col-12 col-md-3 p-2">
                     <div class="card-bus-blue text-center pt-3">
-                        <h5 class="font-weight-bold text-white text-center">Sprinter</h5>                                
+                        <h3 class="font-weight-bold text-white text-center">Sprinter</h3>                                
                         <ul class="without-list text-left pl-4">
                             <li class="text-white font-weight-bold">
                                 <i class="fa fa-star text-yellow fsize-15" aria-hidden="true"></i> {{__('Home.sprinter-detalle')}}   
@@ -270,9 +270,6 @@
                     <div class="line-sm-blue my-2" style="margin-left: calc(var(--bs-gutter-x) * 0.5);"></div>                    
                     <p class="text-gray fsize-sm mb-3">{{__('Playa.texto-marc-uno')}}</p>
                     <p class="text-gray fsize-sm">{{__('Home.texto-marc-dos')}}</p>                
-                    <!-- <div>
-                        <button type="button" class="btn btn-naranja btn-lg px-4 py2">{{__('MotorBusqueda.aprende-mas')}}</button>
-                    </div> -->
                 </div>
             </div>
             <div>
@@ -288,50 +285,26 @@
             <p class="text-gray fsize-sm">{{__('Home.destinos-texto-uno')}}</p>
         </div>
         <div class="bg-destination">
-            <div class="row col-md-11 mx-auto mt-5 justify-content-center" style="padding-bottom: 100px;">
-                <!-- <div class="col-12 col-md-3">
-                    <div class="card-destination">
-                        <div class="over-hiden d-flex justify-content-center">
-                            <img loading="lazy" src="/img/banners/traslados-cancun.webp" alt="translados cancun" class="img-destination">
-                        </div>
-                        <div class="p-3">
-                            <h4 class="font-weight-bold fsize-sm">Zona Hotelera</h4>
-                            <p class="text-gray font-weight-bold">{{__('Home.destination-text-uno')}}</p>
-                            <span class="text-orange font-weight-bold fsize-xs">{{__('Home.ver-mas')}} <i class="fa fa-angle-right" aria-hidden="true"></i></span>
-                        </div>
-                    </div>
-                </div> -->
+            <div class="row col-md-11 mx-auto mt-5 justify-content-center" style="padding-bottom: 100px;">            
                 <div class="col-12 col-md-3">
                     <div class="card-destination">
                         <div class="over-hiden d-flex justify-content-center">
                             <img loading="lazy" src="/img/assets/playa-del-carmen-min.webp" alt="transporte traslado playa del carmen" class="img-destination">
                         </div>
                         <div class="p-3">
-                            <h4 class="font-weight-bold fsize-sm">Playa del Carmen</h4>
+                            <h3 class="font-weight-bold fsize-sm">Playa del Carmen</h3>
                             <p class="text-gray font-weight-bold">{{__('Home.destination-text-dos')}}</p>
                             <a href="{{url(__('Playa.url'))}}" class="without-link text-orange font-weight-bold fsize-xs">{{__('Home.ver-mas')}} <i class="fa fa-angle-right" aria-hidden="true"></i></a>
                         </div>
                     </div>
-                </div>
-                <!-- <div class="col-12 col-md-3">
-                    <div class="card-destination">
-                        <div class="over-hiden d-flex justify-content-center">
-                            <img loading="lazy" src="/img/assets/transporte-tulum.webp" alt="transporte-tulum" class="img-destination">
-                        </div>
-                        <div class="p-3">
-                            <h4 class="font-weight-bold fsize-sm">Tulum</h4>
-                            <p class="text-gray font-weight-bold">{{__('Home.destination-text-tres')}}</p>
-                            <span class="without-link text-orange font-weight-bold fsize-xs">{{__('Home.ver-mas')}} <i class="fa fa-angle-right" aria-hidden="true"></i></span>
-                        </div>
-                    </div>
-                </div> -->
+                </div>                
                 <div class="col-12 col-md-3">
                     <div class="card-destination">
                         <div class="over-hiden d-flex justify-content-center">
                             <img loading="lazy" src="/img/assets/bacalar.webp" alt="transporte traslado" class="img-destination">
                         </div>
                         <div class="p-3">
-                            <h4 class="font-weight-bold fsize-sm">Bacalar</h4>
+                            <h3 class="font-weight-bold fsize-sm">Bacalar</h3>
                             <p class="text-gray font-weight-bold">{{__('Home.destination-test-cuatro')}}</p>
                             <a href="{{url(__('Bacalar.url'))}}" class="without-link text-orange font-weight-bold fsize-xs">{{__('Home.ver-mas')}} <i class="fa fa-angle-right" aria-hidden="true"></i></a>
                         </div>

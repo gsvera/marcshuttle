@@ -12,7 +12,7 @@
 @endphp
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{$lang}}">
 <head>
     <!-- Google Tag Manager -->
     <script>
@@ -62,19 +62,18 @@
     <link rel="stylesheet" href="{{ asset('css/main.css') }}">
     <link rel="stylesheet" href="{{ asset('css/intlTelInput.css') }}">
     <script type="text/javascript" src="/js/intlTelInput.js"></script>
-    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css"> -->
     <script src="https://use.fontawesome.com/97a88bff0a.js"></script>
-    <!-- <link href="https://kit-pro.fontawesome.com/releases/v5.15.3/css/pro.min.css" type="text/css" rel="stylesheet"> -->
-    <title>Marc Shuttle</title>
-    <!-- <script type="text/javascript">
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />    
+    <script type="text/javascript">
         window.CSRF_TOKEN = '{{ csrf_token() }}';
-    </script> -->
+    </script>
     @yield('metas')
 
     @yield('headers')
 
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="google-site-verification" content="qJcq3XfUMapwFRCDFnO3dJ3DlOAWxnw-yDq5TCEnUbM" />
+    <meta name="yandex-verification" content="3d696e269a518128" />
 </head>
 <body>
     <!-- Google Tag Manager (noscript) -->
@@ -125,7 +124,7 @@
             </li>
             <li>
                 <div >
-                    <a class="btn btn-outline-white" href="#motorbusqueda" id="btbMenuBook">
+                    <a class="btn btn-naranja" href="#motorbusqueda" id="btbMenuBook">
                         {{__('Home.btn-menu-reserva')}}
                     </a>
                 </div>
@@ -196,15 +195,13 @@
     <div class="triangule-blue"></div>
     <div class="back-footer pt-5" style="bottom:0">
         <div class="row px-5 justify-content-center mx-0 col-12 col-md-12 mx-auto">
-            <!-- <div class="col-md-1"></div> -->
             <div class="col-12 col-md-3">
-                <h4 class="text-white font-weight-bold">{{__('Home.translados-footer')}}</h4>
+                <p class="text-white font-weight-bold" 1.35rem>{{__('Home.translados-footer')}}</p>
                 <p class="text-gray fsize-sm text-justify">{{__('Home.text-footer')}}</p>                
             </div>
             <div class="col-12 col-md-3">
-                <h4 class="text-white font-weight-bold">{{__('Home.contactanos')}}</h4>
+                <p class="text-white font-weight-bold" 1.35rem>{{__('Home.contactanos')}}</p>
                 <ul class="none-list">
-                    <li class="text-gray fsize-sm">768 Market Street San Francisco, <br /> CA 64015, United States</li>
                     <li class="fsize-sm">
                         <a href="mailto:marcshuttlec@gmail.com" class="text-gray-link without-link">
                             marcshuttlec@gmail.com
@@ -218,7 +215,7 @@
                 </ul>
             </div>
             <div class="col-12 col-md-3">
-                <h4 class="text-white font-weight-bold">{{__('Home.enlaces')}}</h4>
+                <p class="text-white font-weight-bold" 1.35rem>{{__('Home.enlaces')}}</p>
                 <ul class="none-list">
                     <li class="text-gray fsize-sm">
                         <a href="{{url(__('Playa.url'))}}" class="text-gray-link fsize-sm without-link">
@@ -248,8 +245,8 @@
                 </ul>
             </div>
             <div class="col-12 col-md-2">
-                <h4 class="text-white font-weight-bold">{{__('Home.metodo-pago')}}</h4>
-                <i class="fa fa-cc-paypal text-white fa-2x mx-1" aria-hidden="true"></i>
+                <p class="text-white font-weight-bold" 1.35rem>{{__('Home.metodo-pago')}}</p>
+                <i class="fa fa-credit-card text-white fa-2x mx-1" aria-hidden="true"></i>
                 <i class="fa fa-money text-white fa-2x mx-1" aria-hidden="true"></i>
             </div>
             <!-- <div class="col-md-1"></div> -->
@@ -258,7 +255,7 @@
         <div class="footer-extend py-4 px-5">
             <div class="col-12 col-md-6">
                 <a href="https://huella-digital.mx/" class="text-gray-link px-5 fsize-sm font-weight-bold without-link">
-                    © 2023 Marc Shuttle. Powered by Huella digital
+                    © Huella digital
                 </a>
             </div>
             <div class="col-12 col-md-6 d-flex justify-content-end px-5">
@@ -272,7 +269,7 @@
         <div class="footer-extend-2">
             <div class="col-12 text-center">
                 <a href="https://huella-digital.mx/" class="text-gray-link px-5 fsize-sm font-weight-bold without-link">
-                    © 2023 Marc Shuttle. Powered by Huella digital
+                    © Huella digital
                 </a>
             </div>
             <div class="col text-center py-3" style="align-items:center;">
@@ -288,13 +285,11 @@
 
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <!-- <script src="{{ asset('js/jquery-3.3.1.js')}}"></script> -->
     <script src="{{ asset('js/bootstrap-datepicker.js')}}"></script>
-    <!-- <script src="{{ asset('js/bootstrap-select.js')}}"></script> -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="{{ asset('js/main.js')}}"></script>
-    <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script> -->
     <script src="{{ asset('js/alerts.js')}}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script type="text/javascript">
         let countMenu = 1;
         $(function(){
