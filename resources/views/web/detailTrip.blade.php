@@ -193,67 +193,61 @@ $total = Utils::asDollars($amount);
                         <button type="button" class="btn btn-orange btn-lg" onclick="NextStep()">{{__('MotorBusqueda.siguiente')}}</button>                        
                     </div>
                 </div>
-                @if($typetransfer == 1 || $typetransfer == 3)                    
-                    <div class="my-3 box-shadow-info step d-none">
-                        <h3 class="font-weight-bold fsize-mds text-blue">{{__('MotorBusqueda.llegada')}}</h3>
-                        <div class="form-group mb-3">
-                            <label for="dateArrival" class="font-weight-bold fsize-sm text-gray">{{__('MotorBusqueda.fecha-llegada')}} <span class="text-danger font-weight-bold">*</span></label>
-                            <input type="date" class="form-control required" id="dateArrival" name="dateArrival" value="{{$dateArrival}}" onclick="handleShowPicker(this)" required/>
+                <div class="step d-none">
+                    @if($typetransfer == 1 || $typetransfer == 3)                    
+                        <div class="my-3 box-shadow-info">
+                            <h3 class="font-weight-bold fsize-mds text-blue">{{__('MotorBusqueda.llegada')}}</h3>
+                            <div class="form-group mb-3">
+                                <label for="dateArrival" class="font-weight-bold fsize-sm text-gray">{{__('MotorBusqueda.fecha-llegada')}} <span class="text-danger font-weight-bold">*</span></label>
+                                <input type="date" class="form-control required" id="dateArrival" name="dateArrival" value="{{$dateArrival}}" onclick="handleShowPicker(this)" required/>
+                            </div>
+                            <div class="form-group mb-3">
+                                <label for="hourArrival" class="font-weight-bold fsize-sm text-gray">{{__('MotorBusqueda.hora-llegada')}} <span class="text-danger font-weight-bold">*</span></label>
+                                <input type="time" class="form-control required" id="hourArrival" name="hourArrival" onclick="handleShowPicker(this)" required/>
+                            </div>
+                            <div class="form-group mb-3">
+                                <label for="infoArrival" class="font-weight-bold fsize-sm text-gray">{{__('MotorBusqueda.info-vuelo-llegada')}} <span class="text-danger font-weight-bold">*</span></label>
+                                <input type="text" class="form-control required" id="infoArrival" name="infoArrival" placeholder="{{__('MotorBusqueda.ejemplo-num-vuelo')}}" />
+                            </div>
                         </div>
-                        <div class="form-group mb-3">
-                            <label for="hourArrival" class="font-weight-bold fsize-sm text-gray">{{__('MotorBusqueda.hora-llegada')}} <span class="text-danger font-weight-bold">*</span></label>
-                            <input type="time" class="form-control required" id="hourArrival" name="hourArrival" onclick="handleShowPicker(this)" required/>
+                    @endif
+                    @if($typetransfer == 2 || $typetransfer == 3)
+                        <div class="my-3 box-shadow-info">
+                            <h3 class="font-weight-bold fsize-mds text-blue">{{__('MotorBusqueda.salida')}}</h3>
+                            <div class="form-group mb-3">
+                                <label for="dateDeparture" class="font-weight-bold fsize-sm text-gray">{{__('MotorBusqueda.fecha-salida')}} <span class="text-danger font-weight-bold">*</span></label>
+                                <input type="date" class="form-control required" id="dateDeparture" name="dateDeparture" value="{{$dateDeparture}}" onclick="handleShowPicker(this)" />
+                            </div>
+                            <div class="form-group mb-3">
+                                <label for="hourDeparture" class="font-weight-bold fsize-sm text-gray">{{__('MotorBusqueda.hora-salida')}} <span class="text-danger font-weight-bold">*</span></label>
+                                <input type="time" class="form-control required" id="hourDeparture" name="hourDeparture" onclick="handleShowPicker(this)" />
+                            </div>
+                            <div class="form-group mb-3">
+                                <label for="infoDeparture" class="font-weight-bold fsize-sm text-gray">{{__('MotorBusqueda.info-vuelo-salida')}} <span class="text-danger font-weight-bold">*</span></label>
+                                <input type="text" class="form-control required" id="infoDeparture" name="infoDeparture" placeholder="{{__('MotorBusqueda.ejemplo-num-vuelo')}}"/>
+                            </div>    
                         </div>
-                        <div class="form-group mb-3">
-                            <label for="infoArrival" class="font-weight-bold fsize-sm text-gray">{{__('MotorBusqueda.info-vuelo-llegada')}} <span class="text-danger font-weight-bold">*</span></label>
-                            <input type="text" class="form-control required" id="infoArrival" name="infoArrival" placeholder="{{__('MotorBusqueda.ejemplo-num-vuelo')}}" />
+                    @endif
+                    <div class="my-3 box-shadow-info">
+                        <h3 class="font-weight-bold fsize-mds text-blue">{{__('MotorBusqueda.metodo-pago')}}</h3>                    
+                        <div class="row">
+                            <div class="col-md-6" style="display:flex; align-items:center;">
+                                <input type="radio" name="payment_type" id="methodcash" value="efectivo" checked>
+                                <label for="methodcash"><img src="/img/icons/{{$lang == 'es' ? 'efectivo' : 'cash'}}.png" style="width:200px;" alt="Cash"></label>
+                            </div>
+                            <div class="col-md-6">
+                                <input type="radio" name="payment_type" id="methodpaypal" value="card">
+                                <label for="methodpaypal"><img src="/img/icons/paypal.png" style="width:200px;" alt="Paypal"></label>
+                            </div>
                         </div>
-                        <div class="d-flex justify-content-between">
+                        <div class="col-12 col-md-12 d-grid mt-5 mb-3">
+                            <div class="g-recaptcha mb-3" data-sitekey="{{env('GOOGLE_PUBLIC_KEY')}}"></div>
+                            <button id="btnBooking" onclick="SendBookingCash()" class="btn btn-naranja btn-lg" type="button">{{__('MotorBusqueda.boton-confirmar')}}</button>
+                            <div id="paypal-button-container" class="d-none"></div>
+                        </div>
+                        <div class="">
                             <button class="btn btn-sky btn-lg" type="button" onclick="PreviewStep()">{{__('MotorBusqueda.anterior')}}</button>
-                            <button type="button" class="btn btn-orange btn-lg" onclick="NextStep()">{{__('MotorBusqueda.siguiente')}}</button>
                         </div>
-                    </div>
-                @endif
-                @if($typetransfer == 2 || $typetransfer == 3)
-                    <div class="my-3 box-shadow-info step d-none">
-                        <h3 class="font-weight-bold fsize-mds text-blue">{{__('MotorBusqueda.salida')}}</h3>
-                        <div class="form-group mb-3">
-                            <label for="dateDeparture" class="font-weight-bold fsize-sm text-gray">{{__('MotorBusqueda.fecha-salida')}} <span class="text-danger font-weight-bold">*</span></label>
-                            <input type="date" class="form-control required" id="dateDeparture" name="dateDeparture" value="{{$dateDeparture}}" onclick="handleShowPicker(this)" />
-                        </div>
-                        <div class="form-group mb-3">
-                            <label for="hourDeparture" class="font-weight-bold fsize-sm text-gray">{{__('MotorBusqueda.hora-salida')}} <span class="text-danger font-weight-bold">*</span></label>
-                            <input type="time" class="form-control required" id="hourDeparture" name="hourDeparture" onclick="handleShowPicker(this)" />
-                        </div>
-                        <div class="form-group mb-3">
-                            <label for="infoDeparture" class="font-weight-bold fsize-sm text-gray">{{__('MotorBusqueda.info-vuelo-salida')}} <span class="text-danger font-weight-bold">*</span></label>
-                            <input type="text" class="form-control required" id="infoDeparture" name="infoDeparture" placeholder="{{__('MotorBusqueda.ejemplo-num-vuelo')}}"/>
-                        </div>    
-                        <div class="d-flex justify-content-between">
-                            <button class="btn btn-sky btn-lg" type="button" onclick="PreviewStep()">{{__('MotorBusqueda.anterior')}}</button>
-                            <button type="button" class="btn btn-orange btn-lg" onclick="NextStep()">{{__('MotorBusqueda.siguiente')}}</button>
-                        </div>                    
-                    </div>
-                @endif
-                <div class="my-3 box-shadow-info step d-none">
-                    <h3 class="font-weight-bold fsize-mds text-blue">{{__('MotorBusqueda.metodo-pago')}}</h3>                    
-                    <div class="row">
-                        <div class="col-md-6" style="display:flex; align-items:center;">
-                            <input type="radio" name="payment_type" id="methodcash" value="efectivo" checked>
-                            <label for="methodcash"><img src="/img/icons/cash.png" style="width:200px;" alt="Cash"></label>
-                        </div>
-                        <div class="col-md-6">
-                            <input type="radio" name="payment_type" id="methodpaypal" value="card">
-                            <label for="methodpaypal"><img src="/img/icons/paypal.png" style="width:200px;" alt="Paypal"></label>
-                        </div>
-                    </div>
-                    <div class="col-12 col-md-12 d-grid mt-5 mb-3">
-                        <div class="g-recaptcha mb-3" data-sitekey="{{env('GOOGLE_PUBLIC_KEY')}}"></div>
-                        <button id="btnBooking" onclick="SendBookingCash()" class="btn btn-naranja btn-lg" type="button">{{__('MotorBusqueda.boton-confirmar')}}</button>
-                        <div id="paypal-button-container" class="d-none"></div>
-                    </div>
-                    <div class="">
-                        <button class="btn btn-sky btn-lg" type="button" onclick="PreviewStep()">{{__('MotorBusqueda.anterior')}}</button>
                     </div>
                 </div>
             </div>
@@ -413,6 +407,20 @@ $total = Utils::asDollars($amount);
 
         methodpaypal.addEventListener('change', e => {
             e.preventDefault()
+            var inputs = step[1].querySelectorAll('.required')
+            var fieldEmpty = false
+
+            inputs.forEach(elem => {
+                if(elem.value === '') {
+                    fieldEmpty = true                    
+                }
+            })
+
+            if(fieldEmpty) {
+                notification("warning", '{{__('MotorBusqueda.campos-obligatorios')}}')
+                methodcash.checked = true
+                return false                
+            }
 
             if(methodpaypal.checked)
             {
@@ -438,28 +446,6 @@ $total = Utils::asDollars($amount);
                     return false;
                 }
             }
-
-            if(countStep > 0)
-            {
-                @if($typetransfer == 1 || $typetransfer == 3)       
-                    var dateArrival = document.getElementById('dateArrival')
-                    if(comprobarFecha(dateArrival.value))
-                    {
-                        notification('error', '{{__('MotorBusqueda.input-requerido-date-arrival')}}')
-                        return false
-                    }
-                @endif
-
-                @if($typetransfer == 2 || $typetransfer == 3)
-                    var dateDeparture = document.getElementById('dateDeparture')
-                    if(comprobarFecha(dateDeparture.value))
-                    {
-                        notification('error', '{{__('MotorBusqueda.input-requerido-date-departure')}}')
-                        return false
-                    }                    
-                @endif
-            }
-            
 
             if(ValidInput(countStep) == true)
             {
@@ -546,6 +532,39 @@ $total = Utils::asDollars($amount);
 
         function SendBookingCash()
         {
+            @if($typetransfer == 1 || $typetransfer == 3)       
+                var dateArrival = document.getElementById('dateArrival')
+                if(comprobarFecha(dateArrival.value))
+                {
+                    notification('error', '{{__('MotorBusqueda.input-requerido-date-arrival')}}')
+                    return false
+                }
+            @endif
+
+            @if($typetransfer == 2 || $typetransfer == 3)
+                var dateDeparture = document.getElementById('dateDeparture')
+                if(comprobarFecha(dateDeparture.value))
+                {
+                    notification('error', '{{__('MotorBusqueda.input-requerido-date-departure')}}')
+                    return false
+                }                    
+            @endif
+
+            var inputs = step[1].querySelectorAll('.required')
+            var fieldEmpty = false
+
+            inputs.forEach(elem => {
+                if(elem.value === '') {
+                    console.log('assas',elem.value)
+                    fieldEmpty = true                    
+                }
+            })
+
+            if(fieldEmpty) {
+                notification("warning", '{{__('MotorBusqueda.campos-obligatorios')}}')
+                return false                
+            }
+
             var recaptcha = $('#g-recaptcha-response').val();
             
             if(recaptcha == '')

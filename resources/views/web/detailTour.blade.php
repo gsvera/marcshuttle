@@ -98,7 +98,7 @@
                     <div class="row">
                         <div class="col-md-6" style="display:flex; align-items:center;">
                             <input type="radio" name="payment_type" id="methodcash" value="efectivo" checked>
-                            <label for="methodcash"><img src="/img/icons/cash.png" style="width:200px;" alt="Cash"></label>
+                            <label for="methodcash"><img src="/img/icons/{{$lang == 'es' ? 'efectivo' : 'cash'}}.png" style="width:200px;" alt="Cash"></label>
                         </div>
                         <div class="col-md-6">
 
