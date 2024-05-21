@@ -90,5 +90,6 @@ return [
     "incluido-cinco" => "Personalized sign with your name",
     "incluido-seis" => "Designated vehicle exclusively for your use",
     "incluido-siete" => "courtesy water",
-    "error-paypal" => "Error with PayPal, plis contact us to help with your reservation."
+    "error-paypal" => "Error with PayPal, plis contact us to help with your reservation.",
+    "pdf" => "Download booking PDF"
 ];

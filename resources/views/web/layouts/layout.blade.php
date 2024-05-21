@@ -63,7 +63,9 @@
     <link rel="stylesheet" href="{{ asset('css/intlTelInput.css') }}">
     <script type="text/javascript" src="/js/intlTelInput.js"></script>
     <script src="https://use.fontawesome.com/97a88bff0a.js"></script>
-    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />    
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.debug.js"></script>
+    <script type="text/javascript" src="/js/admin/downloadPDF.js"></script>
     <script type="text/javascript">
         window.CSRF_TOKEN = '{{ csrf_token() }}';
     </script>
@@ -130,7 +132,7 @@
                 </div>
             </li>
         </ul>
-        
+
         <div class="d-flex col-md-1 mx-3" stlye="align-items-center;">
             <button class="btn" onclick="changeLenguage('{{$lang=='en'?'es':'en'}}')">
                 @if ($lang=='es')
@@ -189,15 +191,15 @@
 
     <!-- END MENU PARA MOBILE -->
     <div>
-        @yield('content')        
+        @yield('content')
     </div>
-    
+
     <div class="triangule-blue"></div>
     <div class="back-footer pt-5" style="bottom:0">
         <div class="row px-5 justify-content-center mx-0 col-12 col-md-12 mx-auto">
             <div class="col-12 col-md-3">
                 <p class="text-white font-weight-bold" 1.35rem>{{__('Home.translados-footer')}}</p>
-                <p class="text-gray fsize-sm text-justify">{{__('Home.text-footer')}}</p>                
+                <p class="text-gray fsize-sm text-justify">{{__('Home.text-footer')}}</p>
             </div>
             <div class="col-12 col-md-3">
                 <p class="text-white font-weight-bold" 1.35rem>{{__('Home.contactanos')}}</p>
@@ -321,7 +323,7 @@
         })
 
         function ShowHideMenu()
-        {            
+        {
             if(countMenu == 1)
             {
                 $('#submenuhide').slideDown()

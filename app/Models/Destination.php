@@ -24,21 +24,21 @@ class Destination extends Model
             $destination = $obj->where('id_origin', 1)->orderBy('name')->get();
         }
         catch(Exception $e)
-        {            
+        {
             error_log($e->getMessage());
         }
         return $destination;
-    }    
-    public function GetDestination($idDestination){        
+    }
+    public function GetDestination($idDestination){
         $destination = null;
         $obj = new Destination;
-        
-        try{            
-            $destination = $obj->find($idDestination);  
+
+        try{
+            $destination = $obj->find($idDestination);
         }
         catch(Exception $e)
         {
-            
+
         }
         return $destination;
     }
@@ -64,7 +64,7 @@ class Destination extends Model
     public function _GetAllDestinationsAirport($nameZona) {
         $resp = new Respuesta;
 
-        try { 
+        try {
             $resp->data = $this->where('id_origin', 1)
                             ->where('name', 'like', '%'.$nameZona.'%')
                             ->orderBy('name')->get();
@@ -133,7 +133,7 @@ class Destination extends Model
 
     public function _UpdateZona($data) {
         $resp = new Respuesta;
-        
+
         try {
             $zona = $this->find($data['id']);
             $zona->name = $data['name'];

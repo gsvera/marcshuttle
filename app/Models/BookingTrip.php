@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Exception;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Mail;
@@ -27,14 +28,14 @@ class BookingTrip extends Model
                 'response' => $data['gRecaptchaResponse']
             ]);
             $body = json_decode($response->getBody());
-            
+
             if (!$body->success){
                 $resp->Error = true;
                 $resp->Message = __('MotorBusqueda.recaptcha-requerido');
             }
             else {
                 $resp = $this->_SaveBookingTrip($data);
-    
+
                 if(!$resp->Error)
                 {
                     $this->_SendBookingTrip($resp->data, 'pendiente');
@@ -57,7 +58,7 @@ class BookingTrip extends Model
                 'response' => $data['gRecaptchaResponse']
             ]);
             $body = json_decode($response->getBody());
-            
+
             if (!$body->success) {
                 $resp->Error = true;
                 $resp->Message = __('MotorBusqueda.recaptcha-requerido');
@@ -85,9 +86,9 @@ class BookingTrip extends Model
         $booking = new BookingTrip;
         $resp = new Respuesta;
 
-        try{            
+        try{
             $lang = App::getLocale();
-            $folio = $folio->_GetFolio();            
+            $folio = $folio->_GetFolio();
             $folioBooking = $folio->folio .''.$folio->count;
 
             $booking->folio = $folioBooking;
@@ -98,12 +99,12 @@ class BookingTrip extends Model
             $booking->comments = $data['comments'];
             $booking->id_destination = $data['idZone'];
             $booking->type_transfer = $data['typetransfer'];
-            $booking->pax = $data['pax'];            
+            $booking->pax = $data['pax'];
             $booking->pay_method = $data['payMethod'];
             $booking->amount = $data['amount'];
             $booking->silla_bebe = $data['sillaBebe'];
             $booking->lang = $lang;
-            
+
             if($data['typetransfer'] == 1 || $data['typetransfer'] == 3)
             {
                 $booking->arrival_date = $data['dateArrival'];
@@ -138,7 +139,7 @@ class BookingTrip extends Model
             {
                 $booking->status_pay = 0;
             }
-            
+
             $booking->save();
 
             $folio->count = $folio->count + 1;
@@ -179,7 +180,7 @@ class BookingTrip extends Model
                 "folio" => $booking->folio
             ];
 
-            
+
             if($booking->status_pay != -1 && $booking->email_confirm == 0)
             {
                 $this->_SendBookingTrip($booking, $statusPay);
@@ -222,7 +223,7 @@ class BookingTrip extends Model
         $destination = new Destination;
         $subject = "";
 
-        try {   
+        try {
             switch($booking->type_transfer)
             {
                 case 1:
@@ -290,17 +291,17 @@ class BookingTrip extends Model
 
             $folio->count = $folio->count + 1;
             $folio->save();
-            
+
             $resp->Error = false;
             $resp->data = $booking;
-            
+
         } catch(Exception $e) {
             $resp->Error = true;
             $resp->Message = $e->getMessage();
         }
         return $resp;
     }
-    
+
     public function _SendBookingCustomTrip($booking, $statusPay)
     {
         $resp = new Respuesta;
@@ -310,7 +311,7 @@ class BookingTrip extends Model
             $copia = env('MAIL_USERNAME');
             $email = $booking->email;
 
-            Mail::send('emails.detailTripCustom', 
+            Mail::send('emails.detailTripCustom',
                 [
                     'item'=>$booking,
                     'folio' => $booking->folio,
@@ -338,7 +339,7 @@ class BookingTrip extends Model
             if($params['payMethod'] != '0') {
                 $query->where('bookings_trip.pay_method', 'like', '%'.$params['payMethod'].'%');
             }
-            
+
             if(!is_null($params['dataArrivalStart'])) {
                 $query->where('bookings_trip.arrival_date', '>=', $params['dataArrivalStart']);
             }
@@ -354,7 +355,7 @@ class BookingTrip extends Model
             if(!is_null($params['dataDepartureEnd'])) {
                 $query->where('bookings_trip.departure_date', '<=', $params['dataDepartureEnd']);
             }
-                            
+
             $resp->data = $query->select('bookings_trip.*', 'tc.name_es as name_type_transfer')->get();
         } catch(Exception $e) {
             $resp->Error = true;
@@ -383,6 +384,72 @@ class BookingTrip extends Model
             $resp->Message = $e->getMessage();
         }
 
+        return $resp;
+    }
+
+    public function _getBookingTripByFolio($folio) {
+        $resp = new Respuesta;
+        $booking = new BookingTrip;
+        $destination = new Destination;
+        try {
+            $booking= BookingTrip::where('folio', $folio)->first();
+
+            if ($booking->type_transfer !== 4) {
+                $nameZone = $destination->_GetDestinationById($booking->id_destination);
+            }
+
+            $subject = "";
+            switch($booking->type_transfer)
+            {
+                case 1:
+                    $subject = __('MotorBusqueda.reservacion-aeropuerto-hotel');
+                    break;
+                case 2:
+                    $subject = __('MotorBusqueda.reservacion-hotel-aeropuerto');
+                    break;
+                case 3:
+                    $subject = __('MotorBusqueda.reservacion-redondo-aeropuerto');
+                    break;
+                    case 4:
+                        $subject = __('Email.titulo-especial');
+                        break;
+            }
+
+            $resp->data = [
+                'item'=> $booking,
+                'folio' => $booking->folio,
+                'typetransfer' => $subject,
+                'nameZone' => $nameZone->name ?? '',
+                'statusPay' => 'pendiente',
+                'type' => $booking->type_transfer,
+                'specialtransfer' => __('Email.titulo-especial'),
+                'nombre' => __('Email.nombre'),
+                'telefono' => __('Email.telefono'),
+                'salida' => __('Email.salida'),
+                'hora' => __('Email.hora'),
+                'hotelorigen' => __('MotorBusqueda.origen'),
+                'hoteldestino' => __('MotorBusqueda.destino'),
+                'pasajeros' => __('MotorBusqueda.pasajeros'),
+                'sillabebe' => __('MotorBusqueda.silla-bebe'),
+                'si' => __('MotorBusqueda.si'),
+                'statuspay' => __('Email.status-pay'),
+                'pendiente' => __('Email.pendiente'),
+                'comentarios' => __('MotorBusqueda.comentarios'),
+                'arrival' => __('Email.llegada'),
+                'infovuelo' => __('Email.info-vuelo'),
+                'zona' => __('Email.zona'),
+                'a' => __('Email.a'),
+                'de' => __('Email.de'),
+                'pax' => __('Email.pax'),
+                'metododepago' => __('Email.metodo-pago'),
+                'efectivo' => __('Email.efectivo'),
+                'tarjeta' => __('Email.tarjeta'),
+                'amount' => __('Email.monto')
+            ];
+        } catch(Exception $e) {
+            $resp->Error = true;
+            $resp->Message = $e->getMessage();
+        }
         return $resp;
     }
 }

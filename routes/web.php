@@ -26,7 +26,7 @@ use App\Http\Controllers\BookingsTourController;
 |
 */
 
-/* 
+/*
     RUTAS PARA PAGINA WEB EN ESPAÑOL
 */
 
@@ -74,7 +74,7 @@ Route::get('/response-conekta/tour', [ConektaController::class, 'ResponseConekta
 Route::get('/response-conekta/transfer', [ConektaController::class, 'ResposeConektaTransfer']);
 Route::get('/response-conekta-error', [ConektaController::class, 'ErrorResponse']);
 
-/* 
+/*
     RUTAS PARA PAGINA WEB EN INGLES
 */
 
@@ -91,16 +91,17 @@ Route::group(['prefix' => 'en'], function(){
     Route::get('/thanks', [WebController::class, 'gracias'])->name('en-thanks');
 });
 
-/* 
-    RUTAS PARA FUNCIONES ESPECIALES DE LA PAGINA WEB 
+/*
+    RUTAS PARA FUNCIONES ESPECIALES DE LA PAGINA WEB
 */
 
 Route::get('/motorbusqueda', [WebController::class, 'motorbusqueda']);
 Route::post('/changelenguage', [WebController::class, 'ChangeLenguage']);
 Route::post('/back/locations', [MotorBusquedaController::class, 'GetLocation']);
 Route::get('/back/zone', [MotorBusquedaController::class, 'GetZone']);
+Route::post('download-pdf', [BookingsTripController::class, 'getBookingByFolio'])->name('getBookingByFolio');
 
-/* 
+/*
     RUTAS PARA ADMIN
 */
 
@@ -122,7 +123,7 @@ Route::group(['middleware' => 'userAuth', 'prefix' => 'admin-marcshuttle'], func
     Route::get('bookins-trip-report', [AdminController::class, 'bookingsTripReport']);
     Route::get('bookings-tour-report', [AdminController::class, 'bookingsTourReport']);
     Route::get('chart', [AdminController::class, 'chart']);
-    
+
     // Metodos par users
     Route::get('getUsers', [UserController::class, 'getUsers']);
     Route::get('getProfiles', [UserController::class, 'getProfiles']);
@@ -134,7 +135,7 @@ Route::group(['middleware' => 'userAuth', 'prefix' => 'admin-marcshuttle'], func
     Route::put('update-current-data-user', [UserController::class, 'UpdateCurrentUser']);
     Route::put('change-password', [UserController::class, 'ChangePassword']);
     Route::get('valid-permision', [UserController::class, 'validPermision']);
-    
+
     // Metodos de zonas / destinos
     Route::get('getZonas', [ZonasController::class, 'getZonas']);
     Route::post('create-zona', [ZonasController::class, 'createZona']);

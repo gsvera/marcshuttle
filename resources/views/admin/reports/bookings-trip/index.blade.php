@@ -22,7 +22,7 @@
                                     <label for="dataArrivalEnd" class="text-secondary">Fin</label>
                                 </div>
                                 <input type="date" class="form-control" name="dataArrivalEnd" id="dataArrivalEnd" onchange="searchBookingsTripReports()" />
-                            </div>    
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -48,7 +48,7 @@
                                     <label for="dataDepartureEnd" class="text-secondary">Fin</label>
                                 </div>
                                 <input type="date" class="form-control" name="dataDepartureEnd" id="dataDepartureEnd" onchange="searchBookingsTripReports()" />
-                            </div>    
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -94,7 +94,7 @@
                 </div>
             </div>
         </div>
-    </div>    
+    </div>
 </div>
 
 <div class="p-3 mx-5 mb-5 table-admin-report">
@@ -102,6 +102,7 @@
         <table id="tableReport" class="table table-striped" cellspacing="0" style="width:100%">
             <thead class="">
                 <tr>
+                    <th></th>
                     <th></th>
                     <th scope="col">Folio</th>
                     <th scope="col">Nombre</th>
@@ -121,7 +122,7 @@
                 </tr>
             </thead>
             <tbody id="bodyTable">
-                
+
             </tbody>
         </table>
     </div>
@@ -136,7 +137,7 @@
                 <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">×</span>
                 </button>
-            </div> 
+            </div>
             <div class="modal-body">
                 <input type="hidden" id="idReservationTrip" name="idReservationTrip" />
                 <div class="form-group">

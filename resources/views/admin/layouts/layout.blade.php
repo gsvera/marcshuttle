@@ -19,7 +19,8 @@
     <link rel="stylesheet" href="{{ asset('css/main-admin.css') }}">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <script src="https://use.fontawesome.com/97a88bff0a.js"></script>
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.css" />    
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.debug.js"></script>
     <script type="text/javascript">
         window.CSRF_TOKEN = '{{ csrf_token() }}';
     </script>
@@ -127,7 +128,7 @@
                         </div>
                     </li>
                 @endif
-           
+
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
             <!-- Sidebar Toggler (Sidebar) -->
@@ -136,7 +137,7 @@
             </div>
         </ul>
         <!-- End of Sidebar -->
-        
+
         <!-- Content Wrapper -->
         <div id="content-wrapper" class="d-flex flex-column">
             <!-- Main Content -->
@@ -181,8 +182,8 @@
 
             </div>
             <div id="content-body">
-                @yield('content')                
-            </div>     
+                @yield('content')
+            </div>
             <!-- End of Main Content -->
             <!-- Footer -->
             <footer class="pb-2 footer-admin">
@@ -194,7 +195,7 @@
             </footer>
             <!-- End of Footer -->
         </div>
-        <!-- End of Content Wrapper -->    
+        <!-- End of Content Wrapper -->
     </div>
     <!-- End of Page Wrapper -->
 
@@ -213,7 +214,7 @@
                     <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">×</span>
                     </button>
-                </div> 
+                </div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
                     <a class="btn btn-primary" href="/admin-marcshuttle/logout">Cerrar Sesión</a>
@@ -244,7 +245,7 @@
                 <div class="form-outline mb-4">
                     <label class="form-label" for="currentEmail" style="margin-left: 0px;">Email*</label>
                     <input type="email" name="currentEmail" id="currentEmail" class="form-control required" />
-                </div>                
+                </div>
             </form>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
@@ -289,13 +290,13 @@
     <script src="{{asset('vendor/jquery-easing/jquery.easing.min.js')}}"></script>
     <script src="{{asset('js/sb-admin-2.min.js')}}"></script>
     <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.js"></script>
-    
+
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="{{ asset('js/alerts.js')}}"></script>
     <script src="{{ asset('js/main.js')}}"></script>
     <script src="{{ asset('js/admin/admin.js') }}"></script>
     <script src="{{ asset('js/admin/utils.js') }}"></script>
-    
+
     @stack('scripts')
 
     <script type="text/javascript">

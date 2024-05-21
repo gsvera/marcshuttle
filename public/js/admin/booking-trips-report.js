@@ -11,18 +11,19 @@ function searchBookingsTripReports() {
     fetch(`/admin-marcshuttle/get-bookings-trip-report?dataArrivalStart=${dataArrivalStart}&dataArrivalEnd=${dataArrivalEnd}&dataDepartureStart=${dataDepartureStart}&dataDepartureEnd=${dataDepartureEnd}&typeTransfer=${typeTransfer}&payMethod=${payMethod}`)
     .then(res => res.json())
     .then(result => {
-        if(result.error == false) {            
+        if(result.error == false) {
             table.clear().draw();
             result.data.map(item => {
                 var element = [
                     [
-                        `<button class="btn btn-outline-primary" onclick="modalSendEmail(${item.id}, '${item.email}')"><i class="fa fa-envelope" aria-hidden="true"></i></button>`, 
+                        `<button class="btn btn-outline-primary" onclick="modalSendEmail(${item.id}, '${item.email}')"><i class="fa fa-envelope" aria-hidden="true"></i></button>`,
+                        `<button class="btn btn-outline-primary" onclick="modalDownloadPdf('${item.folio}')"><i class="fa fa-file-pdf-o" aria-hidden="true"></i></button>`,
                         item.folio,
-                        item.first_name +' '+ item.last_name, 
-                        item.email, item.phone, 
-                        item.arrival_date ?? "", 
-                        item?.departure_date ?? "", 
-                        item.name_type_transfer, 
+                        item.first_name +' '+ item.last_name,
+                        item.email, item.phone,
+                        item.arrival_date ?? "",
+                        item?.departure_date ?? "",
+                        item.name_type_transfer,
                         item.origin,
                         item.destination,
                         item.pax,
@@ -42,7 +43,7 @@ function searchBookingsTripReports() {
 
 var table = new DataTable('#tableReport', {
     pageLength: 10,
-    scrollY: 400,    
+    scrollY: 400,
     scrollX: true,
     autoWidth: false
 });
@@ -57,6 +58,12 @@ function modalSendEmail(idTrip, email) {
     $('#idReservationTrip').val(idTrip);
     $('#emailResendTrip').val(email);
     $('#resendEmailModal').modal('show');
+}
+
+function modalDownloadPdf(folio) {
+    $.getScript('/js/admin/downloadPDF.js', function() {
+        downloadPDF(folio);
+    });
 }
 
 function resendEmailTrip() {

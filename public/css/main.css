@@ -185,11 +185,11 @@ body{
 
 @keyframes btnFlotante{
     0% { top: -5px;}
-    50%{ top: -15px;}     
+    50%{ top: -15px;}
     100%{top: -5px;}
 }
 @keyframes elementUp{
-    0%   {top:400px;}  
+    0%   {top:400px;}
     100% {top:0px;}
 }
 
@@ -320,7 +320,7 @@ body{
         color: white;
         font-size: 16px;
         padding: 10px 20px;
-        
+
     }
     .btn-outline-white:hover{
         background-color: transparent;
@@ -340,7 +340,7 @@ body{
         font-weight: bold;
         color: white;
         font-size: 1.1em;
-        padding: 3%;        
+        padding: 3%;
     }
     .sub-menu-hide{
         width: 100%;
@@ -350,7 +350,7 @@ body{
 .nav-mobile-hide{
     --bs-nav-link-padding-x: 1rem;
     --bs-nav-link-padding-y: 0.5rem;
-    padding: 3% 5% 0;    
+    padding: 3% 5% 0;
     list-style: none;
 }
 .br-bt-gray{
@@ -381,13 +381,13 @@ body{
     position: relative;
     left: 50%;
     transform:translateX(-50%);
-    
+
 }
 
 
 /*      CSS PARA ICONS        */
 
-.icon-cian{    
+.icon-cian{
     background-color: var(--c-cian);
     border-radius: 100% 100% 100% 100%;
     padding: 23px 18px 23px 18px;
@@ -450,7 +450,7 @@ body{
     background-color: rgba(19,70,168,0.6);
     border-radius: 5px;
     width: 100%;
-    height: 100%;    
+    height: 100%;
     padding: 10px;
     align-items: center;
     align-content: center;
@@ -465,7 +465,7 @@ body{
         background-size: cover;
         width: 100%;
         height: 410px;
-        border-radius: 5px;        
+        border-radius: 5px;
     }
     .p-why{
         padding:5% 0 5% 3%;
@@ -530,7 +530,7 @@ body{
     background-color: var(--purple-conekta);
     color: white;
     position: relative;
-    animation: btnFlotante 3s infinite;   
+    animation: btnFlotante 3s infinite;
 }
 .btn-orange{
     background-color: var(--c-orange);
@@ -689,13 +689,13 @@ body{
     background-image: url(/img/banners/about.jpg);
     z-index: -10;
     background-repeat: no-repeat;
-    background-size: cover;    
+    background-size: cover;
 }
 .back-slider-thanks{
     background-image: url(/img/banners/gracias.jpg);
     z-index: -10;
     background-repeat: no-repeat;
-    background-size: cover;    
+    background-size: cover;
 }
 @media(min-width:640px)
 {
@@ -716,7 +716,7 @@ body{
         background-repeat: no-repeat;
         z-index: -10;
         padding: 25px 5px;
-    }    
+    }
     .img-driver-mobile{
         width: 100%;
     }
@@ -724,7 +724,7 @@ body{
 .degradate-black{
     width: 100%;
     height: 100%;
-    background: linear-gradient(transparent, rgba(19,70,168,0.4));    
+    background: linear-gradient(transparent, rgba(19,70,168,0.4));
 }
 .banner-bus{
     background-image: url(/img/banners/why-bg.jpg);
@@ -737,11 +737,11 @@ body{
     background-repeat: no-repeat;
     background-size: auto;
     z-index: -100;
-    height: 100%;    
+    height: 100%;
 }
 
-.bg-blue{    
-    height: 128%;    
+.bg-blue{
+    height: 128%;
     width: 100%;
     background-color: rgba(19,70,168,0.9);
     z-index: -10;
@@ -772,10 +772,10 @@ body{
     background-color: white;
 }
 .img-destination{
-    
+
     height: 300px;
     border-radius: 5px;
-    
+
 }
 .bg-destination{
     background-image: url(/img/banners/bg-destinations.png);
@@ -793,14 +793,14 @@ body{
     background-repeat: no-repeat;
     background-size: cover;
 }
-.bg-zona-hotelera-shadow{    
+.bg-zona-hotelera-shadow{
     background-color: rgba(0,0,0,0.4);
     width: 100%;
     height: 100%;
 }
 
 
-.box-shadow-info{    
+.box-shadow-info{
     box-shadow: 0px 0px 5px -1px rgba(0,0,0,0.4);
     border-radius: 5px;
     padding: 20px;
@@ -813,7 +813,7 @@ body{
     }
     .logo-home{
         max-width: 250px;
-    }    
+    }
 }
 @media(max-width:640px)
 {
@@ -823,7 +823,7 @@ body{
     .logo-home{
         max-width: 160px;
     }
-    
+
 }
 .img-person{
     max-width: 100%;
@@ -882,7 +882,7 @@ body{
     position: absolute;
 }
 .card-on{
-    position: relative;    
+    position: relative;
     margin: -50px;
 }
 .icon-orange{
@@ -944,9 +944,9 @@ body{
 
 
 .wrapper{
-    display: inline-flex;    
+    display: inline-flex;
     align-items: center;
-    justify-content: space-evenly;    
+    justify-content: space-evenly;
   }
   .wrapper .option{
     background: #fff;
@@ -1052,7 +1052,7 @@ body{
     justify-content: center;
 }
 .login-img{
-  background-image: url(/img/banners/driver.jpg);  
+  background-image: url(/img/banners/driver.jpg);
 }
 .bg-white{
     background-color: white;
