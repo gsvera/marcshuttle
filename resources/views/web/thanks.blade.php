@@ -9,9 +9,8 @@
         {{__('Home.texto-gracias-dos')}}: {{$folio}}
         <br>
         @if(explode('-', $folio)[1] == 'MS')
-            {{__('MotorBusqueda.pdf')}}
             <a href="#" onclick="downloadPDF('{{$folio}}')" class="icon-link text-white">
-                <i class="fa fa-file-pdf-o fa-lg aria-hidden="true"></i></a>
+                {{__('MotorBusqueda.pdf')}} <i class="fa fa-file-pdf-o fa-lg aria-hidden="true"></i></a>
         @endif
     </p>
 </div>

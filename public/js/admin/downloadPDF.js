@@ -39,7 +39,7 @@ function downloadTripCustomPDF(data) {
     doc.setFillColor(245, 247, 249);
     doc.roundedRect(25, 120, 80, 100, 2, 2, 'F');
 
-    doc.setFontSize(15);
+    doc.setFontSize(12);
     doc.setFont(undefined, "bold");
 
     doc.setTextColor(254, 122, 48);
@@ -70,7 +70,7 @@ function downloadTripCustomPDF(data) {
     doc.setFillColor(19, 70, 168);
     doc.roundedRect(100, 120, 80, 100, 2, 2, 'F');
 
-    doc.setFontSize(15);
+    doc.setFontSize(12);
     doc.setFont(undefined, "bold");
 
     doc.setTextColor(254, 122, 48);
@@ -113,7 +113,7 @@ function downloadTripCustomPDF(data) {
     doc.setTextColor(19, 70, 168);
     doc.text(data.comentarios, 45, 230);
 
-    doc.setFontSize(15);
+    doc.setFontSize(13);
     doc.setFont(undefined, "bold");
 
     doc.setTextColor(120, 131, 153);
