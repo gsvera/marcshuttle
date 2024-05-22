@@ -1,3 +1,4 @@
+
 function downloadPDF(folio) {
     let data = {
         "folio": folio
@@ -135,7 +136,7 @@ function downloadTripPDF(data) {
     doc.setFillColor(245, 247, 249);
     doc.roundedRect(25, 120, 80, 140, 2, 2, 'F');
 
-    doc.setFontSize(15);
+    doc.setFontSize(12);
     doc.setFont(undefined, "bold");
 
     doc.setTextColor(254, 122, 48);
@@ -153,7 +154,7 @@ function downloadTripPDF(data) {
     doc.setTextColor(120, 131, 154);
     doc.text(data.item.phone, 30, 167);
 
-    if (data.item.type_transfer == 1 || data.item.type_transfer == 3) {
+    if (data.item.type_transfer == 1) {
         doc.setTextColor(254, 122, 48);
         doc.text(data.arrival, 28, 175);
         doc.setTextColor(120, 131, 154);
@@ -170,7 +171,7 @@ function downloadTripPDF(data) {
         doc.text(data.item.arrival_info, 30, 212);
     }
 
-    if (data.item.type_transfer == 2 || data.item.type_transfer == 3) {
+    if (data.item.type_transfer == 2) {
         doc.setTextColor(254, 122, 48);
         doc.text(data.salida, 28, 175);
         doc.setTextColor(120, 131, 154);
@@ -187,10 +188,42 @@ function downloadTripPDF(data) {
         doc.text(data.item.departure_info, 30, 212);
     }
 
+    if (data.item.type_transfer == 3) {
+        doc.setTextColor(254, 122, 48);
+        doc.text(data.arrival, 28, 175);
+        doc.setTextColor(120, 131, 154);
+        doc.text(data.item.arrival_date, 30, 182);
+
+        doc.setTextColor(254, 122, 48);
+        doc.text(data.hora, 28, 190);
+        doc.setTextColor(120, 131, 154);
+        doc.text(data.item.arrival_time, 30, 197);
+
+        doc.setTextColor(254, 122, 48);
+        doc.text(data.infovuelo, 28, 205);
+        doc.setTextColor(120, 131, 154);
+        doc.text(data.item.arrival_info, 30, 212);
+
+        doc.setTextColor(254, 122, 48);
+        doc.text(data.salida, 28, 220);
+        doc.setTextColor(120, 131, 154);
+        doc.text(data.item.departure_date, 30, 227);
+
+        doc.setTextColor(254, 122, 48);
+        doc.text(data.hora, 28, 235);
+        doc.setTextColor(120, 131, 154);
+        doc.text(data.item.departure_time, 30, 242);
+
+        doc.setTextColor(254, 122, 48);
+        doc.text(data.infovuelo, 28, 250);
+        doc.setTextColor(120, 131, 154);
+        doc.text(data.item.departure_info, 30, 257);
+    }
+
     doc.setFillColor(19, 70, 168);
     doc.roundedRect(100, 120, 80, 140, 2, 2, 'F');
 
-    doc.setFontSize(15);
+    doc.setFontSize(12);
     doc.setFont(undefined, "bold");
 
     doc.setTextColor(254, 122, 48);
@@ -264,7 +297,7 @@ function downloadTripPDF(data) {
         doc.setTextColor(19, 70, 168);
         doc.text(data.comentarios, 45, 280);
 
-        doc.setFontSize(15);
+        doc.setFontSize(13);
         doc.setFont(undefined, "bold");
 
         doc.setTextColor(120, 131, 153);
@@ -296,7 +329,7 @@ function downloadTripPDF(data) {
     doc.setTextColor(19, 70, 168);
     doc.text(data.comentarios, 45, 270);
 
-    doc.setFontSize(15);
+    doc.setFontSize(13);
     doc.setFont(undefined, "bold");
 
     doc.setTextColor(120, 131, 153);

@@ -21,6 +21,7 @@
         "sass-loader": "^11.0.1"
     },
     "dependencies": {
-        "conekta": "^6.0.0"
+        "conekta": "^6.0.0",
+        "jspdf": "^2.5.1"
     }
 }
