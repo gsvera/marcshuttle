@@ -13,17 +13,17 @@ class WebController extends Controller
     {
         $resp = new Respuesta;
         try{
-            
+
             request()->session()->put('lang', request('lang'));
             App::setLocale(request('lang'));
-            $resp->setResult(false, "Se cambio el idioma correctamente", 
-            ["locale" => App::getLocale(), 
+            $resp->setResult(false, "Se cambio el idioma correctamente",
+            ["locale" => App::getLocale(),
             "session" => session('lang')]);
         }
         catch(Exception $e)
         {
             $resp->setResult(true, $e->getMessage(), "");
-        }        
+        }
         return response()->json($resp->getResult());
     }
 
@@ -55,7 +55,7 @@ class WebController extends Controller
     {
         $lang = App::getLocale();
         try{
-            
+
             if(request('folio')) {
                 return view('web.thanks')->with('folio', request('folio'));
             }

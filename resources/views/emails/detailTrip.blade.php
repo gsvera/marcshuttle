@@ -12,13 +12,13 @@ $total = Utils::asDollars($item['amount']);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://use.fontawesome.com/97a88bff0a.js"></script>
     <style>
-        table.roundedCorners { 
-        border-radius: 13px; 
+        table.roundedCorners {
+        border-radius: 13px;
         border-spacing: 0;
         }
-        table.roundedCorners td, 
+        table.roundedCorners td,
         table.roundedCorners th {
-        padding: 10px; 
+        padding: 10px;
         }
         table.roundedCorners tr:last-child > td {
         border-bottom: none;
@@ -27,7 +27,7 @@ $total = Utils::asDollars($item['amount']);
             font-family: sans-serif;
         }
         .bg-principal{
-            
+
             height:450px;
             border:0;
             align:center;
@@ -58,7 +58,7 @@ $total = Utils::asDollars($item['amount']);
             background-color: white;
             width: 70%;
             margin: 0 auto 0;
-            padding: 15px 10px;            
+            padding: 15px 10px;
         }
         .card-gray{
             width:45%;
@@ -78,12 +78,12 @@ $total = Utils::asDollars($item['amount']);
             display:flex;
             flex-wrap:wrap;
             justify-content:space-between;
-        }        
+        }
         .content-cards{
-            display:flex; 
+            display:flex;
             justify-content:center;
             margin-top:-13%;
-        }        
+        }
 </style>
 </head>
 <body>
@@ -101,32 +101,32 @@ $total = Utils::asDollars($item['amount']);
                 <div class="card-gray">
                     <ul style="list-style:none;padding:0;">
                         <li>
-                            <strong class="text-orange"><i class="fa fa-check text-blue" aria-hidden="true"></i> {{__('Email.nombre')}}</strong> 
+                            <strong class="text-orange"><i class="fa fa-check text-blue" aria-hidden="true"></i> {{__('Email.nombre')}}</strong>
                             <br>
                             <div class="text-gray strong" style="margin-left:10px;margin-top:5px;font-size:1.1em;">{{$item['first_name']. ' '. $item['last_name']}}</div>
                         </li>
                         <br>
                         <li>
-                            <strong class="text-orange"><i class="fa fa-check text-blue" aria-hidden="true"></i> Email:</strong> 
+                            <strong class="text-orange"><i class="fa fa-check text-blue" aria-hidden="true"></i> Email:</strong>
                             <br>
                             <div class="text-gray strong" style="margin-left:10px;margin-top:5px;font-size:1.1em;">{{$item['email']}}</div>
                         </li>
                         <br>
                         <li>
-                            <strong class="text-orange"><i class="fa fa-check text-blue" aria-hidden="true"></i> {{__('Email.telefono')}}:</strong> 
+                            <strong class="text-orange"><i class="fa fa-check text-blue" aria-hidden="true"></i> {{__('Email.telefono')}}:</strong>
                             <br>
                             <div class="text-gray strong" style="margin-left:10px;margin-top:5px;font-size:1.1em;">{{$item['phone']}}</div>
                         </li>
                         <br>
                         @if($item['type_transfer'] == 1 || $item['type_transfer'] == 3)
                             <li>
-                                <strong class="text-orange"><i class="fa fa-check text-blue" aria-hidden="true"></i> {{__('Email.llegada')}}:</strong> 
+                                <strong class="text-orange"><i class="fa fa-check text-blue" aria-hidden="true"></i> {{__('Email.llegada')}}:</strong>
                                 <br>
                                 <div class="text-gray strong" style="margin-left:10px;margin-top:5px;font-size:1.1em;">{{$item['arrival_date']}}</div>
                             </li>
                             <br >
                             <li>
-                                <strong class="text-orange"><i class="fa fa-check text-blue" aria-hidden="true"></i> {{__('Email.hora')}}:</strong> 
+                                <strong class="text-orange"><i class="fa fa-check text-blue" aria-hidden="true"></i> {{__('Email.hora')}}:</strong>
                                 <br>
                                 <div class="text-gray strong" style="margin-left:10px;margin-top:5px;font-size:1.1em;">{{$item['arrival_time']}}</div>
                             </li>
@@ -140,13 +140,13 @@ $total = Utils::asDollars($item['amount']);
                         @endif
                         @if($item['type_transfer'] == 2 || $item['type_transfer'] == 3)
                             <li>
-                                <strong class="text-orange"><i class="fa fa-check text-blue" aria-hidden="true"></i> {{__('Email.salida')}}:</strong> 
+                                <strong class="text-orange"><i class="fa fa-check text-blue" aria-hidden="true"></i> {{__('Email.salida')}}:</strong>
                                 <br>
                                 <div class="text-gray strong" style="margin-left:10px;margin-top:5px;font-size:1.1em;">{{$item['departure_date']}}</div>
                             </li>
                             <br>
                             <li>
-                                <strong class="text-orange"><i class="fa fa-check text-blue" aria-hidden="true"></i> {{__('Email.hora')}}:</strong> 
+                                <strong class="text-orange"><i class="fa fa-check text-blue" aria-hidden="true"></i> {{__('Email.hora')}}:</strong>
                                 <br>
                                 <div class="text-gray strong" style="margin-left:10px;margin-top:5px;font-size:1.1em;">{{$item['departure_time']}}</div>
                             </li>
@@ -156,7 +156,7 @@ $total = Utils::asDollars($item['amount']);
                                 <br>
                                 <div class="text-gray strong" style="margin-left:10px;margin-top:5px;font-size:1.1em;">{{$item['departure_info']}}</div>
                             </li>
-                        @endif                        
+                        @endif
                     </ul>
                 </div>
                 <div class="card-blue">
@@ -232,7 +232,7 @@ $total = Utils::asDollars($item['amount']);
                 <div class="text-blue strong" style="font-size:1.3em;">{{__('Email.comentarios')}}</div>
                 <div class="text-gray strong" style="text-align: justify;">{{$item['comments']}}</div>
             </div>
-        </div>    
+        </div>
     </div>
 </body>
 </html>
