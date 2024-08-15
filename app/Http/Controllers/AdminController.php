@@ -35,4 +35,7 @@ class AdminController extends Controller
     public function chart() {
         return view('admin.charts');
     }
+    public function cupones() {
+        return view('admin.cupones.index');
+    }
 }

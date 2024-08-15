@@ -76,6 +76,10 @@
                         @if(Utils::validPermision(request()->session()->get('permisos'), config('ListPermision.VISUALIZAR_TOURS')))
                             <a class="collapse-item c-pointer" onclick="menuTours()">Tour</a>
                         @endif
+                        @if(Utils::validPermision(request()->session()->get('permisos'), config('ListPermision.AGREGAR_PERMISOS')))
+                            <h6 class="collapse-header">Promociones:</h6>
+                            <a class="collapse-item c-pointer" onclick="menuCupones()">Cupones</a>
+                        @endif
                     </div>
                 </div>
             </li>

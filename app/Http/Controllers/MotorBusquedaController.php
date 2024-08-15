@@ -10,6 +10,7 @@ use App\Models\Ubicaciones;
 use App\Models\BookingTrip;
 use App\Models\BookingTour;
 use App\Models\DestinationXUbicacion;
+use App\Models\Cupones;
 
 class MotorBusquedaController extends Controller
 {
@@ -143,6 +144,18 @@ class MotorBusquedaController extends Controller
             $resp->data = $destination->_GetDestinationsAirport();
 
         } catch(Exception $e) {
+            $resp->Error = true;
+            $resp->Message = $e->getMessage();
+        }
+        return response()->json($resp->getResult());
+    }
+
+    public function ValidateCupon() {
+        $resp = new Respuesta;
+        $cupon = new Cupones;
+        try{
+            $resp = $cupon->_ValidateCupon(request()->all());
+        } catch(Exception $e){
             $resp->Error = true;
             $resp->Message = $e->getMessage();
         }

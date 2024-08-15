@@ -143,12 +143,14 @@ $total = Utils::asDollars($amount);
                 <input type="hidden" name="idZone" id="idZone" value="{{$objDestination->id}}">
                 <input type="hidden" name="urlWeb" id="urlWeb">
                 <input type="hidden" name="payMethod" id="payMethod" value="efectivo">
-                <input type="hidden" name="amount" id="amount" value="{{$amount}}">
                 <input type="hidden" name="orderId" id="orderId">
                 <input type="hidden" name="payerId" id="payerId">
                 <input type="hidden" name="paymentId" id="paymentId">
                 <input type="hidden" name="statusPaypal" id="statusPaypal">
                 <input type="hidden" id="sillaBebe" value="0">
+                <input type="hidden" name="amount" id="amount" value="{{$amount}}" />
+                <input type="hidden" name="amountCupon" id="amountCupon" value="0"/>
+                <input type="hidden" name="total" id="total" value="{{$amount}}" />
                 @if($typetransfer == 2)
                     <input type="hidden" name="origin" id="origin" value="{{$origin}}">
                 @else
@@ -229,7 +231,20 @@ $total = Utils::asDollars($amount);
                         </div>
                     @endif
                     <div class="my-3 box-shadow-info">
-                        <h3 class="font-weight-bold fsize-mds text-blue">{{__('MotorBusqueda.metodo-pago')}}</h3>                    
+                        <h3 class="font-weight-bold fsize-mds text-blue">{{__('MotorBusqueda.metodo-pago')}}</h3>      
+                        <div class="row mb-3">
+                            <div class="form-group col-5">
+                                <label class="font-weight-bold fsize-sm text-gray">{{__('Motorbusqueda.cupon')}}</label>
+                                <input class="form-control" id="cupon" />
+                            </div>              
+                            <div class="col-3 d-flex" style="align-items: end">
+                                <div>
+                                    <button type="button" class="btn btn-success font-weight-bold" onclick="validateCupon()">
+                                        {{ __('MotorBusqueda.validate_cupon') }}
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
                         <div class="row">
                             <div class="col-md-6" style="display:flex; align-items:center;">
                                 <input type="radio" name="payment_type" id="methodcash" value="efectivo" checked>
@@ -304,7 +319,7 @@ $total = Utils::asDollars($amount);
                         <i class="fa fa-check-square-o text-orange" aria-hidden="true"></i> {{__('MotorBusqueda.incluido-siete')}}
                     </li>
                 </ul>                
-                <p><span class="font-weight-bold text-blue fsize-mds">Total:</span> <span class="font-weight-bold text-orange fsize-mds">{{$total}} MXN</span> </p>
+                <p><span class="font-weight-bold text-blue fsize-mds">Total:</span> <span class="font-weight-bold text-orange fsize-mds"><span id="text-total">{{$total}}</span> MXN</span> </p>
             </div>    
         </div>
     </div>
@@ -390,6 +405,30 @@ $total = Utils::asDollars($amount);
         function changeChairbaby(event)
         {
             sillabebe.value = event.target.value
+        }
+
+        function validateCupon() {
+            var cupon = document.getElementById('cupon');
+            fetch('/validate-cupon', {
+                method: 'POST',
+                headers: headConexion,
+                body: JSON.stringify({cupon: cupon.value, currentDate: generateCurrentDate()})
+            })
+            .then(res => res.json())
+            .then(response => {
+                if(!response.error) {
+                    $('#amountCupon').val(response.data.amount);
+                    cupon.setAttribute('disabled', true);     
+                    
+                    var newAmount = $('#amount').val() - response.data.amount;
+
+                    $('#total').val(newAmount);
+                    $('#text-total').text(convertCurrency(newAmount));
+
+                    notification('success', 'Cupon aplicado');
+                }
+                else notification('error', '{{__('MotorBusqueda.cupon_invalidate')}}');
+            })
         }
         
         
@@ -493,6 +532,8 @@ $total = Utils::asDollars($amount);
                 @if($typetransfer == 2)
                     "origin": $('#origin').val(),
                 @endif
+                "cupon_clave": $('#cupon').val(),
+                "cupon_amount": $('#amountCupon').val(),
                 "typetransfer": $('#typetransfer').val(),
                 "pax": $('#pax').val(),
                 "nameZone": $('#nameZone').val(),
@@ -628,7 +669,7 @@ $total = Utils::asDollars($amount);
                     purchase_units: [{
                         amount: {
                             "currency_code": "MXN",
-                            "value": {{$amount}}
+                            "value": $('#total').val()
                         }
                     }],
                 });

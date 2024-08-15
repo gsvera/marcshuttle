@@ -285,7 +285,8 @@
         <img class="chat-icon" src="/img/icons/whatsapp-icon.png" alt="icono chat whatsapp">
     </a>
 
-
+    <a class="d-none" href="https://www.linkedin.com/in/guillermo-salvador-vera-morales-22712b192/">Created by Guillermo Vera</a>
+    
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="{{ asset('js/bootstrap-datepicker.js')}}"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>

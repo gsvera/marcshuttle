@@ -118,6 +118,8 @@
                     <th scope="col">Order Id</th>
                     <th scope="col">Payer Id</th>
                     <th scope="col">Payment Id</th>
+                    <th scope="col">Cupon</th>
+                    <th scope="col">Monto cupon</th>
                     <th scope="col">Monto</th>
                 </tr>
             </thead>

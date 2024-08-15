@@ -3,6 +3,7 @@
     --blue-strong:#17223A;
     --purple-conekta: #211C43;
     --c-orange:#FE7A30;
+    --c-red: #F30000;
     --c-gray: #FFFFFF33;
     --c-silver: #788399;
     --c-cian:#3DD0FF;
@@ -89,6 +90,12 @@ body{
 }
 .text-orange{
     color: var(--c-orange);
+}
+.text-red{
+    color: var(--c-red);
+}
+.text-blue{
+    color: var(--c-blue);
 }
 .text-justify{
     text-align: justify;
@@ -1092,4 +1099,15 @@ body{
     appearance: none;
     border-radius: 0.375rem;
     transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+.click:active{
+    transform: scale(0.9);
+}
+
+.btn-small {
+    width: 25px;
+    height: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

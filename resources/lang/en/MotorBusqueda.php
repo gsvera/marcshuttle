@@ -91,5 +91,8 @@ return [
     "incluido-seis" => "Designated vehicle exclusively for your use",
     "incluido-siete" => "courtesy water",
     "error-paypal" => "Error with PayPal, plis contact us to help with your reservation.",
-    "pdf" => "Download booking PDF"
+    "pdf" => "Download booking PDF",
+    "cupon" => "Add a discount coupon",
+    "cupon_invalidate" => "Invalid coupon",
+    "validate_cupon" => "Validate coupon"
 ];

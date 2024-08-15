@@ -15,6 +15,7 @@ use App\Http\Controllers\ToursController;
 use App\Http\Controllers\VehiclesController;
 use App\Http\Controllers\BookingsTripController;
 use App\Http\Controllers\BookingsTourController;
+use App\Http\Controllers\CuponController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -55,6 +56,7 @@ Route::get('/gracias', [WebController::class, 'gracias'])->name('es-gracias');
 Route::post('/make-reservation-tour', [MotorBusquedaController::class, 'MakeBookingTour']);
 Route::post('/make-reservation-trip', [MotorBusquedaController::class, 'MakeBookingTrip']);
 Route::post('/make-reservation-custom', [MotorBusquedaController::class, 'MakeBookingTripCustom']);
+Route::post('/validate-cupon', [MotorBusquedaController::class, 'ValidateCupon']);
 
 /*
     RUTAS PAYPAL
@@ -123,6 +125,7 @@ Route::group(['middleware' => 'userAuth', 'prefix' => 'admin-marcshuttle'], func
     Route::get('bookins-trip-report', [AdminController::class, 'bookingsTripReport']);
     Route::get('bookings-tour-report', [AdminController::class, 'bookingsTourReport']);
     Route::get('chart', [AdminController::class, 'chart']);
+    Route::get('cupones', [AdminController::class, 'cupones']);
 
     // Metodos par users
     Route::get('getUsers', [UserController::class, 'getUsers']);
@@ -168,4 +171,12 @@ Route::group(['middleware' => 'userAuth', 'prefix' => 'admin-marcshuttle'], func
     Route::post('resend-email-trip', [BookingsTripController::class, 'resendEmailTrip']);
     Route::get('get-bookings-tour-report', [BookingsTourController::class, 'getBookingsTourReport']);
     Route::post('resend-email-tour', [BookingsTourController::class, 'resendEmailTour']);
+
+    // Metodos para cu´pones
+    Route::post('save-cupon', [CuponController::class, 'saveCupon']);
+    Route::get('get-cupones', [CuponController::class, 'getCupon']);
+    Route::put('enabled-disabled-cupon', [CuponController::class, 'EnabledDisabledCupon']);
+    Route::delete('delete-cupon', [CuponController::class, 'DeleteCupon']);
+    Route::get('get-cupon-by-id', [CuponController::class, 'GetById']);
+    Route::put('update-cupon', [CuponController::class, 'UpdateCupon']);
 });

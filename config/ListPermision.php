@@ -17,5 +17,6 @@
         'AGREGAR_USUARIOS' => 15,
         'EDITAR_USUARIOS' => 16,
         'VISUALIZAR_USUARIOS' => 17,
-        'ELIMINAR_VEHICULOS' => 18
+        'ELIMINAR_VEHICULOS' => 18,
+        'AGREGAR_PERMISOS' => 19
     ];

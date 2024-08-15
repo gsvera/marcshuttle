@@ -92,4 +92,7 @@ return [
     "incluido-siete" => "Agua de cortesía",
     "error-paypal" => "Ocurrio un erro con paypal, por favor comuniquese directamente con nosotros para ayudarle con su servicio.",
     "pdf" => "Descargar reserva en PDF",
+    "cupon" => "Agregue un cupon de descuento",
+    "cupon_invalidate" => "Cupon invalido",
+    "validate_cupon" => "Validar cupon"
 ];

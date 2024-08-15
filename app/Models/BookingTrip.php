@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Http;
 use App\Models\Utils;
 use App\Models\Respuesta;
 use App\Models\Folio;
+use App\Models\Cupones;
 use App;
 
 class BookingTrip extends Model
@@ -84,11 +85,16 @@ class BookingTrip extends Model
         $folio = new Folio;
         $booking = new BookingTrip;
         $resp = new Respuesta;
+        $cupon = new Cupones;
 
         try{
             $lang = App::getLocale();
             $folio = $folio->_GetFolio();
             $folioBooking = $folio->folio .''.$folio->count;
+
+            if($data['cupon_clave'] !== '' && $data['cupon_amount'] > 0) {
+                $cupon->_addCuponUsed($data['cupon_clave']);
+            }
 
             $booking->folio = $folioBooking;
             $booking->first_name = $data['firstName'];
@@ -103,6 +109,8 @@ class BookingTrip extends Model
             $booking->amount = $data['amount'];
             $booking->silla_bebe = $data['sillaBebe'];
             $booking->lang = $lang;
+            $booking->cupon_clave = $data['cupon_clave'];
+            $booking->cupon_amount = $data['cupon_amount'];
 
             if($data['typetransfer'] == 1 || $data['typetransfer'] == 3)
             {
@@ -443,7 +451,8 @@ class BookingTrip extends Model
                 'metododepago' => __('Email.metodo-pago'),
                 'efectivo' => __('Email.efectivo'),
                 'tarjeta' => __('Email.tarjeta'),
-                'amount' => __('Email.monto')
+                'amount' => __('Email.monto'),
+                'cupon' => __('Email.cupon')
             ];
         } catch(Exception $e) {
             $resp->Error = true;

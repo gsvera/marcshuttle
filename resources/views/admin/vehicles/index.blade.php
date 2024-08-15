@@ -13,8 +13,7 @@
         @endif
     </div>
     <div>
-    <div id="content-group-vehicle" class="row"></div>        
-
+      <div id="content-group-vehicle" class="row"></div>        
     </div>
 </div>
 

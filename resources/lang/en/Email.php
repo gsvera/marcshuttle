@@ -18,5 +18,6 @@
         "comentarios" => "Comments",
         "status-pay" => "Status pay",
         "pendiente" => "Pending payment",
-        "pagado" => "Paid"
+        "pagado" => "Paid",
+        "cupon" => "Coupon"
     ];

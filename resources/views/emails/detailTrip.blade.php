@@ -1,7 +1,12 @@
 <?php
 use App\Models\Utils;
 
-$total = Utils::asDollars($item['amount']);
+$amount = $item['amount'];
+if($item['cupon_amount'] > 0) {
+    $amount = $item['amount'] - $item['cupon_amount'];
+}
+$total = Utils::asDollars($amount);
+$amountCupon = Utils::AsDollars($item['cupon_amount']);
 
 ?>
 <!DOCTYPE html>
@@ -220,6 +225,13 @@ $total = Utils::asDollars($item['amount']);
                             <div class="text-white strong" style="margin-left:10px;margin-top:5px;font-size:1.1em;">{{$statusPay == 'pendiente' ? __('Email.pendiente') : $statusPay}}</div>
                         </li>
                         <br>
+                        @if($item['cupon_clave'] != '')
+                        <li>
+                            <strong class="text-orange"><i class="fa fa-check text-orange" aria-hidden="true"></i>{{__('Email.cupon')}}</strong>
+                            <br>
+                            <div class="text-white strong" style="margin-left:10px;margin-top:5px;font-size:1.1em;">{{$item['cupon_clave']}} {{$amountCupon}}</div>
+                        </li>
+                        @endif
                         <li>
                             <strong class="text-orange"><i class="fa fa-check text-orange" aria-hidden="true"></i> {{__('Email.monto')}}</strong>
                             <br>

@@ -18,5 +18,6 @@
         "comentarios" => "Comentarios",
         "status-pay" => "Estatus de pago",
         "pendiente" => "Pago pendiente",
-        "pagado" => "Pagado"
+        "pagado" => "Pagado",
+        "cupon" => "Cupon"
     ];
