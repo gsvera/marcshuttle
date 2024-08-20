@@ -60,6 +60,8 @@
                                 <option value="0" selected>Seleccione una opcion</option>
                                 <option value="efectivo">Efectivo</option>
                                 <option value="card">Tarjeta</option>
+                                <option value="transfer">Transferencia</option>
+                                <option value="Terminal">Terminal</option>
                             </select>
                         </div>
                     </div>

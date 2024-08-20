@@ -94,5 +94,6 @@ return [
     "pdf" => "Descargar reserva en PDF",
     "cupon" => "Agregue un cupon de descuento",
     "cupon_invalidate" => "Cupon invalido",
-    "validate_cupon" => "Validar cupon"
+    "validate_cupon" => "Validar cupon",
+    "nota-pay" => "Nota: Este metodo de pago se realizara al abordar el transporte"
 ];

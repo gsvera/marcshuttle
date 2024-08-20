@@ -94,5 +94,6 @@ return [
     "pdf" => "Download booking PDF",
     "cupon" => "Add a discount coupon",
     "cupon_invalidate" => "Invalid coupon",
-    "validate_cupon" => "Validate coupon"
+    "validate_cupon" => "Validate coupon",
+    "nota-pay" => "Note: This payment method will be processed upon boarding the transportation."
 ];

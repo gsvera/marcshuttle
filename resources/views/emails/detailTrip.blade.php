@@ -208,7 +208,25 @@ $amountCupon = Utils::AsDollars($item['cupon_amount']);
                         <li>
                             <strong class="text-orange"><i class="fa fa-check text-orange" aria-hidden="true"></i> {{__('Email.metodo-pago')}}</strong>
                             <br>
-                            <div class="text-white strong" style="margin-left:10px;margin-top:5px;font-size:1.1em;">{{$item['pay_method'] == 'efectivo' ? __('Email.efectivo') : __('Email.tarjeta')}}</div>
+                            <div class="text-white strong" style="margin-left:10px;margin-top:5px;font-size:1.1em;">
+                                @switch($item['pay_method'])
+                                    @case('efectivo')
+                                        {{_('Email.efectivo')}}
+                                        @break
+                                
+                                    @case('card')
+                                        {{__('Email.tarjeta')}}
+                                        @break
+
+                                    @case('transfer')
+                                        {{__('Email.transfer')}}
+                                        @break
+
+                                    @case('terminal')
+                                        {{__('Email.terminal')}}
+                                        @break                                        
+                                @endswitch
+                            </div>
                         </li>
                         <br>
                         @if($item['pay_method'] == 'card')

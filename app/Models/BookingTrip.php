@@ -450,6 +450,8 @@ class BookingTrip extends Model
                 'pax' => __('Email.pax'),
                 'metododepago' => __('Email.metodo-pago'),
                 'efectivo' => __('Email.efectivo'),
+                'terminal' => __('Email.terminal'),
+                'transfer' => __('Email.transfer'),
                 'tarjeta' => __('Email.tarjeta'),
                 'amount' => __('Email.monto'),
                 'cupon' => __('Email.cupon')

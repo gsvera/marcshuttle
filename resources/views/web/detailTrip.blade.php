@@ -246,16 +246,27 @@ $total = Utils::asDollars($amount);
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-md-6" style="display:flex; align-items:center;">
+                            <div class="col-md-3 selected-type-pay" style="display:flex; align-items:center;" >
                                 <input type="radio" name="payment_type" id="methodcash" value="efectivo" checked>
-                                <label for="methodcash"><img src="/img/icons/{{$lang == 'es' ? 'efectivo' : 'cash'}}.png" style="width:200px;" alt="Cash"></label>
+                                <label for="methodcash"><img src="/img/icons/{{$lang == 'es' ? 'efectivo' : 'cash'}}.png" style="width:100%;" alt="Cash"></label>
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-3" style="display:flex; align-items:center;">
                                 <input type="radio" name="payment_type" id="methodpaypal" value="card">
-                                <label for="methodpaypal"><img src="/img/icons/paypal.png" style="width:200px;" alt="Paypal"></label>
+                                <label for="methodpaypal"><img src="/img/icons/paypal.png" style="width:100%;" alt="Paypal"></label>
+                            </div>
+                            <div class="col-md-3" style="display:flex; align-items:center;">
+                                <input type="radio" name="payment_type" id="methodtransfer" value="transfer">
+                                <label for="methodtransfer"><img src="/img/icons/transfer-{{$lang}}.png" style="width:100%;" alt="Transfer"></label>
+                            </div>
+                            <div class="col-md-3" style="display:flex; align-items:center;">
+                                <input type="radio" name="payment_type" id="methodterminal" value="terminal" >
+                                <label for="methodterminal"><img src="/img/icons/pago-tarjeta-{{$lang}}.png" style="width:100%;" alt="Terminal"></label>
                             </div>
                         </div>
                         <div class="col-12 col-md-12 d-grid mt-5 mb-3">
+                            <div id="note-pay">
+                                <p class="font-weight-bold">{{__('MotorBusqueda.nota-pay')}}</p>
+                            </div>
                             <div class="g-recaptcha mb-3" data-sitekey="{{env('GOOGLE_PUBLIC_KEY')}}"></div>
                             <button id="btnBooking" onclick="SendBookingCash()" class="btn btn-naranja btn-lg" type="button">{{__('MotorBusqueda.boton-confirmar')}}</button>
                             <div id="paypal-button-container" class="d-none"></div>
@@ -335,11 +346,14 @@ $total = Utils::asDollars($amount);
 
         var btnBooking = document.getElementById('btnBooking')
         var paypalButtonContainer = document.getElementById('paypal-button-container')
-        var methodcash = document.getElementById('methodcash')
-        var methodpaypal = document.getElementById('methodpaypal')        
+        var methodcash = document.getElementById('methodcash');
+        var methodpaypal = document.getElementById('methodpaypal');
+        var methodtransfer = document.getElementById('methodtransfer');
+        var methodterminal = document.getElementById('methodterminal');
         var step = document.querySelectorAll('.step')
         var payMethod = document.getElementById('payMethod')
         var gRecaptcha = document.querySelector('.g-recaptcha')
+        var notePay = document.getElementById('note-pay');
         var inputOrderId = document.getElementById('orderId')
         var sillabebe = document.getElementById('sillaBebe')    
         var countStep = 0
@@ -435,12 +449,13 @@ $total = Utils::asDollars($amount);
         methodcash.addEventListener('change', e => {
             e.preventDefault()
 
-            if(methodcash.checked)
-            {
+            if(methodcash.checked) {
+                selectTypePayElement(methodcash);
                 btnBooking.classList.remove('d-none')
                 paypalButtonContainer.classList.add('d-none')
                 payMethod.value = 'efectivo'
                 gRecaptcha.classList.remove('d-none')
+                notePay.classList.remove('d-none');
             }
         })
 
@@ -458,17 +473,56 @@ $total = Utils::asDollars($amount);
             if(fieldEmpty) {
                 notification("warning", '{{__('MotorBusqueda.campos-obligatorios')}}')
                 methodcash.checked = true
+                selectTypePayElement(methodcash);
                 return false                
             }
 
-            if(methodpaypal.checked)
-            {
+            if(methodpaypal.checked) {
+                selectTypePayElement(methodpaypal)
                 btnBooking.classList.add('d-none')
                 paypalButtonContainer.classList.remove('d-none')
                 payMethod.value = 'card'
                 gRecaptcha.classList.add('d-none')
+                notePay.classList.add('d-none');
             }
         })
+
+        methodtransfer.addEventListener('change', e => {
+            e.preventDefault()
+
+            if(methodtransfer.checked) {
+                selectTypePayElement(methodtransfer)
+                btnBooking.classList.remove('d-none')
+                paypalButtonContainer.classList.add('d-none')
+                payMethod.value = 'transfer'
+                gRecaptcha.classList.remove('d-none')
+                notePay.classList.remove('d-none');
+            }
+        })
+
+        methodterminal.addEventListener('change', e => {
+            e.preventDefault()
+
+            if(methodterminal.checked) {
+                selectTypePayElement(methodterminal)
+                btnBooking.classList.remove('d-none')
+                paypalButtonContainer.classList.add('d-none')
+                payMethod.value = 'terminal'
+                gRecaptcha.classList.remove('d-none')
+                notePay.classList.remove('d-none');
+            }
+        })
+
+        function selectTypePayElement(elementSelected){
+            var elements = document.getElementsByName('payment_type');
+
+            elements.forEach(item => {
+                var parentElement = item.parentElement;
+                parentElement.classList.remove('selected-type-pay')
+            })
+            var elementSelectedParent = elementSelected.parentElement;
+            elementSelectedParent.classList.add('selected-type-pay');
+        }
 
         function NextStep()
         {
@@ -596,7 +650,6 @@ $total = Utils::asDollars($amount);
 
             inputs.forEach(elem => {
                 if(elem.value === '') {
-                    console.log('assas',elem.value)
                     fieldEmpty = true                    
                 }
             })

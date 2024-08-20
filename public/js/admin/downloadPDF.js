@@ -281,10 +281,17 @@ function downloadTripPDF(data) {
   doc.setTextColor(254, 122, 48);
   doc.text(data.metododepago, 103, 205);
   doc.setTextColor(255, 255, 255);
-  if (data.item.pay_method === 'efectivo') {
-    doc.text(data.efectivo, 105, 212);
-  } else {
-    doc.text(data.tarjeta, 105, 212);
+
+  switch (data.item.pay_method) {
+    case 'efectivo':
+      doc.text(data.efectivo, 105, 212);
+      break;
+    case 'transfer':
+      doc.text(data.transfer, 105, 212);
+      break;
+    case 'terminal':
+      doc.text(data.terminal, 105, 212);
+      break;
   }
 
   if (data.item.pay_method === 'card') {
