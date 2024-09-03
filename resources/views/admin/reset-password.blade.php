@@ -33,7 +33,7 @@
         <div class="row justify-content-center">
             <div class="col-xl-6 col-lg-6 col-md-6">
                 <div class="col-md-6 col-lg-6 align-center mx-auto mt-5 row">
-                    <img src="/img/logos/Logo-Marcshuttle.webp" alt="login form" class="img-fluid" style="width:80%">
+                    <img src="/img/logos/logo-marcshuttle-black.png" alt="login form" class="img-fluid invert-color-logo" style="width:80%">
                 </div>
                 <div class="card o-hidden border-0 shadow-lg my-4">
                     <div class="card-body p-0">

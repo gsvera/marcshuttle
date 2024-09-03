@@ -101,7 +101,7 @@
     <nav class="transparent-nav d-flex" id="header">
         <div class="col-md-2 d-flex" style="align-items:center;">
             <a href="{{$prefijo}}">
-                <img width="50%" src="/img/logos/Logo-Marcshuttle.webp" alt="Logo">
+                <img class="invert-color-logo" width="50%" src="/img/logos/logo-marcshuttle-black.png" alt="Logo">
             </a>
         </div>
         <ul class="nav justify-content-end col-md-9" style="align-items:center;">
@@ -153,7 +153,7 @@
             </div>
             <div class="col-4 d-flex justify-content-center">
                 <a href="{{$prefijo}}">
-                    <img width="90%" src="/img/logos/Logo-Marcshuttle.webp" alt="Logo">
+                    <img class="invert-color-logo" width="60%" src="/img/logos/logo-marcshuttle-black.png" alt="Logo">
                 </a>
             </div>
             <div class="col-4 justify-content-center align-center d-flex">
@@ -263,7 +263,7 @@
             <div class="col-12 col-md-6 d-flex justify-content-end px-5">
                 <div class="text-center">
                     <a href="{{$prefijo}}">
-                        <img width="15%" src="/img/logos/Logo-Marcshuttle.webp" alt="Logo">
+                        <img class="invert-color-logo" width="20%" src="/img/logos/logo-marcshuttle-black.png" alt="Logo">
                     </a>
                 </div>
             </div>
@@ -276,7 +276,7 @@
             </div>
             <div class="col text-center py-3" style="align-items:center;">
             <a href="{{$prefijo}}">
-                <img width="50%" src="/img/logos/Logo-Marcshuttle.webp" alt="Logo">
+                <img class="invert-color-logo" width="30%" src="/img/logos/logo-marcshuttle-black.png" alt="Logo">
             </a>
             </div>
         </div>

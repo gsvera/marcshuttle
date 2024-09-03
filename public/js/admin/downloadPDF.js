@@ -119,6 +119,7 @@ function downloadTripCustomPDF(data) {
   doc.setTextColor(120, 131, 153);
   // doc.text(data.item.comments, 45, 238);
   const lineas = doc.splitTextToSize(data.item.comments, 190);
+  doc.setFontSize(11);
 
   let x = 10;
   let y = 238;
@@ -134,6 +135,8 @@ function downloadTripCustomPDF(data) {
     doc.text(lineas[i], x, y);
     y += lineHeight;
   }
+
+  doc = addPageExtraData(doc, data);
 
   doc.save('Booking: ' + data.folio + '.pdf');
 }
@@ -372,12 +375,14 @@ function downloadTripPDF(data) {
     data.item.comments = '';
   }
 
-  const lineas = doc.splitTextToSize(data.item.comments, 190);
+  const lineas = doc.splitTextToSize(data.item.comments, 220);
 
   let x = 10;
   let y = 278;
   const lineHeight = 5;
   const pageHeight = doc.internal.pageSize.height;
+
+  doc.setFontSize(11);
 
   for (let i = 0; i < lineas.length; i++) {
     if (y + lineHeight > pageHeight) {
@@ -389,5 +394,93 @@ function downloadTripPDF(data) {
     y += lineHeight;
   }
 
+  doc = addPageExtraData(doc, data);
+
   doc.save('Booking: ' + data.folio + '.pdf');
+}
+
+function addPageExtraData(doc, item) {
+  var positionX = 10;
+
+  doc.addPage();
+  doc.setTextColor(0, 0, 0);
+
+  doc = titlesPdf(doc, item['text-extra-0'], 20);
+
+  doc.setFontSize(11);
+  doc.setFont('helvetica', '200');
+  doc.text(item['text-extra-1'], positionX, 30);
+
+  var { doc, positionY } = setupBigText(doc, item['text-extra-2'], 40);
+
+  positionY += 5;
+
+  const imgUno = new Image();
+  const imgDos = new Image();
+  const imgTres = new Image();
+  imgUno.src = '/img/assets/img-pdf-1.jpeg';
+  imgDos.src = '/img/assets/img-pdf-2.jpeg';
+  imgTres.src = '/img/assets/img-pdf-3.jpeg';
+  doc.addImage(imgUno, 'JPEG', 20, positionY, 50, 35);
+  doc.addImage(imgDos, 'JPEG', 80, positionY, 50, 35);
+  doc.addImage(imgTres, 'JPEG', 140, positionY, 50, 35);
+
+  positionY += 50;
+
+  doc = titlesPdf(doc, item['text-extra-3'], positionY);
+
+  positionY += 10;
+
+  var { doc, positionY } = setupBigText(doc, item['text-extra-4'], positionY);
+
+  positionY += 5;
+
+  doc = titlesPdf(doc, item['text-extra-5'], positionY);
+
+  positionY += 10;
+
+  var { doc, positionY } = setupBigText(doc, item['text-extra-6'], positionY);
+
+  positionY += 5;
+
+  doc = titlesPdf(doc, item['text-extra-7'], positionY);
+
+  doc.setFont('helvetica', '200');
+  doc.setFontSize(11);
+  doc.text(item['text-extra-8'], 10, positionY + 10);
+  doc.text(item['text-extra-9'], 10, positionY + 20);
+  doc.text(item['text-extra-10'], 10, positionY + 30);
+  doc.text(item['text-extra-11'], 10, positionY + 40);
+  doc.text(item['text-extra-12'], 10, positionY + 50);
+  doc.text(item['text-extra-13'], 10, positionY + 60);
+
+  return doc;
+}
+
+function titlesPdf(doc, text, positionY) {
+  doc.setFont('helvetica', 'bold');
+  doc.setFontSize(13);
+
+  const pageWidth = doc.internal.pageSize.getWidth();
+  const textWidth = doc.getTextWidth(text);
+  const positionX = (pageWidth - textWidth) / 2;
+  doc.text(text, positionX, positionY);
+  return doc;
+}
+
+function setupBigText(doc, text, positionY) {
+  doc.setFont('helvetica', '200');
+  doc.setFontSize(11);
+
+  var lineaHeight = 5;
+  var lineas = doc.splitTextToSize(text, 190);
+  for (let i = 0; i < lineas.length; i++) {
+    doc.text(lineas[i], 10, positionY);
+    positionY += lineaHeight;
+  }
+
+  return {
+    doc,
+    positionY
+  };
 }

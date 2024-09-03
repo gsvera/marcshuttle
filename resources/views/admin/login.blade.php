@@ -14,7 +14,7 @@
           <div class="" style="border-radius: 1rem;background-color:transparent;">
             <div class="row g-0">
               <div class="col-md-6 col-lg-6 bg-logo-back align-center row">
-                <img src="/img/logos/Logo-Marcshuttle.webp" alt="login form" class="img-fluid" style="width:80%">
+                <img src="/img/logos/logo-marcshuttle-black.png" alt="login form" class="img-fluid invert-color-logo" style="width:80%">
               </div>
               <div class="col-md-6 col-lg-6 bg-white d-flex align-items-center">
                 <div class="card-body p-4 p-lg-5 text-black">

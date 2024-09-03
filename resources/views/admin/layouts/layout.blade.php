@@ -36,7 +36,7 @@
             <!-- Sidebar - Brand -->
             <div class="sidebar-brand d-flex align-items-center justify-content-center">
                 <div class="sidebar-brand-icon c-pointer" onclick="menuHome()">
-                    <img src="/img/logos/Logo-Marcshuttle.webp" alt="Logo Marcshuttle" style="width:100px;">
+                    <img class="invert-color-logo" src="/img/logos/logo-marcshuttle-black.png" alt="Logo Marcshuttle" style="width:100px;">
                 </div>
             </div>
             <!-- Divider -->

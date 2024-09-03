@@ -454,7 +454,21 @@ class BookingTrip extends Model
                 'transfer' => __('Email.transfer'),
                 'tarjeta' => __('Email.tarjeta'),
                 'amount' => __('Email.monto'),
-                'cupon' => __('Email.cupon')
+                'cupon' => __('Email.cupon'),
+                'text-extra-0' => __('Email.pdf-text-extra'),
+                'text-extra-1' => __('Email.pdf-text-extra-1'),
+                'text-extra-2' => __('Email.pdf-text-extra-2'),
+                'text-extra-3' => __('Email.pdf-text-extra-3'),
+                'text-extra-4' => __('Email.pdf-text-extra-4'),
+                'text-extra-5' => __('Email.pdf-text-extra-5'),
+                'text-extra-6' => __('Email.pdf-text-extra-6'),
+                'text-extra-7' => __('Email.pdf-text-extra-7'),
+                'text-extra-8' => __('Email.pdf-text-extra-8'),
+                'text-extra-9' => __('Email.pdf-text-extra-9'),
+                'text-extra-10' => __('Email.pdf-text-extra-10'),
+                'text-extra-11' => __('Email.pdf-text-extra-11'),
+                'text-extra-12' => __('Email.pdf-text-extra-12'),
+                'text-extra-13' => __('Email.pdf-text-extra-13')
             ];
         } catch(Exception $e) {
             $resp->Error = true;

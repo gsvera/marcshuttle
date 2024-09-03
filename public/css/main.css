@@ -1115,3 +1115,7 @@ body{
 .selected-type-pay{
     box-shadow: 0px 0px 5px 5px rgba(0, 92, 200 ,0.7);
 }
+
+.invert-color-logo{
+    filter: invert(1);
+}

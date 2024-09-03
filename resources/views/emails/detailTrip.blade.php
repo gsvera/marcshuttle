@@ -89,13 +89,16 @@ $amountCupon = Utils::AsDollars($item['cupon_amount']);
             justify-content:center;
             margin-top:-13%;
         }
+        .invert-color-logo{
+            filter: invert(1);
+        }        
 </style>
 </head>
 <body>
     <div class="bg-principal" style="margin-bottom:-200px">
         <div style="background-color:rgba(0,0,0,0.4);height:450px;">
             <div style="display:flex;">
-                <img class="img-logo" src="{{env('APP_URL')}}/img/logos/Logo-Marcshuttle.webp" width="200px"/>
+                <img class="img-logo invert-color-logo" src="{{env('APP_URL')}}/img/logos/logo-marcshuttle-black.png" width="200px"/>
             </div>
         </div>
     </div>
