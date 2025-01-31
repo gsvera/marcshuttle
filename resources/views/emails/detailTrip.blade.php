@@ -32,7 +32,6 @@ $amountCupon = Utils::AsDollars($item['cupon_amount']);
             font-family: sans-serif;
         }
         .bg-principal{
-
             height:450px;
             border:0;
             align:center;
@@ -44,13 +43,16 @@ $amountCupon = Utils::AsDollars($item['cupon_amount']);
             margin: 100px auto;
         }
         .text-white{
-            color:white;
+            color:white !important;
+        }
+        .text-white > a{
+            color:white !important;
         }
         .text-blue{
             color:#1346A8;
         }
         .text-orange{
-            color:#FE7A30;
+            color:black;
         }
         .text-gray{
             color:#788399;
@@ -64,6 +66,7 @@ $amountCupon = Utils::AsDollars($item['cupon_amount']);
             width: 70%;
             margin: 0 auto 0;
             padding: 15px 10px;
+            justify-content:center;
         }
         .card-gray{
             width:45%;
@@ -73,11 +76,11 @@ $amountCupon = Utils::AsDollars($item['cupon_amount']);
             padding: 5px 11px;
         }
         .card-blue{
-            width:45%;
+            width:55%;
             background-color:#1346A8;
             border-radius:5px;
             /* margin: 7px; */
-            padding: 5px 11px;
+            padding: 5px 0 5px 11px;
         }
         .flex{
             display:flex;
@@ -92,6 +95,30 @@ $amountCupon = Utils::AsDollars($item['cupon_amount']);
         .invert-color-logo{
             filter: invert(1);
         }        
+        .text-center{
+            text-align:center;
+        }
+        .d-flex-img{
+            display: flex;
+            justify-content: center;
+            margin-top: 50px;
+        }
+        .content-img{
+            width: 250px;
+            height: 150px;
+            margin: 0 40px;
+            padding: 0;
+        }
+        .size-img{
+            width: 250px;
+            height: 150px;
+        }
+        .mb-2{
+            margin-bottom: 30px;
+        }
+        .card-body{
+            display: flex;
+        }
 </style>
 </head>
 <body>
@@ -104,161 +131,218 @@ $amountCupon = Utils::AsDollars($item['cupon_amount']);
     </div>
     <div class="content-cards">
         <div class="card">
-            <div><h1 style="text-align:center;">{{$typetransfer}}</h1></div>
-            <div class="flex">
-                <div class="card-gray">
-                    <ul style="list-style:none;padding:0;">
-                        <li>
-                            <strong class="text-orange"><i class="fa fa-check text-blue" aria-hidden="true"></i> {{__('Email.nombre')}}</strong>
-                            <br>
-                            <div class="text-gray strong" style="margin-left:10px;margin-top:5px;font-size:1.1em;">{{$item['first_name']. ' '. $item['last_name']}}</div>
-                        </li>
-                        <br>
-                        <li>
-                            <strong class="text-orange"><i class="fa fa-check text-blue" aria-hidden="true"></i> Email:</strong>
-                            <br>
-                            <div class="text-gray strong" style="margin-left:10px;margin-top:5px;font-size:1.1em;">{{$item['email']}}</div>
-                        </li>
-                        <br>
-                        <li>
-                            <strong class="text-orange"><i class="fa fa-check text-blue" aria-hidden="true"></i> {{__('Email.telefono')}}:</strong>
-                            <br>
-                            <div class="text-gray strong" style="margin-left:10px;margin-top:5px;font-size:1.1em;">{{$item['phone']}}</div>
-                        </li>
-                        <br>
-                        @if($item['type_transfer'] == 1 || $item['type_transfer'] == 3)
+            <div class="card-body">
+                <div style="display: flex; width: 80%; margin: 0 auto;">
+                    <div class="card-gray">
+                        <ul style="list-style:none;padding:0;">
                             <li>
-                                <strong class="text-orange"><i class="fa fa-check text-blue" aria-hidden="true"></i> {{__('Email.llegada')}}:</strong>
-                                <br>
-                                <div class="text-gray strong" style="margin-left:10px;margin-top:5px;font-size:1.1em;">{{$item['arrival_date']}}</div>
-                            </li>
-                            <br >
-                            <li>
-                                <strong class="text-orange"><i class="fa fa-check text-blue" aria-hidden="true"></i> {{__('Email.hora')}}:</strong>
-                                <br>
-                                <div class="text-gray strong" style="margin-left:10px;margin-top:5px;font-size:1.1em;">{{$item['arrival_time']}}</div>
+                                <strong class="text-orange"><i class="fa fa-check text-blue" aria-hidden="true"></i>{{__('Email.type_service')}}</strong>
                             </li>
                             <br>
                             <li>
-                                <strong class="text-orange"><i class="fa fa-check text-blue" aria-hidden="true"></i> {{__('Email.info-vuelo')}}:</strong>
-                                <br>
-                                <div class="text-gray strong" style="margin-left:10px;margin-top:5px;font-size:1.1em;">{{$item['arrival_info']}}</div>
-                            </li>
-                            <br>
-                        @endif
-                        @if($item['type_transfer'] == 2 || $item['type_transfer'] == 3)
-                            <li>
-                                <strong class="text-orange"><i class="fa fa-check text-blue" aria-hidden="true"></i> {{__('Email.salida')}}:</strong>
-                                <br>
-                                <div class="text-gray strong" style="margin-left:10px;margin-top:5px;font-size:1.1em;">{{$item['departure_date']}}</div>
+                                <strong class="text-orange"><i class="fa fa-check text-blue" aria-hidden="true"></i>Folio:</strong>
                             </li>
                             <br>
                             <li>
-                                <strong class="text-orange"><i class="fa fa-check text-blue" aria-hidden="true"></i> {{__('Email.hora')}}:</strong>
-                                <br>
-                                <div class="text-gray strong" style="margin-left:10px;margin-top:5px;font-size:1.1em;">{{$item['departure_time']}}</div>
+                                <strong class="text-orange"><i class="fa fa-check text-blue" aria-hidden="true"></i> {{__('Email.nombre')}}</strong>
                             </li>
                             <br>
                             <li>
-                                <strong class="text-orange"><i class="fa fa-check text-blue" aria-hidden="true"></i> {{__('Email.info-vuelo')}}:</strong>
-                                <br>
-                                <div class="text-gray strong" style="margin-left:10px;margin-top:5px;font-size:1.1em;">{{$item['departure_info']}}</div>
+                                <strong class="text-orange"><i class="fa fa-check text-blue" aria-hidden="true"></i> Email:</strong>
                             </li>
-                        @endif
-                    </ul>
-                </div>
-                <div class="card-blue">
-                    <ul style="list-style:none;padding:0;">
-                        <li>
-                            <strong class="text-orange"><i class="fa fa-check text-orange" aria-hidden="true"></i> Folio:</strong>
-                            <br>
-                            <div class="text-white strong" style="margin-left:10px;margin-top:5px;font-size:1.1em;">{{$folio}}</div>
-                        </li>
-                        <br>
-                        <li>
-                            <strong class="text-orange"><i class="fa fa-check text-orange" aria-hidden="true"></i> {{__('Email.zona')}}</strong>
-                            <br>
-                            <div class="text-white strong" style="margin-left:10px;margin-top:5px;font-size:1.1em;">{{$nameZone}}</div>
-                        </li>
-                        @if ($item['type_transfer'] == 1 || $item['type_transfer'] == 3)
                             <br>
                             <li>
-                                <strong class="text-orange"><i class="fa fa-check text-orange" aria-hidden="true"></i> {{__('Email.a')}}</strong>
-                                <br>
-                                <div class="text-white strong" style="margin-left:10px;margin-top:5px;font-size:1.1em;">{{$item['destination']}}</div>
+                                <strong class="text-orange"><i class="fa fa-check text-blue" aria-hidden="true"></i> {{__('Email.telefono')}}:</strong>
                             </li>
-                        @else
                             <br>
                             <li>
-                                <strong class="text-orange"><i class="fa fa-check text-orange" aria-hidden="true"></i> {{__('Email.de')}}</strong>
-                                <br>
-                                <div class="text-white strong" style="margin-left:10px;margin-top:5px;font-size:1.1em;">{{$item['origin']}}</div>
+                                <strong class="text-orange"><i class="fa fa-check text-blue" aria-hidden="true"></i>{{__('Email.metodo-pago')}}</strong>
                             </li>
-                        @endif
-                        <br>
-                        <li>
-                            <strong class="text-orange"><i class="fa fa-check text-orange" aria-hidden="true"></i> {{__('Email.pasajeros')}}</strong>
                             <br>
-                            <div class="text-white strong" style="margin-left:10px;margin-top:5px;font-size:1.1em;">{{$item['pax']}}</div>
-                        </li>
-                        <br>
-                        <li>
-                            <strong class="text-orange"><i class="fa fa-check text-orange" aria-hidden="true"></i> {{__('MotorBusqueda.silla-bebe')}}</strong>
-                            <br>
-                            <div class="text-white strong" style="margin-left:10px;margin-top:5px;font-size:1.1em;">{{$item['sillaBebe'] == 1 ? __('MotorBusqueda.si') : "No"}}</div>
-                        </li>
-                        <br>
-                        <li>
-                            <strong class="text-orange"><i class="fa fa-check text-orange" aria-hidden="true"></i> {{__('Email.metodo-pago')}}</strong>
-                            <br>
-                            <div class="text-white strong" style="margin-left:10px;margin-top:5px;font-size:1.1em;">
-                                @switch($item['pay_method'])
-                                    @case('efectivo')
-                                        {{_('Email.efectivo')}}
-                                        @break
-                                
-                                    @case('card')
-                                        {{__('Email.tarjeta')}}
-                                        @break
-
-                                    @case('transfer')
-                                        {{__('Email.transfer')}}
-                                        @break
-
-                                    @case('terminal')
-                                        {{__('Email.terminal')}}
-                                        @break                                        
-                                @endswitch
-                            </div>
-                        </li>
-                        <br>
-                        @if($item['pay_method'] == 'card')
+                            @if($item['pay_method'] == 'card')
                             <li>
-                                <strong class="text-orange"><i class="fa fa-check text-orange" aria-hidden="true"></i> Order Id</strong>
-                                <br>
-                                <div class="text-white strong" style="margin-left:10px;margin-top:5px;font-size:1.1em;">{{$item['order_id']}}</div>
+                                <strong class="text-orange"><i class="fa fa-check text-blue" aria-hidden="true"></i>Order Id</strong>
                             </li>
                             <br>
-                        @endif
-                        <li>
-                            <strong class="text-orange"><i class="fa fa-check text-orange" aria-hidden="true"></i>{{__('Email.status-pay')}}</strong>
+                            @endif
+                            <li>
+                                <strong class="text-orange"><i class="fa fa-check text-blue" aria-hidden="true"></i>{{__('Email.status-pay')}}</strong>
+                            </li>
                             <br>
-                            <div class="text-white strong" style="margin-left:10px;margin-top:5px;font-size:1.1em;">{{$statusPay == 'pendiente' ? __('Email.pendiente') : $statusPay}}</div>
-                        </li>
-                        <br>
-                        @if($item['cupon_clave'] != '')
-                        <li>
-                            <strong class="text-orange"><i class="fa fa-check text-orange" aria-hidden="true"></i>{{__('Email.cupon')}}</strong>
+                            @if($item['cupon_clave'] != '')
+                            <li>
+                                <strong class="text-orange"><i class="fa fa-check text-orange" aria-hidden="true"></i>{{__('Email.cupon')}}</strong>                            
+                            </li>
                             <br>
-                            <div class="text-white strong" style="margin-left:10px;margin-top:5px;font-size:1.1em;">{{$item['cupon_clave']}} {{$amountCupon}}</div>
-                        </li>
-                        @endif
-                        <li>
-                            <strong class="text-orange"><i class="fa fa-check text-orange" aria-hidden="true"></i> {{__('Email.monto')}}</strong>
+                            @endif
+                            <li>
+                                <strong class="text-orange"><i class="fa fa-check text-blue" aria-hidden="true"></i>{{__('Email.pasajeros')}}</strong>
+                            </li>
                             <br>
-                            <div class="text-white strong" style="margin-left:10px;margin-top:5px;font-size:1.1em;">{{$total}}</div>
-                        </li>
-                    </ul>
+                            <li>
+                                <strong class="text-orange"><i class="fa fa-check text-blue" aria-hidden="true"></i>{{__('MotorBusqueda.silla-bebe')}}</strong>
+                            </li>
+                            <br>
+                            <li>
+                                <strong class="text-orange"><i class="fa fa-check text-blue" aria-hidden="true"></i>{{__('Email.zona')}}</strong>
+                            </li>
+                            <br>
+                            <li>
+                                <strong class="text-orange"><i class="fa fa-check text-blue" aria-hidden="true"></i>{{__('Email.a')}}</strong>
+                            </li>
+                            <br>
+                            @if($item['type_transfer'] == 1 || $item['type_transfer'] == 3)
+                                <li>
+                                    <strong class="text-orange"><i class="fa fa-check text-blue" aria-hidden="true"></i> {{__('Email.llegada')}}:</strong>
+                                </li>
+                                <br >
+                                <li>
+                                    <strong class="text-orange"><i class="fa fa-check text-blue" aria-hidden="true"></i> {{__('Email.hora_llegada')}}:</strong>
+                                </li>
+                                <br>
+                                <li>
+                                    <strong class="text-orange"><i class="fa fa-check text-blue" aria-hidden="true"></i> {{__('Email.info-vuelo')}}:</strong>
+                                </li>
+                                <br>
+                            @endif
+                            @if($item['type_transfer'] == 2 || $item['type_transfer'] == 3)
+                                <li>
+                                    <strong class="text-orange"><i class="fa fa-check text-blue" aria-hidden="true"></i> {{__('Email.salida')}}:</strong>
+                                </li>
+                                <br>
+                                <li>
+                                    <strong class="text-orange"><i class="fa fa-check text-blue" aria-hidden="true"></i> {{__('Email.hora_salida')}}:</strong>
+                                </li>
+                                <br>
+                                <li>
+                                    <strong class="text-orange"><i class="fa fa-check text-blue" aria-hidden="true"></i> {{__('Email.info-vuelo')}}:</strong>
+                                </li>
+                            @endif
+                            <br>
+                            <br>
+                            <li>
+                                <strong class="text-orange"><i class="fa fa-check text-orange" aria-hidden="true"></i> {{__('Email.monto')}}</strong>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="card-blue">
+                        <ul style="list-style:none;padding:0;">                        
+                            <li>
+                                <div class="text-white strong">{{$typetransfer}}</div>
+                            </li>
+                            <br>
+                            <li>
+                                <div class="text-white strong">{{$folio}}</div>
+                            </li>
+                            <br>
+                            <li>
+                                <div class="text-white strong">{{$item['first_name']. ' '. $item['last_name']}}</div>
+                            </li>
+                            <br>
+                            <li>
+                                <div class="text-white strong">{{$item['email']}}</div>
+                            </li>
+                            <br>
+                            <li>
+                                <div class="text-white strong">{{$item['phone']}}</div>
+                            </li>
+                            <br>
+                            <li>
+                                <div class="text-white strong">
+                                    @switch($item['pay_method'])
+                                        @case('efectivo')
+                                            {{__('Email.efectivo')}}
+                                            @break
+                                    
+                                        @case('card')
+                                            {{__('Email.tarjeta')}}
+                                            @break
+    
+                                        @case('transfer')
+                                            {{__('Email.transfer')}}
+                                            @break
+    
+                                        @case('terminal')
+                                            {{__('Email.terminal')}}
+                                            @break                                        
+                                    @endswitch
+                                </div>
+                            </li>
+                            <br>
+                            @if($item['pay_method'] == 'card')
+                                <li>
+                                    <div class="text-white strong">{{$item['order_id']}}</div>
+                                </li>
+                                <br>
+                            @endif
+                            <li>
+                                <div class="text-white strong">{{$statusPay == 'pendiente' ? __('Email.pendiente') : $statusPay}}</div>
+                            </li>
+                            <br>
+                            @if($item['cupon_clave'] != '')
+                            <li>
+                                <div class="text-white strong">{{$item['cupon_clave']}} {{$amountCupon}}</div>
+                            </li>
+                            <br>
+                            @endif
+                            <li>
+                                <div class="text-white strong">{{$item['pax']}}</div>
+                            </li>
+                            <br>
+                            <li>
+                                <div class="text-white strong">{{$item['sillaBebe'] == 1 ? __('MotorBusqueda.si') : "No"}}</div>
+                            </li>
+                            <br>
+                            <li>
+                                @if ($item['type_transfer'] == 1 || $item['type_transfer'] == 3)
+                                    <div class="text-white strong">{{__('Email.aeropuerto')}}</div>
+                                @else
+                                    <div class="text-white strong">{{$nameZone}} | {{$item['origin']}}</div>                            
+                                @endif
+                            </li>
+                            <br>
+                            <li>
+                                @if ($item['type_transfer'] == 2 )
+                                    <div class="text-white strong">{{__('Email.aeropuerto')}}</div>
+                                @else
+                                    <div class="text-white strong">{{$nameZone}} | {{$item['destination']}}</div>
+                                @endif
+                            </li>
+                            <br>
+                            @if($item['type_transfer'] == 1 || $item['type_transfer'] == 3)
+                                <li>
+                                    <div class="text-white strong">{{$item['arrival_date']}}</div>                            
+                                </li>
+                                <br >
+                                <li>                        
+                                    <div class="text-white strong">{{$item['arrival_time']}}</div>
+                                </li>
+                                <br>
+                                <li>
+                                    <div class="text-white strong">{{$item['arrival_info']}}</div>
+                                </li>
+                                <br>
+                            @endif
+                            @if($item['type_transfer'] == 2 || $item['type_transfer'] == 3)
+                                <li>
+                                    <div class="text-white strong">{{$item['departure_date']}}</div>
+                                </li>
+                                <br>
+                                <li>
+                                    <div class="text-white strong">{{$item['departure_time']}}</div>
+                                </li>
+                                <br>
+                                <li>
+                                    <div class="text-white strong">{{$item['departure_info']}}</div>
+                                </li>
+                            @endif
+                            <br>
+                            <br>
+                            <li>
+                                <div class="text-white strong">{{$total}}</div>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </div>
             <div style="width:80%; margin: 10px auto;">
@@ -266,6 +350,33 @@ $amountCupon = Utils::AsDollars($item['cupon_amount']);
                 <div class="text-gray strong" style="text-align: justify;">{{$item['comments']}}</div>
             </div>
         </div>
+    </div>
+    <div>
+        <h4 class="text-cente mb-2">{{__('Email.pdf-text-extra')}}</h4>
+        <p>{{__('Email.pdf-text-extra-1')}}</p>
+        <p>{{__('Email.pdf-text-extra-2')}}</p>
+        <div class="d-flex-img">
+            <div class="content-img">
+                <img class="size-img" src="{{env('APP_URL')}}/img/assets/img-pdf-1.jpeg" alt="">
+            </div>
+            <div class="content-img">
+                <img class="size-img" src="{{env('APP_URL')}}/img/assets/img-pdf-2.jpeg" alt="">
+            </div>
+            <div class="content-img">
+                <img class="size-img" src="{{env('APP_URL')}}/img/assets/img-pdf-3.jpeg" alt="">
+            </div>
+        </div>
+        <h4 class="text-center mb-2">{{__('Email.pdf-text-extra-3')}}</h4>
+        <p>{{__('Email.pdf-text-extra-4')}}</p>
+        <h4 class="text-center mb-2">{{__('Email.pdf-text-extra-5')}}</h4>
+        <p>{{__('Email.pdf-text-extra-6')}}</p>
+        <h4 class="text-center mb-2">{{__('Email.pdf-text-extra-7')}}</h4>
+        <p>{{__('Email.pdf-text-extra-8')}}</p>
+        <p>{{__('Email.pdf-text-extra-9')}}</p>
+        <p>{{__('Email.pdf-text-extra-10')}}</p>
+        <p>{{__('Email.pdf-text-extra-11')}}</p>
+        <p>{{__('Email.pdf-text-extra-12')}}</p>
+        <p>{{__('Email.pdf-text-extra-13')}}</p>
     </div>
 </body>
 </html>

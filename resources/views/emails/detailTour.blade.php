@@ -86,7 +86,27 @@ $total = Utils::asDollars($item['amount']);
         .invert-color-logo{
             filter: invert(1);
         }
-        
+        .text-center{
+            text-align:center;
+        }
+        .d-flex-img{
+            display: flex;
+            justify-content: center;
+            margin-top: 50px;
+        }
+        .content-img{
+            width: 250px;
+            height: 150px;
+            margin: 0 40px;
+            padding: 0;
+        }
+        .size-img{
+            width: 250px;
+            height: 150px;
+        }
+        .mb-2{
+            margin-bottom: 30px;
+        }
 </style>
 </head>
 <body>
@@ -128,7 +148,7 @@ $total = Utils::asDollars($item['amount']);
                         </li>
                         <br>
                         <li>
-                            <strong class="text-orange"><i class="fa fa-check text-blue" aria-hidden="true"></i> {{__('Email.hora')}}:</strong> 
+                            <strong class="text-orange"><i class="fa fa-check text-blue" aria-hidden="true"></i> {{__('Email.hora_salida')}}:</strong> 
                             <br>
                             <div class="text-gray strong" style="margin-left:10px;margin-top:5px;font-size:1.1em;">{{$item['departure_time']}}</div>
                         </li>
@@ -224,6 +244,33 @@ $total = Utils::asDollars($item['amount']);
                 <div class="text-gray strong" style="text-align: justify;">{{$item['comments']}}</div>
             </div>
         </div>    
+    </div>
+    <div>
+        <h4 class="text-cente mb-2">{{__('Email.pdf-text-extra')}}</h4>
+        <p>{{__('Email.pdf-text-extra-1')}}</p>
+        <p>{{__('Email.pdf-text-extra-2')}}</p>
+        <div class="d-flex-img">
+            <div class="content-img">
+                <img class="size-img" src="{{env('APP_URL')}}/img/assets/img-pdf-1.jpeg" alt="">
+            </div>
+            <div class="content-img">
+                <img class="size-img" src="{{env('APP_URL')}}/img/assets/img-pdf-2.jpeg" alt="">
+            </div>
+            <div class="content-img">
+                <img class="size-img" src="{{env('APP_URL')}}/img/assets/img-pdf-3.jpeg" alt="">
+            </div>
+        </div>
+        <h4 class="text-center mb-2">{{__('Email.pdf-text-extra-3')}}</h4>
+        <p>{{__('Email.pdf-text-extra-4')}}</p>
+        <h4 class="text-center mb-2">{{__('Email.pdf-text-extra-5')}}</h4>
+        <p>{{__('Email.pdf-text-extra-6')}}</p>
+        <h4 class="text-center mb-2">{{__('Email.pdf-text-extra-7')}}</h4>
+        <p>{{__('Email.pdf-text-extra-8')}}</p>
+        <p>{{__('Email.pdf-text-extra-9')}}</p>
+        <p>{{__('Email.pdf-text-extra-10')}}</p>
+        <p>{{__('Email.pdf-text-extra-11')}}</p>
+        <p>{{__('Email.pdf-text-extra-12')}}</p>
+        <p>{{__('Email.pdf-text-extra-13')}}</p>
     </div>
 </body>
 </html>
